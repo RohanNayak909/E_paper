@@ -1,0 +1,16 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
+:root {
+  --white: #ffffff;
+  --site-background: #f4f4f4;
+  --red: #911418;
+  --black: #000000;
+  --blue: #3f51b5;
+}
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  margin: 2% 5% 5% 5%;
+}
