@@ -1,0 +1,87 @@
+<div class="viewcategory-container">
+    <div class="view-category">
+      <div class="search-category">
+        <button mat-raised-button color="primary" class="newcategory-btn" (click)="newEdition()">New Edition</button>
+      </div>
+      <div class="header">
+        <table id="view-table">
+          <thead class="table-header">
+            <th class="first">
+              <input type="checkbox" class="example-margin">
+            </th>
+            <th class="content">Edition Title</th>
+            <th class="content">Category</th>
+            <th class="content">Edition Date</th>
+            <th class="content">Status</th>
+            <th class="content">Action</th>
+            <th class="content">Delete</th>
+          </thead>
+          <tbody>
+            <tr *ngFor = "let e of editionarr">
+              <td class="first">
+                <input type="checkbox" class="example-margin">
+              </td>
+              <td>{{e.edition_name}}</td>
+              <td>{{e.parent_category}}</td>
+              <td>{{e.edition_date | date}}</td>
+              <td>{{e.status == 1 ? "Public" : "Private"}}</td>
+              <td>
+              <mat-icon  (click)="editEdition(e)">edit</mat-icon>
+                <!-- <mat-icon (click)="addToHome(data)">add</mat-icon> -->
+              </td>
+              <td><mat-icon >delete</mat-icon></td>
+            </tr>
+          </tbody>
+          <ng-template #elseblock>
+            <tbody>
+              <tr>
+                <td colspan="6" class="text-center" style="color: black;">
+                  No record Found
+                </td>
+              </tr>
+            </tbody>
+        </ng-template>
+        </table>
+      </div>
+        
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

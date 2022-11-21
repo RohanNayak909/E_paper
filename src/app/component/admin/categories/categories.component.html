@@ -1,0 +1,79 @@
+<div class="viewcategory-container">
+    <div class="view-category">
+      <div class="search-category">
+        <button mat-raised-button color="primary" class="newcategory-btn" (click)="addCategory()">New Category</button>
+      </div>
+      <div class="header">
+        <table id="view-table">
+          <thead class="table-header">
+            <th class="first">
+              <input type="checkbox" class="example-margin">
+            </th>
+            <th class="content">Category Name</th>
+            <th class="content">Action</th>
+          </thead>
+          <tbody *ngIf="catarr &&  catarr.length; else elseblock">
+            <tr *ngFor="let data of catarr; index as i">
+              <td class="first">
+                <input type="checkbox" class="example-margin">
+              </td>
+              <td>{{ data.category_name }}</td>
+              <td><mat-icon  (click)="editCategory(data)">edit</mat-icon>
+                <mat-icon (click)="deleteCategory(data)">delete</mat-icon>
+                <mat-icon (click)="addToHome(data)">add</mat-icon>
+              </td>
+            </tr>
+          </tbody>
+          <ng-template #elseblock>
+            <tbody>
+              <tr>
+                <td colspan="6" class="text-center" style="color: black;">
+                  No record Found
+                </td>
+              </tr>
+            </tbody>
+        </ng-template>
+        </table>
+      </div>
+        
+    </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

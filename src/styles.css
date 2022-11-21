@@ -1,4 +1,4 @@
-@import '~bootstrap/dist/css/bootstrap.css';
+/* @import '~bootstrap/dist/css/bootstrap.css'; */
 
 :root {
   --white: #ffffff;
@@ -14,3 +14,6 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 2% 5% 5% 5%;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

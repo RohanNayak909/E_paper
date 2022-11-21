@@ -1,0 +1,26 @@
+.add-tag-form .add-tag-form-field .tag-info {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+}
+.category-container{
+    width: auto;
+    height: 450px;
+}
+.submit-button-container{
+    float: right;
+}
+.image-size img{
+    height: 100px;
+    width: 100px;
+}
+:host::ng-deep .mat-form-field-infix {
+    padding: 8px !important;
+    border-top: 0.84375em solid transparent;
+}
+:host::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 4px 0 1em 0 !important;
+}
+:host::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 8px;
+}

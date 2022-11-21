@@ -1,0 +1,19 @@
+.cancel-delete-button {
+    background-color: #C7122D;
+    font-family: var(--subheading);
+    color: #fff;
+    border: none;
+    border-radius: 0%;
+    box-shadow: none;
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+  
+  .margin-left {
+    margin-left: 10px;
+  }
+  
+  .cdk-global-scrollblock {
+    overflow: hidden !important;
+  }
+  

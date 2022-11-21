@@ -1,0 +1,145 @@
+<!-- <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary shadow-none" (click)="toggleSideNav($event)">
+          <i class="fa fa-bars"></i>
+          
+        </button>
+      </div>
+      <div class="p-10">
+        <h1><a href="/admin" class="logo"><img src="assets/img/Prameya.jpg" style="height: 70px;width: 200px;"></a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li *ngFor="let m of sidenav_details; let i = index" (click)="openSideNav(i)">
+            <a [attr.href]="'#'+i" data-toggle="collapse" [attr.id]="'collapse_'+i" aria-expanded="false"
+              class="dropdown-toggle collapsed">{{m.module_name}}</a>
+  
+            <ul class="collapse list-unstyled" [attr.id]="'ul_'+i">
+              <li *ngFor="let p of m.function_details" class="side-nav-inner-li" [ngClass]="p.func_url === currentRoute ? 'active-class' : ''">
+                <div *ngIf="p.func_sidebar == 1">
+                  <a [routerLink]="p.func_url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [attr.id]="p.func_id" (click)="openSubSideNav(i)">{{p.func_name}}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+  
+  
+   
+    <div id="content">
+  
+      <div class="navbar d-flex">
+       
+        <div>
+          <div class="dropdown">
+            <button class="dropbtn">+ New
+              
+            </button>
+            <div class="dropdown-content">
+              <a [href]="mod.func_url" *ngFor="let mod of headers_details">{{mod.module_name}}</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="usertopdropdown">
+            
+            <span>My Profile</span>
+            <mat-icon class="dropdown-arrow">
+              keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="">
+              <span>Profile</span>
+            </button>
+            <button mat-menu-item>
+              <span>Change Password</span>
+            </button>
+            <button mat-menu-item (click)="logOut()">
+              <span>Log Out</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+      
+    </div>
+  </div> -->
+
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary shadow-none" (click)="toggleSideNav($event)">
+          <i class="fa fa-bars"></i>
+          <!-- <span class="sr-only">Toggle Menu</span> -->
+        </button>
+      </div>
+      <div class="p-10">
+        <h1><a href="/admin" class="logo"><img src="assets/img/Prameya.jpg" style="height: 70px;width: 200px;"></a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li *ngFor="let m of sidenav_details; let i = index" (click)="openSideNav(i)">
+            <a [attr.href]="'#'+i" data-toggle="collapse" [attr.id]="'collapse_'+i" aria-expanded="false"
+              class="dropdown-toggle collapsed">{{m.module_name}}</a>
+  
+            <ul class="collapse list-unstyled" [attr.id]="'ul_'+i">
+              <li *ngFor="let p of m.function_details" class="side-nav-inner-li" [ngClass]="p.func_url === currentRoute ? 'active-class' : ''">
+                <div *ngIf="p.func_sidebar == 1">
+                  <a [routerLink]="p.func_url" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    [attr.id]="p.func_id" (click)="openSubSideNav(i)">{{p.func_name}}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- <li>
+            <a href="#">About</a>
+          </li> -->
+        </ul>
+      </div>
+    </nav>
+  
+  
+    <!-- Page Content  -->
+    <div id="content">
+  
+      <div class="navbar d-flex">
+        <!-- <a href="#home">Home</a>
+        <a href="#news">News</a> -->
+        <div>
+          <div class="dropdown">
+            <button class="dropbtn">+ New
+              <!-- <i class="fa fa-caret-down"></i> -->
+            </button>
+            <div class="dropdown-content">
+              <a [href]="mod.func_url" *ngFor="let mod of headers_details">{{mod.module_name}}</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="usertopdropdown">
+            <!-- <img src="assets/img/noimg.jpg" class="user_icon" alt=""> -->
+            <span>My Profile</span>
+            <mat-icon class="dropdown-arrow">
+              keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="">
+              <span>Profile</span>
+            </button>
+            <button mat-menu-item>
+              <span>Change Password</span>
+            </button>
+            <button mat-menu-item (click)="logOut()">
+              <span>Log Out</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+      <!-- <h2 class="mb-4">Sidebar #02</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
+    </div>
+  </div>

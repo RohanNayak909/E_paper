@@ -1,0 +1,74 @@
+<div class="category-container">
+    <div class="add-tag-form">
+        <div class="add-tag-form-field row">
+            <div class="col-md-6 col-sm-12 col-12">
+              <mat-label class="tag-info">Title</mat-label>
+              <mat-form-field appearance="outline">
+                <input matInput type="text" name="title" [(ngModel)] = "edition.edition_name" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12 col-12">
+                <mat-label class="tag-info">Alias</mat-label>
+                <mat-form-field appearance="outline">
+                  <input matInput type="text" name="alias" [(ngModel)] = "edition.edition_alias" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12 col-12">
+                <mat-label class="tag-info">Description</mat-label>
+                <mat-form-field appearance="outline">
+                  <input matInput type="text" name="description" [(ngModel)] = "edition.description" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12 col-12">
+              <mat-label class="tag-info">Date</mat-label>
+              <mat-form-field appearance="outline">
+                  <input matInput type="date" [(ngModel)] = "edition.edition_date" required>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12 col-12">
+              <mat-label class="tag-info">Status</mat-label>
+              <mat-form-field appearance="outline">
+                  <mat-select [(ngModel)] = "edition.status">
+                      <mat-option value="0">Public</mat-option>
+                      <mat-option value="1">Private</mat-option>
+                  </mat-select>
+              </mat-form-field>
+          </div>
+            <div class="col-md-6 col-sm-12 col-12">
+                <mat-label class="tag-info">Parent Category</mat-label>
+                <mat-form-field appearance="outline">
+                  <mat-select class="category" [ngModelOptions]="{standalone: true}" [(ngModel)]="edition.parent_category">
+                    <mat-option *ngFor="let data of catarr" [value]="data.category_name">{{data.category_name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+                <div class="col-lg-6 col-sm-12 col-12">
+                  <mat-label class="category-info">Upload Ads</mat-label>
+                  <div class="upload_txt  mt-10"><input type="file"  #tourBanner
+                      accept="image/png, image/jpeg" (change)="onfileselected($event)" id="file-select"></div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-12">
+                  <div class="image-size">
+                  <img src="assets/img/no-img.png" id="uploadAds">
+                </div>
+                </div>
+                <div class="col-md-6 col-sm-12 col-12">
+                    <mat-label class="tag-info">Meta Description</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput type="text" name="metadescription" [(ngModel)]="edition.meta_desc" required>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6 col-sm-12 col-12">
+                    <mat-label class="tag-info">Meta Keyword</mat-label>
+                    <mat-form-field appearance="outline">
+                      <input matInput type="text" name="metakeyword" [(ngModel)]="edition.meta_keywords" required>
+                    </mat-form-field>
+                </div>
+              
+          </div>
+          <div class="submit-button-container">
+            <button mat-raised-button color="primary" (click)="addEdition()">Submit</button>
+        </div>
+    </div>
+</div>
