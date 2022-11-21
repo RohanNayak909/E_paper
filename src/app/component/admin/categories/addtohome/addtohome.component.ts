@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
-import { EditcategoryComponent } from '../editcategory/editcategory/editcategory.component';
+import { EditcategoryComponent } from '../editcategory/editcategory.component';
 
 @Component({
   selector: 'app-addtohome',

@@ -21,12 +21,12 @@ import { MatSelectModule } from "@angular/material/select";
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
-import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory/editcategory.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
 import { CategoryDialogComponent } from './component/admin/categories/newcategory/category-dialog.component';
 import { NeweditionComponent } from './component/admin/editions/newedition/newedition.component';
 import { EditeditionComponent } from './component/admin/editions/editedition/editedition.component';
+import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory.component';
 
 @NgModule({
   declarations: [

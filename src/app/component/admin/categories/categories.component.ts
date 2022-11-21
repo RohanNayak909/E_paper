@@ -7,7 +7,7 @@ import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
 import { AddtohomeComponent } from './addtohome/addtohome.component';
-import { EditcategoryComponent } from './editcategory/editcategory/editcategory.component';
+import { EditcategoryComponent } from './editcategory/editcategory.component';
 import { CategoryDialogComponent } from './newcategory/category-dialog.component';
 
 
@@ -56,6 +56,8 @@ export class CategoriesComponent implements OnInit {
   //  localStorage.setItem('data', JSON.stringify(data));
     console.log('editeddata',data)
     const dialogRef = this.matDialog.open(EditcategoryComponent,{
+      height: '500px',
+      width: '50vw',
       data: { ...data },
    });
     dialogRef.afterClosed().subscribe(result=>{
