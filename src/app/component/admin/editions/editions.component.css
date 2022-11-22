@@ -94,4 +94,5 @@ tr:nth-child(odd) {
 }
 .upload-icon{
    padding: 3px 0px 0px 10px;
+   cursor: pointer;
 }

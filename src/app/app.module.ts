@@ -31,6 +31,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
+import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { UploadPagesComponent } from './component/admin/editions/upload-pages/up
     EditeditionComponent,
     BhubaneswarPaperComponent,
     UploadPagesComponent,
+    EditPagesComponent,
     ],
   imports: [
     BrowserModule,

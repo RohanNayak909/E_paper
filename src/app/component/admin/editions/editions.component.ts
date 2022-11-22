@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
@@ -16,7 +17,7 @@ export class EditionsComponent implements OnInit {
   currentuser:any;
   editionarr:any = [];
   constructor(private matDialog: MatDialog,private editionService: EditionService,private notification: NotificationService,
-    private loginService: LoginService) { }
+    private loginService: LoginService,private router: Router) { }
 
   ngOnInit(): void {
     this.currentuser = this.loginService.getCurrentUser();
@@ -54,5 +55,8 @@ export class EditionsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       console.log(result);
     })
+  }
+  upload(){
+    this.router.navigate(['admin/epaper/edition/upload-pages']);
   }
 }

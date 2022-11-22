@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
+import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
       { path: 'epaper/category', component: CategoriesComponent},
       { path: 'epaper/category/featured', component: FeaturedcategoriesComponent},
       { path: 'epaper/edition', component: EditionsComponent},
-      { path: 'epaper/edition/upload-pages', component: UploadPagesComponent}
+      { path: 'epaper/edition/upload-pages', component: UploadPagesComponent},
+      { path: 'epaper/edition/upload-pages/edit-pages', component: EditPagesComponent}
     ],
   }
 ];
