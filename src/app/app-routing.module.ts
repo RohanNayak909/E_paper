@@ -28,8 +28,7 @@ const routes: Routes = [
       { path: 'epaper/category', component: CategoriesComponent},
       { path: 'epaper/category/featured', component: FeaturedcategoriesComponent},
       { path: 'epaper/edition', component: EditionsComponent},
-      { path: 'epaper/edition/upload-pages', component: UploadPagesComponent},
-      { path: 'epaper/edition/upload-pages/edit-pages', component: EditPagesComponent}
+      { path: 'epaper/edition/upload-pages', component: UploadPagesComponent}
     ],
   }
 ];

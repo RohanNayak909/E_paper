@@ -10,6 +10,7 @@ export class EditPagesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

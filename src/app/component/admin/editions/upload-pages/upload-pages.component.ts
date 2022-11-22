@@ -16,8 +16,8 @@ export class UploadPagesComponent implements OnInit {
   }
   edit(){
     const dialogRef = this.matDialog.open(EditPagesComponent,{
-      height: '500px',
-      width: '50vw',
+      height: '450px',
+      width: '800px',
    });
    dialogRef.afterClosed().subscribe(result=>{
     console.log(result);
