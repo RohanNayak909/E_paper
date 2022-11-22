@@ -89,3 +89,9 @@ tr:nth-child(odd) {
     height: 100px;
     width: 100px;
 }
+.action-icon{
+    display: flex;
+}
+.upload-icon{
+   padding: 3px 0px 0px 10px;
+}

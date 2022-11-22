@@ -26,8 +26,11 @@
               <td>{{e.edition_date | date}}</td>
               <td>{{e.status == 1 ? "Public" : "Private"}}</td>
               <td>
+                <div class="action-icon">
               <mat-icon  (click)="editEdition(e)">edit</mat-icon>
                 <!-- <mat-icon (click)="addToHome(data)">add</mat-icon> -->
+              <div class="upload-icon" > <i class="fa-solid fa-upload"></i></div>
+              </div>
               </td>
               <td><mat-icon >delete</mat-icon></td>
             </tr>

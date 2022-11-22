@@ -27,7 +27,10 @@ import { CategoryDialogComponent } from './component/admin/categories/newcategor
 import { NeweditionComponent } from './component/admin/editions/newedition/newedition.component';
 import { EditeditionComponent } from './component/admin/editions/editedition/editedition.component';
 import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
+import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,9 @@ import { EditcategoryComponent } from './component/admin/categories/editcategory
     FeaturedcategoriesComponent,
     EditionsComponent,
     NeweditionComponent,
-    EditeditionComponent
+    EditeditionComponent,
+    BhubaneswarPaperComponent,
+    UploadPagesComponent,
     ],
   imports: [
     BrowserModule,
@@ -61,6 +66,8 @@ import { EditcategoryComponent } from './component/admin/categories/editcategory
     MatSnackBarModule,
     MatDialogModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatTabsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
