@@ -7,12 +7,12 @@
                 <input matInput type="text" name="username" [(ngModel)]="userData.user_login" required>
               </mat-form-field>
             </div>
-            <div class="col-md-6 col-sm-12 col-12">
+            <!-- <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Password</mat-label>
                 <mat-form-field appearance="outline" class="form-group">
                   <input matInput type="text" name="password" [(ngModel)]="userData.user_pass" required>
                 </mat-form-field>
-            </div>
+            </div> -->
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Email</mat-label>
                 <mat-form-field appearance="outline" class="form-group">
@@ -21,9 +21,9 @@
             </div>
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Role</mat-label>
-                <ng-multiselect-dropdown [ngModelOptions]="{standalone: true}" [placeholder]="'Select Role'" [settings]="dropdownSettings" [data]="role"
+                <!-- <ng-multiselect-dropdown [ngModelOptions]="{standalone: true}" [placeholder]="'Select Role'" [settings]="dropdownSettings" [data]="role"
                 [(ngModel)]="userData.role">
-                </ng-multiselect-dropdown>
+                </ng-multiselect-dropdown> -->
             </div>
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Status</mat-label>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="submit-button-container">
-            <button mat-raised-button color="primary" (click)="addUser()">Submit</button>
+            <button mat-raised-button color="primary" (click)="editUser()">Submit</button>
         </div>
     </div>
 </div>

@@ -50,8 +50,7 @@ export class EditionsComponent implements OnInit {
         this.editionarr = []
       })
   }
-  editEdition(data:any){
-    
+  editEdition(data:any){  
     const dialogRef = this.matDialog.open(EditeditionComponent,{
       height: '500px',
       width: '50vw',

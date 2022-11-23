@@ -39,6 +39,7 @@ import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubane
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { EdituserComponent } from './component/admin/users/edituser/edituser.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +63,7 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
     BhubaneswarPaperComponent,
     UploadPagesComponent,
     EditPagesComponent,
+    EdituserComponent,
   ],
 
   imports: [

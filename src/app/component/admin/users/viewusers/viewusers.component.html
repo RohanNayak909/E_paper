@@ -19,10 +19,10 @@
               <td class="first">
                 <input type="checkbox" class="example-margin">
               </td>
-              <td>{{data.user_nicename}}</td>
+              <td>{{data.user_login}}</td>
               <td>{{data.role_name}}</td>
               <td>{{data.user_status == 1 ? "Active" : "Inactive"}}</td>
-              <td><mat-icon>edit</mat-icon>
+              <td><mat-icon (click)="editUser(data)">edit</mat-icon>
                 <mat-icon>delete</mat-icon>
                 <mat-icon>add</mat-icon>
               </td>

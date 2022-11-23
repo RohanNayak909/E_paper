@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { UserService } from 'src/app/services/userservice/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-newuser',
@@ -37,7 +38,36 @@ export class NewuserComponent implements OnInit {
     };
   }
   addUser(){
-    // this.userService.createUser()
+    console.log(this.userData)
+    // this.userData.user_status = 1;
+    this.userData.flag = 'I';
+    this.userData.customer_id = environment.CUSTOMER_ID
+    this.userData.user_nicename = this.userData.user_login 
+
+    if(this.userData.user_email) {
+      var mail_format = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+      if (!this.userData.user_email.match(mail_format)) {
+        this.notify.error('Please input valid email')
+        return
+      }
+    }
+
+    if(this.userData.role !== null && this.userData.role !== undefined && this.userData.role !== '') {
+      var result = this.userData.role.map(function(val: any) {
+        return val.id;
+      }).join(',');
+      this.userData.role = result;
+    }
+    console.log(this.userData,'userdata');
+    this.userService.createUser(this.userData).subscribe((res: any) => {
+      if (res.code == "success") {
+        this.notify.success(res.message);
+        // form.reset();
+        window.location.reload();
+      }else{
+        this.notify.error(res.message);
+      }
+    })
   }
   getRoles() {
     this.masterService.getRoles(this.currentuser.customer_id).subscribe((res: any) => {

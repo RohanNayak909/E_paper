@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/userservice/user.service';
 import { environment } from 'src/environments/environment';
+import { EdituserComponent } from '../edituser/edituser.component';
 import { NewuserComponent } from '../newuser/newuser.component';
 
 @Component({
@@ -30,6 +31,16 @@ export class ViewusersComponent implements OnInit {
         height: '400px',
         width: '50vw'
       });
+      dialogRef.afterClosed().subscribe(result=>{
+        console.log(result);
+      })
+    }
+    editUser(data:any){  
+      const dialogRef = this.matDialog.open(EdituserComponent,{
+        height: '500px',
+        width: '50vw',
+        data: { ...data },
+     });
       dialogRef.afterClosed().subscribe(result=>{
         console.log(result);
       })
