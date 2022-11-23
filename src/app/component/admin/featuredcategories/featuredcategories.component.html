@@ -1,84 +1,44 @@
 <div class="viewcategory-container">
-    <div class="view-category">
-      <div class="search-category">
-        <button mat-raised-button color="primary" class="newcategory-btn">New Category</button>
-      </div>
-      <div class="header">
-        <table id="view-table">
-          <thead class="table-header">
-            <th class="first">
+  <div class="view-category">
+    <div class="search-category">
+      <button mat-raised-button color="primary" class="newcategory-btn">New Category</button>
+    </div>
+    <div class="header">
+      <table id="view-table">
+        <thead class="table-header">
+          <th class="first">
+            <input type="checkbox" class="example-margin">
+          </th>
+          <th class="content">Image</th>
+          <th class="content">Category Name</th>
+          <th class="content">Delete</th>
+        </thead>
+        <tbody *ngIf="catarr &&  catarr.length; else elseblock">
+          <tr *ngFor="let data of catarr; index as i">
+            <td class="first">
               <input type="checkbox" class="example-margin">
-            </th>
-            <th class="content">Image</th>
-            <th class="content">Category Name</th>
-            <th class="content">Delete</th>
-          </thead>
-          <tbody *ngIf="catarr &&  catarr.length; else elseblock">
-            <tr *ngFor="let data of catarr; index as i">
-              <td class="first">
-                <input type="checkbox" class="example-margin">
-              </td>
-              <td>
-                <img [src]="data.ads_image" id="uploadAds" class="image">
-              </td>
-              <td>{{data.category_name}}</td>
-              <td>
+            </td>
+            <td>
+              <img [src]="data.ads_image" id="uploadAds" class="image">
+            </td>
+            <td>{{data.category_name}}</td>
+            <td>
               <!-- <td><mat-icon  (click)="editCategory(data)">edit</mat-icon> -->
-                <mat-icon (click)="removeFromHome(data)">delete</mat-icon>
-                <!-- <mat-icon (click)="addToHome(data)">add</mat-icon> -->
+              <mat-icon (click)="removeFromHome(data)">delete</mat-icon>
+              <!-- <mat-icon (click)="addToHome(data)">add</mat-icon> -->
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #elseblock>
+          <tbody>
+            <tr>
+              <td colspan="6" class="text-center" style="color: black;">
+                No record Found
               </td>
             </tr>
           </tbody>
-          <ng-template #elseblock>
-            <tbody>
-              <tr>
-                <td colspan="6" class="text-center" style="color: black;">
-                  No record Found
-                </td>
-              </tr>
-            </tbody>
         </ng-template>
-        </table>
-      </div>
-        
+      </table>
     </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+  </div>

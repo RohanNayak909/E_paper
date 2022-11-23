@@ -1,53 +1,42 @@
-  <nav class="navbar navbar-expand-lg navbar-light navbar-bg">
-    <a class="navbar-brand" href="#"><img src="assets/img/Prameyanews-logo.png" /></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav" *ngFor="let item of headerarry">
-        <li class="nav-item" *ngFor="let item of headerarry">
-          <a class="nav-link"  routerLink="{{item.category_url}}">{{item.category_name}}</a>
-        </li>
-        <li class="nav-link" >
-          {{item.name}}
-        </li>
-     
-      
-      </ul>
-    </div>
-  </nav>
-  <div class="manager-container">
+<nav class="navbar navbar-expand-lg navbar-light navbar-bg">
+  <a class="navbar-brand" href="#"><img src="assets/img/Prameyanews-logo.png" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav" *ngFor="let item of headerarry">
+      <li class="nav-item" *ngFor="let item of headerarry">
+        <a class="nav-link" routerLink="{{item.category_url}}">{{item.category_name}}</a>
+      </li>
+      <li class="nav-link">
+        {{item.name}}
+      </li>
+
+
+    </ul>
+  </div>
+</nav>
+<div class="manager-container">
   <div class="row ">
     <div class="col-md-6 ">
-    <h2>Category</h2>
-    <div
-      cdkDropList
-      #todoList="cdkDropList"
-      [cdkDropListData]="catarr"
-      [cdkDropListConnectedTo]="[doneList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)">
-      <div class="example-box category" *ngFor="let item of catarr" cdkDrag>{{item.name}}</div>
+      <h2>Category</h2>
+      <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="catarr" [cdkDropListConnectedTo]="[doneList]"
+        class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box category" *ngFor="let item of catarr" cdkDrag>{{item.name}}</div>
+      </div>
     </div>
-  </div>  
-  <div class="col-md-6">
-    <h2>Header</h2>
-    <div
-      cdkDropList
-      #doneList="cdkDropList"
-      [cdkDropListData]="headerarry"
-      [cdkDropListConnectedTo]="[todoList]"
-      class="example-list"
-      (cdkDropListDropped)="drop($event)"
-      > 
-      <div class="example-box category" *ngFor="let item of headerarry" cdkDrag>{{item.name}}</div>
+    <div class="col-md-6">
+      <h2>Header</h2>
+      <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="headerarry" [cdkDropListConnectedTo]="[todoList]"
+        class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box category" *ngFor="let item of headerarry" cdkDrag>{{item.name}}</div>
+      </div>
+      <button mat-raised-button color="primary" (click)="updateHeader()">Update Header</button>
     </div>
-    <button mat-raised-button color="primary" (click)="updateHeader()">Update Header</button> 
-  </div>
   </div>
 </div>
 
-  <!-- Copyright 2019 Google Inc. All Rights Reserved.
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
       Use of this source code is governed by an MIT-style license that
       can be found in the LICENSE file at http://angular.io/license -->
