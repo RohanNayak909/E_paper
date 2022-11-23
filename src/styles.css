@@ -33,3 +33,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 0px !important;
 }
 /* ------------------------Edit pages------------ */
+/* ------------------------add-user---------------- */
+.add-tag-form-field .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0px 0 0.8em 0 !important;
+}
+.add-tag-form-field .mat-select-arrow-wrapper {
+  height: 0px !important;
+}
+.add-tag-form-field .mat-form-field-wrapper {
+  padding-bottom: 0px !important;
+}
+/* -------------------------add user---------------------- */

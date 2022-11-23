@@ -28,7 +28,7 @@ export class ViewusersComponent implements OnInit {
     }
     addUser(){
       const dialogRef = this.matDialog.open(NewuserComponent, {
-        height: '400px',
+        height: '320px',
         width: '50vw'
       });
       dialogRef.afterClosed().subscribe(result=>{
@@ -37,7 +37,7 @@ export class ViewusersComponent implements OnInit {
     }
     editUser(data:any){  
       const dialogRef = this.matDialog.open(EdituserComponent,{
-        height: '500px',
+        height: '320px',
         width: '50vw',
         data: { ...data },
      });

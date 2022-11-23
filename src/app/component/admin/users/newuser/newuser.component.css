@@ -1,0 +1,7 @@
+.add-tag-form-field mat-label{
+    display: block;
+}
+.submit-button{
+    margin-top: 10px;
+    float: right;
+}
