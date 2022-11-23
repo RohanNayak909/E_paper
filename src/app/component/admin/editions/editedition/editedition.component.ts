@@ -63,9 +63,10 @@ export class EditeditionComponent implements OnInit {
     this.edition.flag = 'U';
     this.edition.customer_id = environment.CUSTOMER_ID;
     console.log(this.edition);
-    // if (this.edition.edition_image) {
-    //   this.edition.media_ext = this.edition.ads_img.split("/")[1];
-    // }
+    if (this.edition.edition_image) {
+      var media_ext = this.edition.edition_image.split("media/")[1];
+      this.edition.media_ext = media_ext.split(".")[1];
+    }
     if (this.edition.Multiimage) {
       var reader = new FileReader();
       reader.readAsDataURL(this.edition.Multiimage)
@@ -77,7 +78,7 @@ export class EditeditionComponent implements OnInit {
       if (this.edition.Multiimage) {
         this.edition.base64file = reader.result
       }
-      console.log('this.category==', this.edition);
+      console.log('this.edition==', this.edition);
       this.editionService.createEdition(this.edition).subscribe(res => {
         if (res.code === "success") {
           this.notification.success("Edition edited sucessfully");

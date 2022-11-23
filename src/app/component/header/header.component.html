@@ -6,64 +6,10 @@
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href=""><i class="fa-solid fa-house"></i> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Bhubaneswar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Khordha</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Angul</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Balasore</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Cuttack</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Panikoili</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Jeypore</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">KBK</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Kendrapada</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Kendujhar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Mayurbhanj</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Puri</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Rourkela</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Sambalpur</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Berhampur</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
-          Magazine
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="">Siksha</a>
-          <a class="dropdown-item" href="">Rabibar</a>
-          <a class="dropdown-item" href="">Swasthya</a>
-          <a class="dropdown-item" href="">Dharma</a>
-          <a class="dropdown-item" href="">Juhar</a>
-        </div>
+      <li class="nav-item" *ngFor="let item of headerarry">
+        <a class="nav-link"  routerLink="{{item.category_url}}">{{item.category_name}}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link blink" href="/categories/video-category">English News</a>

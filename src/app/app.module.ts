@@ -27,6 +27,13 @@ import { CategoryDialogComponent } from './component/admin/categories/newcategor
 import { NeweditionComponent } from './component/admin/editions/newedition/newedition.component';
 import { EditeditionComponent } from './component/admin/editions/editedition/editedition.component';
 import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory.component';
+import { AddtohomeeditionComponent } from './component/admin/editions/addtohomeedition/addtohomeedition.component';
+import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
+import { ViewusersComponent } from './component/admin/users/viewusers/viewusers.component';
+import { NewuserComponent } from './component/admin/users/newuser/newuser.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ManageHeaderComponent } from './component/admin/manage-header/manage-header.component';
+
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
@@ -47,10 +54,16 @@ import { EditPagesComponent } from './component/admin/editions/upload-pages/edit
     EditionsComponent,
     NeweditionComponent,
     EditeditionComponent,
+    AddtohomeeditionComponent,
+    FeaturededitionComponent,
+    ViewusersComponent,
+    NewuserComponent,
+    ManageHeaderComponent,
     BhubaneswarPaperComponent,
     UploadPagesComponent,
     EditPagesComponent,
-    ],
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -69,8 +82,9 @@ import { EditPagesComponent } from './component/admin/editions/upload-pages/edit
     MatDialogModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatTabsModule
-    ],
+    MatTabsModule,
+    DragDropModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

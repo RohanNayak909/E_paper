@@ -19,4 +19,7 @@ export class EditionService {
   getEditionAll(eid:any,customer_id:any) {
     return this.HTTP.get<any>(Masterapi + `/get-edition-details?edition_id=${eid}&customer_id=${customer_id}`);
   }
+  getFeaturedEdition(eid:any,customer_id:any) {
+    return this.HTTP.get<any>(Masterapi + `/get-featured-edition-details?eid=${eid}&customer_id=${customer_id}`);
+  }
 }

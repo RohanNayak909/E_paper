@@ -17,18 +17,18 @@
 <div class="home-container">
   <div class="heading"><h1>Featured Categories</h1></div>
   <div class="category-container">
-    <div class="row">
-      <div class="col-md-3 col-sm-6 col-12" routerLink="edition/bhubaneswar">
+    <div class="row" *ngFor = "let data of catarr">
+      <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
-            <h1>Bhubaneswar</h1>
+            <h1>{{data.category_name}}</h1>
           </div>
           <div class="epaper-container">
-            <img src="assets/img/sample-epaper.jpeg" />
+            <img [src]="data.ads_image" />
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Cuttack</h1>
@@ -37,8 +37,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Panikoili</h1>
@@ -47,8 +47,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Balasosre</h1>
@@ -57,8 +57,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Sambalpur</h1>
@@ -67,8 +67,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Rourkela</h1>
@@ -77,8 +77,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Berhampur</h1>
@@ -87,8 +87,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Jeypore</h1>
@@ -97,8 +97,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Angul</h1>
@@ -107,8 +107,8 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
-      <div class="col-md-3 col-sm-6 col-12">
+      </div> -->
+      <!-- <div class="col-md-3 col-sm-6 col-12">
         <div>
           <div class="category-name">
             <h1>Puri</h1>
@@ -117,7 +117,7 @@
             <img src="assets/img/sample-epaper.jpeg" />
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
