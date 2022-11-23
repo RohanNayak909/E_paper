@@ -1,7 +1,7 @@
 <div class="viewcategory-container">
     <div class="view-category">
       <div class="search-category">
-        <button mat-raised-button color="primary" class="newcategory-btn" (click)="newEdition()">New Edition</button>
+        <button mat-raised-button color="primary" class="newcategory-btn">New Category</button>
       </div>
       <div class="header">
         <table id="view-table">
@@ -9,27 +9,24 @@
             <th class="first">
               <input type="checkbox" class="example-margin">
             </th>
-            <th class="content">Edition Title</th>
-            <th class="content">Category</th>
-            <th class="content">Edition Date</th>
-            <th class="content">Status</th>
-            <th class="content">Action</th>
+            <th class="content">Image</th>
+            <th class="content">Edition Name</th>
             <th class="content">Delete</th>
           </thead>
-          <tbody>
-            <tr *ngFor = "let e of editionarr">
+          <tbody *ngIf="editionarr &&  editionarr.length; else elseblock">
+            <tr *ngFor="let data of editionarr; index as i">
               <td class="first">
                 <input type="checkbox" class="example-margin">
               </td>
-              <td>{{e.edition_name}}</td>
-              <td>{{e.parent_category}}</td>
-              <td>{{e.edition_date | date}}</td>
-              <td>{{e.status == 1 ? "Public" : "Private"}}</td>
               <td>
-              <mat-icon  (click)="editEdition(e)">edit</mat-icon>
-              <mat-icon (click)="addToHome(e)">add</mat-icon>
+                <img [src]="data.edition_image" id="uploadAds" class="image">
               </td>
-              <td><mat-icon  (click)="deleteEdition(e.edition_id)">delete</mat-icon></td>
+              <td>{{data.edition_name}}</td>
+              <td>
+              <!-- <td><mat-icon  (click)="editCategory(data)">edit</mat-icon> -->
+                <mat-icon (click)="removeFromHome(data)">delete</mat-icon>
+                <!-- <mat-icon (click)="addToHome(data)">add</mat-icon> -->
+              </td>
             </tr>
           </tbody>
           <ng-template #elseblock>

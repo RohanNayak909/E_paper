@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
+import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
+import { ManageHeaderComponent } from './component/admin/manage-header/manage-header.component';
+import { ViewusersComponent } from './component/admin/users/viewusers/viewusers.component';
 import { HomeComponent } from './component/home/home.component';
 import { SidenavComponent } from './component/layout/sidenav/sidenav/sidenav.component';
 import { LoginComponent } from './component/login/login.component';
@@ -19,9 +22,12 @@ const routes: Routes = [
   {
     path: 'admin', component: SidenavComponent,
     children: [
+      { path: 'user/view', component: ViewusersComponent},
       { path: 'epaper/category', component: CategoriesComponent},
       { path: 'epaper/category/featured', component: FeaturedcategoriesComponent},
-      { path: 'epaper/edition', component: EditionsComponent}
+      { path: 'epaper/edition', component: EditionsComponent},
+      { path: 'epaper/edition/featured', component: FeaturededitionComponent},
+      { path: 'header/manage', component: ManageHeaderComponent}
     ],
   }
 ];

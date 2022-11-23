@@ -27,6 +27,12 @@ import { CategoryDialogComponent } from './component/admin/categories/newcategor
 import { NeweditionComponent } from './component/admin/editions/newedition/newedition.component';
 import { EditeditionComponent } from './component/admin/editions/editedition/editedition.component';
 import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory.component';
+import { AddtohomeeditionComponent } from './component/admin/editions/addtohomeedition/addtohomeedition.component';
+import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
+import { ViewusersComponent } from './component/admin/users/viewusers/viewusers.component';
+import { NewuserComponent } from './component/admin/users/newuser/newuser.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ManageHeaderComponent } from './component/admin/manage-header/manage-header.component';
 
 @NgModule({
   declarations: [
@@ -42,8 +48,13 @@ import { EditcategoryComponent } from './component/admin/categories/editcategory
     FeaturedcategoriesComponent,
     EditionsComponent,
     NeweditionComponent,
-    EditeditionComponent
-    ],
+    EditeditionComponent,
+    AddtohomeeditionComponent,
+    FeaturededitionComponent,
+    ViewusersComponent,
+    NewuserComponent,
+    ManageHeaderComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -61,7 +72,8 @@ import { EditcategoryComponent } from './component/admin/categories/editcategory
     MatSnackBarModule,
     MatDialogModule,
     HttpClientModule,
-    ],
+    DragDropModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
