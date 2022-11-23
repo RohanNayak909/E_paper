@@ -34,6 +34,11 @@ import { NewuserComponent } from './component/admin/users/newuser/newuser.compon
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ManageHeaderComponent } from './component/admin/manage-header/manage-header.component';
 
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
+import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
+import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,8 +58,12 @@ import { ManageHeaderComponent } from './component/admin/manage-header/manage-he
     FeaturededitionComponent,
     ViewusersComponent,
     NewuserComponent,
-    ManageHeaderComponent
+    ManageHeaderComponent,
+    BhubaneswarPaperComponent,
+    UploadPagesComponent,
+    EditPagesComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -72,6 +81,8 @@ import { ManageHeaderComponent } from './component/admin/manage-header/manage-he
     MatSnackBarModule,
     MatDialogModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatTabsModule,
     DragDropModule
   ],
   providers: [],

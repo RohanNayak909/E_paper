@@ -17,3 +17,19 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* ----------------------upload-pages------------ */
+.upload-supplement .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0.3em 0 0.3em 0 !important;
+}
+/* -----------upload-pages-------------------- */
+
+/* ------------------------ Edit pages------------------------ */
+.edit-content-form-field .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0px 0 0.8em 0 !important;
+}
+.edit-content-form-field .mat-select-arrow-wrapper {
+  height: 0px !important;
+}
+/* ------------------------Edit pages------------ */
