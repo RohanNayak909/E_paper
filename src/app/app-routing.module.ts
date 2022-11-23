@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
-import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';

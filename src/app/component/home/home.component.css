@@ -70,7 +70,10 @@
   align-items: center;
   margin-top: 5px;
 }
-
+.epaper-container img{
+  height: 234px;
+  width: 174px;
+}
 .footer-container {
   margin-top: 2%;
 }
