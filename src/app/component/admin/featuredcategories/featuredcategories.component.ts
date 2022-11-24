@@ -16,6 +16,8 @@ export class FeaturedcategoriesComponent implements OnInit {
   catarr:any = [];
   currentuser:any
   p: any = 1;
+  categorySearch:any = '';
+ 
   constructor(private categoryService: CategoryServiceService,private loginService : LoginService,
     private notification:NotificationService,private router:Router) { }
 
@@ -24,15 +26,18 @@ export class FeaturedcategoriesComponent implements OnInit {
     this.getallcategory();
   }
   getallcategory() {
-    this.categoryService.getFeaturedCategory(this.catid,environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.categoryService.getAllCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
-        this.catarr = data.map((dt: any) => JSON.parse(dt));
+        this.catarr = data.map((dt: any) => JSON.parse(dt));  
+        this.catarr =  this.catarr.filter((d:any)=> { if(d.add_to_home == 1){  
+          return d;  
+        }});
         console.log(this.catarr)
       } else {
         this.catarr = []
       }
-    }, (err:any) => {
+    }, (err) => {
       this.catarr = []
     })
   }
