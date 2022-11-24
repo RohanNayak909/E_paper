@@ -15,6 +15,7 @@ export class FeaturedcategoriesComponent implements OnInit {
   catid:any = '';
   catarr:any = [];
   currentuser:any
+  p: any = 1;
   constructor(private categoryService: CategoryServiceService,private loginService : LoginService,
     private notification:NotificationService,private router:Router) { }
 

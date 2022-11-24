@@ -20,6 +20,8 @@ export class EditionsComponent implements OnInit {
   eid:any = '';
   currentuser:any;
   editionarr:any = [];
+  p:any = 1;
+  editionSearch:any = '';
   constructor(private matDialog: MatDialog,private editionService: EditionService,private notification: NotificationService,
     private loginService: LoginService,private masterService: MasterServiceService,private router: Router) { }
 
@@ -28,6 +30,7 @@ export class EditionsComponent implements OnInit {
     this.currentuser = this.loginService.getCurrentUser();
     this.getAllEdition();
   }
+  
   newEdition(){
     const dialogRef = this.matDialog.open(NeweditionComponent, {
       height: '500px',
@@ -91,5 +94,11 @@ export class EditionsComponent implements OnInit {
   }
   upload(){
     this.router.navigate(['admin/epaper/edition/upload-pages']);
+  }
+  onKeydown(event: any) {
+    event.preventDefault();
+  }
+  searchEdition(){
+
   }
 }

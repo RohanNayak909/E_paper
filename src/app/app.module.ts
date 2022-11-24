@@ -40,6 +40,7 @@ import { UploadPagesComponent } from './component/admin/editions/upload-pages/up
 import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { EdituserComponent } from './component/admin/users/edituser/edituser.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +87,8 @@ import { EdituserComponent } from './component/admin/users/edituser/edituser.com
     MatDatepickerModule,
     MatTabsModule,
     DragDropModule,
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

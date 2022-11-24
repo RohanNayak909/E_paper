@@ -81,6 +81,7 @@ tr:nth-child(odd) {
 }
 .newcategory-btn {
     margin-left: 10px;
+    height:40px;
 }
 .pagination-color {
     margin-top: 20px;
@@ -95,4 +96,11 @@ tr:nth-child(odd) {
 .upload-icon{
    padding: 3px 0px 0px 10px;
    cursor: pointer;
+}
+.search-btn {
+    margin-left: 10px;
+    height: 40px;
+}
+.w-200 {
+    width: 200px !important;
 }

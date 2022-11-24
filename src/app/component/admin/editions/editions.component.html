@@ -1,6 +1,13 @@
 <div class="viewcategory-container">
     <div class="view-category">
       <div class="search-category">
+        <mat-form-field appearance="outline" class="form-group w-200">
+          <input matInput type="text" name="cname" [(ngModel)]="editionSearch"
+              (keydown.enter)="onKeydown($event)" (keyup.enter)="searchEdition()">
+          <!-- <input matInput type="text" name="cname"> -->
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="search-btn" (click)="searchEdition()">Search
+        Editions</button>
         <button mat-raised-button color="primary" class="newcategory-btn" (click)="newEdition()">New Edition</button>
       </div>
       <div class="header">
@@ -16,8 +23,8 @@
             <th class="content">Action</th>
             <th class="content">Delete</th>
           </thead>
-          <tbody>
-            <tr *ngFor = "let e of editionarr">
+          <tbody *ngIf = "editionarr && editionarr.length; else elseblock">
+            <tr *ngFor = "let e of editionarr | paginate: { itemsPerPage: 10, currentPage: p }">
               <td class="first">
                 <input type="checkbox" class="example-margin">
               </td>
@@ -47,7 +54,13 @@
         </ng-template>
         </table>
       </div>
-        
+      <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
+      style="padding-top:1vw;padding-bottom:1vw;">
+      <div class="d-flex" style="padding-left: 3%;">
+        <!-- <button class="apply-btn" style="margin-left:1vw;">apply to selected items</button> -->
+      </div>
+      <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
+     </div> 
     </div>
   
   

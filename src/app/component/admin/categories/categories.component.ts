@@ -23,6 +23,7 @@ export class CategoriesComponent implements OnInit {
   catadata: any[] = []
   catid: any = ''
   categorySearch: any = '';
+  p: any = 1;
   constructor(private loginService:LoginService,private matDialog: MatDialog,
     private categoryService : CategoryServiceService,
     private notification:NotificationService,private router:Router) { }
@@ -31,6 +32,10 @@ export class CategoriesComponent implements OnInit {
     this.currentuser = this.loginService.getCurrentUser();
     this.getallcategory();
   }
+  onKeydown(event: any) {
+    event.preventDefault();
+  }
+ 
   addCategory(){
     const dialogRef = this.matDialog.open(CategoryDialogComponent, {
       height: '500px',
@@ -92,4 +97,19 @@ export class CategoriesComponent implements OnInit {
       console.log(result);
     })
   }
+  searchCategory() {
+    this.categoryService.getAllCategory('', this.categorySearch,this.currentuser.customer_id).subscribe((res: any) => {
+      console.log('hi',this.catid, this.categorySearch,this.currentuser.customer_id)
+      if (res.code == 'success') {
+        var data = res.body;
+        this.catarr = data.map((dt: any) => JSON.parse(dt));
+        console.log('this.catarr===',this.catarr)
+      } else {
+        this.catarr = []
+      }
+    }, (err) => {
+      this.catarr = []
+    })
+  }
+
 }
