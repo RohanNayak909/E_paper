@@ -1,8 +1,22 @@
 <div class="viewcategory-container">
     <div class="view-category">
       <div class="search-category">
+        <mat-form-field appearance="outline">
+          <mat-select>
+            <mat-option value="0">Select Role</mat-option>
+            <mat-option value="1">None</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="search-btn">Search Role</button>
+        &nbsp;&nbsp;
+        <mat-form-field appearance="outline" class="form-group">
+          <input matInput type="text" name="cname">
+            
+        </mat-form-field>
         <button mat-raised-button color="primary" class="newcategory-btn" (click)="addUser()">New User</button>
       </div>
+      
+     
       <div class="header">
         <table id="view-table">
           <thead class="table-header">

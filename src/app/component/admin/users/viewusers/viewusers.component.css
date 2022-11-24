@@ -85,3 +85,6 @@ tr:nth-child(odd) {
 .pagination-color {
     margin-top: 20px;
 }
+.search-btn {
+    margin-left: 10px;
+}

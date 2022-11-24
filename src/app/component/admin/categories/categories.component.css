@@ -93,3 +93,6 @@ tr:nth-child(odd) {
 .w-200 {
     width: 200px !important;
 }
+.search-btn {
+    margin-left: 10px;
+}
