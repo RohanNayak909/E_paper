@@ -1,0 +1,42 @@
+<div class="category-container">
+    <div class="add-tag-form">
+        <div class="add-tag-form-field row">
+            <div class="col-md-6 col-sm-12 col-12">
+              <mat-label class="tag-info">Username</mat-label>
+              <mat-form-field appearance="outline" class="form-group">
+                <input matInput type="text" name="username" [(ngModel)]="userData.user_login" required>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6 col-sm-12 col-12">
+                <mat-label class="tag-info">Password</mat-label>
+                <mat-form-field appearance="outline" class="form-group">
+                  <input matInput type="text" name="password" [(ngModel)]="userData.user_pass" required>
+                </mat-form-field>
+            </div> -->
+            <div class="col-md-6 col-sm-12 col-12">
+                <mat-label class="tag-info">Email</mat-label>
+                <mat-form-field appearance="outline" class="form-group">
+                  <input matInput type="text" name="email" [(ngModel)]="userData.user_email" required>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6 col-sm-12 col-12">
+                <mat-label class="tag-info">Role</mat-label>
+                <ng-multiselect-dropdown [ngModelOptions]="{standalone: true}" [placeholder]="'Select Role'" [settings]="dropdownSettings" [data]="role"
+                [(ngModel)]="userData.role">
+                </ng-multiselect-dropdown>
+            </div>
+            <div class="col-md-6 col-sm-12 col-12">
+                <mat-label class="tag-info">Status</mat-label>
+                <mat-form-field appearance="outline">
+                  <mat-select name="status" [ngModelOptions]="{standalone: true}"  [(ngModel)]="userData.user_status">
+                    <mat-option value="1">Active</mat-option>
+                    <mat-option value="0">InActive</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+          </div>
+          <div class="submit-button-container">
+            <button mat-raised-button color="primary" (click)="editUser()">Submit</button>
+        </div>
+    </div>
+</div>

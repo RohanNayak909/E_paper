@@ -38,6 +38,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
+import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
+import { EdituserComponent } from './component/admin/users/edituser/edituser.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +64,7 @@ import { EditPagesComponent } from './component/admin/editions/upload-pages/edit
     BhubaneswarPaperComponent,
     UploadPagesComponent,
     EditPagesComponent,
+    EdituserComponent,
   ],
 
   imports: [
@@ -83,6 +87,8 @@ import { EditPagesComponent } from './component/admin/editions/upload-pages/edit
     MatDatepickerModule,
     MatTabsModule,
     DragDropModule,
+    NgMultiSelectDropDownModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

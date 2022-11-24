@@ -81,7 +81,15 @@ tr:nth-child(odd) {
 }
 .newcategory-btn {
     margin-left: 10px;
+    height: 40px;
 }
 .pagination-color {
     margin-top: 20px;
+}
+.search-btn {
+    margin-left: 10px;
+    height: 40px;
+}
+.w-200 {
+    width: 200px !important;
 }

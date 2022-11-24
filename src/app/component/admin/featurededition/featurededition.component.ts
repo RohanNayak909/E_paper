@@ -14,6 +14,7 @@ export class FeaturededitionComponent implements OnInit {
   eid:any='';
   editionarr:any = [];
   currentuser:any;
+  p:any = 1;
   constructor(private notification:NotificationService,private router:Router,private editionService: EditionService,
     private loginService:LoginService) { }
 
