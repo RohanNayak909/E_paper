@@ -41,7 +41,7 @@ export class EditionsComponent implements OnInit {
     })
   }
   getAllEdition(){
-    this.editionService.getEditionAll(this.eid,this.currentuser.customer_id).subscribe(res=>{
+    this.editionService.getEditionAll(this.eid,this.editionSearch,this.currentuser.customer_id).subscribe(res=>{
       if(res.code = 'sucess'){
         var data = res.body;
         this.editionarr = data.map((dt:any) => JSON.parse(dt));
@@ -99,6 +99,17 @@ export class EditionsComponent implements OnInit {
     event.preventDefault();
   }
   searchEdition(){
-
+    this.editionService.getEditionAll('',this.editionSearch,this.currentuser.customer_id).subscribe(res=>{
+      console.log('hi',this.eid, this.editionSearch,this.currentuser.customer_id)
+      if(res.code = 'sucess'){
+        var data = res.body;
+        this.editionarr = data.map((dt:any) => JSON.parse(dt));
+        console.log(this.editionarr,'edition');
+      }else{
+        this.editionarr = [];
+       }
+      },(err) => {
+        this.editionarr = []
+      })
   }
 }
