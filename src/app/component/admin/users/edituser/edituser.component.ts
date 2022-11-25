@@ -20,34 +20,15 @@ export class EdituserComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit(): void {
-  //   this.userData = this.data;
-  // //  this.userData.user_status = this.data.status
+    this.userData = this.data;
+    this.userData.user_status = this.userData.user_status.toString();
   // this.userData.role = this.userData.role.toString()
-  //   console.log(this.userData)
+     console.log(this.userData)
 
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'role',
-      selectAllText: 'Select All',
-      unSelectAllText: 'Unselect All',
-      itemsShowLimit: 1000,
-      allowSearchFilter: true
-    };
-    //this.getRoles();
-    this.getalluser();
+    this.getRoles();
+   
   }
-  getalluser() {
-    this.userService.getUserDetails('',this.data.user_id,environment.CUSTOMER_ID,'N').subscribe((data: any) => {
-      this.allUser = data.body
-      this.allUser = this.allUser.map((dt: any) => JSON.parse(dt));
-      this.userData = this.allUser[0]
-      this.userData.role = this.userData.role.toString()
-      this.userData.user_notification = this.userData.email_notify
-     
-      this.getRoles();
-    })
-  }
+  
   getRoles() {
     this.masterService.getRoles(environment.CUSTOMER_ID).subscribe((res: any) => {
       this.role = res.body;
@@ -64,6 +45,7 @@ export class EdituserComponent implements OnInit {
 
         let value = this.role.filter((d:any) => arr.map((v:any) => v.id).includes(d.id));
         this.userData.role = value;
+        console.log(this.userData.role,'roleee');
       }
     })
   }

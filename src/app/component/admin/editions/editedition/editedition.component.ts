@@ -25,6 +25,7 @@ export class EditeditionComponent implements OnInit {
 
   ngOnInit(): void {
     this.edition = this.data;
+    console.log(this.edition)
     this.currentuser = this.loginService.getCurrentUser();
     this.getallcategory();
   }

@@ -28,11 +28,11 @@
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Status</mat-label>
                 <mat-form-field appearance="outline">
-                  <mat-select [(ngModel)]="userData.user_status">
-                    <mat-option value="1">Active</mat-option>
-                    <mat-option value="0">InActive</mat-option>
+                  <mat-select [(ngModel)] = "userData.user_status">
+                      <mat-option value="1">Public</mat-option>
+                      <mat-option value="0">Private</mat-option>
                   </mat-select>
-                </mat-form-field>
+              </mat-form-field>
             </div>
           </div>
           <div class="submit-button-container">
