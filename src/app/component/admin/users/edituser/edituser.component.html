@@ -22,13 +22,13 @@
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Role</mat-label>
                 <ng-multiselect-dropdown [ngModelOptions]="{standalone: true}" [placeholder]="'Select Role'" [settings]="dropdownSettings" [data]="role"
-                [(ngModel)]="userData.role">
+                [(ngModel)]="userData.role_name">
                 </ng-multiselect-dropdown>
             </div>
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Status</mat-label>
                 <mat-form-field appearance="outline">
-                  <mat-select name="status" [ngModelOptions]="{standalone: true}"  [(ngModel)]="userData.user_status">
+                  <mat-select [(ngModel)]="userData.user_status">
                     <mat-option value="1">Active</mat-option>
                     <mat-option value="0">InActive</mat-option>
                   </mat-select>
