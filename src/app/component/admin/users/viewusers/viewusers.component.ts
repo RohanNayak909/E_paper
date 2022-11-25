@@ -17,6 +17,7 @@ export class ViewusersComponent implements OnInit {
   allUser:any
   uid:any = ''
   p: any = 1;
+  userSearch:any = '';
   constructor(private userService: UserService,private matDialog:MatDialog,private masterService: MasterServiceService,
     private notification: NotificationService) { }
 
@@ -74,5 +75,16 @@ export class ViewusersComponent implements OnInit {
           }
         })
       }
-  
+      searchUser(){
+        this.userService.getUserDetails(this.userSearch, '',environment.CUSTOMER_ID, 'N').subscribe((data: any) => {
+          if (data.code == 'success') {
+            this.allUser = data.body;
+            this.allUser = this.allUser.map((dt: any) => JSON.parse(dt));
+          } else {
+            this.allUser = []
+          }
+        }, (err) => {
+          this.allUser = []
+        })
+      }
 }

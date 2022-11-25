@@ -16,14 +16,11 @@ export class CategoryServiceService {
   createCategory(category: any) {
     return this.HTTP.post<any>(Masterapi + `/add-category`, { ...category });
   }
-
   getAllCategory(cid:any,cat_name:any,customer_id:any) {
     return this.HTTP.get<any>(Masterapi + `/get-category-details?category_id=${cid}&category_name=${cat_name}&customer_id=${customer_id}`);
   }
   deleteCategory(cid:any,customer_id:any) {
     return this.HTTP.get<any>(Masterapi + `/delete-category?category_id=${cid}&customer_id=${customer_id}`);
   }
-  getFeaturedCategory(cid:any,customer_id:any) {
-    return this.HTTP.get<any>(Masterapi + `/get-featured-category-details?cat_id=${cid}&customer_id=${customer_id}`);
-  }
+
 }

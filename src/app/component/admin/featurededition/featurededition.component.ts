@@ -23,10 +23,11 @@ export class FeaturededitionComponent implements OnInit {
     this.getAllEdition();
   }
   getAllEdition(){
-    this.editionService.getFeaturedEdition(this.eid,environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.editionService.getEditionAll(this.eid,'',environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
+        this.editionarr = this.editionarr.filter((d:any)=>{ if(d.add_to_home == 1){ return d;}})
         console.log(this.editionarr)
       } else {
         this.editionarr = []

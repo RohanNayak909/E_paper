@@ -10,21 +10,25 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit {
   catid:any = '';
   catarr:any = [];
+  categorySearch:any = '';
   constructor(private categoryService: CategoryServiceService) { }
 
   ngOnInit(): void {
     this.getallFeaturedcategory();
   }
   getallFeaturedcategory() {
-    this.categoryService.getFeaturedCategory(this.catid,environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.categoryService.getAllCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
-        this.catarr = data.map((dt: any) => JSON.parse(dt));
+        this.catarr = data.map((dt: any) => JSON.parse(dt));  
+        this.catarr =  this.catarr.filter((d:any)=> { if(d.add_to_home == 1){  
+          return d;  
+        }});
         console.log(this.catarr)
       } else {
         this.catarr = []
       }
-    }, (err:any) => {
+    }, (err) => {
       this.catarr = []
     })
   }

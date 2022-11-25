@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
+import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
 import { AddtohomeComponent } from './addtohome/addtohome.component';
@@ -25,7 +26,7 @@ export class CategoriesComponent implements OnInit {
   categorySearch: any = '';
   p: any = 1;
   constructor(private loginService:LoginService,private matDialog: MatDialog,
-    private categoryService : CategoryServiceService,
+    private categoryService : CategoryServiceService,private masterService: MasterServiceService,
     private notification:NotificationService,private router:Router) { }
 
   ngOnInit(): void {
@@ -80,7 +81,8 @@ export class CategoriesComponent implements OnInit {
   }
   categoeyDelete(data:any){
   console.log(data,'data');
-  this.categoryService.deleteCategory(data.category_id,data.customer_id).subscribe(res=>{
+  var funct = 'CATEGORY';
+  this.masterService.bulkDeletion(funct,data,0,environment.CUSTOMER_ID).subscribe(res=>{
     if(res.code === "success"){
       this.notification.success("Category deleted successfully");
      window.location.reload();
