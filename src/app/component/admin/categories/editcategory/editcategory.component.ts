@@ -26,6 +26,7 @@ export class EditcategoryComponent implements OnInit {
   ngOnInit(): void {
     this.category = this.data;
     this.currentuser = this.loginService.getCurrentUser();
+    console.log(this.category,'cattt')
     this.getallcategory();
   }
   getallcategory() {
@@ -62,12 +63,11 @@ export class EditcategoryComponent implements OnInit {
     this.category.flag = 'U';
     this.category.customer_id = environment.CUSTOMER_ID;
     this.category.category_id = this.data.category_id;
-    console.log(this.category);
+    this.category.addToHome = this.category.add_to_home;
+   
     if (this.category.ads_image) {
-      alert(this.category.ads_image)
       var media_ext = this.category.ads_image.split("media/")[1];
       this.category.media_ext = media_ext.split(".")[1];
-      alert(this.category.media_ext)
     }
     if (this.category.Multiimage) {
       var reader = new FileReader();

@@ -41,6 +41,7 @@ import { EditPagesComponent } from './component/admin/editions/upload-pages/edit
 import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { EdituserComponent } from './component/admin/users/edituser/edituser.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuard } from './Guards/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,

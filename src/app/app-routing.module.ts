@@ -11,6 +11,7 @@ import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubane
 import { HomeComponent } from './component/home/home.component';
 import { SidenavComponent } from './component/layout/sidenav/sidenav/sidenav.component';
 import { LoginComponent } from './component/login/login.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'admin', component: SidenavComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'user/view', component: ViewusersComponent},
       { path: 'epaper/category', component: CategoriesComponent},
@@ -40,6 +42,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

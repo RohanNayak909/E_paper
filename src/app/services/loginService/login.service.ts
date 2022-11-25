@@ -26,7 +26,10 @@ export class LoginService {
   //     this.isLoggedin = (user != null);
   //   });
   // }
-
+  isLoggedIn(): any {
+    this.isLoggedInn = localStorage.getItem("isLoggedIn") === 'true';
+    return this.isLoggedInn;
+  }
   getCurrentUser(): any {
     return JSON.parse(localStorage.getItem('currentUser') || "{}");
   }

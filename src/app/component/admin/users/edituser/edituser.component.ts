@@ -22,9 +22,17 @@ export class EdituserComponent implements OnInit {
   ngOnInit(): void {
     this.userData = this.data;
     this.userData.user_status = this.userData.user_status.toString();
-  // this.userData.role = this.userData.role.toString()
-     console.log(this.userData)
-
+    
+     this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'role',
+      selectAllText: 'Select All',
+      unSelectAllText: 'Unselect All',
+      itemsShowLimit: 1000,
+      allowSearchFilter: true
+    };
+  
     this.getRoles();
    
   }
@@ -33,7 +41,7 @@ export class EdituserComponent implements OnInit {
     this.masterService.getRoles(environment.CUSTOMER_ID).subscribe((res: any) => {
       this.role = res.body;
       this.role = this.role.map((g: string) => JSON.parse(g));
-      
+      console.log(this.role,'rolelist')
       if(this.userData.role !== null && this.userData.role !== undefined) {
         let arr:any = [];
         let split_arr = this.userData.role.split(",");
