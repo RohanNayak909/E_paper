@@ -43,7 +43,7 @@ export class ViewusersComponent implements OnInit {
     }
     editUser(data:any){  
       const dialogRef = this.matDialog.open(EdituserComponent,{
-        height: '320px',
+        height: '280px',
         width: '50vw',
         data: { ...data },
      });
@@ -52,7 +52,6 @@ export class ViewusersComponent implements OnInit {
       })
     }
     deleteUser(uid: any) {
-      console.log(uid, 'this user is clicked')
         const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
         dialogRef.afterClosed().subscribe((result:any) => {      
           if(result){
