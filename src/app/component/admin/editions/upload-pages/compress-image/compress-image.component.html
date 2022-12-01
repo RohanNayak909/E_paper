@@ -1,0 +1,15 @@
+<div class="upload-img" >
+    <div class="upload-btn" >
+        <input type="radio" name="imgType" class="tocheck"  value="original">
+        <img [src]="data.image_url" id="media_img_id" class="media-img">
+    </div>
+    <div class="upload-btn second" >
+        <input type="radio" name="imgType" class="tocheck" value="compressed">
+        <img [src]="localCompressedURl" id="media_img_id" class="media-img">
+        <p>*image after compreesed</p>
+    </div>
+</div>
+<div class="upload-btn" >
+    <button (click)="compress()">Compress Image</button>
+    <button mat-raised-button color="primary" class="save-image" (click)="saveCompressedImage()">Submit</button>
+</div>

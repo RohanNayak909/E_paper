@@ -25,4 +25,7 @@ export class EditionService {
   getAllImages(imgid:any,eid:any,custid:any){
     return this.HTTP.get<any>(Masterapi + `/get-image-details?image_id=${imgid}&edition_id=${eid}&customer_id=${custid}`);
   }
+  saveCompressedImage(imgdetails:any) {
+    return this.HTTP.post<any>(Masterapi + `/save-compressed-image`,{ ...imgdetails});
+  }
 }

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
 import { editionModel } from 'src/app/models/editionmodel';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
+import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
+import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
+import { CompressImageComponent } from './compress-image/compress-image.component';
 import { EditPagesComponent } from './edit-pages/edit-pages.component';
 
 @Component({
@@ -22,7 +26,8 @@ export class UploadPagesComponent implements OnInit {
   cust_id:any;
   currentuser:any;
   constructor(private router: Router,private matDialog: MatDialog,private editionService:EditionService,
-    private activatedRoute: ActivatedRoute,private loginService:LoginService) { }
+    private activatedRoute: ActivatedRoute,private loginService:LoginService,private masterService:MasterServiceService,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
@@ -32,15 +37,7 @@ export class UploadPagesComponent implements OnInit {
     this.getAllImages();
     console.log(this.eid);
   }
-  edit(){
-    const dialogRef = this.matDialog.open(EditPagesComponent,{
-      height: '450px',
-      width: '800px',
-   });
-   dialogRef.afterClosed().subscribe(result=>{
-    console.log(result);
-  })
-}
+
 addPdf() {
   let btn = document.getElementById('pdf-file');
   if(btn) {
@@ -70,11 +67,10 @@ addPdf() {
     console.log('this.category==',this.edition);
   this.editionService.saveUploadImage(this.edition).subscribe(res=>{
     if (res.code === "success") {
-      var data = res.body;
-      this.dataarr = data.map((dt: any) => JSON.parse(dt)); 
-      console.log(this.dataarr) 
+      window.location.reload();
+
     } else {
-      this.dataarr = []
+      // this.dataarr = []
     }
   });
   }  , 1000)
@@ -91,4 +87,45 @@ addPdf() {
      }
    })
  }
+ compress(data:any){
+    const dialogRef = this.matDialog.open(CompressImageComponent,{
+      height: '350px',
+      width: '600px',
+      data: data
+  });
+  dialogRef.afterClosed().subscribe(result=>{
+    console.log(result);
+  })
+ }
+ deletePages(data:any){
+  const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
+  dialogRef.afterClosed().subscribe((result:any) => {      
+    if(result){
+      this.pageDelete(data);
+    }
+  });
+  return;
+}
+pageDelete(id:any){
+  console.log(id,'data');
+  var funct = 'UPLOADPAGE';
+  this.masterService.bulkDeletion(funct,id,0,environment.CUSTOMER_ID).subscribe(res=>{
+    if(res.code === "success"){
+      this.notification.success("Page deleted successfully");
+     window.location.reload();
+    }else {
+      this.notification.error(res.message);
+    }
+  })
+}
+edit(data:any){
+  const dialogRef = this.matDialog.open(EditPagesComponent,{
+    height: '450px',
+    width: '800px',
+    data:data
+ });
+ dialogRef.afterClosed().subscribe(result=>{
+  console.log(result);
+})
+}
 }

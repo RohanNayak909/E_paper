@@ -1,0 +1,22 @@
+.upload-img{
+    display: flex;
+    justify-content: center;
+}
+.upload-btn{
+    margin-right: 20px;
+}
+
+.tocheck{
+    position: absolute;
+    bottom: 214px;
+}
+
+.media-img{
+    height: 200px;
+    width: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.save-image{
+    float:right;
+}

@@ -51,7 +51,7 @@
                                     <img [src]= "data.image_url" class="e-paper">
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-9">
                                 <h4> {{i+1}}</h4>
                                 <div class="d-flex">
                                     <div class="search-category">
@@ -61,11 +61,11 @@
                                     </div>
                                     <div class="edit-button">
                                         <button mat-raised-button class="bg-green"><i
-                                                class="fa-solid fa-pen-to-square" (click)="edit()"></i></button>
+                                                class="fa-solid fa-pen-to-square" (click)="edit(data)"></i></button>
                                     </div>
                                     <div class="delete-button">
                                         <button mat-raised-button class="bg-red">
-                                            <mat-icon>delete</mat-icon>
+                                            <mat-icon (click)="deletePages(data.image_id)">delete</mat-icon>
                                         </button>
     
                                     </div>
@@ -73,6 +73,11 @@
                                         <div class="bg-gray" >
                                            {{data.image_size}}
                                         </div>
+                                    </div>
+                                    <div class="compress-button">
+                                        <button mat-raised-button color="primary" (click)="compress(data)">
+                                            Compress 
+                                        </button>
                                     </div>
                                 </div>
                             </div>

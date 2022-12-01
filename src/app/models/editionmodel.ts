@@ -18,4 +18,5 @@ export class editionModel{
 	base64file:any
 	flag:any
 	input:any
+	image_id:any
 }
