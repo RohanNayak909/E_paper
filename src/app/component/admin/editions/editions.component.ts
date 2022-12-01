@@ -60,7 +60,7 @@ export class EditionsComponent implements OnInit {
   }
   editEdition(data:any){  
     const dialogRef = this.matDialog.open(EditeditionComponent,{
-      height: '500px',
+      height: '550px',
       width: '50vw',
       data: { ...data },
    });
