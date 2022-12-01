@@ -34,7 +34,7 @@ export class ViewusersComponent implements OnInit {
     }
     addUser(){
       const dialogRef = this.matDialog.open(NewuserComponent, {
-        height: '320px',
+        height: '400px',
         width: '50vw'
       });
       dialogRef.afterClosed().subscribe(result=>{

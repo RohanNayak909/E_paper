@@ -38,7 +38,7 @@ export class EditionsComponent implements OnInit {
   
   newEdition(){
     const dialogRef = this.matDialog.open(NeweditionComponent, {
-      height: '500px',
+      height: '580px',
       width: '50vw'
     });
     dialogRef.afterClosed().subscribe(result=>{

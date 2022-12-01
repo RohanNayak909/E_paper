@@ -1,5 +1,9 @@
 <div class="category-container">
     <div class="add-tag-form">
+      <div class="popup">
+        <h1>New Edition</h1>
+        <button mat-button (click)="onNoClick()"><i class="fa fa-close"></i></button>
+      </div>
         <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
               <mat-label class="tag-info">Title</mat-label>
@@ -44,7 +48,7 @@
                 </mat-form-field>
             </div>
                 <div class="col-lg-6 col-sm-12 col-12">
-                  <mat-label class="category-info">Upload Ads</mat-label>
+                  <mat-label class="tag-info">Upload Ads</mat-label>
                   <div class="upload_txt  mt-10"><input type="file"  #tourBanner
                       accept="image/png, image/jpeg" (change)="onfileselected($event)" id="file-select"></div>
                 </div>
@@ -67,7 +71,7 @@
                 </div>
               
           </div>
-          <div class="submit-button-container">
+          <div class="submit-button">
             <button mat-raised-button color="primary" (click)="addEdition()">Submit</button>
         </div>
     </div>

@@ -2,6 +2,7 @@
     display: block;
     margin-bottom: 3px;
     font-size: 15px;
+    font-weight: 500;
 }
 .category-container{
     width: auto;
@@ -19,8 +20,27 @@
     border-top: 0.84375em solid transparent;
 }
 :host::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 4px 0 1em 0 !important;
+    padding: 0px 0 1em 0 !important;
 }
 :host::ng-deep .mat-form-field-wrapper {
     padding-bottom: 8px;
+}
+.popup{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+}
+.popup i{
+    position: relative;
+    top: -18px;
+    font-size: 20px;
+    right: -30px;
+}
+.add-tag-form-field{
+    padding: 20px 0px 0px 5px;
+
+}
+.add-tag-form  h1{
+    margin: 0px !important;
+    font-weight: bold;
 }
