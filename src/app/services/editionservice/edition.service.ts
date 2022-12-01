@@ -19,4 +19,10 @@ export class EditionService {
   getEditionAll(eid:any,ename:any,customer_id:any) {
     return this.HTTP.get<any>(Masterapi + `/get-edition-details?edition_id=${eid}&edition_name=${ename}&customer_id=${customer_id}`);
   }
+  saveUploadImage(pdfDetails:any) {
+    return this.HTTP.post<any>(Masterapi + `/save-upload-image`,{ ...pdfDetails });
+  }
+  getAllImages(imgid:any,eid:any,custid:any){
+    return this.HTTP.get<any>(Masterapi + `/get-image-details?image_id=${imgid}&edition_id=${eid}&customer_id=${custid}`);
+  }
 }

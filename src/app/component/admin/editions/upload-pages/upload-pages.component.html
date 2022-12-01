@@ -1,6 +1,7 @@
+
 <div class="viewcategory-container">
     <div class="search-category">
-        <button mat-raised-button color="primary"><i class="fa-solid fa-backward" style="margin-right:5px"></i>
+        <button mat-raised-button color="primary" routerLink="/admin/epaper/edition"><i class="fa-solid fa-backward" style="margin-right:5px"></i>
             Back to Edition List</button>
     </div>
 
@@ -10,11 +11,25 @@
                 <a class="nav-link active" data-toggle="tab" href="#home">JPG Upload</a>
             </li>
         </ul>
-        <!-- Tab panes -->
         <div class="tab-content">
             <div id="home" class="container tab-pane active"><br>
-                <h3> Note: File must be in jpg,png or gif format. Maximum file is 50M</h3>
-                <div class="upload-supplement">
+                <div class="list-files">
+                    <div class="no-files">No PDF files added</div>
+              </div>
+              <div style="display:none">
+                <input type="file" id="pdf-file" onChange="openfile()" multiple accept="application/pdf">
+              </div>
+              <div class="center-btn">
+                <button  class="btn-add" (click)="addPdf()">ADD PDF</button>     
+                <button  class="btn-join" onclick="joinPdf()">JOIN PDF</button>      
+          </div>    
+          
+          
+          <input type="file" id="pdf" (change)="onUpload($event)"  accept="application/pdf">
+          
+          <button class="btn-join" (click)=" getpdfToJpegImage()">Convert To JPEG</button>
+                <!-- <h3> Note: File must be in jpg,png or gif format. Maximum file is 50M</h3> -->
+                <!-- <div class="upload-supplement">
                     <mat-label class="tag-info">Supplementary</mat-label>
                     <mat-form-field appearance="outline">
                         <mat-select>
@@ -26,18 +41,18 @@
                 <div class="upload-search">
                     <button mat-raised-button class="bg-green"> [Browse...] </button>
                     <button mat-raised-button color="primary" class="start-upload">Start Upload </button>
-                </div>
+                </div> -->
                 <div class="upload-content">
                     <div class="img-upload">
-                        <div class="row">
+                        <div class="row mb-20" *ngFor = "let data of imgarr;index as i">
                             <div class="col-md-3">
     
                                 <div class="upload-img-bg">
-                                    <img src="assets/img/epaper-full-samp.jpeg" class="e-paper">
+                                    <img [src]= "data.image_url" class="e-paper">
                                 </div>
                             </div>
                             <div class="col-md-5">
-                                <h4> 01</h4>
+                                <h4> {{i+1}}</h4>
                                 <div class="d-flex">
                                     <div class="search-category">
                                         <button mat-raised-button color="primary">
@@ -54,9 +69,9 @@
                                         </button>
     
                                     </div>
-                                    <div class="gray-button">
-                                        <div class="bg-gray">
-                                            101.46 KB
+                                    <div class="gray-button" *ngIf ="data.image_size">
+                                        <div class="bg-gray" >
+                                           {{data.image_size}}
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +80,7 @@
                     </div>
                 </div>
     
-                <div class="upload-content">
+                <!-- <div class="upload-content">
                     <div class="img-upload">
                         <div class="row">
                             <div class="col-md-3">
@@ -139,8 +154,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="upload-content">
+                </div> -->
+                <!-- <div class="upload-content">
                     <div class="img-upload">
                         <div class="row">
                             <div class="col-md-3">
@@ -176,7 +191,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
     
     
             </div>

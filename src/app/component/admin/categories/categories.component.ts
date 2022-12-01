@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { AddtohomeComponent } from './addtohome/addtohome.component';
 import { EditcategoryComponent } from './editcategory/editcategory.component';
 import { CategoryDialogComponent } from './newcategory/category-dialog.component';
+import { SupplimentpagesComponent } from './supplimentpages/supplimentpages.component';
 
 
 @Component({
@@ -113,5 +114,14 @@ export class CategoriesComponent implements OnInit {
       this.catarr = []
     })
   }
-
+  addSupplimentPages(data:any){
+    const dialogRef = this.matDialog.open(SupplimentpagesComponent,{
+      height: '500px',
+      width: '50vw',
+      data: { ...data },
+   });
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log(result);
+    })
+  }
 }

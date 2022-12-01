@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
@@ -22,13 +23,17 @@ export class EditionsComponent implements OnInit {
   editionarr:any = [];
   p:any = 1;
   editionSearch:any = '';
+  catid:any = '';
+  catarr:any = [];
+  categorysearch:any = '';
   constructor(private matDialog: MatDialog,private editionService: EditionService,private notification: NotificationService,
-    private loginService: LoginService,private masterService: MasterServiceService,private router: Router) { }
+    private loginService: LoginService,private masterService: MasterServiceService,private router: Router,private categoryService: CategoryServiceService) { }
 
 
   ngOnInit(): void {
     this.currentuser = this.loginService.getCurrentUser();
     this.getAllEdition();
+    this.getallcategory();
   }
   
   newEdition(){
@@ -92,8 +97,8 @@ export class EditionsComponent implements OnInit {
       console.log(result);
     })
   }
-  upload(){
-    this.router.navigate(['admin/epaper/edition/upload-pages']);
+  upload(eid:any){
+    this.router.navigate([`/admin/epaper/edition/upload-pages/${eid}`]);
   }
   onKeydown(event: any) {
     event.preventDefault();
@@ -111,5 +116,18 @@ export class EditionsComponent implements OnInit {
       },(err) => {
         this.editionarr = []
       })
+  }
+  getallcategory() {
+    this.categoryService.getAllCategory('', '',environment.CUSTOMER_ID).subscribe((res: any) => {
+      if (res.code == 'success') {
+        var data = res.body;
+        this.catarr = data.map((dt: any) => JSON.parse(dt));
+        console.log(this.catarr);
+      } else {
+        this.catarr = []
+      }
+    }, (err) => {
+      this.catarr = []
+    })
   }
 }

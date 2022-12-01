@@ -17,4 +17,5 @@ export class editionModel{
 	filetype:any
 	base64file:any
 	flag:any
+	input:any
 }

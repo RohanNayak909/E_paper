@@ -25,6 +25,7 @@ const routes: Routes = [
    { path: 'edition/bhubaneswar',
     component: BhubaneswarPaperComponent
   },
+
   {
     path: 'admin', component: SidenavComponent,
     canActivate: [AuthGuard],
@@ -35,7 +36,7 @@ const routes: Routes = [
       { path: 'epaper/edition', component: EditionsComponent},
       { path: 'epaper/edition/featured', component: FeaturededitionComponent},
       { path: 'header/manage', component: ManageHeaderComponent},
-      { path: 'epaper/edition/upload-pages', component: UploadPagesComponent}
+      { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent}
     ],
   }
 ];
