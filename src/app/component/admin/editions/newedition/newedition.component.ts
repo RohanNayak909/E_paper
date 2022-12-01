@@ -89,4 +89,7 @@ export class NeweditionComponent implements OnInit {
       });
     }, 1000)
   }
+  onNoClick(): void {
+    this.matDialogRef.close();
+  };
 }

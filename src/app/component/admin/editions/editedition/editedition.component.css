@@ -2,6 +2,7 @@
     display: block;
     margin-bottom: 3px;
     font-size: 15px;
+    font-weight: 500;
 }
 .category-container{
     width: auto;
@@ -19,8 +20,11 @@
     border-top: 0.84375em solid transparent;
 }
 :host::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 4px 0 1em 0 !important;
+    padding: 0px 0 1em 0 !important;
 }
 :host::ng-deep .mat-form-field-wrapper {
     padding-bottom: 8px;
+}
+.add-tag-form-field{
+    padding: 10px 0px 0px 5px;
 }

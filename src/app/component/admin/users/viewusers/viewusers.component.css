@@ -88,3 +88,6 @@ tr:nth-child(odd) {
 .search-btn {
     margin-left: 10px;
 }
+#view-table .mat-icon{
+    cursor: pointer;
+}

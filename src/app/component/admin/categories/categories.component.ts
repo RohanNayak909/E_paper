@@ -40,7 +40,7 @@ export class CategoriesComponent implements OnInit {
  
   addCategory(){
     const dialogRef = this.matDialog.open(CategoryDialogComponent, {
-      height: '500px',
+      height: '580px',
       width: '50vw'
     });
     dialogRef.afterClosed().subscribe(result=>{

@@ -91,4 +91,7 @@ export class CategoryDialogComponent implements OnInit {
     });
     }  , 1000)
   }
+  onNoClick(): void {
+    this.matDialogRef.close();
+  }
 }

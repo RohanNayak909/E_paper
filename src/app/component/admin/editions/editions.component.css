@@ -104,3 +104,6 @@ tr:nth-child(odd) {
 .w-200 {
     width: 200px !important;
 }
+#view-table .mat-icon{
+    cursor: pointer;
+}
