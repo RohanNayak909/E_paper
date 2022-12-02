@@ -22,5 +22,7 @@ export class CategoryServiceService {
   deleteCategory(cid:any,customer_id:any) {
     return this.HTTP.get<any>(Masterapi + `/delete-category?category_id=${cid}&customer_id=${customer_id}`);
   }
-
+  createSuppliment(suppliment: any) {
+    return this.HTTP.post<any>(Masterapi + `/add-suppliment`, { ...suppliment});
+  }
 }
