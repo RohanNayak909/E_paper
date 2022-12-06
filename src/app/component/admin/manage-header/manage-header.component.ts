@@ -61,13 +61,11 @@ export class ManageHeaderComponent implements OnInit {
   getallcategory() {
     this.Categorydata.getAllCategory(this.catid, this.categorySearch,this.currentuser.customer_id).subscribe((res: any) => {
       if (res.code == 'success') {
-        var data = res.body;
-        //console.log(res.body);
+        var data = res.body;;
         this.catarr = data.map((dt: any) => {
           let data = JSON.parse(dt)
           return { id: data.category_id, name: data.category_name };
         });
-        console.log(this.catarr);
       } else {
         this.catarr = []
       }
@@ -79,12 +77,10 @@ export class ManageHeaderComponent implements OnInit {
     this.masterAPI.getAllheaders(this.currentuser.customer_id).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
-        //console.log(res.body);
         this.headerarry = data.map((dt: any) => {
           let data = JSON.parse(dt)
           return { id: data.category_id, name: data.category_name };
         });
-        console.log(this.headerarry);
       } else {
         this.catarr = []
       }
@@ -93,7 +89,6 @@ export class ManageHeaderComponent implements OnInit {
     })
   }
   updateHeader() {
-    console.log(this.headerarry)
     let payload = {
       headers: this.headerarry,
       customer_id: this.currentuser.customer_id,

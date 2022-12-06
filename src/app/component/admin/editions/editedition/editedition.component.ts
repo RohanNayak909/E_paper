@@ -25,7 +25,6 @@ export class EditeditionComponent implements OnInit {
 
   ngOnInit(): void {
     this.edition = this.data;
-    console.log(this.edition)
     this.currentuser = this.loginService.getCurrentUser();
     this.getallcategory();
   }
@@ -34,7 +33,6 @@ export class EditeditionComponent implements OnInit {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
-        console.log(this.catarr);
       } else {
         this.catarr = []
       }
@@ -63,7 +61,6 @@ export class EditeditionComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'U';
     this.edition.customer_id = environment.CUSTOMER_ID;
-    console.log(this.edition);
     if (this.edition.edition_image) {
       var media_ext = this.edition.edition_image.split("media/")[1];
       this.edition.media_ext = media_ext.split(".")[1];
@@ -79,7 +76,6 @@ export class EditeditionComponent implements OnInit {
       if (this.edition.Multiimage) {
         this.edition.base64file = reader.result
       }
-      console.log('this.edition==', this.edition);
       this.editionService.createEdition(this.edition).subscribe(res => {
         if (res.code === "success") {
           this.notification.success("Edition edited sucessfully");

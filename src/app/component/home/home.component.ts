@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
         this.catarr =  this.catarr.filter((d:any)=> { if(d.add_to_home == 1){  
           return d;  
         }});
-        console.log(this.catarr)
       } else {
         this.catarr = []
       }

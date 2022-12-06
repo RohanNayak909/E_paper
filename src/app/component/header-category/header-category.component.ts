@@ -38,9 +38,9 @@ export class HeaderCategoryComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    // let routeParams = this.activatedRoute.snapshot.paramMap;
-    // this.eid = Number(routeParams.get('id'));
-    // this.category = routeParams.get('category');
+    let routeParams = this.activatedRoute.snapshot.paramMap;
+    this.eid = Number(routeParams.get('id'));
+    this.category = routeParams.get('category');
     this.cust_id = environment.CUSTOMER_ID
     this.currentuser = this.loginService.getCurrentUser();
     this.getAllImages();
@@ -89,7 +89,7 @@ export class HeaderCategoryComponent implements OnInit {
   }
  
   onChangeDate(editionDate:any){
-      this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,editionDate).subscribe((res: any) => {
+      this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,editionDate,this.category).subscribe((res: any) => {
         if (res.code == 'success') {
           var data = res.body;
           this.headerarry = data.map((dt: any) => JSON.parse(dt));

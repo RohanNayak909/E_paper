@@ -25,14 +25,12 @@ export class AddtohomeComponent implements OnInit {
     this.currentuser = this.loginService.getCurrentUser();
     // this.addToHome();
     // this.removeFromHome();
-    // console.log(this.category);
   }
   addToHome(){
     this.category.createdby = this.currentuser.user_id;
     this.category.flag = 'U';
     this.category.addToHome = 1;
     this.category.ads_img = this.category.ads_image;
-    console.log(this.category)
     this.categoryService.createCategory(this.category).subscribe(res => {
       if (res.code === "success") {
         this.notification.success("Category added to home.");
@@ -48,7 +46,6 @@ export class AddtohomeComponent implements OnInit {
     this.category.flag = 'U';
     this.category.addToHome = 0;
     this.category.ads_img = this.category.ads_image;
-    console.log(this.category)
     this.categoryService.createCategory(this.category).subscribe(res => {
       if (res.code === "success") {
         this.notification.success("Category removed from home.");

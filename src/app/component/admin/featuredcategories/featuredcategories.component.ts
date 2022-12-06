@@ -33,7 +33,6 @@ export class FeaturedcategoriesComponent implements OnInit {
         this.catarr =  this.catarr.filter((d:any)=> { if(d.add_to_home == 1){  
           return d;  
         }});
-        console.log(this.catarr)
       } else {
         this.catarr = []
       }
@@ -42,12 +41,10 @@ export class FeaturedcategoriesComponent implements OnInit {
     })
   }
   removeFromHome(data:any){
-    console.log(data,'data')
     data.createdby = this.currentuser.user_id;
     data.flag = 'U';
     data.addToHome = 0;
     data.ads_img = data.ads_image;
-    console.log(data,'data')
     this.categoryService.createCategory(data).subscribe(res => {
       if (res.code === "success") {
         this.notification.success("Category removed from home.");

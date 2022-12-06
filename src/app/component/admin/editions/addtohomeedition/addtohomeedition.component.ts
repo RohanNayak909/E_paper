@@ -26,7 +26,6 @@ export class AddtohomeeditionComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'U';
     this.edition.add_to_home = 1;
-    console.log(this.edition)
     this.editionService.createEdition(this.edition).subscribe(res => {
       if (res.code === "success") {
         this.notification.success("Category added to home.");
@@ -40,7 +39,6 @@ export class AddtohomeeditionComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'U';
     this.edition.add_to_home = 0;
-    console.log(this.edition)
     this.editionService.createEdition(this.edition).subscribe(res => {
       if (res.code === "success") {
         this.notification.success("Category removed from home.");

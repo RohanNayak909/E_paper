@@ -21,7 +21,7 @@ export class NeweditionComponent implements OnInit {
   categorySearch: any = '';
   catarr: any = []
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
-    private notification: NotificationService, private router: Router,private editionService: EditionService,
+    private notification: NotificationService, private router: Router, private editionService: EditionService,
     public matDialogRef: MatDialogRef<CategoryDialogComponent>) { }
 
   ngOnInit(): void {
@@ -62,7 +62,6 @@ export class NeweditionComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'I';
     this.edition.customer_id = environment.CUSTOMER_ID;
-    console.log(this.edition);
     if (this.edition.ads_img) {
       this.edition.media_ext = this.edition.ads_img.split("/")[1];
     }
@@ -77,7 +76,6 @@ export class NeweditionComponent implements OnInit {
       if (this.edition.Multiimage) {
         this.edition.base64file = reader.result
       }
-      console.log('this.category==', this.edition);
       this.editionService.createEdition(this.edition).subscribe(res => {
         if (res.code === "success") {
           window.location.reload();

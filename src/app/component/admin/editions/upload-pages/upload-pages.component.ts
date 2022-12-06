@@ -17,18 +17,18 @@ import { EditPagesComponent } from './edit-pages/edit-pages.component';
   styleUrls: ['./upload-pages.component.css']
 })
 export class UploadPagesComponent implements OnInit {
-  input:any
-  edition:any = new editionModel();
-  dataarr:any = [];
+  input: any
+  edition: any = new editionModel();
+  dataarr: any = [];
   imgid = '';
-  imgarr:any = [];
-  eid:any;
-  cust_id:any;
-  currentuser:any;
-  category:any = '';
-  constructor(private matDialog: MatDialog,private editionService:EditionService,
-    private activatedRoute: ActivatedRoute,private loginService:LoginService,private masterService:MasterServiceService,
-    private notification: NotificationService,private router:Router) { }
+  imgarr: any = [];
+  eid: any;
+  cust_id: any;
+  currentuser: any;
+  category: any = '';
+  constructor(private matDialog: MatDialog, private editionService: EditionService,
+    private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
+    private notification: NotificationService, private router: Router) { }
 
   ngOnInit(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
@@ -36,100 +36,96 @@ export class UploadPagesComponent implements OnInit {
     this.cust_id = environment.CUSTOMER_ID
     this.currentuser = this.loginService.getCurrentUser();
     this.getAllImages();
-    console.log(this.eid);
   }
 
-addPdf() {
-  let btn = document.getElementById('pdf-file');
-  if(btn) {
-    btn.click();
+  addPdf() {
+    let btn = document.getElementById('pdf-file');
+    if (btn) {
+      btn.click();
+    }
   }
- }
- onUpload(event:any){
-  this.edition.input = <File>event.target.files[0];
- 
- }
- getpdfToJpegImage(){
-   this.edition.edition_id = this.eid;
-   this.edition.createdby = this.currentuser.user_id;
-   this.edition.flag = 'I';
-   this.edition.customer_id = this.cust_id;
+  onUpload(event: any) {
+    this.edition.input = <File>event.target.files[0];
 
-  if (this.edition.input) {
-    var reader = new FileReader();
-    reader.readAsDataURL(this.edition.input)
-    reader.onload = function () {
-    };
   }
-  setTimeout(() => {
+  getpdfToJpegImage() {
+    this.edition.edition_id = this.eid;
+    this.edition.createdby = this.currentuser.user_id;
+    this.edition.flag = 'I';
+    this.edition.customer_id = this.cust_id;
+
     if (this.edition.input) {
-      this.edition.base64file = reader.result
+      var reader = new FileReader();
+      reader.readAsDataURL(this.edition.input)
+      reader.onload = function () {
+      };
     }
-    console.log('this.category==',this.edition);
-  this.editionService.saveUploadImage(this.edition).subscribe(res=>{
-    if (res.code === "success") {
-      this.getAllImages();
+    setTimeout(() => {
+      if (this.edition.input) {
+        this.edition.base64file = reader.result
+      }
+      this.editionService.saveUploadImage(this.edition).subscribe(res => {
+        if (res.code === "success") {
+          this.getAllImages();
 
-    } else {
-      // this.dataarr = []
-    }
-  });
-  }  , 1000)
- }
- 
- getAllImages(){
-   this.editionService.getAllImages(this.imgid,this.eid,environment.CUSTOMER_ID,this.category).subscribe(res=>{
-     if(res.code === "success"){
-       var img = res.body;
-       this.imgarr = img.map((i:any)=> JSON.parse(i));
-       console.log(this.imgarr);
-     }else{
-       this.imgarr = [];
-     }
-   })
- }
- compress(data:any){
-    const dialogRef = this.matDialog.open(CompressImageComponent,{
+        } else {
+          // this.dataarr = []
+        }
+      });
+    }, 1000)
+  }
+
+  getAllImages() {
+    this.editionService.getAllImages(this.imgid, this.eid, environment.CUSTOMER_ID, this.category).subscribe(res => {
+      if (res.code === "success") {
+        var img = res.body;
+        this.imgarr = img.map((i: any) => JSON.parse(i));
+      } else {
+        this.imgarr = [];
+      }
+    })
+  }
+  compress(data: any) {
+    const dialogRef = this.matDialog.open(CompressImageComponent, {
       height: '350px',
       width: '600px',
       data: data
-  });
-  dialogRef.afterClosed().subscribe(result=>{
-    console.log(result);
-  })
- }
- deletePages(data:any){
-  const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
-  dialogRef.afterClosed().subscribe((result:any) => {      
-    if(result){
-      this.pageDelete(data);
-    }
-  });
-  return;
-}
-pageDelete(id:any){
-  console.log(id,'data');
-  var funct = 'UPLOADPAGE';
-  this.masterService.bulkDeletion(funct,id,0,environment.CUSTOMER_ID).subscribe(res=>{
-    if(res.code === "success"){
-      this.notification.success("Page deleted successfully");
-      this.getAllImages();
-    }else {
-      this.notification.error(res.message);
-    }
-  })
-}
-edit(data:any){
-  const dialogRef = this.matDialog.open(EditPagesComponent,{
-    height: '450px',
-    width: '800px',
-    data:data
- });
- dialogRef.afterClosed().subscribe(result=>{
-  console.log(result);
-})
-}
-createAreaMap(id:any){
-  this.router.navigate([`/admin/epaper/edition/map/${id}`]);
-}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
+  }
+  deletePages(data: any) {
+    const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.pageDelete(data);
+      }
+    });
+    return;
+  }
+  pageDelete(id: any) {
+    var funct = 'UPLOADPAGE';
+    this.masterService.bulkDeletion(funct, id, 0, environment.CUSTOMER_ID).subscribe(res => {
+      if (res.code === "success") {
+        this.notification.success("Page deleted successfully");
+        this.getAllImages();
+      } else {
+        this.notification.error(res.message);
+      }
+    })
+  }
+  edit(data: any) {
+    const dialogRef = this.matDialog.open(EditPagesComponent, {
+      height: '450px',
+      width: '800px',
+      data: data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
+  }
+  createAreaMap(id: any) {
+    this.router.navigate([`/admin/epaper/edition/map/${id}`]);
+  }
 }

@@ -29,7 +29,6 @@ export class ViewusersComponent implements OnInit {
       this.userService.getUserDetails('', this.uid,environment.CUSTOMER_ID, 'N').subscribe((data: any) => {
         this.allUser = data.body
         this.allUser = this.allUser.map((dt: any) => JSON.parse(dt));
-        console.log(this.allUser,'userssss')
       })
     }
     addUser(){
@@ -61,7 +60,6 @@ export class ViewusersComponent implements OnInit {
         return;
       }
       userDelete(uid:any){
-        console.log(uid,'data');
         var funct = 'USER';
         this.masterService.bulkDeletion(funct,uid,0,environment.CUSTOMER_ID).subscribe(res=>{
           if(res.code === "success"){

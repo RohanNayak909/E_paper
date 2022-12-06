@@ -18,16 +18,16 @@ import { NeweditionComponent } from './newedition/newedition.component';
   styleUrls: ['./editions.component.css']
 })
 export class EditionsComponent implements OnInit {
-  eid:any = '';
-  currentuser:any;
-  editionarr:any = [];
-  p:any = 1;
-  editionSearch:any = '';
-  catid:any = '';
-  catarr:any = [];
-  categorysearch:any = '';
-  constructor(private matDialog: MatDialog,private editionService: EditionService,private notification: NotificationService,
-    private loginService: LoginService,private masterService: MasterServiceService,private router: Router,private categoryService: CategoryServiceService) { }
+  eid: any = '';
+  currentuser: any;
+  editionarr: any = [];
+  p: any = 1;
+  editionSearch: any = '';
+  catid: any = '';
+  catarr: any = [];
+  categorysearch: any = '';
+  constructor(private matDialog: MatDialog, private editionService: EditionService, private notification: NotificationService,
+    private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService) { }
 
 
   ngOnInit(): void {
@@ -35,94 +35,89 @@ export class EditionsComponent implements OnInit {
     this.getAllEdition();
     this.getallcategory();
   }
-  
-  newEdition(){
+
+  newEdition() {
     const dialogRef = this.matDialog.open(NeweditionComponent, {
       height: '580px',
       width: '50vw'
     });
-    dialogRef.afterClosed().subscribe(result=>{
+    dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     })
   }
-  getAllEdition(){
-    this.editionService.getEditionAll(this.eid,this.editionSearch,this.currentuser.customer_id).subscribe(res=>{
-      if(res.code = 'sucess'){
+  getAllEdition() {
+    this.editionService.getEditionAll(this.eid, this.editionSearch, this.currentuser.customer_id).subscribe(res => {
+      if (res.code = 'sucess') {
         var data = res.body;
-        this.editionarr = data.map((dt:any) => JSON.parse(dt));
-        console.log(this.editionarr,'edition');
-      }else{
+        this.editionarr = data.map((dt: any) => JSON.parse(dt));
+      } else {
         this.editionarr = [];
-       }
-      },(err) => {
-        this.editionarr = []
-      })
+      }
+    }, (err) => {
+      this.editionarr = []
+    })
   }
-  editEdition(data:any){  
-    const dialogRef = this.matDialog.open(EditeditionComponent,{
+  editEdition(data: any) {
+    const dialogRef = this.matDialog.open(EditeditionComponent, {
       height: '550px',
       width: '50vw',
       data: { ...data },
-   });
-    dialogRef.afterClosed().subscribe(result=>{
+    });
+    dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     })
   }
-  deleteEdition(data:any){
+  deleteEdition(data: any) {
     const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
-    dialogRef.afterClosed().subscribe((result:any) => {      
-      if(result){
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
         this.editionDelete(data);
       }
     });
     return;
   }
-  editionDelete(id:any){
-    console.log(id,'data');
+  editionDelete(id: any) {
     var funct = 'EDITION';
-    this.masterService.bulkDeletion(funct,id,0,environment.CUSTOMER_ID).subscribe(res=>{
-      if(res.code === "success"){
+    this.masterService.bulkDeletion(funct, id, 0, environment.CUSTOMER_ID).subscribe(res => {
+      if (res.code === "success") {
         this.notification.success("Category deleted successfully");
         this.getAllEdition();
-      }else {
+      } else {
         this.notification.error(res.message);
       }
     })
   }
-  addToHome(data:any){
-    const dialogRef = this.matDialog.open(AddtohomeeditionComponent,{
+  addToHome(data: any) {
+    const dialogRef = this.matDialog.open(AddtohomeeditionComponent, {
       data: { ...data },
-   });
-    dialogRef.afterClosed().subscribe(result=>{
+    });
+    dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     })
   }
-  upload(eid:any){
+  upload(eid: any) {
     this.router.navigate([`/admin/epaper/edition/upload-pages/${eid}`]);
   }
   onKeydown(event: any) {
     event.preventDefault();
   }
-  searchEdition(){
-    this.editionService.getEditionAll('',this.editionSearch,this.currentuser.customer_id).subscribe(res=>{
-      console.log('hi',this.eid, this.editionSearch,this.currentuser.customer_id)
-      if(res.code = 'sucess'){
+  searchEdition() {
+    this.editionService.getEditionAll('', this.editionSearch, this.currentuser.customer_id).subscribe(res => {
+      if (res.code = 'sucess') {
         var data = res.body;
-        this.editionarr = data.map((dt:any) => JSON.parse(dt));
-        console.log(this.editionarr,'edition');
-      }else{
+        this.editionarr = data.map((dt: any) => JSON.parse(dt));
+      } else {
         this.editionarr = [];
-       }
-      },(err) => {
-        this.editionarr = []
-      })
+      }
+    }, (err) => {
+      this.editionarr = []
+    })
   }
   getallcategory() {
-    this.categoryService.getAllCategory('', '',environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.categoryService.getAllCategory('', '', environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
-        console.log(this.catarr);
       } else {
         this.catarr = []
       }

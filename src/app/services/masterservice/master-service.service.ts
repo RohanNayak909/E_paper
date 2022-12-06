@@ -45,8 +45,8 @@ export class MasterServiceService {
     return this.HTTP.get<any>(MasterAPI + `/get-header-category?customer_id=${customer_id}`);
   }
 
-  getAllheadersEdition(customer_id:any,edate:any) {
-    return this.HTTP.get<any>(MasterAPI + `/get-header-edition?customer_id=${customer_id}&edate=${edate}`);
+  getAllheadersEdition(customer_id:any,edate:any,catname:any) {
+    return this.HTTP.get<any>(MasterAPI + `/get-header-edition?customer_id=${customer_id}&edate=${edate}&catname=${catname}`);
   }
 
   getWithoutHeaderCategory(customer_id:any) {

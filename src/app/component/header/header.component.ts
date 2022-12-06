@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     this.getallheaders();
   }
   getallheaders() {
-    this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,null).subscribe((res: any) => {
+    this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,null,'').subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         //console.log(res.body);

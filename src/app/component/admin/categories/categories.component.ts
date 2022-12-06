@@ -60,8 +60,6 @@ export class CategoriesComponent implements OnInit {
     })
   }
   editCategory(data:any){
-  //  localStorage.setItem('data', JSON.stringify(data));
-    console.log('editeddata',data)
     const dialogRef = this.matDialog.open(EditcategoryComponent,{
       height: '500px',
       width: '50vw',
@@ -81,7 +79,6 @@ export class CategoriesComponent implements OnInit {
     return;
   }
   categoeyDelete(data:any){
-  console.log(data,'data');
   var funct = 'CATEGORY';
   this.masterService.bulkDeletion(funct,data,0,environment.CUSTOMER_ID).subscribe(res=>{
     if(res.code === "success"){
@@ -102,11 +99,9 @@ export class CategoriesComponent implements OnInit {
   }
   searchCategory() {
     this.categoryService.getAllCategory('', this.categorySearch,this.currentuser.customer_id).subscribe((res: any) => {
-      console.log('hi',this.catid, this.categorySearch,this.currentuser.customer_id)
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
-        console.log('this.catarr===',this.catarr)
       } else {
         this.catarr = []
       }

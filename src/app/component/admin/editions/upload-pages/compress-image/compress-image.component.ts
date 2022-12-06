@@ -26,7 +26,6 @@ export class CompressImageComponent implements OnInit {
   private editionService: EditionService,private router: Router,private notify:NotificationService) { }
 
   ngOnInit(): void {
-  console.log(this.data,'data')
   this.toDataURL(this.data.image_url)
   }
   
@@ -56,9 +55,7 @@ export class CompressImageComponent implements OnInit {
       this.compressFile(this.localUrl, this.data.image_name);
     }
     compressFile(localUrl:any,fileName:any){
-    console.log(localUrl,'',fileName)
-  
-    var orientation = -1;
+      var orientation = -1;
       this.sizeOfOriginalImage = this.imageCompress.byteCount(localUrl)/(1024*1024);
         console.warn('Size in bytes is now:',  this.sizeOfOriginalImage);
         
@@ -73,13 +70,14 @@ export class CompressImageComponent implements OnInit {
             // call method that creates a blob from dataUri
             // const imageBlob = this.dataURItoBlob(this.imgResultAfterCompress.split(',')[1]);
             const imageFile = new File([result], imageName, { type: 'image/jpeg' });
-            console.log("file size:",imageFile['size']/(1024*1024));
+            console.log("file size:",imageFile['size']/(1024*1024)/1024);
+            // let imgfile = imageFile['size']/(1024*1024);
+            // let imgfilesize = imgfile['size']/1024;
           }
         );
       }
       uploadImgType:any
       saveCompressedImage(){
-        console.log(this.data,'data');
         this.edition.customer_id = this.data.customer_id;
         this.edition.createdby = this.data.createdby;
         this.edition.edition_id = this.data.edition_id;
@@ -93,8 +91,7 @@ export class CompressImageComponent implements OnInit {
               this.notify.success("Image compressed successfully.");
               window.location.reload();
             } else {
-              this.notify.error(res.message)
-    
+              this.notify.error(res.message)  
             }
           }, (err: any) => {
             this.notify.error(err.message)

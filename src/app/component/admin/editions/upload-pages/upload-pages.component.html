@@ -8,7 +8,7 @@
     <div class="upload-container">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">JPG Upload</a>
+                <a class="nav-link active" data-toggle="tab" href="#home">PDF Upload</a>
             </li>
         </ul>
         <div class="tab-content">
@@ -43,7 +43,7 @@
                     <button mat-raised-button color="primary" class="start-upload">Start Upload </button>
                 </div> -->
                 <div class="upload-content">
-                    <div class="img-upload">
+                    <div class="img-upload" *ngIf = "imgarr && imgarr.length; else elseblock">
                         <div class="row mb-20" *ngFor = "let data of imgarr;index as i">
                             <div class="col-md-3">
     
@@ -83,122 +83,17 @@
                             </div>
                         </div>
                     </div>
+                    <ng-template #elseblock>
+                        <tbody>
+                          <tr>
+                            <td colspan="6" class="text-center" style="color: black;">
+                              No data Found
+                            </td>
+                          </tr>
+                        </tbody>
+                    </ng-template>
                 </div>
-    
-                <!-- <div class="upload-content">
-                    <div class="img-upload">
-                        <div class="row">
-                            <div class="col-md-3">
-    
-                                <div class="upload-img-bg">
-                                    <img src="assets/img/epaper-full-samp.jpeg" class="e-paper">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <h4> 02</h4>
-                                <div class="d-flex">
-                                    <div class="search-category">
-                                        <button mat-raised-button color="primary">
-                                            <mat-icon>edit</mat-icon> Create Area Maps
-                                        </button>
-                                    </div>
-                                    <div class="edit-button">
-                                        <button mat-raised-button class="bg-green"><i
-                                                class="fa-solid fa-pen-to-square" (click)="edit()"></i></button>
-                                    </div>
-                                    <div class="delete-button">
-                                        <button mat-raised-button class="bg-red">
-                                            <mat-icon>delete</mat-icon>
-                                        </button>
-    
-                                    </div>
-                                    <div class="gray-button">
-                                        <div class="bg-gray">
-                                            956.46 KB
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="upload-content">
-                    <div class="img-upload">
-                        <div class="row">
-                            <div class="col-md-3">
-    
-                                <div class="upload-img-bg">
-                                    <img src="assets/img/epaper-full-samp.jpeg" class="e-paper">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <h4> 03</h4>
-                                <div class="d-flex">
-                                    <div class="search-category">
-                                        <button mat-raised-button color="primary">
-                                            <mat-icon>edit</mat-icon> Create Area Maps
-                                        </button>
-                                    </div>
-                                    <div class="edit-button">
-                                        <button mat-raised-button class="bg-green"><i
-                                                class="fa-solid fa-pen-to-square" (click)="edit()"></i></button>
-                                    </div>
-                                    <div class="delete-button">
-                                        <button mat-raised-button class="bg-red">
-                                            <mat-icon>delete</mat-icon>
-                                        </button>
-    
-                                    </div>
-                                    <div class="gray-button">
-                                        <div class="bg-gray">
-                                            956.46 KB
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="upload-content">
-                    <div class="img-upload">
-                        <div class="row">
-                            <div class="col-md-3">
-    
-                                <div class="upload-img-bg">
-                                    <img src="assets/img/epaper-full-samp.jpeg" class="e-paper">
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <h4> 04</h4>
-                                <div class="d-flex">
-                                    <div class="search-category">
-                                        <button mat-raised-button color="primary">
-                                            <mat-icon>edit</mat-icon> Create Area Maps
-                                        </button>
-                                    </div>
-                                    <div class="edit-button">
-                                        <button mat-raised-button class="bg-green"><i
-                                                class="fa-solid fa-pen-to-square" (click)="edit()"></i></button>
-                                    </div>
-                                    <div class="delete-button">
-                                        <button mat-raised-button class="bg-red">
-                                            <mat-icon>delete</mat-icon>
-                                        </button>
-    
-                                    </div>
-                                    <div class="gray-button">
-                                        <div class="bg-gray">
-                                            956.46 KB
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-    
-    
+ 
             </div>
         </div>
     </div>

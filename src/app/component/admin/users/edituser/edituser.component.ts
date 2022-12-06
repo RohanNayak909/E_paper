@@ -59,8 +59,6 @@ export class EdituserComponent implements OnInit {
   }
 
   editUser(){
-    console.log(this.userData)
-    // this.userData.user_status = 1;
     this.userData.flag = 'U';
     this.userData.customer_id = environment.CUSTOMER_ID
     this.userData.user_nicename = this.userData.user_login 
@@ -79,7 +77,6 @@ export class EdituserComponent implements OnInit {
       }).join(',');
       this.userData.role = result;
     }
-    console.log(this.userData,'userdata');
     this.userService.createUser(this.userData).subscribe((res: any) => {
       if (res.code == "success") {
         this.notification.success("User data updated sucessfully");

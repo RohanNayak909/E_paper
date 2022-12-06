@@ -28,7 +28,6 @@ export class FeaturededitionComponent implements OnInit {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
         this.editionarr = this.editionarr.filter((d:any)=>{ if(d.add_to_home == 1){ return d;}})
-        console.log(this.editionarr)
       } else {
         this.editionarr = []
       }
@@ -40,7 +39,6 @@ export class FeaturededitionComponent implements OnInit {
     data.createdby = this.currentuser.user_id;
     data.flag = 'U';
     data.add_to_home = 0;
-    console.log(data)
     this.editionService.createEdition(data).subscribe(res => {
       if (res.code === "success") {
         this.notification.success("Edition removed from home.");

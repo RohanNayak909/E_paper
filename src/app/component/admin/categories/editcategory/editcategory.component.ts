@@ -26,7 +26,6 @@ export class EditcategoryComponent implements OnInit {
   ngOnInit(): void {
     this.category = this.data;
     this.currentuser = this.loginService.getCurrentUser();
-    console.log(this.category,'cattt')
     this.getallcategory();
   }
   getallcategory() {
@@ -83,7 +82,6 @@ export class EditcategoryComponent implements OnInit {
       if(this.category.ads_image) {
         this.category.ads_img = this.category.ads_image
       }
-      console.log('this.category==',this.category);
     this.categoryService.createCategory(this.category).subscribe(res=>{
       if (res.code === "success") {
         this.matDialogRef.close(this.category.category_id);
