@@ -82,9 +82,8 @@ export class CategoryDialogComponent implements OnInit {
       console.log('this.category==',this.category);
     this.categoryService.createCategory(this.category).subscribe(res=>{
       if (res.code === "success") {
-        window.location.reload();
         this.notification.success(res.message);
-        this.router.navigate(['/admin/epaper/category']);
+        this.getallcategory();
       } else {
         this.notification.error(res.message)
       }

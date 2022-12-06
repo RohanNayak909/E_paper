@@ -55,8 +55,8 @@
                                 <h4> {{i+1}}</h4>
                                 <div class="d-flex">
                                     <div class="search-category">
-                                        <button mat-raised-button color="primary">
-                                            <mat-icon>edit</mat-icon> Create Area Maps
+                                        <button mat-raised-button color="primary" (click)="createAreaMap(data.image_id)">
+                                            <mat-icon >edit</mat-icon> Create Area Maps
                                         </button>
                                     </div>
                                     <div class="edit-button">

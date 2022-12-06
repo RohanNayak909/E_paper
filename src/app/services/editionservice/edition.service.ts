@@ -22,8 +22,8 @@ export class EditionService {
   saveUploadImage(pdfDetails:any) {
     return this.HTTP.post<any>(Masterapi + `/save-upload-image`,{ ...pdfDetails });
   }
-  getAllImages(imgid:any,eid:any,custid:any){
-    return this.HTTP.get<any>(Masterapi + `/get-image-details?image_id=${imgid}&edition_id=${eid}&customer_id=${custid}`);
+  getAllImages(imgid:any,eid:any,custid:any,category:any){
+    return this.HTTP.get<any>(Masterapi + `/get-image-details?image_id=${imgid}&edition_id=${eid}&customer_id=${custid}&category=${category}`);
   }
   saveCompressedImage(imgdetails:any) {
     return this.HTTP.post<any>(Masterapi + `/save-compressed-image`,{ ...imgdetails});

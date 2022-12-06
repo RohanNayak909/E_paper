@@ -42,7 +42,7 @@
                 <mat-label class="tag-info">Parent Category</mat-label>
                 <mat-form-field appearance="outline">
                   <mat-select class="category" [ngModelOptions]="{standalone: true}" [(ngModel)]="edition.parent_category">
-                    <mat-option *ngFor="let data of catarr" [value]="data.category_name">{{data.category_name}}
+                    <mat-option *ngFor="let data of catarr" [value]="data.category_id">{{data.category_name}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>

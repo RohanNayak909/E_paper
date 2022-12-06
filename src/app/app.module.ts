@@ -45,6 +45,9 @@ import { AuthGuard } from './Guards/auth.guard';
 
 import { SupplimentpagesComponent } from './component/admin/categories/supplimentpages/supplimentpages.component';
 import { NewsupplimentComponent } from './component/admin/categories/supplimentpages/newsuppliment/newsuppliment.component';
+import { HeaderCategoryComponent } from './component/header-category/header-category.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +74,8 @@ import { NewsupplimentComponent } from './component/admin/categories/supplimentp
     EdituserComponent,
     SupplimentpagesComponent,
     NewsupplimentComponent,
+    HeaderCategoryComponent,
+    CreateAreaMapComponent,
   ],
 
   imports: [
@@ -94,7 +99,8 @@ import { NewsupplimentComponent } from './component/admin/categories/supplimentp
     MatTabsModule,
     DragDropModule,
     NgMultiSelectDropDownModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

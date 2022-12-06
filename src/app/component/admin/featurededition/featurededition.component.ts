@@ -43,8 +43,8 @@ export class FeaturededitionComponent implements OnInit {
     console.log(data)
     this.editionService.createEdition(data).subscribe(res => {
       if (res.code === "success") {
-        this.notification.success("Category removed from home.");
-        window.location.reload();
+        this.notification.success("Edition removed from home.");
+        this.getAllEdition();
       } else {
         this.notification.error(res.message)
       }

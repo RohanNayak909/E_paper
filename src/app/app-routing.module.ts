@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
+import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
 import { ManageHeaderComponent } from './component/admin/manage-header/manage-header.component';
 import { ViewusersComponent } from './component/admin/users/viewusers/viewusers.component';
 import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
+import { HeaderCategoryComponent } from './component/header-category/header-category.component';
 import { HomeComponent } from './component/home/home.component';
 import { SidenavComponent } from './component/layout/sidenav/sidenav/sidenav.component';
 import { LoginComponent } from './component/login/login.component';
@@ -22,8 +24,8 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-   { path: 'edition/bhubaneswar',
-    component: BhubaneswarPaperComponent
+   { path: 'edition/:id/:category',
+    component: HeaderCategoryComponent
   },
 
   {
@@ -36,7 +38,8 @@ const routes: Routes = [
       { path: 'epaper/edition', component: EditionsComponent},
       { path: 'epaper/edition/featured', component: FeaturededitionComponent},
       { path: 'header/manage', component: ManageHeaderComponent},
-      { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent}
+      { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
+      { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent}
     ],
   }
 ];

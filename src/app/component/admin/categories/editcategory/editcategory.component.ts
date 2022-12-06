@@ -88,7 +88,7 @@ export class EditcategoryComponent implements OnInit {
       if (res.code === "success") {
         this.matDialogRef.close(this.category.category_id);
         this.notification.success("Category Updated Successfully");
-       window.location.reload();
+        this.getallcategory();
       } else {
         this.notification.error(res.message)
       }

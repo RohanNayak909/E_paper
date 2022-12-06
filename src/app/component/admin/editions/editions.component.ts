@@ -83,7 +83,7 @@ export class EditionsComponent implements OnInit {
     this.masterService.bulkDeletion(funct,id,0,environment.CUSTOMER_ID).subscribe(res=>{
       if(res.code === "success"){
         this.notification.success("Category deleted successfully");
-       window.location.reload();
+        this.getAllEdition();
       }else {
         this.notification.error(res.message);
       }

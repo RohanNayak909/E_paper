@@ -86,7 +86,7 @@ export class CategoriesComponent implements OnInit {
   this.masterService.bulkDeletion(funct,data,0,environment.CUSTOMER_ID).subscribe(res=>{
     if(res.code === "success"){
       this.notification.success("Category deleted successfully");
-     window.location.reload();
+      this.getallcategory();
     }else {
       this.notification.error(res.message);
     }

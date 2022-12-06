@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-header',
@@ -11,20 +13,22 @@ export class HeaderComponent implements OnInit {
 
   headerarry: any[] = []
   customer_id: any;
-
-  constructor(private masterAPI: MasterServiceService) { }
+  edate:any = '';
+  currDate = new Date();
+ 
+  constructor(private masterAPI: MasterServiceService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
     this.getallheaders();
   }
   getallheaders() {
-    this.masterAPI.getAllheaders(environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,null).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         //console.log(res.body);
         this.headerarry = data.map((dt: any) => JSON.parse(dt));
-
-        console.log(this.headerarry);
+        this.headerarry = [...new Map(this.headerarry.map(item => [item.category_id, item])).values()]
       } else {
         this.headerarry = []
       }
@@ -32,4 +36,5 @@ export class HeaderComponent implements OnInit {
       this.headerarry = []
     })
   }
+  
 }

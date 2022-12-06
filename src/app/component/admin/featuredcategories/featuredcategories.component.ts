@@ -51,7 +51,7 @@ export class FeaturedcategoriesComponent implements OnInit {
     this.categoryService.createCategory(data).subscribe(res => {
       if (res.code === "success") {
         this.notification.success("Category removed from home.");
-        window.location.reload();
+        this.getallcategory();
       } else {
         this.notification.error(res.message)
       }

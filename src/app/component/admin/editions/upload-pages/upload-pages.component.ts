@@ -25,9 +25,10 @@ export class UploadPagesComponent implements OnInit {
   eid:any;
   cust_id:any;
   currentuser:any;
-  constructor(private router: Router,private matDialog: MatDialog,private editionService:EditionService,
+  category:any = '';
+  constructor(private matDialog: MatDialog,private editionService:EditionService,
     private activatedRoute: ActivatedRoute,private loginService:LoginService,private masterService:MasterServiceService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,private router:Router) { }
 
   ngOnInit(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
@@ -67,7 +68,7 @@ addPdf() {
     console.log('this.category==',this.edition);
   this.editionService.saveUploadImage(this.edition).subscribe(res=>{
     if (res.code === "success") {
-      window.location.reload();
+      this.getAllImages();
 
     } else {
       // this.dataarr = []
@@ -77,7 +78,7 @@ addPdf() {
  }
  
  getAllImages(){
-   this.editionService.getAllImages(this.imgid,this.eid,environment.CUSTOMER_ID).subscribe(res=>{
+   this.editionService.getAllImages(this.imgid,this.eid,environment.CUSTOMER_ID,this.category).subscribe(res=>{
      if(res.code === "success"){
        var img = res.body;
        this.imgarr = img.map((i:any)=> JSON.parse(i));
@@ -112,7 +113,7 @@ pageDelete(id:any){
   this.masterService.bulkDeletion(funct,id,0,environment.CUSTOMER_ID).subscribe(res=>{
     if(res.code === "success"){
       this.notification.success("Page deleted successfully");
-     window.location.reload();
+      this.getAllImages();
     }else {
       this.notification.error(res.message);
     }
@@ -127,5 +128,8 @@ edit(data:any){
  dialogRef.afterClosed().subscribe(result=>{
   console.log(result);
 })
+}
+createAreaMap(id:any){
+  this.router.navigate([`/admin/epaper/edition/map/${id}`]);
 }
 }

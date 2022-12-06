@@ -21,7 +21,7 @@ export class ManageHeaderComponent implements OnInit {
   catid: any = ''
   headerarry: any[] = []
   currentuser: any = {};
-
+  edate:any = '';
   ngOnInit(): void {
     this.currentuser = this.loginService.getCurrentUser();
     this.getallcategory();
@@ -102,7 +102,7 @@ export class ManageHeaderComponent implements OnInit {
     this.masterAPI.updateheader(payload).subscribe((res: any) => {
       if (res.code === "success") {
         this.notify.success(res.message);
-        window.location.reload()
+        this.getallheaders();
       } else {
         this.notify.error(res.message)
       }
