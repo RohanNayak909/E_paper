@@ -15,8 +15,8 @@ export class SupplimentpagesComponent implements OnInit {
   }
   addSupplimentPages(){
     const dialogRef = this.matDialog.open(NewsupplimentComponent,{
-      height: '300px',
-      width: '40vw',
+      height: '400px',
+      width: '25vw',
       // data: { ...data },
    });
     dialogRef.afterClosed().subscribe(result=>{

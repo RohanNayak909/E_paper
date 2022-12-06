@@ -2,7 +2,6 @@
     margin: 1px;
 }
 .viewcategory-container {
-    background-color: var(--site-background);
     min-height: 100vh;
     padding: 2% 3%;
 }
