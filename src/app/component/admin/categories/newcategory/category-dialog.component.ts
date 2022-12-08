@@ -80,7 +80,7 @@ export class CategoryDialogComponent implements OnInit {
       this.categoryService.createCategory(this.category).subscribe(res => {
         if (res.code === "success") {
           this.notification.success(res.message);
-          this.getallcategory();
+          window.location.reload();
         } else {
           this.notification.error(res.message)
         }
