@@ -60,16 +60,7 @@ export class CategoriesComponent implements OnInit {
     })
   }
   editCategory(data:any){
-  //   const dialogRef = this.matDialog.open(EditcategoryComponent,{
-  //     height: '500px',
-  //     width: '50vw',
-  //     data: { ...data },
-  //  });
-  //   dialogRef.afterClosed().subscribe(result=>{
-  //     console.log(result);
-  //   })
-  
-      this.router.navigate([`/admin/epaper/category/edit/${data.category_id}`]);
+    this.router.navigate([`/admin/epaper/category/edit/${data.category_id}`]);
     
   }
   deleteCategory(data:any){

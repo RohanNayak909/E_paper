@@ -60,14 +60,7 @@ export class EditionsComponent implements OnInit {
     })
   }
   editEdition(data: any) {
-    const dialogRef = this.matDialog.open(EditeditionComponent, {
-      height: '550px',
-      width: '50vw',
-      data: { ...data },
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    })
+    this.router.navigate([`/admin/epaper/edition/edit/${data.edition_id}`]);
   }
   deleteEdition(data: any) {
     const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);

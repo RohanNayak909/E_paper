@@ -23,7 +23,7 @@ export class NeweditionComponent implements OnInit {
   catarr: any = []
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
     private notification: NotificationService, private router: Router, private editionService: EditionService,
-    public matDialogRef: MatDialogRef<CategoryDialogComponent>,private spinnerService: LoaderService) { }
+    private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     this.edition = new editionModel();
@@ -93,6 +93,6 @@ export class NeweditionComponent implements OnInit {
     }, 1000)
   }
   onNoClick(): void {
-    this.matDialogRef.close();
+    // this.matDialogRef.close();
   };
 }
