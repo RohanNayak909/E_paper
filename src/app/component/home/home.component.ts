@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { environment } from 'src/environments/environment';
 
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   currentDate:any;
   headerarry:any = [];
   constructor(private categoryService: CategoryServiceService,private masterAPI:MasterServiceService,
-    private router: Router) { }
+    private router: Router,private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     this.getallFeaturedcategory();
@@ -25,6 +26,8 @@ export class HomeComponent implements OnInit {
    
   }
   getallFeaturedcategory() {
+    this.spinnerService.show()
+
     this.categoryService.getAllCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
@@ -32,11 +35,17 @@ export class HomeComponent implements OnInit {
         this.catarr =  this.catarr.filter((d:any)=> { if(d.add_to_home == 1){  
           return d;  
         }});
+        this.spinnerService.hide()
+
       } else {
         this.catarr = []
+        this.spinnerService.hide()
+
       }
     }, (err) => {
       this.catarr = []
+      this.spinnerService.hide()
+
     })
   }
 
