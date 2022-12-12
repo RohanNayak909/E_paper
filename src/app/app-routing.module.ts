@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
+import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory.component';
 import { CategoryDialogComponent } from './component/admin/categories/newcategory/category-dialog.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
 import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: 'user/view', component: ViewusersComponent},
       { path: 'epaper/category', component: CategoriesComponent},
       { path: 'epaper/category/add', component: CategoryDialogComponent},
+      { path: 'epaper/category/edit/:id', component: EditcategoryComponent},
       { path: 'epaper/category/featured', component: FeaturedcategoriesComponent},
       { path: 'epaper/edition', component: EditionsComponent},
       { path: 'epaper/edition/featured', component: FeaturededitionComponent},

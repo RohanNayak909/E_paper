@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { categoryModel } from 'src/app/models/categorymodel';
+import { editionModel } from 'src/app/models/editionmodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
@@ -19,18 +20,38 @@ export class EditcategoryComponent implements OnInit {
   catarr:any = [];
   category:any;
   currentuser:any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(
   private categoryService:CategoryServiceService,private loginService : LoginService,
     private notification:NotificationService,private router:Router,
-    public matDialogRef: MatDialogRef<EditcategoryComponent>,private spinnerService: LoaderService) { }
+   private spinnerService: LoaderService,private activatedRoute: ActivatedRoute) { }
  
   ngOnInit(): void {
-    this.category = this.data;
+    this.category = new editionModel();
+    const routeParams = this.activatedRoute.snapshot.paramMap;
+    this.catid = Number(routeParams.get('id'));
     this.currentuser = this.loginService.getCurrentUser();
     this.getallcategory();
+    this.getparentcategory();
   }
   getallcategory() {
     this.categoryService.getAllCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
+      if (res.code == 'success') {
+        var data = res.body;
+        this.catarr = data.map((dt: any) => JSON.parse(dt));
+        this.category =  this.catarr[0];
+        var i:any
+        for(i=0;i<this.catarr?.length;i++){
+          this.catarr[i].category_id= this.catarr[i].category_id.toString();
+        }
+      } else {
+        this.catarr = []
+      }
+    }, (err) => {
+      this.catarr = []
+    })
+  }
+  getparentcategory() {
+    this.categoryService.getAllCategory('', this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
@@ -41,8 +62,6 @@ export class EditcategoryComponent implements OnInit {
       } else {
         this.catarr = []
       }
-    }, (err) => {
-      this.catarr = []
     })
   }
   onfileselected(event: any) {
@@ -67,7 +86,7 @@ export class EditcategoryComponent implements OnInit {
     this.category.createdby = this.currentuser.user_id;
     this.category.flag = 'U';
     this.category.customer_id = environment.CUSTOMER_ID;
-    this.category.category_id = this.data.category_id;
+    // this.category.category_id = this.data.category_id;
     this.category.addToHome = this.category.add_to_home;
     console.log(this.category.ads_image,'image');
     console.log(this.category.ads_img,'img');
@@ -97,7 +116,7 @@ export class EditcategoryComponent implements OnInit {
       }
     this.categoryService.createCategory(this.category).subscribe(res=>{
       if (res.code === "success") {
-        this.matDialogRef.close(this.category.category_id);
+       
         this.notification.success("Category Updated Successfully");
         window.location.reload();
       } else {
@@ -111,6 +130,6 @@ export class EditcategoryComponent implements OnInit {
     }  , 1000)
   }
   onNoClick(): void {
-    this.matDialogRef.close();
+    // this.matDialogRef.close();
   }
 }
