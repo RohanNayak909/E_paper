@@ -10,8 +10,8 @@
     min-height: 100vh;
 }
 .image-size img{
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
 }
 :host::ng-deep .mat-form-field-infix {
     padding: 8px !important;
