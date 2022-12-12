@@ -1,4 +1,4 @@
-@import '~bootstrap/dist/css/bootstrap.css';
+/* @import '~bootstrap/dist/css/bootstrap.css'; */
 
 :root {
   --white: #ffffff;
@@ -14,3 +14,71 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 2% 5% 5% 5%;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* ----------------------upload-pages------------ */
+.upload-supplement .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0.3em 0 0.7em 0 !important;
+}
+.upload-supplement .mat-select-arrow-wrapper {
+  height: 0px !important;
+}
+/* -----------upload-pages-------------------- */
+
+/* ------------------------ Edit pages------------------------ */
+.edit-content-form-field .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0px 0 0.8em 0 !important;
+}
+.edit-content-form-field .mat-select-arrow-wrapper {
+  height: 0px !important;
+}
+/* ------------------------Edit pages------------ */
+/* ------------------------add-user---------------- */
+.add-tag-form-field .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0px 0 0.8em 0 !important;
+}
+.add-tag-form-field .mat-select-arrow-wrapper {
+  height: 0px !important;
+}
+.add-tag-form-field .mat-form-field-wrapper {
+  padding-bottom: 10px !important;
+}
+/* -------------------------add user---------------------- */
+/* ------------------------- view user-------------------- */
+.view-category .mat-form-field-outline{
+  background-color:var(--white) !important;
+  border-top: 1px solid #897c7c;
+  border-radius: 5px;
+}
+.view-category .search-category .mat-form-field-flex {
+  height: 36px !important;
+}
+.view-category .mat-form-field-appearance-outline .mat-form-field-infix{
+  padding: 0em 0 1em 0 !important;
+}
+.view-category .search-category mat-form-field.form-group {
+  margin-bottom: 0px !important;
+}
+.view-category .search-category  .mat-form-field-wrapper {
+    padding: 0px !important;
+}
+.view-category .mat-select-arrow-wrapper {
+  height: 0px !important;
+}
+/* --------------------view user------------------- */
+/* --------------------edit-user------------------- */
+ .add-tag-form .add-tag-form-field .multiselect-dropdown .dropdown-btn{
+  border: 1px solid #e0e0e0 !important;
+  width: 72% !important;
+} 
+.add-tag-form .add-tag-form-field .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret{
+  width: 189px !important;
+  height: 30px !important;
+  right: 0px;
+  top: 4px !important;
+  padding: 4px 8px;
+}
+/* ----------------------edit user---------------------- */

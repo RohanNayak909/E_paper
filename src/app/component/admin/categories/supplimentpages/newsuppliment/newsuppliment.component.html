@@ -1,0 +1,31 @@
+<div class="category-container">
+    <div class="add-tag-form">
+      <div class="popup">
+        <h1>New</h1>
+        <button class="close-btn" mat-button (click)="onNoClick()"><i class="fa fa-close"></i></button>
+      </div>
+        <div class="add-tag-form-field  row">
+            <div class="col-md-7 col-sm-12 col-12">
+              <mat-label class="tag-info">Title</mat-label>
+              <mat-form-field appearance="outline" class="form-group">
+                <input matInput type="text" name="title" [(ngModel)]="suppliment.category_name" required>
+              </mat-form-field>
+        
+                <mat-label class="tag-info">Alias</mat-label>
+                <mat-form-field appearance="outline" class="form-group">
+                  <input matInput type="text" name="alias" required>
+                </mat-form-field>
+                <mat-label class="tag-info">Parent Category</mat-label>
+                 <mat-form-field appearance="outline">
+                  <mat-select class="suppliment" [ngModelOptions]="{standalone: true}" [(ngModel)]="suppliment.parent_category">
+                    <mat-option *ngFor="let data of catarr" [value]="data.category_id">{{data .category_name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>       
+          <div class="submit-button">
+            <button mat-raised-button color="primary" (click)="addSuppliment()">Submit</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>

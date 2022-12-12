@@ -1,0 +1,65 @@
+<div class="edit-container">
+    <h2>Edit</h2>
+    <mat-icon class="clear-icon">clear</mat-icon>
+    <div class="edit-popup">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="upload-img-bg">
+                    <img src="assets/img/epaper-full-samp.jpeg" class="e-paper">
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-6 col-12">
+                <div class="edit-content-form-field row">
+                    <div class="col-md-6 col-sm-6 col-12">
+                        <mat-label class="tag-info">Title</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" name="title" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-12">
+                        <div class="upload-supplement">
+                            <mat-label class="tag-info">Supplementary Page</mat-label>
+                            <mat-form-field appearance="outline">
+                                <mat-select>
+                                    <mat-option value="0">None</mat-option>
+                                    <mat-option value="1">None</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="edit-content-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Description</mat-label>
+                        <mat-form-field appearance="outline">
+                            <textarea matInput name="desc" class="textarea-add-category"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Meta Description</mat-label>
+                        <mat-form-field appearance="outline">
+                            <textarea matInput name="desc" class="textarea-add-category"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="edit-content-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="pdf-info">Pdf File</mat-label>
+                        <div class="upload_txt  mt-10"><input type="file" id="file-select"></div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Meta Keywords</mat-label>
+                        <mat-form-field appearance="outline">
+                            <textarea matInput name="desc" class="outline"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="submit-button">
+            <button mat-raised-button color="primary">Submit</button>
+        </div>
+    </div>
+</div>
+

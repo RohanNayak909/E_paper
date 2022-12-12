@@ -1,0 +1,159 @@
+.heading h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 0px;
+    margin-right: 3%;
+}
+
+.heading {
+    border-top: #1570a6 7px solid;
+    padding-top: 5px;
+    border-bottom: #cccccc 3px solid;
+    margin-bottom: 20px;
+    margin-top: 35px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.filter-container {
+    background-color: #efefef;
+    padding: 3px;
+}
+
+.filter-container .form-control {
+    border-radius: 0px;
+}
+
+.filter-container .form-select {
+    border-radius: 0px;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.grid-modal-container {
+    background-color: var(--white);
+    padding: 7px;
+    height: fit-content;
+    border: #ccc 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333333;
+    margin-right: 5px;
+}
+
+.grid-modal-container .mat-icon {
+    font-size: 18px;
+    height: auto;
+    width: auto;
+}
+
+.epaper-container {
+    margin-top: 20px;
+}
+
+.page-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 18px;
+}
+
+.pages {
+    display: flex;
+    background-color: var(--red);
+    padding: 3px;
+    color: var(--white);
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.pages:hover {
+    cursor: pointer;
+}
+
+.pages p{
+    font-weight: bold;
+    margin-bottom: 0px;
+    font-size: 0.9em;
+}
+
+.pages .mat-icon {
+    font-size: 20px;
+}
+
+.social-icons {
+    display: flex;
+}
+
+.icon {
+    flex: 1;
+    text-align: center;
+    color: var(--white);
+    padding: 7px 0px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.icon:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.facebook {
+    background-color: #3B5B99;
+}
+
+.twitter {
+    background-color: #29A8E1;
+}
+
+.google {
+    background-color: #E14B36;
+}
+
+.linkedin {
+    background-color: #1979BB;
+}
+
+.print {
+    background-color: #E26900;
+}
+
+.email {
+    background-color: #E81A86;
+}
+
+.epaper img {
+    width: -webkit-fill-available;
+}
+
+.home-ad-container {
+    display: flex;
+    justify-content: center;
+    /* padding: 0rem 1rem;
+    padding-top: 1rem; */
+    margin: 20px 0px;
+  }
+  .home-ad-container div{
+    width: 100%;
+    height: 120px;
+    /* margin-top: 2%; */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .home-ad-container .carousel .carousel-item img {
+    height: 120px;
+  }
+  
+  .home-ad-container .carousel {
+    height: 120px;
+  }

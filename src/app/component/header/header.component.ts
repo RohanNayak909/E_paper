@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-header',
@@ -7,71 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  categories: any = [
-    {
-      'id': 1,
-      'name': 'Bhubaneswar'
-    },
-    {
-      'id': 2,
-      'name': 'Khordha'
-    },
-    {
-      'id': 3,
-      'name': 'Angul'
-    },
-    {
-      'id': 4,
-      'name': 'Balasore'
-    },
-    {
-      'id': 5,
-      'name': 'Cuttack'
-    },
-    {
-      'id': 6,
-      'name': 'Panikoili'
-    },
-    {
-      'id': 7,
-      'name': 'Jeypore'
-    },
-    {
-      'id': 8,
-      'name': 'KBK'
-    },
-    {
-      'id': 9,
-      'name': 'Kendrapada'
-    },
-    {
-      'id': 10,
-      'name': 'Kendujhar'
-    },
-    {
-      'id': 11,
-      'name': 'Mayurbhanj'
-    },
-    {
-      'id': 12,
-      'name': 'Puri'
-    },
-    {
-      'id': 13,
-      'name': 'Rourkela'
-    },
-    {
-      'id': 14,
-      'name': 'Sambalpur'
-    },
-    {
-      'id': 15,
-      'name': 'Berhampur'
-    }
-  ]
-
-  constructor() { }
+  headerarry: any[] = []
+  customer_id: any;
+  edate:any = '';
+  currDate = new Date();
+ 
+  constructor(private masterAPI: MasterServiceService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    
+    this.getallheaders();
   }
+  getallheaders() {
+    this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,null,'').subscribe((res: any) => {
+      if (res.code == 'success') {
+        var data = res.body;
+        //console.log(res.body);
+        this.headerarry = data.map((dt: any) => JSON.parse(dt));
+        this.headerarry = [...new Map(this.headerarry.map(item => [item.category_id, item])).values()]
+      } else {
+        this.headerarry = []
+      }
+    }, (err) => {
+      this.headerarry = []
+    })
+  }
+  
 }

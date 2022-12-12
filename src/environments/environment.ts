@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  POST_URL: 'http://localhost:4200/post/',
+  BASE_URL: 'http://192.168.0.105:8072/prameya/api',
+  CUSTOMER_ID : 3,
 };
 
 /*
