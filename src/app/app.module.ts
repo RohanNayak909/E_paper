@@ -42,6 +42,7 @@ import { NgMultiSelectDropDownModule } from "ng-multiselect-dropdown";
 import { EdituserComponent } from './component/admin/users/edituser/edituser.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuard } from './Guards/auth.guard';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { SupplimentpagesComponent } from './component/admin/categories/supplimentpages/supplimentpages.component';
 import { NewsupplimentComponent } from './component/admin/categories/supplimentpages/newsuppliment/newsuppliment.component';
@@ -100,8 +101,9 @@ import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/
     DragDropModule,
     NgMultiSelectDropDownModule,
     NgxPaginationModule,
-    MatNativeDateModule
-  ],
+    MatNativeDateModule,
+    NgxSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

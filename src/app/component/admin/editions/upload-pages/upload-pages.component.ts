@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
 import { editionModel } from 'src/app/models/editionmodel';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
@@ -28,7 +29,7 @@ export class UploadPagesComponent implements OnInit {
   category: any = '';
   constructor(private matDialog: MatDialog, private editionService: EditionService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
-    private notification: NotificationService, private router: Router) { }
+    private notification: NotificationService, private router: Router,private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
@@ -49,6 +50,8 @@ export class UploadPagesComponent implements OnInit {
 
   }
   getpdfToJpegImage() {
+    this.spinnerService.show()
+
     this.edition.edition_id = this.eid;
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'I';
@@ -67,9 +70,12 @@ export class UploadPagesComponent implements OnInit {
       this.editionService.saveUploadImage(this.edition).subscribe(res => {
         if (res.code === "success") {
           this.getAllImages();
+          this.spinnerService.hide()
 
         } else {
           // this.dataarr = []
+          this.spinnerService.hide()
+
         }
       });
     }, 1000)
