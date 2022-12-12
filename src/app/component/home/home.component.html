@@ -26,7 +26,7 @@
             <h1>{{data.category_name}}</h1>
           </div>
           <div class="epaper-container">
-            <img [src]="data.ads_image" />
+            <img [src]="data.ads_image" (click)="previewEdition(data.category_name)" />
           </div>
         </div>
       </div>

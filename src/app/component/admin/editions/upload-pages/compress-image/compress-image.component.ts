@@ -46,7 +46,6 @@ export class CompressImageComponent implements OnInit {
         reader.readAsDataURL(blob);
       })
       this.localUrl = result;
-      console.log(result,'result');
       return result;
 
     };
@@ -56,21 +55,22 @@ export class CompressImageComponent implements OnInit {
     }
     compressFile(localUrl:any,fileName:any){
       var orientation = -1;
-      this.sizeOfOriginalImage = this.imageCompress.byteCount(localUrl)/(1024*1024);
+      this.sizeOfOriginalImage = this.imageCompress.byteCount(localUrl)/(1024);
         console.warn('Size in bytes is now:',  this.sizeOfOriginalImage);
-        
+
         this.imageCompress.compressFile(localUrl, orientation, 50, 50).then(
           result => {
             this.imgResultAfterCompress = result;
             this.localCompressedURl = result;
-            this.sizeOFCompressedImage = this.imageCompress.byteCount(result)/(1024*1024)
+            this.sizeOFCompressedImage = this.imageCompress.byteCount(result)/(1024)
             console.warn('Size in bytes after compression:',  this.sizeOFCompressedImage);
+         
             // create file from byte
             const imageName = fileName;
             // call method that creates a blob from dataUri
             // const imageBlob = this.dataURItoBlob(this.imgResultAfterCompress.split(',')[1]);
             const imageFile = new File([result], imageName, { type: 'image/jpeg' });
-            console.log("file size:",imageFile['size']/(1024*1024)/1024);
+            
             // let imgfile = imageFile['size']/(1024*1024);
             // let imgfilesize = imgfile['size']/1024;
           }

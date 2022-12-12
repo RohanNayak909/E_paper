@@ -25,9 +25,11 @@ export class EditionsComponent implements OnInit {
   editionSearch: any = '';
   catid: any = '';
   catarr: any = [];
-  categorysearch: any = '';
+  categorySearch: any = '';
+  headerarry:any = [];
   constructor(private matDialog: MatDialog, private editionService: EditionService, private notification: NotificationService,
-    private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService) { }
+    private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService,
+    private masterAPI:MasterServiceService) { }
 
 
   ngOnInit(): void {
@@ -102,6 +104,7 @@ export class EditionsComponent implements OnInit {
     event.preventDefault();
   }
   searchEdition() {
+    if(this.editionSearch){
     this.editionService.getEditionAll('', this.editionSearch, this.currentuser.customer_id).subscribe(res => {
       if (res.code = 'sucess') {
         var data = res.body;
@@ -112,6 +115,19 @@ export class EditionsComponent implements OnInit {
     }, (err) => {
       this.editionarr = []
     })
+  }else if (this.categorySearch){
+    this.editionService.getEditionByCategory('', this.categorySearch, this.currentuser.customer_id).subscribe(res => {
+      if (res.code = 'sucess') {
+        var data = res.body;
+        this.editionarr = data.map((dt: any) => JSON.parse(dt));
+        console.log(this.editionarr,'data');
+      } else {
+        this.editionarr = [];
+      }
+    }, (err) => {
+      this.editionarr = []
+    }) 
+  }
   }
   getallcategory() {
     this.categoryService.getAllCategory('', '', environment.CUSTOMER_ID).subscribe((res: any) => {
@@ -123,6 +139,20 @@ export class EditionsComponent implements OnInit {
       }
     }, (err) => {
       this.catarr = []
+    })
+  }
+  preview(data:any){
+    console.log(data);
+    this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,data.edition_date,data.category_name).subscribe((res: any) => {
+      if (res.code == 'success') {
+        var data = res.body;
+        this.headerarry = data.map((dt: any) => JSON.parse(dt));
+        this.router.navigate([this.headerarry[0].category_url]);
+      } else {
+        this.headerarry = []
+      }
+    }, (err) => {
+      this.headerarry = []
     })
   }
 }

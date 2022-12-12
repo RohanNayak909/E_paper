@@ -33,6 +33,10 @@ export class EditcategoryComponent implements OnInit {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
+        var i:any
+        for(i=0;i<this.catarr?.length;i++){
+          this.catarr[i].category_id= this.catarr[i].category_id.toString();
+        }
       } else {
         this.catarr = []
       }
@@ -63,11 +67,18 @@ export class EditcategoryComponent implements OnInit {
     this.category.customer_id = environment.CUSTOMER_ID;
     this.category.category_id = this.data.category_id;
     this.category.addToHome = this.category.add_to_home;
-   
+    console.log(this.category.ads_image,'image');
+    console.log(this.category.ads_img,'img');
     if (this.category.ads_image) {
-      var media_ext = this.category.ads_image.split("media/")[1];
-      this.category.media_ext = media_ext.split(".")[1];
+      if (this.category.ads_image != null){
+        var media_ext = this.category.ads_image.split("media/")[1];
+        this.category.media_ext = media_ext.split(".")[1];
+      }
     }
+    if (this.category.ads_img) {
+      this.category.media_ext = this.category.ads_img.split("/")[1];
+    }
+ 
     if (this.category.Multiimage) {
       var reader = new FileReader();
       reader.readAsDataURL(this.category.Multiimage)
@@ -86,7 +97,7 @@ export class EditcategoryComponent implements OnInit {
       if (res.code === "success") {
         this.matDialogRef.close(this.category.category_id);
         this.notification.success("Category Updated Successfully");
-        this.getallcategory();
+        window.location.reload();
       } else {
         this.notification.error(res.message)
       }

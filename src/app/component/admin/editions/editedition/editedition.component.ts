@@ -33,6 +33,10 @@ export class EditeditionComponent implements OnInit {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
+        var i:any
+        for(i=0;i<this.catarr?.length;i++){
+          this.catarr[i].category_id= this.catarr[i].category_id.toString();
+        }
       } else {
         this.catarr = []
       }

@@ -1,21 +1,21 @@
 <div class="viewcategory-container">
     <div class="view-category">
       <div class="search-category">
-        <!-- <mat-form-field appearance="outline">
-          <mat-select [(ngModel)]="categorysearch" disableRipple [ngModelOptions]="{standalone: true}">
+        <mat-form-field appearance="outline">
+          <mat-select [(ngModel)]="categorySearch" disableRipple [ngModelOptions]="{standalone: true}">
             <mat-option value="">Select Category</mat-option>
             <mat-option *ngFor="let gm of catarr" [value]="gm.category_id">{{ gm.category_name }}
             </mat-option>
           </mat-select>
-        </mat-form-field> -->
+        </mat-form-field>
         <mat-form-field appearance="outline" class="form-group w-200">
           <input matInput type="text" name="cname" [(ngModel)]="editionSearch"
               (keydown.enter)="onKeydown($event)" (keyup.enter)="searchEdition()">
           <!-- <input matInput type="text" name="cname"> -->
       </mat-form-field>
       <button mat-raised-button color="primary" class="search-btn"  (click)="searchEdition()">Search
-        Editions</button>
-        <button mat-raised-button color="primary" class="newcategory-btn" (click)="newEdition()">New Edition</button>
+      </button>
+      <button mat-raised-button color="primary" class="newcategory-btn" (click)="newEdition()">New Edition</button>
       </div>
       <div class="header">
         <table id="view-table">
@@ -28,6 +28,7 @@
             <th class="content">Edition Date</th>
             <th class="content">Status</th>
             <th class="content">Action</th>
+            <th class="content">Preview</th>
             <th class="content">Delete</th>
           </thead>
           <tbody *ngIf = "editionarr && editionarr.length; else elseblock">
@@ -47,6 +48,7 @@
               <div class="upload-icon"> <i class="fa-solid fa-upload" (click)="upload(e.edition_id)"></i></div>
               </div>
               </td>
+              <td><mat-icon (click)="preview(e)">preview</mat-icon></td>
               <td><mat-icon  (click)="deleteEdition(e.edition_id)">delete</mat-icon></td>
             </tr>
           </tbody>
