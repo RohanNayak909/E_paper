@@ -44,7 +44,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 0px !important;
 }
 .add-tag-form-field .mat-form-field-wrapper {
-  padding-bottom: 10px !important;
+  padding-bottom: 20px !important;
 }
 /* -------------------------add user---------------------- */
 /* ------------------------- view user-------------------- */

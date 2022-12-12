@@ -4,59 +4,33 @@
     font-size: 15px;
     font-weight: 500;
 }
-.category-container{
-    width: auto;
-    height: 450px;
+.category-container {
+    background-color: var(--site-background);
+    padding: 2% 3.9%;
+    min-height: 100vh;
 }
-.submit-button-container{
-    float: right;
-}
+
 .image-size img{
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
 }
 :host::ng-deep .mat-form-field-infix {
     padding: 8px !important;
     border-top: 0.84375em solid transparent;
 }
 :host::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 0px 0 1em 0 !important;
+    padding: 3px 0 1em 0 !important;
 }
 :host::ng-deep .mat-form-field-wrapper {
     padding-bottom: 8px;
 }
-.add-tag-form-field{
-    padding: 10px 0px 0px 5px;
-}
-.popup{
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #000;
-}
-.popup i{
-    position: relative;
-    top: -5px;
-    font-size: 18px;
-    right: 0px;
-}
-.add-tag-form-field{
-    padding: 20px 0px 0px 5px;
 
-}
 .add-tag-form  h1{
     margin: 0px !important;
     font-weight: bold;
 }
-.close-btn{
-    position: relative;
-    top: 0px;
-    font-size: 20px;
-    right: -6px;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    padding: 10px !important;
-    background: #e8e7e7;
+.mb-20{
+    margin-bottom: 20px;
 }
 .popup .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
     min-width: 0px !important;
