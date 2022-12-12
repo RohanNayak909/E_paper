@@ -19,4 +19,5 @@ export class editionModel{
 	flag:any
 	input:any
 	image_id:any
+	image_size:any
 }

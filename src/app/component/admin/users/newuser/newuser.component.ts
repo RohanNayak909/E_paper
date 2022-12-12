@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown/multiselect.model';
 import { ModeluserDetails } from 'src/app/models/modeluserdetails';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
@@ -20,7 +21,7 @@ export class NewuserComponent implements OnInit {
   role:any = []
   dropdownSettings: IDropdownSettings = {};
   constructor(private userService: UserService,private loginService:LoginService, private router: Router, 
-    private notify: NotificationService, private masterService: MasterServiceService) { }
+    private notify: NotificationService, private masterService: MasterServiceService,private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     this.currentuser = this.loginService.getCurrentUser();

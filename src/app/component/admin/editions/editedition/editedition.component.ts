@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { editionModel } from 'src/app/models/editionmodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
@@ -21,7 +22,7 @@ export class EditeditionComponent implements OnInit {
   catarr:any = [];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private loginService: LoginService,private categoryService:CategoryServiceService,
   private notification: NotificationService, private router: Router,private editionService: EditionService,
-  public matDialogRef: MatDialogRef<EditeditionComponent>) { }
+  public matDialogRef: MatDialogRef<EditeditionComponent>,private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     this.edition = this.data;
@@ -62,6 +63,7 @@ export class EditeditionComponent implements OnInit {
     }
   }
   editEdition(){
+    this.spinnerService.show();
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'U';
     this.edition.customer_id = environment.CUSTOMER_ID;
@@ -86,7 +88,11 @@ export class EditeditionComponent implements OnInit {
           window.location.reload();
         } else {
           this.notification.error(res.message)
+          this.spinnerService.hide();
         }
+      },(err) =>{
+        console.log(err);
+        this.spinnerService.hide();
       });
     }, 1000)
   }

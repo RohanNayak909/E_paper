@@ -62,3 +62,6 @@
     min-width: 0px !important;
      padding: 0px !important; 
 }
+:host::ng-deep .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+	opacity: .48
+} 

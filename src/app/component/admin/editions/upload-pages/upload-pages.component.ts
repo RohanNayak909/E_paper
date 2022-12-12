@@ -75,8 +75,9 @@ export class UploadPagesComponent implements OnInit {
         } else {
           // this.dataarr = []
           this.spinnerService.hide()
-
         }
+      }, (err) => {
+        this.spinnerService.hide() 
       });
     }, 1000)
   }

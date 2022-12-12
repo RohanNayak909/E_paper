@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { categoryModel } from 'src/app/models/categorymodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
@@ -21,7 +22,7 @@ export class EditcategoryComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private categoryService:CategoryServiceService,private loginService : LoginService,
     private notification:NotificationService,private router:Router,
-    public matDialogRef: MatDialogRef<EditcategoryComponent>) { }
+    public matDialogRef: MatDialogRef<EditcategoryComponent>,private spinnerService: LoaderService) { }
  
   ngOnInit(): void {
     this.category = this.data;
@@ -62,6 +63,7 @@ export class EditcategoryComponent implements OnInit {
     }
   }
   editCategory(){
+    this.spinnerService.show();
     this.category.createdby = this.currentuser.user_id;
     this.category.flag = 'U';
     this.category.customer_id = environment.CUSTOMER_ID;
@@ -100,7 +102,11 @@ export class EditcategoryComponent implements OnInit {
         window.location.reload();
       } else {
         this.notification.error(res.message)
+        this.spinnerService.hide();
       }
+    },(err) =>{
+      console.log(err);
+      this.spinnerService.hide();
     });
     }  , 1000)
   }
