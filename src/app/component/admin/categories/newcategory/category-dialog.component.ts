@@ -22,8 +22,7 @@ export class CategoryDialogComponent implements OnInit {
   currentuser: any;
 
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
-    private notification: NotificationService, private router: Router,
-    public matDialogRef: MatDialogRef<CategoryDialogComponent>,private spinnerService: LoaderService) { }
+    private notification: NotificationService, private router: Router,private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     this.category = new categoryModel();
@@ -94,6 +93,6 @@ export class CategoryDialogComponent implements OnInit {
     }, 1000)
   }
   onNoClick(): void {
-    this.matDialogRef.close();
+    // this.matDialogRef.close();
   }
 }
