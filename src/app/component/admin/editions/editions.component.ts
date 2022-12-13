@@ -27,6 +27,7 @@ export class EditionsComponent implements OnInit {
   catarr: any = [];
   categorySearch: any = '';
   headerarry:any = [];
+  category:any
   constructor(private matDialog: MatDialog, private editionService: EditionService, private notification: NotificationService,
     private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService,
     private masterAPI:MasterServiceService) { }
@@ -82,14 +83,14 @@ export class EditionsComponent implements OnInit {
       }
     })
   }
-  addToHome(data: any) {
-    const dialogRef = this.matDialog.open(AddtohomeeditionComponent, {
-      data: { ...data },
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    })
-  }
+  // addToHome(data: any) {
+  //   const dialogRef = this.matDialog.open(AddtohomeeditionComponent, {
+  //     data: { ...data },
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(result);
+  //   })
+  // }
   upload(eid: any) {
     this.router.navigate([`/admin/epaper/edition/upload-pages/${eid}`]);
   }
@@ -146,6 +147,33 @@ export class EditionsComponent implements OnInit {
       }
     }, (err) => {
       this.headerarry = []
+    })
+  }
+  addToHome(){
+    this.category.createdby = this.currentuser.user_id;
+    this.category.flag = 'U';
+    this.category.addToHome = 1;
+    this.category.ads_img = this.category.ads_image;
+    this.categoryService.createCategory(this.category).subscribe(res => {
+      if (res.code === "success") {
+        this.notification.success("Category added to home.");
+      } else {
+        this.notification.error(res.message)
+      }
+    })
+  
+  }
+  removeFromHome(){
+    this.category.createdby = this.currentuser.user_id;
+    this.category.flag = 'U';
+    this.category.addToHome = 0;
+    this.category.ads_img = this.category.ads_image;
+    this.categoryService.createCategory(this.category).subscribe(res => {
+      if (res.code === "success") {
+        this.notification.success("Category removed from home.");
+      } else {
+        this.notification.error(res.message)
+      }
     })
   }
 }
