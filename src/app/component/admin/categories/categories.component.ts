@@ -27,6 +27,7 @@ export class CategoriesComponent implements OnInit {
   catid: any = ''
   categorySearch: any = '';
   p: any = 1;
+  categoryId:any
   category:any = new categoryModel();
   constructor(private loginService:LoginService,private matDialog: MatDialog,
     private categoryService : CategoryServiceService,private masterService: MasterServiceService,
@@ -66,24 +67,23 @@ export class CategoriesComponent implements OnInit {
     
   }
   deleteCategory(data:any){
-    const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
-    dialogRef.afterClosed().subscribe((result:any) => {      
-      if(result){
-        this.categoeyDelete(data);
-      }
-    });
-    return;
+   this.categoryId = data;
   }
-  categoeyDelete(data:any){
+  categoryDelete(){
   var funct = 'CATEGORY';
-  this.masterService.bulkDeletion(funct,data,0,environment.CUSTOMER_ID).subscribe(res=>{
+  this.masterService.bulkDeletion(funct,this.categoryId,0,environment.CUSTOMER_ID).subscribe(res=>{
     if(res.code === "success"){
+      document.getElementById("closeDeleteModalButton")?.click();
       this.notification.success("Category deleted successfully");
       this.getallcategory();
     }else {
+      document.getElementById("closeDeleteModalButton")?.click();
       this.notification.error(res.message);
     }
   })
+  }
+  cancel(){
+    document.getElementById("closeDeleteModalButton")?.click();
   }
   searchCategory() {
     this.categoryService.getAllCategory('', this.categorySearch,this.currentuser.customer_id).subscribe((res: any) => {

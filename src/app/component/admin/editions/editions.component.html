@@ -49,7 +49,7 @@
               </div>
               </td>
               <td><mat-icon (click)="preview(e)">preview</mat-icon></td>
-              <td><mat-icon data-toggle="modal" data-target="#Modal">delete</mat-icon></td>
+              <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteEdition(e.edition_id)">delete</mat-icon></td>
             </tr>
           </tbody>
           <ng-template #elseblock>
@@ -81,7 +81,7 @@
           </div>
           <div class="modal-body">
             <div class="d-flex justify-content-center flex-wrap">
-              <button mat-raised-button color="warn" class="remove-btn" (click)="removeFromHome()">Remove from Home </button>
+              <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home </button>
               <button mat-raised-button color="primary" (click)="addToHome()"> Add to Home </button>
             </div>
           </div> 
@@ -93,7 +93,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -102,8 +102,8 @@
               <h2>Are you sure you want to delete?
               </h2>
               <div class="d-flex justify-content-center flex-wrap">
-                <button  mat-raised-button color="warn" class="delete-btn mr-20"> No </button>
-                <button mat-raised-button color="primary" class="delete-btn"> Yes </button>
+                <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+                <button mat-raised-button color="primary" class="delete-btn" (click)="editionDelete()"> Yes </button>
               </div>
             </div>
           </div> 

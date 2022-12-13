@@ -27,7 +27,8 @@ export class EditionsComponent implements OnInit {
   catarr: any = [];
   categorySearch: any = '';
   headerarry:any = [];
-  category:any
+  category:any;
+  editionId:any;
   constructor(private matDialog: MatDialog, private editionService: EditionService, private notification: NotificationService,
     private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService,
     private masterAPI:MasterServiceService) { }
@@ -64,33 +65,24 @@ export class EditionsComponent implements OnInit {
     this.router.navigate([`/admin/epaper/edition/edit/${data.edition_id}`]);
   }
   deleteEdition(data: any) {
-    const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        this.editionDelete(data);
-      }
-    });
-    return;
+    this.editionId = data;
   }
-  editionDelete(id: any) {
+  editionDelete() {
     var funct = 'EDITION';
-    this.masterService.bulkDeletion(funct, id, 0, environment.CUSTOMER_ID).subscribe(res => {
+    this.masterService.bulkDeletion(funct,this.editionId, 0, environment.CUSTOMER_ID).subscribe(res => {
       if (res.code === "success") {
-        this.notification.success("Category deleted successfully");
+        document.getElementById("closeDeleteModalButton")?.click();
+        this.notification.success("Edition deleted successfully");
         this.getAllEdition();
       } else {
+        document.getElementById("closeDeleteModalButton")?.click();
         this.notification.error(res.message);
       }
     })
   }
-  // addToHome(data: any) {
-  //   const dialogRef = this.matDialog.open(AddtohomeeditionComponent, {
-  //     data: { ...data },
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(result);
-  //   })
-  // }
+  cancel(){
+    document.getElementById("closeDeleteModalButton")?.click();
+  }
   upload(eid: any) {
     this.router.navigate([`/admin/epaper/edition/upload-pages/${eid}`]);
   }

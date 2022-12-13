@@ -31,7 +31,7 @@
               <mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
               <mat-icon (click)="addSupplimentPages(data)">dashboard</mat-icon>
             </td>
-            <td><mat-icon data-toggle="modal" data-target="#Modal">delete</mat-icon></td>
+            <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
           </tr>
         </tbody>
         <ng-template #elseblock>
@@ -75,7 +75,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -84,8 +84,8 @@
           <h2>Are you sure you want to delete?
           </h2>
           <div class="d-flex justify-content-center flex-wrap">
-            <button  mat-raised-button color="warn" class="delete-btn mr-20"> No </button>
-            <button mat-raised-button color="primary" class="delete-btn"> Yes </button>
+            <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+            <button mat-raised-button color="primary" class="delete-btn" (click)="categoryDelete()"> Yes </button>
           </div>
         </div>
       </div> 
