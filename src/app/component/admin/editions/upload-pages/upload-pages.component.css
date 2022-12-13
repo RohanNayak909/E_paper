@@ -8,9 +8,9 @@
     margin-top: 20px;
 }
 
-.tag-info {
+.category-info {
     display: block;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 500;
 }
 
@@ -181,18 +181,14 @@ h4 {
 .text-center{
     text-align: center!important;
 }
-
-
- 
 .modal-body {
-    padding: 20px 0px 35px;
+    padding: 10px 0px 30px;
   }
-
   .modal-dialog{
     position: absolute;
-    top: 20%;
-    width: 100%;
-    left: 40%;
+    top: 35%;
+    width: 400px;
+    left: 45%;
     zoom: 83%;
     transform: translate(-50%, -50%);
   }
@@ -213,12 +209,10 @@ h4 {
 .upload-btn{
     margin-right: 20px;
 }
-
 .tocheck{
     position: absolute;
     bottom: 214px;
 }
-
 .media-img{
     height: 200px;
     width: 200px;
@@ -227,4 +221,19 @@ h4 {
 }
 .save-image{
     float:right;
+}
+.modal-body h2{
+    text-align: center;
+}
+.delete-btn{
+    font-family: var(--subheading);
+    color: #fff;
+    border: none;
+    border-radius: 0%;
+    box-shadow: none;
+    font-size: 20px;
+    padding: 5px 15px;
+}
+.mr-20{
+    margin-right: 20px;
 }
