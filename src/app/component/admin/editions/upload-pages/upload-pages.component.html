@@ -54,13 +54,13 @@
                                 <h4> {{i+1}}</h4>
                                 <div class="d-flex">
                                     <div class="search-category">
-                                        <button mat-raised-button color="primary" (click)="createAreaMap(data.image_id)">
+                                        <button mat-raised-button color="primary">
                                             <mat-icon >edit</mat-icon> Create Area Maps
                                         </button>
                                     </div>
                                     <div class="edit-button">
                                         <button mat-raised-button class="bg-green"><i
-                                                class="fa-solid fa-pen-to-square" (click)="edit(data)"></i></button>
+                                                class="fa-solid fa-pen-to-square" (click)="edit(data.image_id)"></i></button>
                                     </div>
                                     <div class="delete-button">
                                         <button mat-raised-button class="bg-red">

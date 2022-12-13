@@ -122,15 +122,8 @@ export class UploadPagesComponent implements OnInit {
       }
     })
   }
-  edit(data: any) {
-    const dialogRef = this.matDialog.open(EditPagesComponent, {
-      height: '450px',
-      width: '800px',
-      data: data
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    })
+  edit(id: any) {
+    this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${id}`]);
   }
   createAreaMap(id: any) {
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);

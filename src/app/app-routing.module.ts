@@ -7,6 +7,7 @@ import { EditeditionComponent } from './component/admin/editions/editedition/edi
 import { EditionsComponent } from './component/admin/editions/editions.component';
 import { NeweditionComponent } from './component/admin/editions/newedition/newedition.component';
 import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
+import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
@@ -47,7 +48,8 @@ const routes: Routes = [
       { path: 'epaper/edition/featured', component: FeaturededitionComponent},
       { path: 'header/manage', component: ManageHeaderComponent},
       { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
-      { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent}
+      { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent},
+      { path: 'epaper/edition/upload-pages/edit/:id', component: EditPagesComponent}
     ],
   }
 ];
