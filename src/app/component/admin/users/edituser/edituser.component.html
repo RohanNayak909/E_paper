@@ -19,8 +19,10 @@
                   <input matInput type="text" name="email" [(ngModel)]="userData.user_email" required>
                 </mat-form-field>
             </div>
+            </div>
+            <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
-                <mat-label class="tag-info">Role</mat-label>
+                <mat-label class="tag-info mb-1">Role</mat-label>
                 <ng-multiselect-dropdown [ngModelOptions]="{standalone: true}" [placeholder]="'Select Role'" [settings]="dropdownSettings" [data]="role"
                 [(ngModel)]="userData.role">
                 </ng-multiselect-dropdown>
