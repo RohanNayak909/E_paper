@@ -41,15 +41,6 @@ export class CategoriesComponent implements OnInit {
     event.preventDefault();
   }
  
-  addCategory(){
-    const dialogRef = this.matDialog.open(CategoryDialogComponent, {
-      height: '580px',
-      width: '50vw'
-    });
-    dialogRef.afterClosed().subscribe(result=>{
-      console.log(result);
-    })
-  }
   getallcategory() {
     this.categoryService.getAllCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
