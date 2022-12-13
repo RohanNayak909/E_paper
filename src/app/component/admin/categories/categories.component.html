@@ -28,7 +28,7 @@
             <td>{{ data.category_name }}</td>
             <td>
               <mat-icon (click)="editCategory(data)">edit</mat-icon>
-              <mat-icon data-toggle="modal" data-target="#exampleModal">add</mat-icon>
+              <mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
               <mat-icon (click)="addSupplimentPages(data)">dashboard</mat-icon>
             </td>
             <td><mat-icon (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
@@ -58,7 +58,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

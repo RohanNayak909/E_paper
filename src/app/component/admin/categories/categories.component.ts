@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
+import { categoryModel } from 'src/app/models/categorymodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
@@ -26,7 +27,7 @@ export class CategoriesComponent implements OnInit {
   catid: any = ''
   categorySearch: any = '';
   p: any = 1;
-  category:any
+  category:any = new categoryModel();
   constructor(private loginService:LoginService,private matDialog: MatDialog,
     private categoryService : CategoryServiceService,private masterService: MasterServiceService,
     private notification:NotificationService,private router:Router) { }
@@ -84,14 +85,6 @@ export class CategoriesComponent implements OnInit {
     }
   })
   }
-  // addToHome(data:any){
-  //   const dialogRef = this.matDialog.open(AddtohomeComponent,{
-  //     data: { ...data },
-  //  });
-  //   dialogRef.afterClosed().subscribe(result=>{
-  //     console.log(result);
-  //   })
-  // }
   searchCategory() {
     this.categoryService.getAllCategory('', this.categorySearch,this.currentuser.customer_id).subscribe((res: any) => {
       if (res.code == 'success') {
@@ -114,28 +107,31 @@ export class CategoriesComponent implements OnInit {
       console.log(result);
     })
   }
-
+  addToFront(data:any){
+    this.category = data;
+  }
   addToHome(){
-    this.category.createdby = this.currentuser.user_id;
+    this.category.createdby = this.category .createdby;
     this.category.flag = 'U';
     this.category.addToHome = 1;
     this.category.ads_img = this.category.ads_image;
     this.categoryService.createCategory(this.category).subscribe(res => {
       if (res.code === "success") {
+       document.getElementById("closeModalButton")?.click();
         this.notification.success("Category added to home.");
       } else {
         this.notification.error(res.message)
       }
     })
-  
   }
   removeFromHome(){
-    this.category.createdby = this.currentuser.user_id;
+    this.category.createdby = this.category.user_id;
     this.category.flag = 'U';
     this.category.addToHome = 0;
     this.category.ads_img = this.category.ads_image;
     this.categoryService.createCategory(this.category).subscribe(res => {
       if (res.code === "success") {
+        document.getElementById("closeModalButton")?.click();
         this.notification.success("Category removed from home.");
       } else {
         this.notification.error(res.message)
