@@ -26,6 +26,7 @@ export class CategoriesComponent implements OnInit {
   catid: any = ''
   categorySearch: any = '';
   p: any = 1;
+  category:any
   constructor(private loginService:LoginService,private matDialog: MatDialog,
     private categoryService : CategoryServiceService,private masterService: MasterServiceService,
     private notification:NotificationService,private router:Router) { }
@@ -83,14 +84,14 @@ export class CategoriesComponent implements OnInit {
     }
   })
   }
-  addToHome(data:any){
-    const dialogRef = this.matDialog.open(AddtohomeComponent,{
-      data: { ...data },
-   });
-    dialogRef.afterClosed().subscribe(result=>{
-      console.log(result);
-    })
-  }
+  // addToHome(data:any){
+  //   const dialogRef = this.matDialog.open(AddtohomeComponent,{
+  //     data: { ...data },
+  //  });
+  //   dialogRef.afterClosed().subscribe(result=>{
+  //     console.log(result);
+  //   })
+  // }
   searchCategory() {
     this.categoryService.getAllCategory('', this.categorySearch,this.currentuser.customer_id).subscribe((res: any) => {
       if (res.code == 'success') {
@@ -111,6 +112,34 @@ export class CategoriesComponent implements OnInit {
    });
     dialogRef.afterClosed().subscribe(result=>{
       console.log(result);
+    })
+  }
+
+  addToHome(){
+    this.category.createdby = this.currentuser.user_id;
+    this.category.flag = 'U';
+    this.category.addToHome = 1;
+    this.category.ads_img = this.category.ads_image;
+    this.categoryService.createCategory(this.category).subscribe(res => {
+      if (res.code === "success") {
+        this.notification.success("Category added to home.");
+      } else {
+        this.notification.error(res.message)
+      }
+    })
+  
+  }
+  removeFromHome(){
+    this.category.createdby = this.currentuser.user_id;
+    this.category.flag = 'U';
+    this.category.addToHome = 0;
+    this.category.ads_img = this.category.ads_image;
+    this.categoryService.createCategory(this.category).subscribe(res => {
+      if (res.code === "success") {
+        this.notification.success("Category removed from home.");
+      } else {
+        this.notification.error(res.message)
+      }
     })
   }
 }
