@@ -181,3 +181,50 @@ h4 {
 .text-center{
     text-align: center!important;
 }
+
+
+ 
+.modal-body {
+    padding: 20px 0px 35px;
+  }
+
+  .modal-dialog{
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    left: 45%;
+    zoom: 83%;
+    transform: translate(-50%, -50%);
+  }
+  .compress-btn{
+    margin-left: 20px;
+    color:#000;
+    font-size: 15px;
+    border: 1px solid #c2c0c0 !important;
+  }
+  .modal-header {
+    padding: 5px 10px 0px 5px;
+    border-bottom:none;
+  }
+  .upload-img{
+    display: flex;
+    justify-content: center;
+}
+.upload-btn{
+    margin-right: 20px;
+}
+
+.tocheck{
+    position: absolute;
+    bottom: 214px;
+}
+
+.media-img{
+    height: 200px;
+    width: 200px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.save-image{
+    float:right;
+}
