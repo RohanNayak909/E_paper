@@ -107,7 +107,7 @@ tr:nth-child(odd) {
 #view-table .mat-icon{
     cursor: pointer;
 }
-.modal-body button {
+.modal-body .remove-btn {
     /* background-color: #C7122D; */
     font-family: var(--subheading);
     color: #fff;
@@ -118,21 +118,35 @@ tr:nth-child(odd) {
     padding: 10px 15px;
   }
   
-  .remove-btn{
-    margin-right: 20px;
-  }
   .modal-body {
-    padding: 30px 0px 35px;
+    padding: 20px 0px 35px;
   }
 
   .modal-dialog{
     position: absolute;
     top: 40%;
     width: 400px;
-    left: 40%;
+    left: 45%;
     zoom: 83%;
     transform: translate(-50%, -50%);
   }
   .modal-header {
     padding: 5px 10px 0px 5px;
+    border-bottom:none;
   }
+  
+.modal-body h2{
+    text-align: center;
+}
+.delete-btn{
+    font-family: var(--subheading);
+    color: #fff;
+    border: none;
+    border-radius: 0%;
+    box-shadow: none;
+    font-size: 20px;
+    padding: 5px 15px;
+}
+.mr-20{
+    margin-right: 20px;
+}
