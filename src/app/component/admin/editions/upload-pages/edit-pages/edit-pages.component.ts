@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-pages',
@@ -6,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-pages.component.css']
 })
 export class EditPagesComponent implements OnInit {
-
-  constructor() { }
+  image_id:any;
+  constructor(private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+    const routeParams = this.activatedRoute.snapshot.paramMap;
+    this.image_id = Number(routeParams.get('id'));
   }
 
 }

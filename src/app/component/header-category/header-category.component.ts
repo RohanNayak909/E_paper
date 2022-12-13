@@ -33,7 +33,7 @@ export class HeaderCategoryComponent implements OnInit {
       this.cust_id = environment.CUSTOMER_ID
       this.currentuser = this.loginService.getCurrentUser();
       this.getAllImages();
-      
+      this.getAllEdition();
       })
     }
 
@@ -67,6 +67,8 @@ export class HeaderCategoryComponent implements OnInit {
       }else{
         this.imgarr = [];
       }
+      }, (err:any) => {
+      this.imgarr = []
     })
   }
   getAllEdition(){

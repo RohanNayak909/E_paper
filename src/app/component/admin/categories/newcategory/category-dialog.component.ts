@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { categoryModel } from 'src/app/models/categorymodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
@@ -21,8 +22,7 @@ export class CategoryDialogComponent implements OnInit {
   currentuser: any;
 
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
-    private notification: NotificationService, private router: Router,
-    public matDialogRef: MatDialogRef<CategoryDialogComponent>) { }
+    private notification: NotificationService, private router: Router,private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     this.category = new categoryModel();
@@ -59,6 +59,7 @@ export class CategoryDialogComponent implements OnInit {
     }
   }
   addCategory() {
+    this.spinnerService.show();
     this.category.createdby = this.currentuser.user_id;
     this.category.flag = 'I';
     this.category.customer_id = environment.CUSTOMER_ID;
@@ -83,11 +84,15 @@ export class CategoryDialogComponent implements OnInit {
           window.location.reload();
         } else {
           this.notification.error(res.message)
+          this.spinnerService.hide();
         }
+      },(err)=>{
+        console.log(err);
+        this.spinnerService.hide();
       });
     }, 1000)
   }
   onNoClick(): void {
-    this.matDialogRef.close();
+    // this.matDialogRef.close();
   }
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { editionModel } from 'src/app/models/editionmodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
@@ -22,7 +23,7 @@ export class NeweditionComponent implements OnInit {
   catarr: any = []
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
     private notification: NotificationService, private router: Router, private editionService: EditionService,
-    public matDialogRef: MatDialogRef<CategoryDialogComponent>) { }
+    private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     this.edition = new editionModel();
@@ -59,6 +60,7 @@ export class NeweditionComponent implements OnInit {
     }
   }
   addEdition() {
+    this.spinnerService.show();
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'I';
     this.edition.customer_id = environment.CUSTOMER_ID;
@@ -83,11 +85,14 @@ export class NeweditionComponent implements OnInit {
           this.router.navigate(['/admin/epaper/category']);
         } else {
           this.notification.error(res.message)
+          this.spinnerService.hide();
         }
+      },(err) => {
+        this.spinnerService.hide();
       });
     }, 1000)
   }
   onNoClick(): void {
-    this.matDialogRef.close();
+    // this.matDialogRef.close();
   };
 }

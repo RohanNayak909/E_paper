@@ -13,8 +13,8 @@ import { NotificationService } from 'src/app/services/notificationService/notifi
 export class CompressImageComponent implements OnInit {
   imgResultAfterCompress: DataUrl = '';
   imgResultBeforeCompress:any;
-  sizeOfOriginalImage!:number;
-  sizeOFCompressedImage!:number;
+  sizeOfOriginalImage!:any;
+  sizeOFCompressedImage!:any;
   localCompressedURl:any;
   file: any;
   localUrl: any;
@@ -63,6 +63,7 @@ export class CompressImageComponent implements OnInit {
             this.imgResultAfterCompress = result;
             this.localCompressedURl = result;
             this.sizeOFCompressedImage = this.imageCompress.byteCount(result)/(1024)
+            this.sizeOFCompressedImage = this.sizeOFCompressedImage.toFixed(3)+' KB';
             console.warn('Size in bytes after compression:',  this.sizeOFCompressedImage);
          
             // create file from byte
@@ -83,6 +84,7 @@ export class CompressImageComponent implements OnInit {
         this.edition.edition_id = this.data.edition_id;
         this.edition.image_id = this.data.image_id;
         this.edition.flag = 'U';
+        this.edition.image_size =  this.sizeOFCompressedImage;
         console.log(this.edition,'data');
         setTimeout(() => {
           this.edition.base64file = this.imgResultAfterCompress;

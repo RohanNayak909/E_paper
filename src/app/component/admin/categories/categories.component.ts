@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
+import { categoryModel } from 'src/app/models/categorymodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
@@ -26,6 +27,8 @@ export class CategoriesComponent implements OnInit {
   catid: any = ''
   categorySearch: any = '';
   p: any = 1;
+  categoryId:any
+  category:any = new categoryModel();
   constructor(private loginService:LoginService,private matDialog: MatDialog,
     private categoryService : CategoryServiceService,private masterService: MasterServiceService,
     private notification:NotificationService,private router:Router) { }
@@ -60,42 +63,27 @@ export class CategoriesComponent implements OnInit {
     })
   }
   editCategory(data:any){
-    const dialogRef = this.matDialog.open(EditcategoryComponent,{
-      height: '500px',
-      width: '50vw',
-      data: { ...data },
-   });
-    dialogRef.afterClosed().subscribe(result=>{
-      console.log(result);
-    })
+    this.router.navigate([`/admin/epaper/category/edit/${data.category_id}`]);
+    
   }
   deleteCategory(data:any){
-    const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
-    dialogRef.afterClosed().subscribe((result:any) => {      
-      if(result){
-        this.categoeyDelete(data);
-      }
-    });
-    return;
+   this.categoryId = data;
   }
-  categoeyDelete(data:any){
+  categoryDelete(){
   var funct = 'CATEGORY';
-  this.masterService.bulkDeletion(funct,data,0,environment.CUSTOMER_ID).subscribe(res=>{
+  this.masterService.bulkDeletion(funct,this.categoryId,0,environment.CUSTOMER_ID).subscribe(res=>{
     if(res.code === "success"){
+      document.getElementById("closeDeleteModalButton")?.click();
       this.notification.success("Category deleted successfully");
       this.getallcategory();
     }else {
+      document.getElementById("closeDeleteModalButton")?.click();
       this.notification.error(res.message);
     }
   })
   }
-  addToHome(data:any){
-    const dialogRef = this.matDialog.open(AddtohomeComponent,{
-      data: { ...data },
-   });
-    dialogRef.afterClosed().subscribe(result=>{
-      console.log(result);
-    })
+  cancel(){
+    document.getElementById("closeDeleteModalButton")?.click();
   }
   searchCategory() {
     this.categoryService.getAllCategory('', this.categorySearch,this.currentuser.customer_id).subscribe((res: any) => {
@@ -117,6 +105,37 @@ export class CategoriesComponent implements OnInit {
    });
     dialogRef.afterClosed().subscribe(result=>{
       console.log(result);
+    })
+  }
+  addToFront(data:any){
+    this.category = data;
+  }
+  addToHome(){
+    this.category.createdby = this.category.createdby;
+    this.category.flag = 'U';
+    this.category.addToHome = 1;
+    this.category.ads_img = this.category.ads_image;
+    this.categoryService.createCategory(this.category).subscribe(res => {
+      if (res.code === "success") {
+       document.getElementById("closeModalButton")?.click();
+        this.notification.success("Category added to home.");
+      } else {
+        this.notification.error(res.message)
+      }
+    })
+  }
+  removeFromHome(){
+    this.category.createdby = this.category.user_id;
+    this.category.flag = 'U';
+    this.category.addToHome = 0;
+    this.category.ads_img = this.category.ads_image;
+    this.categoryService.createCategory(this.category).subscribe(res => {
+      if (res.code === "success") {
+        document.getElementById("closeModalButton")?.click();
+        this.notification.success("Category removed from home.");
+      } else {
+        this.notification.error(res.message)
+      }
     })
   }
 }

@@ -1,4 +1,3 @@
-
 <div class="viewcategory-container">
     <div class="search-category">
         <button mat-raised-button color="primary" routerLink="/admin/epaper/edition"><i class="fa-solid fa-backward" style="margin-right:5px"></i>
@@ -55,17 +54,17 @@
                                 <h4> {{i+1}}</h4>
                                 <div class="d-flex">
                                     <div class="search-category">
-                                        <button mat-raised-button color="primary" (click)="createAreaMap(data.image_id)">
+                                        <button mat-raised-button color="primary">
                                             <mat-icon >edit</mat-icon> Create Area Maps
                                         </button>
                                     </div>
                                     <div class="edit-button">
                                         <button mat-raised-button class="bg-green"><i
-                                                class="fa-solid fa-pen-to-square" (click)="edit(data)"></i></button>
+                                                class="fa-solid fa-pen-to-square" (click)="edit(data.image_id)"></i></button>
                                     </div>
                                     <div class="delete-button">
                                         <button mat-raised-button class="bg-red">
-                                            <mat-icon (click)="deletePages(data.image_id)">delete</mat-icon>
+                                            <mat-icon data-toggle="modal" data-target="#Modal" (click)="deletePages(data.image_id)" >delete</mat-icon>
                                         </button>
     
                                     </div>
@@ -74,11 +73,11 @@
                                            {{data.image_size}}
                                         </div>
                                     </div>
-                                    <div class="compress-button">
-                                        <button mat-raised-button color="primary" (click)="compress(data)">
+                                    <!-- <div class="compress-button">
+                                        <button mat-raised-button color="primary" data-toggle="modal" data-target="#exampleModal">
                                             Compress 
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -98,4 +97,55 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <div>
+            <div class="upload-img" >
+                <div class="upload-btn" >
+                    <input type="radio" name="imgType" class="tocheck"  value="original">
+                    <img src="assets/img/cover4.jpg" id="media_img_id" class="media-img">
+                </div>
+                <div class="upload-btn second" >
+                    <input type="radio" name="imgType" class="tocheck" value="compressed">
+                    <img src="assets/img/cover4.jpg" id="media_img_id" class="media-img">
+                    <p>*image after compressed</p>
+                </div>
+            </div>
+            <div class="upload-btn" >
+                <button mat-raised-button class="compress-btn">Compress Image</button>
+                <button mat-raised-button color="primary" class="save-image">Submit</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h2>Are you sure you want to delete?
+            </h2>
+            <div class="d-flex justify-content-center flex-wrap">
+              <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+              <button mat-raised-button color="primary" class="delete-btn" (click)="pageDelete()"> Yes </button>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>

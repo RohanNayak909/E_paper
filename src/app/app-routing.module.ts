@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
+import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory.component';
+import { CategoryDialogComponent } from './component/admin/categories/newcategory/category-dialog.component';
+import { EditeditionComponent } from './component/admin/editions/editedition/editedition.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
+import { NeweditionComponent } from './component/admin/editions/newedition/newedition.component';
 import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
+import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
@@ -34,12 +39,17 @@ const routes: Routes = [
     children: [
       { path: 'user/view', component: ViewusersComponent},
       { path: 'epaper/category', component: CategoriesComponent},
+      { path: 'epaper/category/add', component: CategoryDialogComponent},
+      { path: 'epaper/category/edit/:id', component: EditcategoryComponent},
       { path: 'epaper/category/featured', component: FeaturedcategoriesComponent},
       { path: 'epaper/edition', component: EditionsComponent},
+      { path: 'epaper/edition/add', component: NeweditionComponent},
+      { path: 'epaper/edition/edit/:id', component: EditeditionComponent},
       { path: 'epaper/edition/featured', component: FeaturededitionComponent},
       { path: 'header/manage', component: ManageHeaderComponent},
       { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
-      { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent}
+      { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent},
+      { path: 'epaper/edition/upload-pages/edit/:id', component: EditPagesComponent}
     ],
   }
 ];

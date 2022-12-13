@@ -28,10 +28,10 @@
             <td>{{ data.category_name }}</td>
             <td>
               <mat-icon (click)="editCategory(data)">edit</mat-icon>
-              <mat-icon (click)="addToHome(data)">add</mat-icon>
+              <mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
               <mat-icon (click)="addSupplimentPages(data)">dashboard</mat-icon>
             </td>
-            <td><mat-icon (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
+            <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
           </tr>
         </tbody>
         <ng-template #elseblock>
@@ -54,6 +54,45 @@
    </div> 
   </div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center flex-wrap">
+          <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home </button>
+          <button mat-raised-button color="primary" class="remove-btn" (click)="addToHome()"> Add to Home </button>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <h2>Are you sure you want to delete?
+          </h2>
+          <div class="d-flex justify-content-center flex-wrap">
+            <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+            <button mat-raised-button color="primary" class="delete-btn" (click)="categoryDelete()"> Yes </button>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+</div>
+
   
   
   

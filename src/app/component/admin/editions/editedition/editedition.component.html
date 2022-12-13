@@ -1,8 +1,7 @@
 <div class="category-container">
     <div class="add-tag-form">
-      <div class="popup">
+      <div class="popup mb-20">
         <h1> Edit Edition</h1>
-        <button class="close-btn" mat-button (click)="onNoClick()"><i class="fa fa-close"></i></button>
       </div>
         <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
@@ -11,24 +10,32 @@
                 <input matInput type="text" name="title" [(ngModel)] = "edition.edition_name" required>
               </mat-form-field>
             </div>
+            </div>
+            <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Alias</mat-label>
                 <mat-form-field appearance="outline">
                   <input matInput type="text" name="alias" [(ngModel)] = "edition.edition_alias" required>
                 </mat-form-field>
             </div>
+            </div>
+            <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Description</mat-label>
                 <mat-form-field appearance="outline">
                   <input matInput type="text" name="description" [(ngModel)] = "edition.description" required>
                 </mat-form-field>
             </div>
+            </div>
+            <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
               <mat-label class="tag-info">Date</mat-label>
               <mat-form-field appearance="outline">
                   <input matInput type="date" [(ngModel)] = "edition.edition_date" required>
               </mat-form-field>
             </div>
+            </div>
+            <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
               <mat-label class="tag-info">Status</mat-label>
               <mat-form-field appearance="outline">
@@ -38,6 +45,8 @@
                   </mat-select>
               </mat-form-field>
           </div>
+          </div>
+          <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Parent Category</mat-label>
                 <mat-form-field appearance="outline">
@@ -47,22 +56,29 @@
                   </mat-select>
                 </mat-form-field>
             </div>
+            </div>
+            <div class="add-tag-form-field row">
                 <div class="col-lg-6 col-sm-12 col-12">
                   <mat-label class="tag-info">Upload Ads</mat-label>
+                  <div class="d-flex">
                   <div class="upload_txt  mt-10"><input type="file"  #tourBanner
                       accept="image/png, image/jpeg" (change)="onfileselected($event)" id="file-select"></div>
-                </div>
-                <div class="col-lg-6 col-sm-12 col-12">
-                  <div class="image-size">
+             
+                  <div class="image-size mb-20">
                   <img [src]="edition.edition_image" id="uploadAds">
                 </div>
                 </div>
+                </div>
+              </div>
+                <div class="add-tag-form-field row">
                 <div class="col-md-6 col-sm-12 col-12">
                     <mat-label class="tag-info">Meta Description</mat-label>
                     <mat-form-field appearance="outline">
                       <input matInput type="text" name="metadescription" [(ngModel)]="edition.meta_desc" required>
                     </mat-form-field>
                 </div>
+                </div>
+                <div class="add-tag-form-field row">
                 <div class="col-md-6 col-sm-12 col-12">
                     <mat-label class="tag-info">Meta Keyword</mat-label>
                     <mat-form-field appearance="outline">
