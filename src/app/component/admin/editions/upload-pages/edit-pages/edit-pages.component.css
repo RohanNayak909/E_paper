@@ -7,15 +7,6 @@
     padding: 2% 4% 3.9%;
     min-height: 100vh;
 }
-.edit-popup {
-    padding: 2px 10px 0px 10px;
-}
-.clear-icon {
-    position: relative;
-    left: 735px;
-    top: -40px;
-    cursor: pointer;
-}
 .edit-content-form-field mat-label {
     display: block;
     font-weight: 500;
