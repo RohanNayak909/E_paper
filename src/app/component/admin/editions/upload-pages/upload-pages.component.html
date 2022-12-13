@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="delete-button">
                                         <button mat-raised-button class="bg-red">
-                                            <mat-icon data-toggle="modal" data-target="#Modal" >delete</mat-icon>
+                                            <mat-icon data-toggle="modal" data-target="#Modal" (click)="deletePages(data.image_id)" >delete</mat-icon>
                                         </button>
     
                                     </div>
@@ -141,8 +141,8 @@
             <h2>Are you sure you want to delete?
             </h2>
             <div class="d-flex justify-content-center flex-wrap">
-              <button  mat-raised-button color="warn" class="delete-btn mr-20"> No </button>
-              <button mat-raised-button color="primary" class="delete-btn"> Yes </button>
+              <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+              <button mat-raised-button color="primary" class="delete-btn" (click)="pageDelete()"> Yes </button>
             </div>
           </div>
         </div> 

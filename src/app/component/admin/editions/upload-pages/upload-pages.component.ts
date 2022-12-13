@@ -27,6 +27,7 @@ export class UploadPagesComponent implements OnInit {
   cust_id: any;
   currentuser: any;
   category: any = '';
+  imageId:any;
   constructor(private matDialog: MatDialog, private editionService: EditionService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private router: Router,private spinnerService: LoaderService) { }
@@ -103,24 +104,22 @@ export class UploadPagesComponent implements OnInit {
     })
   }
   deletePages(data: any) {
-    const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
-    dialogRef.afterClosed().subscribe((result: any) => {
-      if (result) {
-        this.pageDelete(data);
-      }
-    });
-    return;
+    this.imageId = data;
   }
-  pageDelete(id: any) {
+  pageDelete() {
     var funct = 'UPLOADPAGE';
-    this.masterService.bulkDeletion(funct, id, 0, environment.CUSTOMER_ID).subscribe(res => {
+    this.masterService.bulkDeletion(funct,this.imageId, 0, environment.CUSTOMER_ID).subscribe(res => {
       if (res.code === "success") {
+        document.getElementById("closeDeleteModalButton")?.click();
         this.notification.success("Page deleted successfully");
         this.getAllImages();
       } else {
         this.notification.error(res.message);
       }
     })
+  }
+  cancel(){
+    document.getElementById("closeDeleteModalButton")?.click();
   }
   edit(id: any) {
     this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${id}`]);
