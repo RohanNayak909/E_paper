@@ -111,7 +111,7 @@ export class CategoriesComponent implements OnInit {
     this.category = data;
   }
   addToHome(){
-    this.category.createdby = this.category .createdby;
+    this.category.createdby = this.category.createdby;
     this.category.flag = 'U';
     this.category.addToHome = 1;
     this.category.ads_img = this.category.ads_image;
