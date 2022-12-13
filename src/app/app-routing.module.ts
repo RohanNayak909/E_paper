@@ -12,6 +12,8 @@ import { UploadPagesComponent } from './component/admin/editions/upload-pages/up
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
 import { ManageHeaderComponent } from './component/admin/manage-header/manage-header.component';
+import { EdituserComponent } from './component/admin/users/edituser/edituser.component';
+import { NewuserComponent } from './component/admin/users/newuser/newuser.component';
 import { ViewusersComponent } from './component/admin/users/viewusers/viewusers.component';
 import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
 import { HeaderCategoryComponent } from './component/header-category/header-category.component';
@@ -38,6 +40,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'user/view', component: ViewusersComponent},
+      { path: 'user/add', component: NewuserComponent},
+      { path: 'user/edit/:id', component: EdituserComponent},
       { path: 'epaper/category', component: CategoriesComponent},
       { path: 'epaper/category/add', component: CategoryDialogComponent},
       { path: 'epaper/category/edit/:id', component: EditcategoryComponent},

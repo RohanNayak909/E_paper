@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ModeluserDetails } from 'src/app/models/modeluserdetails';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { UserService } from 'src/app/services/userservice/user.service';
@@ -17,13 +19,15 @@ export class EdituserComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
   role:any;
   allUser:any;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private masterService: MasterServiceService,
-    private userService: UserService,private notification: NotificationService) { }
+  userid:any;
+  constructor(private masterService: MasterServiceService,
+    private userService: UserService,private notification: NotificationService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.userData = this.data;
+    this.userData = new ModeluserDetails();
     this.userData.user_status = this.userData.user_status.toString();
-    
+    const routeParams = this.activatedRoute.snapshot.paramMap;
+    this.userid = Number(routeParams.get('id'));
      this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',

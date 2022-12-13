@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
@@ -19,7 +20,7 @@ export class ViewusersComponent implements OnInit {
   p: any = 1;
   userSearch:any = '';
   constructor(private userService: UserService,private matDialog:MatDialog,private masterService: MasterServiceService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,private router:Router) { }
 
   ngOnInit(): void {
     this.getalluser();
@@ -41,14 +42,7 @@ export class ViewusersComponent implements OnInit {
       })
     }
     editUser(data:any){  
-      const dialogRef = this.matDialog.open(EdituserComponent,{
-        height: '280px',
-        width: '50vw',
-        data: { ...data },
-     });
-      dialogRef.afterClosed().subscribe(result=>{
-        console.log(result);
-      })
+        this.router.navigate([`/admin/user/edit/${data.user_id}`]);  
     }
     deleteUser(uid: any) {
         const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);

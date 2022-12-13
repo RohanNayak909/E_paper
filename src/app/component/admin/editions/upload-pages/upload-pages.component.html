@@ -1,6 +1,7 @@
 <div class="viewcategory-container">
     <div class="search-category">
-        <button mat-raised-button color="primary" routerLink="/admin/epaper/edition"><i class="fa-solid fa-backward" style="margin-right:5px"></i>
+        <button mat-raised-button color="primary" routerLink="/admin/epaper/edition"><i class="fa-solid fa-backward"
+                style="margin-right:5px"></i>
             Back to Edition List</button>
     </div>
 
@@ -14,19 +15,19 @@
             <div id="home" class="container tab-pane active"><br>
                 <div class="list-files">
                     <div class="no-files">No PDF files added</div>
-              </div>
-              <div style="display:none">
-                <input type="file" id="pdf-file" onChange="openfile()" multiple accept="application/pdf">
-              </div>
-              <div class="center-btn">
-                <button  class="btn-add" (click)="addPdf()">ADD PDF</button>     
-                <button  class="btn-join" onclick="joinPdf()">JOIN PDF</button>      
-          </div>    
-          
-          
-          <input type="file" id="pdf" (change)="onUpload($event)"  accept="application/pdf">
-          
-          <button class="btn-join" (click)=" getpdfToJpegImage()">Convert To JPEG</button>
+                </div>
+                <div style="display:none">
+                    <input type="file" id="pdf-file" onChange="openfile()" multiple accept="application/pdf">
+                </div>
+                <div class="center-btn">
+                    <button class="btn-add" (click)="addPdf()">ADD PDF</button>
+                    <button class="btn-join" onclick="joinPdf()">JOIN PDF</button>
+                </div>
+
+
+                <input type="file" id="pdf" (change)="onUpload($event)" accept="application/pdf">
+
+                <button class="btn-join" (click)=" getpdfToJpegImage()">Convert To JPEG</button>
                 <!-- <h3> Note: File must be in jpg,png or gif format. Maximum file is 50M</h3> -->
                 <!-- <div class="upload-supplement">
                     <mat-label class="tag-info">Supplementary</mat-label>
@@ -42,12 +43,12 @@
                     <button mat-raised-button color="primary" class="start-upload">Start Upload </button>
                 </div> -->
                 <div class="upload-content">
-                    <div class="img-upload" *ngIf = "imgarr && imgarr.length; else elseblock">
-                        <div class="row mb-20" *ngFor = "let data of imgarr;index as i">
+                    <div class="img-upload" *ngIf="imgarr && imgarr.length; else elseblock">
+                        <div class="row mb-20" *ngFor="let data of imgarr;index as i">
                             <div class="col-md-3">
-    
+
                                 <div class="upload-img-bg">
-                                    <img [src]= "data.image_url" class="e-paper">
+                                    <img [src]="data.image_url" class="e-paper">
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -55,22 +56,23 @@
                                 <div class="d-flex">
                                     <div class="search-category">
                                         <button mat-raised-button color="primary">
-                                            <mat-icon >edit</mat-icon> Create Area Maps
+                                            <mat-icon>edit</mat-icon> Create Area Maps
                                         </button>
                                     </div>
                                     <div class="edit-button">
-                                        <button mat-raised-button class="bg-green"><i
-                                                class="fa-solid fa-pen-to-square" (click)="edit(data.image_id)"></i></button>
+                                        <button mat-raised-button class="bg-green"><i class="fa-solid fa-pen-to-square"
+                                                (click)="edit(data.image_id)"></i></button>
                                     </div>
                                     <div class="delete-button">
                                         <button mat-raised-button class="bg-red">
-                                            <mat-icon data-toggle="modal" data-target="#Modal" (click)="deletePages(data.image_id)" >delete</mat-icon>
+                                            <mat-icon data-toggle="modal" data-target="#Modal"
+                                                (click)="deletePages(data.image_id)">delete</mat-icon>
                                         </button>
-    
+
                                     </div>
-                                    <div class="gray-button" *ngIf ="data.image_size">
-                                        <div class="bg-gray" >
-                                           {{data.image_size}}
+                                    <div class="gray-button" *ngIf="data.image_size">
+                                        <div class="bg-gray">
+                                            {{data.image_size}}
                                         </div>
                                     </div>
                                     <!-- <div class="compress-button">
@@ -84,68 +86,70 @@
                     </div>
                     <ng-template #elseblock>
                         <tbody>
-                          <tr>
-                            <td colspan="6" class="text-center" style="color: black;">
-                              No data Found
-                            </td>
-                          </tr>
+                            <tr>
+                                <td colspan="6" class="text-center" style="color: black;">
+                                    No data Found
+                                </td>
+                            </tr>
                         </tbody>
                     </ng-template>
                 </div>
- 
+
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-        <div>
-            <div class="upload-img" >
-                <div class="upload-btn" >
-                    <input type="radio" name="imgType" class="tocheck"  value="original">
-                    <img src="assets/img/cover4.jpg" id="media_img_id" class="media-img">
-                </div>
-                <div class="upload-btn second" >
-                    <input type="radio" name="imgType" class="tocheck" value="compressed">
-                    <img src="assets/img/cover4.jpg" id="media_img_id" class="media-img">
-                    <p>*image after compressed</p>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="upload-img">
+                        <div class="upload-btn">
+                            <input type="radio" name="imgType" class="tocheck" value="original">
+                            <img src="assets/img/cover4.jpg" id="media_img_id" class="media-img">
+                        </div>
+                        <div class="upload-btn second">
+                            <input type="radio" name="imgType" class="tocheck" value="compressed">
+                            <img src="assets/img/cover4.jpg" id="media_img_id" class="media-img">
+                            <p>*image after compressed</p>
+                        </div>
+                    </div>
+                    <div class="upload-btn">
+                        <button mat-raised-button class="compress-btn">Compress Image</button>
+                        <button mat-raised-button color="primary" class="save-image">Submit</button>
+                    </div>
                 </div>
             </div>
-            <div class="upload-btn" >
-                <button mat-raised-button class="compress-btn">Compress Image</button>
-                <button mat-raised-button color="primary" class="save-image">Submit</button>
-            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div>
-            <h2>Are you sure you want to delete?
-            </h2>
-            <div class="d-flex justify-content-center flex-wrap">
-              <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
-              <button mat-raised-button color="primary" class="delete-btn" (click)="pageDelete()"> Yes </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
-        </div> 
-      </div>
+            <div class="modal-body">
+                <div>
+                    <h2>Are you sure you want to delete?
+                    </h2>
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+                        <button mat-raised-button color="primary" class="delete-btn" (click)="pageDelete()"> Yes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
