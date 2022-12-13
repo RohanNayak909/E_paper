@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { editionModel } from 'src/app/models/editionmodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
@@ -29,6 +30,7 @@ export class EditionsComponent implements OnInit {
   headerarry:any = [];
   category:any;
   editionId:any;
+  edition:any = new editionModel();
   constructor(private matDialog: MatDialog, private editionService: EditionService, private notification: NotificationService,
     private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService,
     private masterAPI:MasterServiceService) { }
@@ -141,30 +143,34 @@ export class EditionsComponent implements OnInit {
       this.headerarry = []
     })
   }
+  addToFront(data:any){
+  this.edition = data;
+  }
   addToHome(){
-    this.category.createdby = this.currentuser.user_id;
-    this.category.flag = 'U';
-    this.category.addToHome = 1;
-    this.category.ads_img = this.category.ads_image;
-    this.categoryService.createCategory(this.category).subscribe(res => {
+    this.edition.createdby = this.currentuser.user_id;
+    this.edition.flag = 'U';
+    this.edition.add_to_home = 1;
+    this.editionService.createEdition(this.edition).subscribe(res => {
       if (res.code === "success") {
-        this.notification.success("Category added to home.");
+        document.getElementById("closeModalButton")?.click();
+        this.notification.success("Edition added to home.");
       } else {
-        this.notification.error(res.message)
+        document.getElementById("closeModalButton")?.click();
+        this.notification.error(res.message);
       }
     })
-  
   }
   removeFromHome(){
-    this.category.createdby = this.currentuser.user_id;
-    this.category.flag = 'U';
-    this.category.addToHome = 0;
-    this.category.ads_img = this.category.ads_image;
-    this.categoryService.createCategory(this.category).subscribe(res => {
+    this.edition.createdby = this.currentuser.user_id;
+    this.edition.flag = 'U';
+    this.edition.add_to_home = 0;
+    this.editionService.createEdition(this.edition).subscribe(res => {
       if (res.code === "success") {
-        this.notification.success("Category removed from home.");
+        document.getElementById("closeModalButton")?.click();
+        this.notification.success("Edition removed from home.");
       } else {
-        this.notification.error(res.message)
+        document.getElementById("closeModalButton")?.click();
+        this.notification.error(res.message);
       }
     })
   }

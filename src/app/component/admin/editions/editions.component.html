@@ -43,8 +43,7 @@
               <td>
                 <div class="action-icon">
               <mat-icon  (click)="editEdition(e)">edit</mat-icon>
-              <mat-icon  data-toggle="modal" data-target="#exampleModal">add</mat-icon>
-                <!-- <mat-icon (click)="addToHome(data)">add</mat-icon> -->
+              <mat-icon  data-toggle="modal" data-target="#exampleModal" (click)="addToFront(e)">add</mat-icon>               
               <div class="upload-icon"> <i class="fa-solid fa-upload" (click)="upload(e.edition_id)"></i></div>
               </div>
               </td>
@@ -75,7 +74,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
