@@ -7,12 +7,14 @@
                 <input matInput type="text" name="username" [(ngModel)]="userData.user_login" required>
               </mat-form-field>
             </div>
+            </div>
             <!-- <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Password</mat-label>
                 <mat-form-field appearance="outline" class="form-group">
                   <input matInput type="text" name="password" [(ngModel)]="userData.user_pass" required>
                 </mat-form-field>
             </div> -->
+            <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Email</mat-label>
                 <mat-form-field appearance="outline" class="form-group">
@@ -22,13 +24,15 @@
             </div>
             <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
-                <mat-label class="tag-info mb-1">Role</mat-label>
+                <mat-label class="tag-info mr-1 ">Role</mat-label>
                 <ng-multiselect-dropdown [ngModelOptions]="{standalone: true}" [placeholder]="'Select Role'" [settings]="dropdownSettings" [data]="role"
                 [(ngModel)]="userData.role">
                 </ng-multiselect-dropdown>
             </div>
+            </div>
+            <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
-                <mat-label class="tag-info">Status</mat-label>
+                <mat-label class="tag-info mt-20">Status</mat-label>
                 <mat-form-field appearance="outline">
                   <mat-select [(ngModel)] = "userData.user_status">
                       <mat-option value="1">Public</mat-option>

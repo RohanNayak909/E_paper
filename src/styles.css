@@ -43,9 +43,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .add-tag-form-field .mat-select-arrow-wrapper {
   height: 0px !important;
 }
-.add-tag-form-field .mat-form-field-wrapper {
-  padding-bottom: 20px !important;
-}
+
 /* -------------------------add user---------------------- */
 /* ------------------------- view user-------------------- */
 .view-category .mat-form-field-outline{
@@ -73,7 +71,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .add-tag-form-field .mat-form-field {
   width: 100%;
 }
-/* .add-tag-form-field .multiselect-dropdown .dropdown-btn
-{
-    width: 100% !important;
-} */
