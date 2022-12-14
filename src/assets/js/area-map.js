@@ -1,214 +1,219 @@
-var desc = tinymce.init({
-    height: 200,
-    plugins: [
-        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        'searchreplace wordcount visualblocks visualchars code fullscreen',
-        'insertdatetime media nonbreaking save table contextmenu directionality',
-        'emoticons template paste textcolor colorpicker textpattern imagetools'
-    ],
-    //   toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-    //   toolbar2: 'print preview media | forecolor backcolor emoticons',
-    selector: '#EpaperMapForm_description',
-    setup: function (ed) {
-        ed.on('keyup', function (e) {
-            $("#EpaperMapForm_description").val(ed.getContent());
-        });
-        ed.on('change', function (e) {
-            $("#EpaperMapForm_description").val(ed.getContent());
-        });
-    }
+// Canvas Position Variables
+var cposX = 0,
+    cposY = 0;
+// Mouse Down Position Variables
+var posX = 0,
+    posY = 0;
+// Mouse Moving Position Variables
+var nposX = 0,
+    nposY = 0;
+// Coordinate Position in Percentage Variables
+var px1_perc = 0,
+    py1_perc = 0,
+    px2_perc = 0,
+    py2_perc = 0;
+// Canvas Variable
+var ctx;
+// Variable for checking if the mouse has started to draw or not
+var isDraw = false;
+// Auto Increment sequence for the Store Data Identification [id]
+var AI_seq = $.parseJSON(localStorage.getItem('seq')) || 0;
+// Stored Data [Mapped Area Details]
+var stored = $.parseJSON(localStorage.getItem('mapped')) || {};
 
-});
 
-var originalSize = 123;
-var canvasSize = parseInt($("#canvas").css("width"));
-var ratio = 0;
-// var ratio = formatNumber(originalSize / canvasSize, 4);
+// Function that creates the Area tag and appends to the Map Tag
+function mapped_area() {
+    if (Object.keys(stored).length > 0) {
+        // Empty Map Tag First
+        $('#fp-map').html('')
 
-var canvasHeight = parseInt($("#canvas").css("height"));
-var height = 0;
-var newTop = 0;
+        // Looping Data
+        Object.keys(stored).map(k => {
+            // Loop Current Data
+            var data = stored[k]
+            console.log(data)
+            // Creating New Area Tag
+            var area = $("<area shape='rect'>")
+            area.attr('href', "javascript:void(0)")
+            // Coordinate Percentage
+            var perc = data.coord_perc
+            perc = perc.replace(" ", '')
+            perc = perc.split(",")
 
-var Helpers = {
-    getUID: function () {
-        var x = Math.floor((Math.random() * 1000) + 1);
-        var y = Math.floor((Math.random() * 2000) + 1000);
-        var z = Date.now();
-        return "uid-" + (x * y * z).toString();
+            // Configuring Area Position, Height, and Width
+            var x = $('#fp-img').width() * perc[0];
+            var y = $('#fp-img').height() * perc[1];
+            var width = Math.abs(($('#fp-img').width() * Math.abs(perc[2])) - x);
+            var height = Math.abs(($('#fp-img').height() * Math.abs(perc[3])) - y);
+            if (($('#fp-img').width() * perc[2]) - x < 0)
+                x = x - width
+            if (($('#fp-img').height() * perc[3]) - y < 0)
+                y = y - height
+            area.attr('coords', x + ", " + y + ", " + width + ", " + height)
+            area.addClass('fw-bolder text-muted')
+            area.css({
+                'height': height + 'px',
+                'width': width + 'px',
+                'top': y + 'px',
+                'left': x + 'px',
+            })
+
+            console.log(area)
+
+            $('#fp-map').append(area)
+
+            // Action to make if the Area Tag has been clicked
+            area.click(function () {
+                alert("here")
+                $('#view_modal').find('#edit-area,#delete-area').attr('data-id', data.id)
+                data.description = data.description.replace(/\n/gi, "<br>")
+                $('#view_modal').find('.modal-body').html(data.description)
+                $('#view_modal').modal('show')
+            })
+        })
     }
 }
-var x = '';
-var y = '';
-var w = '';
-var h = '';
-var mapid = '';
-var pg_id = '';
-var id = '';
- 
-// function Map(x, y, w, h, mapid) {
-//     x = x;
-//     y = y;
-//     w = w;
-//     h = h;
-//     ratio = ratio;
-//     mapid = mapid;
-//     pg_id = 1;
-//     id = 1;
-// }
 
-var MapCollection = new function () {
-    this.collection = [];
+$(function () {
+    cposX = $('#fp-canvas')[0].getBoundingClientRect().x
+    cposY = $('#fp-canvas')[0].getBoundingClientRect().y
+    ctx = $('#fp-canvas')[0].getContext('2d');
 
-    this.add = function (map) {
-        this.collection.push(map);
-        MapCollectionCanvas.add(map);
+    // Creates the Map Area on the Image
+    mapped_area()
 
-        return map.id;
-    };
-    this.removeByIndex = function (index) {
-        MapCollectionCanvas.remove(this.collection[index].id);
-        this.collection.splice(index, 1);
+    // Re-initialize Map Area Creation when the window has been resized
+    $(window).on('resize', function () {
+        mapped_area()
+    })
 
-    };
-    this.removeById = function (id) {
-        var index = this.getIndexById(id);
-        this.removeByIndex(index);
-    };
-    this.getIndexById = function (id) {
-        for (var k in this.collection) {
-            if (this.collection[k].id === id) {
-                return k;
-            }
-        }
-    };
-    this.getIndexByMapId = function (mapid) {
-        for (var k in this.collection) {
-            if (this.collection[k].mapid === mapid) {
-                return k;
-            }
-        }
-    };
-};
+    // Event Listener when the mouse is clicked on the canvas area
+    // $('.fp-canvas').on('mousedown', function (e) {
+    //     px1_perc = (e.clientX - cposX) / $('#fp-canvas').width()
+    //     py1_perc = (e.clientY - cposY) / $('#fp-canvas').height()
+    //     posX = $('#fp-canvas')[0].width * ((e.clientX - cposX) / $('#fp-canvas').width());
+    //     posY = $('#fp-canvas')[0].height * ((e.clientY - cposY) / $('#fp-canvas').height());
+    //     isDraw = true
+    // })
 
-// var MapCollectionCanvas = new function () {
-//     var alive = function (id) {
-//         var index = MapCollection.getIndexById(id);
 
-//         MapCollection.collection[index].w = parseFloat($("#" + id).css("width")) + 12;
-//         MapCollection.collection[index].h = parseFloat($("#" + id).css("height")) + 12;
-//         MapCollection.collection[index].x = parseFloat($("#" + id).css("left"));
-//         MapCollection.collection[index].y = parseFloat($("#" + id).css("top"));
-//         $("#" + id).removeClass("area-saved").addClass("area-unsaved");
-//     };
-//     var alive2 = function (id) {
-//         var index = MapCollection.getIndexById(id);
 
-//         MapCollection.collection[index].w = parseFloat($("#" + id).css("width")) + 12;
-//         MapCollection.collection[index].h = parseFloat($("#" + id).css("height")) + 12;
-//         MapCollection.collection[index].x = parseFloat($("#" + id).css("left"));
-//         MapCollection.collection[index].y = parseFloat($("#" + id).css("top"));
+    $("#create_map_area").on('click', function (e) {
+        $("#map_area").hide('slow')
+        $('#save,#cancel').show('slow')
+        $('#fp-canvas').removeClass('d-none')
+        // var c = document.getElementById("fp-canvas");
+        // var ctx = c.getContext("2d");
+        // ctx.beginPath();
+        // ctx.lineWidth = "2";
+        // ctx.strokeStyle = "black";
+        // ctx.rect(0, 0, 50, 50);
+        // ctx.stroke();
+        init();
+    })
 
-//     };
-//     this.add = function (map) {
-//         var activeclass = "";
-//         if (map.mapid !== undefined) {
-//             activeclass = "area-saved"
-//         } else {
-//             activeclass = "area-unsaved"
+    // Event Listener when the mouse is moving on the canvas area. For drawing the rectangular Area
+    // $('.fp-canvas').on('mousemove', function (e) {
+    //     if (isDraw == false)
+    //         return false;
+    //     nposX = $('#fp-canvas')[0].width * ((e.clientX - cposX) / $('#fp-canvas').width());
+    //     nposY = $('#fp-canvas')[0].height * ((e.clientY - cposY) / $('#fp-canvas').height());
+    //     var height = nposY - posY;
+    //     var width = nposX - posX;
+    //     ctx.clearRect(0, 0, $('.fp-canvas')[0].width, $('.fp-canvas')[0].height);
+    //     ctx.beginPath();
+    //     ctx.lineWidth = "2";
+    //     ctx.strokeStyle = "black";
+    //     ctx.rect(posX, posY, width, height);
+    //     ctx.stroke();
+    // })
+    // // Event Listener when the mouse is up on the canvas area. End of Drawing
+    // $('.fp-canvas').on('mouseup', function (e) {
+    //     px2_perc = (e.clientX - cposX) / $('#fp-canvas').width()
+    //     py2_perc = (e.clientY - cposY) / $('#fp-canvas').height()
+    //     nposX = $('#fp-canvas')[0].width * ((e.clientX - cposX) / $('#fp-canvas').width());
+    //     nposY = $('#fp-canvas')[0].height * ((e.clientY - cposY) / $('#fp-canvas').height());
+    //     var height = nposY - posY;
+    //     var width = nposX - posX;
+
+    //     ctx.clearRect(0, 0, $('.fp-canvas')[0].width, $('.fp-canvas')[0].height);
+    //     ctx.beginPath();
+    //     ctx.lineWidth = "2";
+    //     ctx.strokeStyle = "black";
+    //     ctx.rect(posX, posY, width, height);
+    //     ctx.stroke();
+    //     isDraw = false
+    // })
+
+
+    // Action when Map Are button is clicked
+//     $('#map_area').click(function () {
+//         $(this).hide('slow')
+//         $('#save,#cancel').show('slow')
+//         $('#fp-canvas').removeClass('d-none')
+//         cposX = $('#fp-canvas')[0].getBoundingClientRect().x
+//         cposY = $('#fp-canvas')[0].getBoundingClientRect().y
+//         console.log(cposX, ' * ', cposY)
+//     })
+//     // Action when Map Are cancel is clicked
+//     $('#cancel').click(function () {
+//         $('#save,#cancel').hide('slow')
+//         $('#map_area').show('slow')
+//         $('#fp-canvas').addClass('d-none')
+//     })
+//     // Action when Map Are save is clicked
+//     $('#save').click(function () {
+//         var cP = px1_perc + ", " + py1_perc + ", " + px2_perc + ", " + py2_perc
+//         $('#form_modal').find('input[name="coord_perc"]').val(cP)
+//         $('#form_modal').modal('show')
+//     })
+
+//     // Saving the Mapped Area Details on local Storage
+//     $('#mapped-form').submit(function (e) {
+//         e.preventDefault();
+//         var data;
+//         var id = $(this).find('[name="id"]').val()
+//         var coord_perc = $(this).find('[name="coord_perc"]').val()
+//         var description = $(this).find('[name="description"]').val()
+
+//         if (id == '') {
+//             id = AI_seq + 1;
+//             localStorage.setItem('seq', id)
 //         }
-//         var string = '<div id="' + map.id + '" data-id="' + map.id + '" data-mapid="' + map.mapid + '" class="area ' + activeclass + ' " style="box-sizing: content-box; top: ' + (map.y / map.ratio) + 'px; left: ' + (map.x / map.ratio) + 'px; width: ' + ((map.w / map.ratio) - 12) + 'px; height: ' + ((map.h / map.ratio) - 12) + 'px;">';
-
-//         string += '<a href="#" data-id="' + map.id + '" class="btnSave btn btn-primary btn-xs"><span class=" glyphicon glyphicon-floppy-disk"></span></a> ';
-//         string += '<a href="#" data-id="' + map.id + '" class="btnEdit btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span></a> ';
-//         string += '<a href="#" data-id="' + map.id + '" class="btnDelete btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a>  ';
-//         string += "</div>";
-//         $("#canvas").append(string);
-//         alive2(map.id);
-//         $(".area").resizable({
-//             handles: "n, e, s, w, nw, ne, sw, se",
-//             minHeight: 1,
-//             minWidth: 1,
-//             resize: function (e, ui) {
-//                 var id = $(this).attr("id");
-//                 //                    var w = parseFloat($("#" + id).css("width"));
-//                 //                    var h = parseFloat($("#" + id).css("height"));
-//                 //                     
-//                 //                    $("#" + id).css("width", w + "px");
-//                 //                    $("#" + id).css("height", h + "px");
-//                 alive(id);
-//                 height = parseInt($('#' + map.id).css("height"), 10);
-//             }
-//         }).draggable({
-//             drag: function () {
-//                 var id = $(this).attr("id");
-//                 alive(id);
-//                 height = parseInt($('#' + map.id).css("height"), 10);
-//             }
-//         });
-
-
-
-//     };
-//     this.remove = function (id) {
-//         var mapid = $("#" + id).attr("data-mapid");
-
-//         if (mapid === "undefined" || mapid === "") {
-//             $("#" + id).remove();
-//         } else {
-//             if (confirm("Are you sure?")) {
-//                 $.ajax({
-//                     data: { mapid: mapid },
-//                     url: "",
-//                     success: function (response) {
-//                         $("#" + id).remove();
-//                     }
-//                 });
-//             }
+//         data = { id: id, description: description, coord_perc: coord_perc }
+//         stored[id] = data;
+//         console.log(JSON.stringify(stored))
+//         localStorage.setItem('mapped', JSON.stringify(stored))
+//         alert("Mapped Area Successfully saved.")
+//         location.reload()
+//     })
+//     // Edit Mapped Area Details
+//     $('#edit-area').click(function () {
+//         $('.modal').modal('hide')
+//         id = $(this).attr('data-id')
+//         data = stored[id] || {}
+//         $('#mapped-form').find('[name="id"]').val(data.id)
+//         $('#mapped-form').find('[name="coord_perc"]').val(data.coord_perc)
+//         $('#mapped-form').find('[name="description"]').val(data.description)
+//         $('#form_modal').modal('show')
+//     })
+//     // Delete Mapped Area
+//     $('#delete-area').click(function () {
+//         $('.modal').modal('hide')
+//         id = $(this).attr('data-id')
+//         data = stored[id] || {}
+//         var _conf = confirm("Are you sure to delete the selected mapped area?")
+//         if (_conf === true) {
+//             if (!!stored[id])
+//                 delete stored[id];
 //         }
-//     };
-//     this.save = function (id) {
-//         var index = MapCollection.getIndexById(id);
-//         $.ajax({
-//             data: MapCollection.collection[index],
-//             url: "",
-//             success: function (response) {
-//                 $("#" + id).attr("data-mapid", response.data.result.id).removeClass("area-unsaved").addClass("area-saved");
-//                 MapCollection.collection[index].mapid = response.data.result.id;
+//         localStorage.setItem('mapped', JSON.stringify(stored))
+//         alert("Selected Mapped Area Successfully Deleted.")
+//         location.reload()
+//     })
+})
 
-//                 document.dispatchEvent(new CustomEvent("afterSavingMap"));
-//             }
-//         });
-//     };
-// };
 
-$(".btn-toolbar #btnAdd").on("click", function () {
-    alert("sagar")
-    var id = MapCollection.add(new Map(0, 0, 150 * ratio, 150 * ratio));
 
-    if (newTop >= (canvasHeight / 2)) {
-        newTop = newTop / 2;
-        //newTop = (height + 10) + newTop;
-        $("#" + id).css("top", newTop);
-    }
-    else {
-        if (height == 0) {
-            newTop = (height) + newTop;
-            $("#" + id).css("top", newTop);
-        }
-        else {
-            newTop = (height + 10) + newTop;
-            $("#" + id).css("top", newTop);
-        }
-    }
-});
-$(document).on("click", ".btnSave", function (e) {
-    e.preventDefault();
-    var id = $(this).attr("data-id");
-    $(document).off("afterSavingMap");
-    MapCollectionCanvas.save(id);
-});
-$(document).on("click", ".btnDelete", function (e) {
-    e.preventDefault();
-    var id = $(this).attr("data-id");
-    MapCollection.removeById(id);
-});
+

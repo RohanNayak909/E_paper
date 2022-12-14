@@ -34,4 +34,7 @@ export class EditionService {
   getEditionByFeaturedCategory(custid:any,category:any) {
     return this.HTTP.get<any>(Masterapi + `/get-edition-by-featured-category?cust_id=${custid}&category=${category}`);
   }
+  createAreaMap(area_map: any) {
+    return this.HTTP.post<any>(Masterapi + `/create-area-map`, { ...area_map });
+  }
 }
