@@ -60,8 +60,7 @@ export class NewuserComponent implements OnInit {
     this.userService.createUser(this.userData).subscribe((res: any) => {
       if (res.code == "success") {
         this.notify.success(res.message);
-        // form.reset();
-        window.location.reload();
+        this.router.navigate([`/admin/user/view`]);
       }else{
         this.notify.error(res.message);
       }

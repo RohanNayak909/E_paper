@@ -70,9 +70,8 @@ export class UploadPagesComponent implements OnInit {
       }
       this.editionService.saveUploadImage(this.edition).subscribe(res => {
         if (res.code === "success") {
-          this.getAllImages();
           this.spinnerService.hide()
-
+          this.getAllImages();
         } else {
           // this.dataarr = []
           this.spinnerService.hide()

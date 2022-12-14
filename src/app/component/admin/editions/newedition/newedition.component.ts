@@ -80,12 +80,12 @@ export class NeweditionComponent implements OnInit {
       }
       this.editionService.createEdition(this.edition).subscribe(res => {
         if (res.code === "success") {
-          window.location.reload();
-          this.notification.success("Edition created sucessfully");
-          this.router.navigate(['/admin/epaper/category']);
-        } else {
-          this.notification.error(res.message)
           this.spinnerService.hide();
+          this.notification.success("Edition created sucessfully");
+          this.router.navigate(['/admin/epaper/edition']);
+        } else {
+          this.spinnerService.hide();
+          this.notification.error(res.message)
         }
       },(err) => {
         this.spinnerService.hide();

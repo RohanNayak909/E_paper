@@ -1,105 +1,81 @@
 <div class="viewcategory-container">
-    <div class="view-category">
-      <div class="search-category">
-        <!-- <mat-form-field appearance="outline">
-          <mat-select>
-            <mat-option value="0">Select Role</mat-option>
-            <mat-option value="1">None</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-raised-button color="primary" class="search-btn">Search Role</button> -->
-        &nbsp;&nbsp;
-        <mat-form-field appearance="outline" class="form-group">
-          <input matInput type="text" name="cname" [(ngModel)]="userSearch">       
-        </mat-form-field>
-        <button mat-raised-button color="primary" class="search-btn"  (click)="searchUser()">Search
-          User</button>
-        <button mat-raised-button color="primary" class="newcategory-btn" (click)="addUser()">New User</button>
-      </div>
-      
-     
-      <div class="header">
-        <table id="view-table">
-          <thead class="table-header">
-            <th class="first">
+  <div class="view-category">
+    <div class="search-category">
+      &nbsp;&nbsp;
+      <mat-form-field appearance="outline" class="form-group">
+        <input matInput type="text" name="cname" [(ngModel)]="userSearch">
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="search-btn" (click)="searchUser()">Search
+        User</button>
+      <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/user/add">New User</button>
+    </div>
+
+
+    <div class="header">
+      <table id="view-table">
+        <thead class="table-header">
+          <th class="first">
+            <input type="checkbox" class="example-margin">
+          </th>
+          <th class="content">User Name</th>
+          <th class="content">Role Name</th>
+          <th class="content">Status</th>
+          <th class="content">Action</th>
+          <th class="content">Delete</th>
+        </thead>
+        <tbody *ngIf="allUser &&  allUser.length; else elseblock">
+          <tr *ngFor="let data of allUser | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td class="first">
               <input type="checkbox" class="example-margin">
-            </th>
-            <th class="content">User Name</th>
-            <th class="content">Role Name</th>
-            <th class="content">Status</th>
-            <th class="content">Action</th>
-            <th class="content">Delete</th>
-          </thead>
-          <tbody *ngIf="allUser &&  allUser.length; else elseblock">
-            <tr *ngFor = "let data of allUser | paginate: { itemsPerPage: 10, currentPage: p }">
-              <td class="first">
-                <input type="checkbox" class="example-margin">
+            </td>
+            <td>{{data.user_login}}</td>
+            <td>{{data.role_name}}</td>
+            <td>{{data.user_status == 1 ? "Active" : "Inactive"}}</td>
+            <td><mat-icon (click)="editUser(data)">edit</mat-icon>
+              <!-- <mat-icon>add</mat-icon> -->
+            </td>
+            <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteUser(data.user_id)">delete</mat-icon></td>
+          </tr>
+        </tbody>
+        <ng-template #elseblock>
+          <tbody>
+            <tr>
+              <td colspan="6" class="text-center" style="color: black;">
+                No record Found
               </td>
-              <td>{{data.user_login}}</td>
-              <td>{{data.role_name}}</td>
-              <td>{{data.user_status == 1 ? "Active" : "Inactive"}}</td>
-              <td><mat-icon (click)="editUser(data)">edit</mat-icon>           
-                <!-- <mat-icon>add</mat-icon> -->
-              </td>
-              <td><mat-icon (click)="deleteUser(data.user_id)">delete</mat-icon></td>
             </tr>
           </tbody>
-          <ng-template #elseblock>
-            <tbody>
-              <tr>
-                <td colspan="6" class="text-center" style="color: black;">
-                  No record Found
-                </td>
-              </tr>
-            </tbody>
         </ng-template>
-        </table>  
-      </div>
-      <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
+      </table>
+    </div>
+    <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
       style="padding-top:1vw;padding-bottom:1vw;">
       <div class="d-flex" style="padding-left: 3%;">
         <!-- <button class="apply-btn" style="margin-left:1vw;">apply to selected items</button> -->
       </div>
       <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
     </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <h2>Are you sure you want to delete?
+          </h2>
+          <div class="d-flex justify-content-center flex-wrap">
+            <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+            <button mat-raised-button color="primary" class="delete-btn" (click)="userDelete()"> Yes </button>
+          </div>
+        </div>
+      </div>
     </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  </div>
+</div>

@@ -43,9 +43,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .add-tag-form-field .mat-select-arrow-wrapper {
   height: 0px !important;
 }
-.add-tag-form-field .mat-form-field-wrapper {
-  padding-bottom: 20px !important;
-}
+
 /* -------------------------add user---------------------- */
 /* ------------------------- view user-------------------- */
 .view-category .mat-form-field-outline{
@@ -69,19 +67,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 0px !important;
 }
 /* --------------------view user------------------- */
-/* --------------------edit-user------------------- */
- .add-tag-form .add-tag-form-field .multiselect-dropdown .dropdown-btn{
-  border: 1px solid #e0e0e0 !important;
-  width: 72% !important;
-} 
-.add-tag-form .add-tag-form-field .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret{
-  width: 189px !important;
-  height: 30px !important;
-  right: 0px;
-  top: 4px !important;
-  padding: 4px 8px;
-}
-/* ----------------------edit user---------------------- */
+
 .add-tag-form-field .mat-form-field {
   width: 100%;
 }

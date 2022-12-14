@@ -1,7 +1,44 @@
-.add-tag-form-field mat-label{
+.add-tag-form-field mat-label {
     display: block;
 }
-.submit-button{
+
+.submit-button {
     margin-top: 10px;
-    float: right;
+}
+
+.category-container {
+    background-color: var(--site-background);
+    padding: 5% 5%;
+    min-height: 100vh;
+}
+
+.add-tag-form .add-tag-form-field .multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret {
+    width: 189px !important;
+    height: 30px !important;
+    right: 0px;
+    top: 4px !important;
+    padding: 4px 8px;
+}
+
+.add-tag-form .add-tag-form-field .multiselect-dropdown .dropdown-btn {
+    border: 1px solid #d6d6d6 !important;
+}
+
+.mb-1 {
+    margin-bottom: 1px;
+}
+
+.add-tag-form .add-tag-form-field .tag-info {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+:host::ng-deep .add-tag-form-field .mat-form-field-wrapper {
+    padding-bottom: 10px !important;
+}
+
+.mt-20 {
+    margin-top: 20px;
 }

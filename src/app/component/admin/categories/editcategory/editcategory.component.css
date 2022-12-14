@@ -4,39 +4,49 @@
     font-size: 15px;
     font-weight: 500;
 }
+
 .category-container {
     background-color: var(--site-background);
     padding: 2% 3.9%;
     min-height: 100vh;
 }
 
-.image-size img{
+.image-size img {
     height: 120px;
     width: 120px;
 }
+
 :host::ng-deep .mat-form-field-infix {
     padding: 8px !important;
     border-top: 0.84375em solid transparent;
 }
+
 :host::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
     padding: 3px 0 1em 0 !important;
 }
+
 :host::ng-deep .mat-form-field-wrapper {
     padding-bottom: 8px;
 }
 
 
-.add-tag-form  h1{
+.add-tag-form h1 {
     margin: 0px !important;
     font-weight: bold;
 }
-.mb-20{
+
+.mb-20 {
     margin-bottom: 20px;
 }
-.popup .mat-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button {
+
+.popup .mat-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button {
     min-width: 0px !important;
-     padding: 0px !important; 
+    padding: 0px !important;
 }
+
 :host::ng-deep .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
-	opacity: .48
-} 
+    opacity: .48
+}

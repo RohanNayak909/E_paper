@@ -1,27 +1,29 @@
 .edit-container h2 {
-    border-bottom: 1px solid rgb(160, 156, 156);
-    margin: 0 0 0px !important;
+    margin: 0 10px 30px !important;
+    font-size: 25px;
 }
-.edit-popup {
-    padding: 2px 10px 0px 10px;
+
+.edit-container {
+    background-color: var(--site-background);
+    padding: 2% 4% 3.9%;
+    min-height: 100vh;
 }
-.clear-icon {
-    position: relative;
-    left: 735px;
-    top: -40px;
-    cursor: pointer;
-}
-.upload-img-bg img {
-    height: 35vh;
-    width: 15vw;
-}
+
 .edit-content-form-field mat-label {
     display: block;
     font-weight: 500;
+    font-size: 16px;
 }
+
 .submit-button {
     float: right;
+    margin-right: 30px;
 }
+
 .mt-10 {
     margin-top: 10px;
+}
+
+.edit-content-form-field .mat-form-field {
+    width: 100%;
 }

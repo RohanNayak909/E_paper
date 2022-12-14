@@ -2,13 +2,13 @@
   <div class="view-category">
     <div class="search-category">
       <mat-form-field appearance="outline" class="form-group w-200">
-        <input matInput type="text" name="cname" [(ngModel)]="categorySearch"
-        (keydown.enter)="onKeydown($event)" (keyup.enter)="searchCategory()">
+        <input matInput type="text" name="cname" [(ngModel)]="categorySearch" (keydown.enter)="onKeydown($event)"
+          (keyup.enter)="searchCategory()">
         <!-- <input matInput type="text" name="cname"> -->
-    </mat-form-field>
-    <button mat-raised-button color="primary" class="search-btn" (click)="searchCategory()">Search
-      Category</button>
-      <button mat-raised-button color="primary" class="newcategory-btn" (click)="addCategory()">New Category</button>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="search-btn" (click)="searchCategory()">Search
+        Category</button>
+      <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/epaper/category/add">New Category</button>
     </div>
     <div class="header">
       <table id="view-table">
@@ -31,7 +31,8 @@
               <mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
               <mat-icon (click)="addSupplimentPages(data)">dashboard</mat-icon>
             </td>
-            <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
+            <td><mat-icon data-toggle="modal" data-target="#Modal"
+                (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
           </tr>
         </tbody>
         <ng-template #elseblock>
@@ -46,15 +47,16 @@
       </table>
     </div>
     <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
-    style="padding-top:1vw;padding-bottom:1vw;">
-    <div class="d-flex" style="padding-left: 3%;">
-      <!-- <button class="apply-btn" style="margin-left:1vw;">apply to selected items</button> -->
+      style="padding-top:1vw;padding-bottom:1vw;">
+      <div class="d-flex" style="padding-left: 3%;">
+        <!-- <button class="apply-btn" style="margin-left:1vw;">apply to selected items</button> -->
+      </div>
+      <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
     </div>
-    <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
-   </div> 
   </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -64,10 +66,11 @@
       </div>
       <div class="modal-body">
         <div class="d-flex justify-content-center flex-wrap">
-          <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home </button>
+          <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home
+          </button>
           <button mat-raised-button color="primary" class="remove-btn" (click)="addToHome()"> Add to Home </button>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 </div>
@@ -84,52 +87,11 @@
           <h2>Are you sure you want to delete?
           </h2>
           <div class="d-flex justify-content-center flex-wrap">
-            <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+            <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
             <button mat-raised-button color="primary" class="delete-btn" (click)="categoryDelete()"> Yes </button>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 </div>
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  

@@ -1,151 +1,114 @@
 <div class="viewcategory-container">
-    <div class="view-category">
-      <div class="search-category">
-        <mat-form-field appearance="outline">
-          <mat-select [(ngModel)]="categorySearch" disableRipple [ngModelOptions]="{standalone: true}">
-            <mat-option value="">Select Category</mat-option>
-            <mat-option *ngFor="let gm of catarr" [value]="gm.category_id">{{ gm.category_name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="form-group w-200">
-          <input matInput type="text" name="cname" [(ngModel)]="editionSearch"
-              (keydown.enter)="onKeydown($event)" (keyup.enter)="searchEdition()">
-          <!-- <input matInput type="text" name="cname"> -->
+  <div class="view-category">
+    <div class="search-category">
+      <mat-form-field appearance="outline">
+        <mat-select [(ngModel)]="categorySearch" disableRipple [ngModelOptions]="{standalone: true}">
+          <mat-option value="">Select Category</mat-option>
+          <mat-option *ngFor="let gm of catarr" [value]="gm.category_id">{{ gm.category_name }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-      <button mat-raised-button color="primary" class="search-btn"  (click)="searchEdition()">Search
+      <mat-form-field appearance="outline" class="form-group w-200">
+        <input matInput type="text" name="cname" [(ngModel)]="editionSearch" (keydown.enter)="onKeydown($event)"
+          (keyup.enter)="searchEdition()">
+        <!-- <input matInput type="text" name="cname"> -->
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="search-btn" (click)="searchEdition()">Search
       </button>
-      <button mat-raised-button color="primary" class="newcategory-btn" (click)="newEdition()">New Edition</button>
-      </div>
-      <div class="header">
-        <table id="view-table">
-          <thead class="table-header">
-            <th class="first">
+      <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/epaper/edition/add">New Edition</button>
+    </div>
+    <div class="header">
+      <table id="view-table">
+        <thead class="table-header">
+          <th class="first">
+            <input type="checkbox" class="example-margin">
+          </th>
+          <th class="content">Edition Title</th>
+          <th class="content">Category</th>
+          <th class="content">Edition Date</th>
+          <th class="content">Status</th>
+          <th class="content">Action</th>
+          <th class="content">Preview</th>
+          <th class="content">Delete</th>
+        </thead>
+        <tbody *ngIf="editionarr && editionarr.length; else elseblock">
+          <tr *ngFor="let e of editionarr | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td class="first">
               <input type="checkbox" class="example-margin">
-            </th>
-            <th class="content">Edition Title</th>
-            <th class="content">Category</th>
-            <th class="content">Edition Date</th>
-            <th class="content">Status</th>
-            <th class="content">Action</th>
-            <th class="content">Preview</th>
-            <th class="content">Delete</th>
-          </thead>
-          <tbody *ngIf = "editionarr && editionarr.length; else elseblock">
-            <tr *ngFor = "let e of editionarr | paginate: { itemsPerPage: 10, currentPage: p }">
-              <td class="first">
-                <input type="checkbox" class="example-margin">
-              </td>
-              <td>{{e.edition_name}}</td>
-              <td>{{e.category_name}}</td>
-              <td>{{e.edition_date | date}}</td>
-              <td>{{e.status == 1 ? "Public" : "Private"}}</td>
-              <td>
-                <div class="action-icon">
-              <mat-icon  (click)="editEdition(e)">edit</mat-icon>
-              <mat-icon  data-toggle="modal" data-target="#exampleModal" (click)="addToFront(e)">add</mat-icon>               
-              <div class="upload-icon"> <i class="fa-solid fa-upload" (click)="upload(e.edition_id)"></i></div>
+            </td>
+            <td>{{e.edition_name}}</td>
+            <td>{{e.category_name}}</td>
+            <td>{{e.edition_date | date}}</td>
+            <td>{{e.status == 1 ? "Public" : "Private"}}</td>
+            <td>
+              <div class="action-icon">
+                <mat-icon (click)="editEdition(e)">edit</mat-icon>
+                <mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(e)">add</mat-icon>
+                <div class="upload-icon"> <i class="fa-solid fa-upload" (click)="upload(e.edition_id)"></i></div>
               </div>
+            </td>
+            <td><mat-icon (click)="preview(e)">preview</mat-icon></td>
+            <td><mat-icon data-toggle="modal" data-target="#Modal"
+                (click)="deleteEdition(e.edition_id)">delete</mat-icon></td>
+          </tr>
+        </tbody>
+        <ng-template #elseblock>
+          <tbody>
+            <tr>
+              <td colspan="6" class="text-center" style="color: black;">
+                No record Found
               </td>
-              <td><mat-icon (click)="preview(e)">preview</mat-icon></td>
-              <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteEdition(e.edition_id)">delete</mat-icon></td>
             </tr>
           </tbody>
-          <ng-template #elseblock>
-            <tbody>
-              <tr>
-                <td colspan="6" class="text-center" style="color: black;">
-                  No record Found
-                </td>
-              </tr>
-            </tbody>
         </ng-template>
-        </table>
-      </div>
-      <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
+      </table>
+    </div>
+    <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
       style="padding-top:1vw;padding-bottom:1vw;">
       <div class="d-flex" style="padding-left: 3%;">
         <!-- <button class="apply-btn" style="margin-left:1vw;">apply to selected items</button> -->
       </div>
       <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
-     </div> 
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex justify-content-center flex-wrap">
+            <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home
             </button>
+            <button mat-raised-button color="primary" (click)="addToHome()"> Add to Home </button>
           </div>
-          <div class="modal-body">
-            <div class="d-flex justify-content-center flex-wrap">
-              <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home </button>
-              <button mat-raised-button color="primary" (click)="addToHome()"> Add to Home </button>
-            </div>
-          </div> 
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div>
-              <h2>Are you sure you want to delete?
-              </h2>
-              <div class="d-flex justify-content-center flex-wrap">
-                <button  mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
-                <button mat-raised-button color="primary" class="delete-btn" (click)="editionDelete()"> Yes </button>
-              </div>
+  <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <h2>Are you sure you want to delete?
+            </h2>
+            <div class="d-flex justify-content-center flex-wrap">
+              <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+              <button mat-raised-button color="primary" class="delete-btn" (click)="editionDelete()"> Yes </button>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
     </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  </div>
