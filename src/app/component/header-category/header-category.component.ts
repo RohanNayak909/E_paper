@@ -72,7 +72,7 @@ export class HeaderCategoryComponent implements OnInit {
     })
   }
   getAllEdition(){
-    this.editionService.getEditionAll(this.eid,'',environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.editionService.getEditionAll(this.eid,'','',environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));

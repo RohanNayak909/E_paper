@@ -115,10 +115,10 @@ export class EditcategoryComponent implements OnInit {
         this.category.ads_img = this.category.ads_image
       }
     this.categoryService.createCategory(this.category).subscribe(res=>{
-      if (res.code === "success") {
-       
+      if (res.code === "success") {     
+        this.spinnerService.hide();
         this.notification.success("Category Updated Successfully");
-        window.location.reload();
+        this.router.navigate([`/admin/epaper/category`]);
       } else {
         this.notification.error(res.message)
         this.spinnerService.hide();

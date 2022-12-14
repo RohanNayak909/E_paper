@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ModeluserDetails } from 'src/app/models/modeluserdetails';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
@@ -21,11 +21,11 @@ export class EdituserComponent implements OnInit {
   allUser:any;
   userid:any;
   constructor(private masterService: MasterServiceService,
-    private userService: UserService,private notification: NotificationService,private activatedRoute: ActivatedRoute) { }
+    private userService: UserService,private notification: NotificationService,
+    private activatedRoute: ActivatedRoute,private router: Router) { }
 
   ngOnInit(): void {
     this.userData = new ModeluserDetails();
-    this.userData.user_status = this.userData.user_status.toString();
     const routeParams = this.activatedRoute.snapshot.paramMap;
     this.userid = Number(routeParams.get('id'));
      this.dropdownSettings = {
@@ -37,17 +37,28 @@ export class EdituserComponent implements OnInit {
       itemsShowLimit: 1000,
       allowSearchFilter: true
     };
-  
+    this.getalluser();
     this.getRoles();
    
+   
   }
-  
+  getalluser() {
+    this.userService.getUserDetails('', this.userid,environment.CUSTOMER_ID, 'N').subscribe((data: any) => {
+      this.allUser = data.body
+      this.allUser = this.allUser.map((dt: any) => JSON.parse(dt));
+      this.userData = this.allUser[0];    
+      this.userData.user_status = this.userData.user_status.toString();
+    },(err:any) => {
+      console.log(err);
+    })
+  }
   getRoles() {
     this.masterService.getRoles(environment.CUSTOMER_ID).subscribe((res: any) => {
       this.role = res.body;
       this.role = this.role.map((g: string) => JSON.parse(g));
- 
+
       if(this.userData.role !== null && this.userData.role !== undefined) {
+        
         let arr:any = [];
         let split_arr = this.userData.role.split(",");
         for(var i = 0; i < split_arr.length; i++) {
@@ -58,6 +69,7 @@ export class EdituserComponent implements OnInit {
 
         let value = this.role.filter((d:any) => arr.map((v:any) => v.id).includes(d.id));
         this.userData.role = value;
+        
       }
     })
   }
@@ -84,8 +96,7 @@ export class EdituserComponent implements OnInit {
     this.userService.createUser(this.userData).subscribe((res: any) => {
       if (res.code == "success") {
         this.notification.success("User data updated sucessfully");
-        // form.reset();
-        window.location.reload();
+        this.router.navigate([`/admin/user/view`]);
       }else{
         this.notification.error(res.message);
       }

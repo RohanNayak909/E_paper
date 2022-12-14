@@ -19,6 +19,7 @@ export class ViewusersComponent implements OnInit {
   uid:any = ''
   p: any = 1;
   userSearch:any = '';
+  userId:any;
   constructor(private userService: UserService,private matDialog:MatDialog,private masterService: MasterServiceService,
     private notification: NotificationService,private router:Router) { }
 
@@ -45,26 +46,25 @@ export class ViewusersComponent implements OnInit {
         this.router.navigate([`/admin/user/edit/${data.user_id}`]);  
     }
     deleteUser(uid: any) {
-        const dialogRef = this.matDialog.open(DeleteConfirmationModalComponent);
-        dialogRef.afterClosed().subscribe((result:any) => {      
-          if(result){
-            this.userDelete(uid);
-          }
-        });
-        return;
+       this.userId = uid
       }
-      userDelete(uid:any){
+      userDelete(){
         var funct = 'USER';
-        this.masterService.bulkDeletion(funct,uid,0,environment.CUSTOMER_ID).subscribe(res=>{
+        this.masterService.bulkDeletion(funct,this.userId,0,environment.CUSTOMER_ID).subscribe(res=>{
           if(res.code === "success"){
+            document.getElementById("closeDeleteModalButton")?.click();
             this.notification.success("User deleted successfully");
           //  window.location.reload();
            this.getalluser();
   
           }else {
+            document.getElementById("closeDeleteModalButton")?.click();
             this.notification.error(res.message);
           }
         })
+      }
+      cancel(){
+        document.getElementById("closeDeleteModalButton")?.click();
       }
       searchUser(){
         this.userService.getUserDetails(this.userSearch, '',environment.CUSTOMER_ID, 'N').subscribe((data: any) => {

@@ -80,8 +80,9 @@ export class CategoryDialogComponent implements OnInit {
       }
       this.categoryService.createCategory(this.category).subscribe(res => {
         if (res.code === "success") {
+          this.spinnerService.hide();
           this.notification.success(res.message);
-          window.location.reload();
+          this.router.navigate([`/admin/epaper/category`]);
         } else {
           this.notification.error(res.message)
           this.spinnerService.hide();

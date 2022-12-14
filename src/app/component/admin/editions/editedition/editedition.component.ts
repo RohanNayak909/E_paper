@@ -52,7 +52,7 @@ export class EditeditionComponent implements OnInit {
     })
   }
   getAllEdition() {
-    this.editionService.getEditionAll(this.eid, this.editionSearch, this.currentuser.customer_id).subscribe(res => {
+    this.editionService.getEditionAll(this.eid, this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
       if (res.code = 'sucess') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
@@ -104,11 +104,12 @@ export class EditeditionComponent implements OnInit {
       }
       this.editionService.createEdition(this.edition).subscribe(res => {
         if (res.code === "success") {
-          this.notification.success("Edition edited sucessfully");
-          window.location.reload();
-        } else {
-          this.notification.error(res.message)
           this.spinnerService.hide();
+          this.notification.success("Edition edited sucessfully");
+          this.router.navigate([`/admin/epaper/edition`]);
+        } else {
+          this.spinnerService.hide();
+          this.notification.error(res.message);    
         }
       },(err) =>{
         console.log(err);

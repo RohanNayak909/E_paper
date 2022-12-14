@@ -52,7 +52,7 @@ export class EditionsComponent implements OnInit {
     })
   }
   getAllEdition() {
-    this.editionService.getEditionAll(this.eid, this.editionSearch, this.currentuser.customer_id).subscribe(res => {
+    this.editionService.getEditionAll(this.eid, this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
       if (res.code = 'sucess') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
@@ -93,7 +93,7 @@ export class EditionsComponent implements OnInit {
   }
   searchEdition() {
     if(this.editionSearch){
-    this.editionService.getEditionAll('', this.editionSearch, this.currentuser.customer_id).subscribe(res => {
+    this.editionService.getEditionAll('', this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
       if (res.code = 'sucess') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
@@ -104,9 +104,10 @@ export class EditionsComponent implements OnInit {
       this.editionarr = []
     })
   }else if (this.categorySearch){
-    this.editionService.getEditionByCategory('', this.categorySearch, this.currentuser.customer_id).subscribe(res => {
+    this.editionService.getEditionAll('','',this.categorySearch,this.currentuser.customer_id).subscribe(res => {
       if (res.code = 'sucess') {
         var data = res.body;
+        console.log(data,'data');
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
         console.log(this.editionarr,'data');
       } else {

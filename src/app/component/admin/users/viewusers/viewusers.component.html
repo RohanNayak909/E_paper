@@ -1,20 +1,13 @@
 <div class="viewcategory-container">
   <div class="view-category">
     <div class="search-category">
-      <!-- <mat-form-field appearance="outline">
-          <mat-select>
-            <mat-option value="0">Select Role</mat-option>
-            <mat-option value="1">None</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-raised-button color="primary" class="search-btn">Search Role</button> -->
       &nbsp;&nbsp;
       <mat-form-field appearance="outline" class="form-group">
         <input matInput type="text" name="cname" [(ngModel)]="userSearch">
       </mat-form-field>
       <button mat-raised-button color="primary" class="search-btn" (click)="searchUser()">Search
         User</button>
-      <button mat-raised-button color="primary" class="newcategory-btn" (click)="addUser()">New User</button>
+      <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/user/add">New User</button>
     </div>
 
 
@@ -41,7 +34,7 @@
             <td><mat-icon (click)="editUser(data)">edit</mat-icon>
               <!-- <mat-icon>add</mat-icon> -->
             </td>
-            <td><mat-icon data-toggle="modal" data-target="#Modal">delete</mat-icon></td>
+            <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteUser(data.user_id)">delete</mat-icon></td>
           </tr>
         </tbody>
         <ng-template #elseblock>
@@ -78,8 +71,8 @@
           <h2>Are you sure you want to delete?
           </h2>
           <div class="d-flex justify-content-center flex-wrap">
-            <button mat-raised-button color="warn" class="delete-btn mr-20"> No </button>
-            <button mat-raised-button color="primary" class="delete-btn"> Yes </button>
+            <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+            <button mat-raised-button color="primary" class="delete-btn" (click)="userDelete()"> Yes </button>
           </div>
         </div>
       </div>
