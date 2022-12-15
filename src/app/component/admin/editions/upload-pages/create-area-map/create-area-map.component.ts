@@ -55,7 +55,7 @@ export class CreateAreaMapComponent implements OnInit {
     this.img.src = this.deleteIcon;
     this.img1.src = this.saveIcon;
 
-    fabric.Object.prototype.controls.clone = new fabric.Control({
+    fabric.Object.prototype.controls.updateControl = new fabric.Control({
       x: -0.5,
       y: -0.5,
       offsetX: 25,
@@ -122,7 +122,7 @@ export class CreateAreaMapComponent implements OnInit {
               height: parseFloat(this.map_arr[i].height),
               fill: 'rgba(110, 152, 219, 0.2)',
               stroke: 'green',
-              strokeWidth: 2,
+              strokeWidth: 3,
               name: this.map_arr[i].map_id
             });
 
@@ -182,6 +182,8 @@ export class CreateAreaMapComponent implements OnInit {
   }
 
   saveObject = (eventData: any, transform: any) => {
+    console.log(transform.target);
+    
     var target = transform.target;
 
     if (target) {
@@ -198,32 +200,31 @@ export class CreateAreaMapComponent implements OnInit {
       this.savedCoordinates.img_id = this.img_id;
       this.savedCoordinates.x_coord = Math.round(target.left * 100) / 100;
       this.savedCoordinates.y_coord = Math.round(target.top * 100) / 100;
-      this.savedCoordinates.width = Math.round(target.width * 100) / 100;
-      this.savedCoordinates.height = Math.round(target.height * 100) / 100;
+      this.savedCoordinates.width = Math.round((target.lineCoords.br.x - target.lineCoords.bl.x - 3) * 100) / 100;
+      this.savedCoordinates.height = Math.round((target.lineCoords.br.y - target.lineCoords.tr.y - 3) * 100) / 100;
       this.savedCoordinates.customer_id = this.currentuser.customer_id;
       this.savedCoordinates.created_by = this.currentuser.user_id;
       this.savedCoordinates.map_id = map_id
 
       console.log(this.savedCoordinates);
       
-
-      // this.editionService.createAreaMap(this.savedCoordinates).subscribe(res => {
-      //   if (res.code === "success") {
-      //     if(map_id) {
-      //       this.notification.success("Map area updated sucessfully");
-      //     } else {
-      //       this.notification.success("Map area created sucessfully");
-      //     }
+      this.editionService.createAreaMap(this.savedCoordinates).subscribe(res => {
+        if (res.code === "success") {
+          if(map_id) {
+            this.notification.success("Map area updated sucessfully");
+          } else {
+            this.notification.success("Map area created sucessfully");
+          }
           
-      //     location.reload()
-      //   } else {
-      //     this.notification.error(res.message)
-      //     this.spinnerService.hide();
-      //   }
-      // }, (err) => {
-      //   this.notification.error(err.message)
-      //   this.spinnerService.hide();
-      // });
+          location.reload()
+        } else {
+          this.notification.error(res.message)
+          this.spinnerService.hide();
+        }
+      }, (err) => {
+        this.notification.error(err.message)
+        this.spinnerService.hide();
+      });
     }
 
     return false;
