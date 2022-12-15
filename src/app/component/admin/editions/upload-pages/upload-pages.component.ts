@@ -120,8 +120,8 @@ export class UploadPagesComponent implements OnInit {
   cancel(){
     document.getElementById("closeDeleteModalButton")?.click();
   }
-  edit(id: any) {
-    this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${id}`]);
+  edit(id: any,eid:any) {
+    this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${eid}/${id}`]);
   }
   createAreaMap(id: any) {
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);

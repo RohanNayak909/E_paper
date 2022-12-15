@@ -53,7 +53,7 @@ const routes: Routes = [
       { path: 'header/manage', component: ManageHeaderComponent},
       { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
       { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent},
-      { path: 'epaper/edition/upload-pages/edit/:id', component: EditPagesComponent}
+      { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent}
     ],
   }
 ];

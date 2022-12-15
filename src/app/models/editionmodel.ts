@@ -20,4 +20,6 @@ export class editionModel{
 	input:any
 	image_id:any
 	image_size:any
+	image_url:any
+	index:any
 }
