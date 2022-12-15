@@ -177,6 +177,6 @@ export class EditionsComponent implements OnInit {
     })
   }
   addSupplimentPages(data:any){
-   this.router.navigate([`/admin/edition/supplement/${data.edition_id}`]);
+   this.router.navigate([`/admin/edition/supplement/view/${data.edition_id}`]);
   }
 }

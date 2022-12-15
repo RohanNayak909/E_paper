@@ -52,7 +52,7 @@ const routes: Routes = [
       { path: 'epaper/edition/add', component: NeweditionComponent},
       { path: 'epaper/edition/edit/:id', component: EditeditionComponent},
       { path: 'epaper/edition/featured', component: FeaturededitionComponent},
-      { path: 'edition/supplement/:id', component: SupplimentpagesComponent},
+      { path: 'edition/supplement/view/:id', component: SupplimentpagesComponent},
       { path: 'edition/supplement/add', component: NewsupplimentComponent},
       { path: 'header/manage', component: ManageHeaderComponent},
       { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
