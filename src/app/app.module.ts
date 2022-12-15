@@ -43,12 +43,11 @@ import { EdituserComponent } from './component/admin/users/edituser/edituser.com
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuard } from './Guards/auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
-import { SupplimentpagesComponent } from './component/admin/categories/supplimentpages/supplimentpages.component';
-import { NewsupplimentComponent } from './component/admin/categories/supplimentpages/newsuppliment/newsuppliment.component';
 import { HeaderCategoryComponent } from './component/header-category/header-category.component';
 import {MatNativeDateModule} from '@angular/material/core';
 import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
+import { SupplimentpagesComponent } from './component/admin/editions/supplimentpages/supplimentpages.component';
+import { NewsupplimentComponent } from './component/admin/editions/supplimentpages/newsuppliment/newsuppliment.component';
 @NgModule({
   declarations: [
     AppComponent,

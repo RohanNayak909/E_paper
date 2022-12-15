@@ -6,6 +6,8 @@ import { CategoryDialogComponent } from './component/admin/categories/newcategor
 import { EditeditionComponent } from './component/admin/editions/editedition/editedition.component';
 import { EditionsComponent } from './component/admin/editions/editions.component';
 import { NeweditionComponent } from './component/admin/editions/newedition/newedition.component';
+import { NewsupplimentComponent } from './component/admin/editions/supplimentpages/newsuppliment/newsuppliment.component';
+import { SupplimentpagesComponent } from './component/admin/editions/supplimentpages/supplimentpages.component';
 import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
 import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
@@ -50,6 +52,8 @@ const routes: Routes = [
       { path: 'epaper/edition/add', component: NeweditionComponent},
       { path: 'epaper/edition/edit/:id', component: EditeditionComponent},
       { path: 'epaper/edition/featured', component: FeaturededitionComponent},
+      { path: 'edition/supplement/:id', component: SupplimentpagesComponent},
+      { path: 'edition/supplement/add', component: NewsupplimentComponent},
       { path: 'header/manage', component: ManageHeaderComponent},
       { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
       { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent},
