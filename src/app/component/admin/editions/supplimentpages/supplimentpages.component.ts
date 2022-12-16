@@ -129,4 +129,7 @@ export class SupplimentpagesComponent implements OnInit {
   cancel() {
     document.getElementById("closeDeleteModalButton")?.click();
   }
+  closeModal(){
+    document.getElementById("closeModalButton")?.click();
+  }
 }
