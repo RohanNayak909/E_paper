@@ -123,7 +123,8 @@ export class UploadPagesComponent implements OnInit {
   edit(id: any,eid:any) {
     this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${eid}/${id}`]);
   }
-  createAreaMap(id: any) {
+  createAreaMap(id: any,image_url: any) {
+    localStorage.setItem('img_url',image_url)
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);
   }
 }
