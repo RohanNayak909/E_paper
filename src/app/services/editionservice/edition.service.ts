@@ -34,4 +34,10 @@ export class EditionService {
   getEditionByFeaturedCategory(custid:any,category:any) {
     return this.HTTP.get<any>(Masterapi + `/get-edition-by-featured-category?cust_id=${custid}&category=${category}`);
   }
+  addSupplement(details:any) {
+    return this.HTTP.post<any>(Masterapi + `/add-supplement`,{ ...details });
+  }
+  getSupplementByEdition(edition_id:any,custid:any) {
+    return this.HTTP.get<any>(Masterapi + `/get-supplement-by-edition?edition_id=${edition_id}&cust_id=${custid}`);
+  }
 }

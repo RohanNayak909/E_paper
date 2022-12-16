@@ -71,3 +71,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .add-tag-form-field .mat-form-field {
   width: 100%;
 }
+:host ::ng-deep .cdk-global-overlay-wrapper, .cdk-overlay-container {
+  z-index: 99999 !important;
+}
