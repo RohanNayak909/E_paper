@@ -22,4 +22,6 @@ export class editionModel{
 	image_size:any
 	image_url:any
 	index:any
+	supplement_name:any
+	supplement_alias:any
 }

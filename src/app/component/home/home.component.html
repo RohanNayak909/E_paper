@@ -20,13 +20,13 @@
   </div>
   <div class="category-container">
     <div class="row">
-      <div class="col-md-3 col-sm-6 col-12" *ngFor="let data of catarr">
+      <div class="col-md-3 col-sm-6 col-12" *ngFor="let data of catarr" >
         <div>
           <div class="category-name">
-            <h1>{{data.category_name}}</h1>
+            <h1 style="cursor: pointer;" (click)="previewEdition(data.category_name)">{{data.category_name}}</h1>
           </div>
-          <div class="epaper-container">
-            <img [src]="data.ads_image" (click)="previewEdition(data.category_name)" />
+          <div class="epaper-container" style="cursor: pointer;" (click)="previewEdition(data.category_name)">
+            <img [src]="data.ads_image"  />
           </div>
         </div>
       </div>
