@@ -107,6 +107,9 @@ export class SupplimentpagesComponent implements OnInit {
       this.notification.error(err.message);
     })
   }
+  closemodal(){
+    document.getElementById("closeModalButton")?.click();
+  }
   deleteSupplement(id: any) {
     this.supplementId = id;
   }

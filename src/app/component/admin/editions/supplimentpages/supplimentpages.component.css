@@ -110,6 +110,9 @@ tr:nth-child(odd) {
 .modal-body {
     padding: 20px 0px 35px;
 }
+.modal-body1 {
+    padding: 0px 0px 35px;
+}
 
 .modal-dialog {
     position: absolute;
@@ -119,6 +122,14 @@ tr:nth-child(odd) {
     zoom: 83%;
     transform: translate(-50%, -50%);
 }
+/* .modal-dialog1 {
+    position: absolute;
+    top: 45%;
+    width: 400px;
+    left: 57%;
+    zoom: 83%;
+    transform: translate(-50%, -50%);
+} */
 
 .modal-header {
     padding: 5px 10px 0px 5px;
@@ -140,6 +151,27 @@ tr:nth-child(odd) {
 }
 .mr-20{
     margin-right: 20px;
+}
+.category-container {
+    padding-left:40px;
+}
+.add-tag-form-field  mat-label {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+}
+.add-tag-form-field .mat-form-field {
+    width: 100%;
+}
+.add-tag-form-field select{
+    width: 100%;
+    height: 35px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+.mat-icon{
+    cursor: pointer;
 }
 /* -------------------------------------------- */
 cdk-overlay-container.cdk-overlay-container {
