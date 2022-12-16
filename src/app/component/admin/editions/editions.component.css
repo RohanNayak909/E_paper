@@ -188,11 +188,21 @@ tr:nth-child(odd) {
     padding: 5px 0;
     position: absolute;
     z-index: 9;
-    top: 80%;
-    left: 73%;
+    top: 90%;
+    left: 100%;
     margin-left: -60px;
     opacity: 0;
     transition: opacity 1s;
+  }
+  .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #3f51b5 transparent;
   }
   
   .tooltip:hover .tooltiptext {
