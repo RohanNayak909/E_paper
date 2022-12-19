@@ -28,12 +28,14 @@ export class CategoriesComponent implements OnInit {
   p: any = 1;
   categoryId:any
   category:any = new categoryModel();
+ 
   constructor(private loginService:LoginService,private matDialog: MatDialog,
     private categoryService : CategoryServiceService,private masterService: MasterServiceService,
     private notification:NotificationService,private router:Router) { }
 
   ngOnInit(): void {
     this.currentuser = this.loginService.getCurrentUser();
+   
     this.getallcategory();
   }
   onKeydown(event: any) {
@@ -87,8 +89,11 @@ export class CategoriesComponent implements OnInit {
       this.catarr = []
     })
   }
-
+  removefromhome:any;
   addToFront(data:any){
+   
+    this.removefromhome = document.getElementById("removefromhome");
+    this.removefromhome.disabled = true;
     this.category = data;
   }
   addToHome(){
@@ -99,7 +104,8 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.createCategory(this.category).subscribe(res => {
       if (res.code === "success") {
        document.getElementById("closeModalButton")?.click();
-        this.notification.success("Category added to home.");
+       this.removefromhome.disabled = false;
+       this.notification.success("Category added to home.");
       } else {
         this.notification.error(res.message)
       }

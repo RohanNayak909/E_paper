@@ -87,6 +87,10 @@ export class UploadPagesComponent implements OnInit {
       if (res.code === "success") {
         var img = res.body;
         this.imgarr = img.map((i: any) => JSON.parse(i));
+        var i: any
+        for (i = 0; i < this.imgarr?.length; i++) {
+          this.imgarr[i].index = i + 1;
+        }
       } else {
         this.imgarr = [];
       }
@@ -120,7 +124,8 @@ export class UploadPagesComponent implements OnInit {
   cancel(){
     document.getElementById("closeDeleteModalButton")?.click();
   }
-  edit(id: any,eid:any) {
+  edit(index:any,id: any,eid:any) {
+    localStorage.setItem('index',index)
     this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${eid}/${id}`]);
   }
   createAreaMap(id: any,image_url: any) {

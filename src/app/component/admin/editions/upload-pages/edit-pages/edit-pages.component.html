@@ -44,7 +44,7 @@
                 <div class="edit-content-form-field row">
                     <div class="col-md-6 col-sm-12 col-12">
                         <mat-label class="pdf-info">Pdf File</mat-label>
-                        <div class="upload_txt  mt-10"><input type="file" id="file-select"></div>
+                        <div class="upload_txt  mt-10"><input type="file" id="file-select"  (change)="onUpload($event)" accept="application/pdf"></div>
 
                     </div>
                     <div class="col-md-6 col-sm-12 col-12">
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="submit-button">
-            <button mat-raised-button color="primary">Submit</button>
+            <button mat-raised-button color="primary" (click)="getpdfToJpegImage()">Submit</button>
         </div>
     </div>
 </div>
