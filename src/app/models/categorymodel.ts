@@ -12,4 +12,7 @@ export class categoryModel{
 	filetype:any;
 	base64file:any;
     addToHome: any;
+    alias:any;
+    meta_desc:any;
+    meta_keywords:any;
 }
