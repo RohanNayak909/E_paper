@@ -167,12 +167,22 @@
     margin-right: 10px !important;
 }
 
-.imagemap .area {
+:host::ng-deep .imagemap {
+    position: relative;
+}
+
+:host::ng-deep .imagemap img {
+    display: block;
+}
+
+:host::ng-deep .imagemap .area {
     display: block;
     position: absolute;
     transition: box-shadow 0.15s ease-in-out;
 }
 
-.imagemap .area:hover {
-    box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.5);
+:host::ng-deep .imagemap .area:hover {
+    border: 3px solid red;
+    background: rgba(110, 152, 219, 0.4);
+    /* box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.5); */
 }

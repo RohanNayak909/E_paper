@@ -19,8 +19,10 @@ body {
 .fp-canvas,
 .fp-canvas-2 {
     position: absolute;
-    width: calc(100%);
     height: auto;
+    width: auto;
+    /* width: 1048px;
+    height: 1609px; */
     top: 0;
     left: 0;
     /* z-index: 1; */

@@ -23,18 +23,19 @@ export class HeaderCategoryComponent implements OnInit {
   headerarry: any
   editionDate: any
   datepicker: any;
+  hide: Boolean = false
   constructor(private editionService: EditionService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
-    activatedRoute.params.subscribe(val => {
-      let routeParams = this.activatedRoute.snapshot.paramMap;
-      this.eid = Number(routeParams.get('id'));
-      this.category = routeParams.get('category');
-      this.cust_id = environment.CUSTOMER_ID
-      this.currentuser = this.loginService.getCurrentUser();
-      this.getAllImages();
-      this.getAllEdition();
-    })
+    // activatedRoute.params.subscribe(val => {
+    //   let routeParams = this.activatedRoute.snapshot.paramMap;
+    //   this.eid = Number(routeParams.get('id'));
+    //   this.category = routeParams.get('category');
+    //   this.cust_id = environment.CUSTOMER_ID
+    //   this.currentuser = this.loginService.getCurrentUser();
+    //   this.getAllImages();
+    //   this.getAllEdition();
+    // })
   }
 
   ngOnInit(): void {
@@ -51,41 +52,41 @@ export class HeaderCategoryComponent implements OnInit {
     let month = today.getMonth() > 9 ? today.getMonth() + 1 : `0${today.getMonth() + 1}`;
     let year = today.getFullYear();
     this.datepicker.setAttribute('max', `${year}-${month}-${date}`);
+    this.hide = false
   }
 
-  ngAfterViewInit(){
-    console.log('View Init====',this.imgarr);
-    
-    if (this.imgarr.length > 0) {
-      var images: any = document.querySelectorAll('img[workmap]');
-      console.log('images===',images);
-      
-      images.forEach(function (image: any) {
-        var mapid = image.getAttribute('workmap').substr(1);
-        var imagewidth = image.getAttribute('width');
-        var imageheight = image.getAttribute('height');
-        var imagemap:any = document.querySelector('map[name="' + mapid + '"]');
-        var areas = imagemap.querySelectorAll('area');
+  ngAfterViewInit() {
+    setTimeout(() => {
+      if (this.imgarr.length > 0) {
+        var images: any = document.querySelectorAll('img[usemap]');
+        images.forEach(function (image: any) {
+          var mapid = image.getAttribute('usemap').substr(1);
+          var imagewidth = image.naturalWidth;
+          var imageheight = image.naturalHeight;
 
-        image.removeAttribute('usemap');
-        imagemap.remove();
+          var imagemap: any = document.querySelector('map[name="' + mapid + '"]');
+          var areas = imagemap.querySelectorAll('area');
 
-        // create wrapper container
-        var wrapper = document.createElement('div');
-        wrapper.classList.add('imagemap');
-        image.parentNode.insertBefore(wrapper, image);
-        wrapper.appendChild(image);
+          image.removeAttribute('usemap');
+          imagemap.remove();
 
-        areas.forEach(function (area:any) {
-          var coords = area.getAttribute('coords').split(',');
-          var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
-          var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
-          xcoords = xcoords.sort(function (a, b) { return a - b });
-          ycoords = ycoords.sort(function (a, b) { return a - b });
-          wrapper.innerHTML += "<a href='" + area.getAttribute('href') + "' title='" + area.getAttribute('title') + "' class='area' style='left: " + ((xcoords[0] / imagewidth) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / imageheight) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / imagewidth) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / imageheight) * 100).toFixed(2) + "%;'></a>";
+          // create wrapper container
+          var wrapper = document.createElement('div');
+          wrapper.classList.add('imagemap');
+          image.parentNode.insertBefore(wrapper, image);
+          wrapper.appendChild(image);
+
+          areas.forEach(function (area: any) {
+            var coords = area.getAttribute('coords').split(',');
+            var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
+            var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
+            xcoords = xcoords.sort(function (a, b) { return a - b });
+            ycoords = ycoords.sort(function (a, b) { return a - b });
+            wrapper.innerHTML += "<a href='" + area.getAttribute('href') + "' class='area' style='left: " + ((xcoords[0] / imagewidth) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / imageheight) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / imagewidth) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / imageheight) * 100).toFixed(2) + "%;'></a>";
+          });
         });
-      });
-    }
+      }
+    }, 2000)
   }
 
   getAllImages() {
@@ -95,11 +96,36 @@ export class HeaderCategoryComponent implements OnInit {
         this.imgarr = img.map((i: any) => JSON.parse(i));
         this.currentIndex = 1;
         var i: any
-        console.log(this.imgarr);
+        if (this.imgarr.length > 0) {
+          var epaper: any = document.getElementById("epaper");
+          console.log(epaper);
 
-        for (i = 0; i < this.imgarr?.length; i++) {
-          this.imgarr[i].index = i + 1;
+          for (i = 0; i < this.imgarr?.length; i++) {
+            this.imgarr[i].index = i + 1
+          }
+          var img: any = document.createElement('img');
+          img.id = 'map_area_img'
+          img.src = this.imgarr[0].image_url
+          var wrapper: any = document.getElementById('imagemap');
+          wrapper.innerHTML = ""
+          wrapper.appendChild(img);
+          if (this.imgarr[0].area_details) {
+
+            var imagewidth = '';
+            var imageheight = '';
+            this.hide = true
+
+            this.imgarr[0].area_details.forEach(function (data: any) {
+              var coords = data.coordinates.split(',');
+              var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
+              var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
+              xcoords = xcoords.sort(function (a, b) { return a - b });
+              ycoords = ycoords.sort(function (a, b) { return a - b });
+              wrapper.innerHTML += "<a href='javascript:void(0)' class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / 1479) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / 1479) * 100).toFixed(2) + "%;'></a>";
+            });
+          }
         }
+
       } else {
         this.imgarr = [];
       }
@@ -107,6 +133,7 @@ export class HeaderCategoryComponent implements OnInit {
       this.imgarr = []
     })
   }
+
   getAllEdition() {
     this.editionService.getEditionAll(this.eid, '', '', environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
@@ -120,9 +147,28 @@ export class HeaderCategoryComponent implements OnInit {
       this.editionarr = []
     })
   }
-  goToPage(event: any) {
-    if (event) {
-      this.currentIndex = event;
+
+  goToPage(img_url: any, area_details: any) {
+    var img: any = document.createElement('img');
+    img.id = 'map_area_img'
+    img.src = img_url
+    var wrapper: any = document.getElementById('imagemap');
+    wrapper.innerHTML = ""
+    wrapper.appendChild(img);
+    if (area_details) {
+
+      var imagewidth = '';
+      var imageheight = '';
+      this.hide = true
+
+      area_details.forEach(function (data: any) {
+        var coords = data.coordinates.split(',');
+        var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
+        var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
+        xcoords = xcoords.sort(function (a, b) { return a - b });
+        ycoords = ycoords.sort(function (a, b) { return a - b });
+        wrapper.innerHTML += "<a href='javascript:void(0)' class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / 1479) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / 1479) * 100).toFixed(2) + "%;'></a>";
+      });
     }
   }
 
