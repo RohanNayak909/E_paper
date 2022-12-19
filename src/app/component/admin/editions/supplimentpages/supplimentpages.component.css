@@ -95,3 +95,85 @@ tr:nth-child(odd) {
 .search-btn {
     margin-left: 10px;
 }
+
+.modal-body .remove-btn {
+    /* background-color: #C7122D; */
+    font-family: var(--subheading);
+    color: #fff;
+    border: none;
+    border-radius: 0%;
+    box-shadow: none;
+    font-size: 17px;
+    padding: 10px 15px;
+}
+
+.modal-body {
+    padding: 20px 0px 35px;
+}
+.modal-body1 {
+    padding: 0px 0px 35px;
+}
+
+.modal-dialog {
+    position: absolute;
+    top: 35%;
+    width: 400px;
+    left: 45%;
+    zoom: 83%;
+    transform: translate(-50%, -50%);
+}
+.new {
+    position: absolute;
+    top: 20%;
+    width: 400px;
+    left: 40%;
+    zoom: 83%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-header {
+    padding: 5px 10px 0px 5px;
+    border-bottom: none;
+}
+
+.modal-body h2 {
+    text-align: center;
+}
+
+.delete-btn {
+    font-family: var(--subheading);
+    color: #fff;
+    border: none;
+    border-radius: 0%;
+    box-shadow: none;
+    font-size: 20px;
+    padding: 5px 15px;
+}
+.mr-20{
+    margin-right: 20px;
+}
+.category-container {
+    padding-left:40px;
+}
+.add-tag-form-field  mat-label {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+}
+.add-tag-form-field .mat-form-field {
+    width: 100%;
+}
+.add-tag-form-field select{
+    width: 100%;
+    height: 35px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+.mat-icon{
+    cursor: pointer;
+}
+/* -------------------------------------------- */
+cdk-overlay-container.cdk-overlay-container {
+    z-index:9999 !important;
+}

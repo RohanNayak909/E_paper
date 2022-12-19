@@ -1,0 +1,120 @@
+<div class="viewcategory-container">
+  <div class="view-category">
+    <div class="search-category">
+      <button mat-raised-button color="primary" class="newcategory-btn" data-toggle="modal"
+        data-target="#exampleModal">New</button>
+    </div>
+    <div class="header">
+      <table id="view-table">
+        <thead class="table-header">
+          <!-- <th class="first">
+              <input type="checkbox" class="example-margin">
+            </th> -->
+          <th class="content">Title</th>
+          <th class="content">Alias</th>
+          <th class="content">Action</th>
+        </thead>
+        <tbody *ngIf="supparr && supparr.length ;else elseblock ">
+          <tr *ngFor="let data of supparr">
+            <!-- <td class="first">
+                <input type="checkbox" class="example-margin">
+              </td> -->
+            <td>{{data.supplement_name}}
+            </td>
+            <td>{{data.supplement_alias}}</td>
+            <td>
+              <mat-icon data-toggle="modal"
+              data-target="#exampleModal" (click)="editSupplement(data)">edit
+            </mat-icon>
+              <mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteSupplement(data.supplement_id)">delete
+              </mat-icon>
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #elseblock>
+          <tbody>
+            <tr>
+              <td colspan="6" class="text-center" style="color: black;">
+                No record Found
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog new" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body1">
+        <div class="category-container">
+          <div class="add-tag-form">
+            <div class="popup">
+              <h1>New Supplement</h1>
+              <!-- <button class="close-btn" mat-button><i class="fa fa-close"></i></button> -->
+            </div>
+            <div class="add-tag-form-field  row">
+              <div class="col-md-10 col-sm-12 col-12">
+                <mat-label class="tag-info">Title</mat-label>
+                <mat-form-field appearance="outline" class="form-group">
+                  <input matInput type="text" name="title" [(ngModel)]="supplement.supplement_name" required>
+                </mat-form-field>
+
+                <mat-label class="tag-info">Alias</mat-label>
+                <mat-form-field appearance="outline" class="form-group">
+                  <input matInput type="text" name="alias" [(ngModel)]="supplement.supplement_alias" required>
+                </mat-form-field>
+                <mat-label class="tag-info">Parent Category</mat-label>
+                <!-- <mat-form-field appearance="outline">
+                        <mat-select class="suppliment" [ngModelOptions]="{standalone: true}" [(ngModel)]="suppliment.parent_category">
+                          <mat-option *ngFor="let data of catarr" [value]="data.category_id">{{data.category_name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>        -->
+                <select [(ngModel)]="supplement.parent_category">
+                  <option *ngFor="let data of catarr" [value]="data.category_id">{{data.category_name}}</option>
+                </select>
+                <div class="submit-button">
+                  <button mat-raised-button color="primary" *ngIf = "this.supplement.supplement_id; else elseBlock;" (click)="supplementEdit()">Submit</button>
+                  <ng-template #elseBlock>
+                    <button mat-raised-button color="primary" (click)="addSuppliment()">Submit</button>
+                  </ng-template>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="closeDeleteModalButton" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <h2>Are you sure you want to delete?
+          </h2>
+          <div class="d-flex justify-content-center flex-wrap">
+            <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
+            <button mat-raised-button color="primary" class="delete-btn" (click)="supplementDelete()"> Yes </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

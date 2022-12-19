@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-6 col-12">
                 <div class="upload-img-bg">
-                    <img src="assets/img/epaper-full-samp.jpeg" class="img-fluid">
+                    <img [src]="imgData.image_url" class="img-fluid">
                 </div>
             </div>
             <div class="col-md-8 col-sm-6 col-12">
@@ -12,7 +12,7 @@
                     <div class="col-md-6 col-sm-6 col-12">
                         <mat-label class="tag-info">Title</mat-label>
                         <mat-form-field appearance="outline">
-                            <input matInput type="text" name="title" required>
+                            <input matInput type="text" name="title" [(ngModel)]="imgData.index" required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-6 col-sm-6 col-12">
@@ -44,7 +44,7 @@
                 <div class="edit-content-form-field row">
                     <div class="col-md-6 col-sm-12 col-12">
                         <mat-label class="pdf-info">Pdf File</mat-label>
-                        <div class="upload_txt  mt-10"><input type="file" id="file-select"></div>
+                        <div class="upload_txt  mt-10"><input type="file" id="file-select"  (change)="onUpload($event)" accept="application/pdf"></div>
 
                     </div>
                     <div class="col-md-6 col-sm-12 col-12">
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="submit-button">
-            <button mat-raised-button color="primary">Submit</button>
+            <button mat-raised-button color="primary" (click)="getpdfToJpegImage()">Submit</button>
         </div>
     </div>
 </div>

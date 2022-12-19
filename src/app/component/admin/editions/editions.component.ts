@@ -12,6 +12,7 @@ import { DeleteConfirmationModalComponent } from '../../common/delete-confirmati
 import { AddtohomeeditionComponent } from './addtohomeedition/addtohomeedition.component';
 import { EditeditionComponent } from './editedition/editedition.component';
 import { NeweditionComponent } from './newedition/newedition.component';
+import { SupplimentpagesComponent } from './supplimentpages/supplimentpages.component';
 
 @Component({
   selector: 'app-editions',
@@ -174,5 +175,8 @@ export class EditionsComponent implements OnInit {
         this.notification.error(res.message);
       }
     })
+  }
+  addSupplimentPages(data:any){
+   this.router.navigate([`/admin/edition/supplement/view/${data.edition_id}`]);
   }
 }
