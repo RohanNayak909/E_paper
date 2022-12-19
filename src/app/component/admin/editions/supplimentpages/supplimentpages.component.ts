@@ -130,6 +130,8 @@ export class SupplimentpagesComponent implements OnInit {
     document.getElementById("closeDeleteModalButton")?.click();
   }
   closeModal(){
+    this.supplement = '';
     document.getElementById("closeModalButton")?.click();
+   
   }
 }
