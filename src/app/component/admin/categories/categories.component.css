@@ -125,7 +125,7 @@ tr:nth-child(odd) {
     box-shadow: none;
     font-size: 17px;
     padding: 10px 15px;
-}
+} 
 
 .modal-body {
     padding: 20px 0px 35px;
@@ -161,4 +161,17 @@ tr:nth-child(odd) {
 
 .mr-20 {
     margin-right: 20px;
+}
+.dist-btn1 {
+    background-color: #cccccc;
+    cursor: no-drop;
+    box-shadow: none !important;
+    border-radius: 0% !important;
+}
+
+.dist-btn {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    cursor: no-drop;
 }
