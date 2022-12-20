@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
@@ -24,18 +24,10 @@ export class HeaderCategoryComponent implements OnInit {
   editionDate: any
   datepicker: any;
   hide: Boolean = false
-  constructor(private editionService: EditionService,
+  constructor(private editionService: EditionService, private elementRef: ElementRef,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
-    // activatedRoute.params.subscribe(val => {
-    //   let routeParams = this.activatedRoute.snapshot.paramMap;
-    //   this.eid = Number(routeParams.get('id'));
-    //   this.category = routeParams.get('category');
-    //   this.cust_id = environment.CUSTOMER_ID
-    //   this.currentuser = this.loginService.getCurrentUser();
-    //   this.getAllImages();
-    //   this.getAllEdition();
-    // })
+    
   }
 
   ngOnInit(): void {
@@ -44,7 +36,7 @@ export class HeaderCategoryComponent implements OnInit {
     this.category = routeParams.get('category');
     this.cust_id = environment.CUSTOMER_ID
     this.currentuser = this.loginService.getCurrentUser();
-    this.getAllImages();
+    // this.getAllImages();
     this.getAllEdition();
     this.datepicker = document.getElementById('startDate');
     const today = new Date();
@@ -53,6 +45,11 @@ export class HeaderCategoryComponent implements OnInit {
     let year = today.getFullYear();
     this.datepicker.setAttribute('max', `${year}-${month}-${date}`);
     this.hide = false
+
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "assets/js/preview.js";
+    this.elementRef.nativeElement.appendChild(s);
   }
 
   ngAfterViewInit() {
@@ -98,7 +95,6 @@ export class HeaderCategoryComponent implements OnInit {
         var i: any
         if (this.imgarr.length > 0) {
           var epaper: any = document.getElementById("epaper");
-          console.log(epaper);
 
           for (i = 0; i < this.imgarr?.length; i++) {
             this.imgarr[i].index = i + 1
@@ -110,18 +106,20 @@ export class HeaderCategoryComponent implements OnInit {
           wrapper.innerHTML = ""
           wrapper.appendChild(img);
           if (this.imgarr[0].area_details) {
-
+            var dtarr = this.editionDate.split("-");
+            var dt = dtarr[0] + '' + dtarr[1] + '' + dtarr[2]
             var imagewidth = '';
             var imageheight = '';
             this.hide = true
-
+            var t = this
             this.imgarr[0].area_details.forEach(function (data: any) {
               var coords = data.coordinates.split(',');
               var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
               var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
               xcoords = xcoords.sort(function (a, b) { return a - b });
               ycoords = ycoords.sort(function (a, b) { return a - b });
-              wrapper.innerHTML += "<a href='javascript:void(0)' class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / 1479) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / 1479) * 100).toFixed(2) + "%;'></a>";
+              var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes';
+              wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + t.imgarr[0].index + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
             });
           }
         }
@@ -139,6 +137,7 @@ export class HeaderCategoryComponent implements OnInit {
       if (res.code == 'success') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
+        this.getAllImages();
         this.editionDate = this.editionarr[0].edition_date;
       } else {
         this.editionarr = []
@@ -148,7 +147,7 @@ export class HeaderCategoryComponent implements OnInit {
     })
   }
 
-  goToPage(img_url: any, area_details: any) {
+  goToPage(img_id: any, img_url: any, area_details: any, i: any) {
     var img: any = document.createElement('img');
     img.id = 'map_area_img'
     img.src = img_url
@@ -156,18 +155,20 @@ export class HeaderCategoryComponent implements OnInit {
     wrapper.innerHTML = ""
     wrapper.appendChild(img);
     if (area_details) {
-
+      var dtarr = this.editionDate.split("-");
+      var dt = dtarr[0] + '' + dtarr[1] + '' + dtarr[2]
       var imagewidth = '';
       var imageheight = '';
       this.hide = true
-
+      var t = this
       area_details.forEach(function (data: any) {
         var coords = data.coordinates.split(',');
         var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
         var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
         xcoords = xcoords.sort(function (a, b) { return a - b });
         ycoords = ycoords.sort(function (a, b) { return a - b });
-        wrapper.innerHTML += "<a href='javascript:void(0)' class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / 1479) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / 1479) * 100).toFixed(2) + "%;'></a>";
+        var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes';
+        wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + img_id + "," + data.map_id + "," + i + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
       });
     }
   }

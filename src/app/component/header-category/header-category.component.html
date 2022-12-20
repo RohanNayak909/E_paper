@@ -38,7 +38,7 @@
                     </div>
                     <mat-form-field appearance="outline">
                         <mat-select [(ngModel)]="currentIndex">
-                            <mat-option *ngFor="let data of imgarr" [value]="data.index" (click)="goToPage(data.image_url, data.area_details)">Page {{data.index}}
+                            <mat-option *ngFor="let data of imgarr" [value]="data.index" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">Page {{data.index}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-md-2 col-sm-12 col-12">
             <div class="page-holder" *ngFor="let data of imgarr">
-                <div class="pages" (click)="goToPage(data.image_url, data.area_details)">
+                <div class="pages" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">
                     <mat-icon>description</mat-icon>
                     <p>Page No - {{data.index}}</p>
                 </div>

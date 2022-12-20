@@ -202,11 +202,8 @@ export class CreateAreaMapComponent implements OnInit {
       var img_height = img.naturalHeight
       var img_width = img.naturalWidth
 
-      let width = img.clientWidth;
-        let height = img.clientHeight;
-
-        console.log(width,' * ',height);
-        
+      var src = img.src
+      var img_name = src.split("/")[6]
 
       this.savedCoordinates.img_id = this.img_id;
       this.savedCoordinates.x_coord = Math.round(target.left * 100) / 100;
@@ -218,26 +215,26 @@ export class CreateAreaMapComponent implements OnInit {
       this.savedCoordinates.map_id = map_id
       this.savedCoordinates.img_width = img_width
       this.savedCoordinates.img_height = img_height
+      this.savedCoordinates.image = img_name
 
       console.log(this.savedCoordinates);
       
-
-      // this.editionService.createAreaMap(this.savedCoordinates).subscribe(res => {
-      //   if (res.code === "success") {
-      //     if (map_id) {
-      //       this.notification.success("Map area updated sucessfully");
-      //     } else {
-      //       this.notification.success("Map area created sucessfully");
-      //     }
-      //     location.reload()
-      //   } else {
-      //     this.notification.error(res.message)
-      //     this.spinnerService.hide();
-      //   }
-      // }, (err) => {
-      //   this.notification.error(err.message)
-      //   this.spinnerService.hide();
-      // });
+      this.editionService.createAreaMap(this.savedCoordinates).subscribe(res => {
+        if (res.code === "success") {
+          if (map_id) {
+            this.notification.success("Map area updated sucessfully");
+          } else {
+            this.notification.success("Map area created sucessfully");
+          }
+          location.reload()
+        } else {
+          this.notification.error(res.message)
+          this.spinnerService.hide();
+        }
+      }, (err) => {
+        this.notification.error(err.message)
+        this.spinnerService.hide();
+      });
     }
 
     return false;
