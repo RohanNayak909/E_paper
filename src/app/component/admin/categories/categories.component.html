@@ -27,10 +27,10 @@
             </td>
             <td>{{ data.category_name }}</td>
             <td>
-              <mat-icon (click)="editCategory(data)">edit</mat-icon>
-              <mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
+              <mat-icon title="Edit" (click)="editCategory(data)">edit</mat-icon>
+              <mat-icon title="Add To Home" data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
             </td>
-            <td><mat-icon data-toggle="modal" data-target="#Modal"
+            <td><mat-icon title="Delete" data-toggle="modal" data-target="#Modal"
                 (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
           </tr>
         </tbody>
