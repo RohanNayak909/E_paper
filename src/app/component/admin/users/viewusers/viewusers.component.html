@@ -31,10 +31,10 @@
             <td>{{data.user_login}}</td>
             <td>{{data.role_name}}</td>
             <td>{{data.user_status == 1 ? "Active" : "Inactive"}}</td>
-            <td><mat-icon (click)="editUser(data)">edit</mat-icon>
+            <td><mat-icon title="Edit" (click)="editUser(data)">edit</mat-icon>
               <!-- <mat-icon>add</mat-icon> -->
             </td>
-            <td><mat-icon data-toggle="modal" data-target="#Modal" (click)="deleteUser(data.user_id)">delete</mat-icon></td>
+            <td><mat-icon title="Delete" data-toggle="modal" data-target="#Modal" (click)="deleteUser(data.user_id)">delete</mat-icon></td>
           </tr>
         </tbody>
         <ng-template #elseblock>
