@@ -42,10 +42,12 @@ export class EditionsComponent implements OnInit {
     this.getAllEdition();
     this.getallcategory();
   }
-
+ 
   getAllEdition() {
+    this.categorySearch = '';
+    this.editionSearch = '';
     this.editionService.getEditionAll(this.eid, this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
-      if (res.code = 'sucess') {
+      if (res.code == 'success') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
       } else {
@@ -86,7 +88,7 @@ export class EditionsComponent implements OnInit {
   searchEdition() {
     if(this.editionSearch){
     this.editionService.getEditionAll('', this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
-      if (res.code = 'sucess') {
+      if (res.code == 'success') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
       } else {
@@ -97,17 +99,17 @@ export class EditionsComponent implements OnInit {
     })
   }else if (this.categorySearch){
     this.editionService.getEditionAll('','',this.categorySearch,this.currentuser.customer_id).subscribe(res => {
-      if (res.code = 'sucess') {
+      if (res.code == 'success') {
         var data = res.body;
-        console.log(data,'data');
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
-        console.log(this.editionarr,'data');
       } else {
         this.editionarr = [];
       }
     }, (err) => {
       this.editionarr = []
     }) 
+  }else{
+    this.getAllEdition();
   }
   }
   getallcategory() {

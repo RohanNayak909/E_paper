@@ -2,7 +2,8 @@
   <div class="view-category">
     <div class="search-category">
       <mat-form-field appearance="outline">
-        <mat-select [(ngModel)]="categorySearch" disableRipple [ngModelOptions]="{standalone: true}">
+        <mat-select [(ngModel)]="categorySearch" disableRipple [ngModelOptions]="{standalone: true}"
+        (selectionChange)="searchEdition()">
           <mat-option value="">Select Category</mat-option>
           <mat-option *ngFor="let gm of catarr" [value]="gm.category_id">{{ gm.category_name }}
           </mat-option>
@@ -15,6 +16,7 @@
       </mat-form-field>
       <button mat-raised-button color="primary" class="search-btn" (click)="searchEdition()">Search
       </button>
+      <button mat-raised-button color="warning" class="search-btn warning" (click)="getAllEdition()">Clear</button>
       <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/epaper/edition/add">New Edition</button>
     </div>
     <div class="header">
