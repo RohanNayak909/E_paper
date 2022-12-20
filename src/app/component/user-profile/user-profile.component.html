@@ -1,0 +1,77 @@
+<div class="page-content page-container">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class=" col-md-12">
+                <div class="card user-card-full">
+                    <div class="row ">
+                        <div class="col-md-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25">
+                                    <img [src]="newUser.user_profile ? newUser.user_profile : '/assets/img/default-profile.png'"
+                                        class="rounded-img" alt="User-Profile-Image">
+                                </div>
+
+                                <div class="pf-cont">
+                                    <button mat-raised-button color="primary" (click)="navigate()">Edit Profile</button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-12">
+                                        <mat-label class="User-info f-w-600">Username </mat-label>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-12">
+                                        <p>{{newUser.user_login}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-12">
+                                        <mat-label class="User-info f-w-600">Email </mat-label>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-12">
+                                        <p>{{newUser.user_email}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-12">
+                                        <mat-label class="User-info f-w-600 ">Full Name</mat-label>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-12">
+                                        <p>{{newUser.user_nicename}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-12">
+                                        <mat-label class="User-info f-w-600">Display Name</mat-label>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-12">
+                                        <p>{{newUser.display_name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-12">
+                                        <mat-label class="User-info f-w-600">Website</mat-label>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-12">
+                                        <p>{{newUser.user_url}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-12 col-12">
+                                        <mat-label class="User-info f-w-600">Role</mat-label>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-12">
+                                        <p>{{newUser.role_name}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

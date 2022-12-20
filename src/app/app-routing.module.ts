@@ -22,6 +22,8 @@ import { HeaderCategoryComponent } from './component/header-category/header-cate
 import { HomeComponent } from './component/home/home.component';
 import { SidenavComponent } from './component/layout/sidenav/sidenav/sidenav.component';
 import { LoginComponent } from './component/login/login.component';
+import { EditProfileComponent } from './component/user-profile/edit-profile/edit-profile.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { AuthGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
@@ -41,6 +43,8 @@ const routes: Routes = [
     path: 'admin', component: SidenavComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'profile', component: UserProfileComponent },
+      { path: 'profile/edit/:id', component: EditProfileComponent },
       { path: 'user/view', component: ViewusersComponent},
       { path: 'user/add', component: NewuserComponent},
       { path: 'user/edit/:id', component: EdituserComponent},

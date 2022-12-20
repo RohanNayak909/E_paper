@@ -31,7 +31,7 @@
           <th class="content">Preview</th>
           <th class="content">Delete</th>
         </thead>
-        <tbody *ngIf="editionarr && editionarr.length; else elseblock">
+        <tbody *ngIf = "editionarr && editionarr.length; else elseblock">
           <tr *ngFor="let e of editionarr | paginate: { itemsPerPage: 10, currentPage: p }">
             <td class="first">
               <input type="checkbox" class="example-margin">
@@ -84,9 +84,9 @@
         </div>
         <div class="modal-body">
           <div class="d-flex justify-content-center flex-wrap">
-            <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home
+            <button mat-raised-button color="warn" class="remove-btn mr-20" [disabled] = "removefromhome" (click)="removeFromHome()">Remove from Home
             </button>
-            <button mat-raised-button color="primary" (click)="addToHome()"> Add to Home </button>
+            <button mat-raised-button color="primary"  [disabled] = "addtohome" (click)="addToHome()"> Add to Home </button>
           </div>
         </div>
       </div>
