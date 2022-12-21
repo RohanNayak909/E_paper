@@ -45,6 +45,7 @@ export class CreateAreaMapComponent implements OnInit {
     this.img_id = Number(routeParams.get('id'));
 
     this.img_url = localStorage.getItem('img_url')
+
     this.canvas = new fabric.Canvas("canvas");
 
     fabric.Object.prototype.transparentCorners = false;
@@ -183,19 +184,26 @@ export class CreateAreaMapComponent implements OnInit {
 
   saveObject = (eventData: any, transform: any) => {
     console.log(transform.target);
-    
+
     var target = transform.target;
 
     if (target) {
-      // this.spinnerService.show();
+      this.spinnerService.show();
 
-      var map_id:any = null;
-      if(target.name) {
+      var map_id: any = null;
+      if (target.name) {
         map_id = parseInt(target.name)
         this.savedCoordinates.flag = 'U';
       } else {
         this.savedCoordinates.flag = 'I';
       }
+
+      var img:any = document.getElementById('fp-img');
+      var img_height = img.naturalHeight
+      var img_width = img.naturalWidth
+
+      var src = img.src
+      var img_name = src.split("/")[6]
 
       this.savedCoordinates.img_id = this.img_id;
       this.savedCoordinates.x_coord = Math.round(target.left * 100) / 100;
@@ -205,17 +213,19 @@ export class CreateAreaMapComponent implements OnInit {
       this.savedCoordinates.customer_id = this.currentuser.customer_id;
       this.savedCoordinates.created_by = this.currentuser.user_id;
       this.savedCoordinates.map_id = map_id
+      this.savedCoordinates.img_width = img_width
+      this.savedCoordinates.img_height = img_height
+      this.savedCoordinates.image = img_name
 
       console.log(this.savedCoordinates);
       
       this.editionService.createAreaMap(this.savedCoordinates).subscribe(res => {
         if (res.code === "success") {
-          if(map_id) {
+          if (map_id) {
             this.notification.success("Map area updated sucessfully");
           } else {
             this.notification.success("Map area created sucessfully");
           }
-          
           location.reload()
         } else {
           this.notification.error(res.message)

@@ -50,6 +50,7 @@ import { SupplimentpagesComponent } from './component/admin/editions/supplimentp
 import { NewsupplimentComponent } from './component/admin/editions/supplimentpages/newsuppliment/newsuppliment.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { EditProfileComponent } from './component/user-profile/edit-profile/edit-profile.component';
+import { PreviewSectionComponent } from './component/header-category/preview-section/preview-section.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +80,8 @@ import { EditProfileComponent } from './component/user-profile/edit-profile/edit
     HeaderCategoryComponent,
     CreateAreaMapComponent,
     UserProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    PreviewSectionComponent,
   ],
 
   imports: [

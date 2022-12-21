@@ -5,25 +5,11 @@
             <div class="col-md-12">
                 <button class="btn btn-primary rounded-0" type="button" id="create_map_area" 
                     (click)="createAreaMap()">Create Map Area</button>
-                <!-- <button class="btn btn-primary rounded-0" type="button" *ngIf="!visible" (click)="saveAreaMap()">Save
-                    Mapped Area</button> -->
-                <!-- <button class="btn btn-danger rounded-0" type="button" *ngIf="!visible"
-                    (click)="deleteMapArea()">Delete</button> -->
             </div>
         </div>
-        <!-- *ngIf="!visible" -->
         <div id="fp-canvas-container">
             <img [src]="img_url" alt="Floor Plan" class='fp-img' id="fp-img" usemap="#fp-map">
-            <canvas id="canvas" class="fp-canvas" width="1000" height="1700"></canvas>
+            <canvas id="canvas" class="fp-canvas" width="1100" height="1700"></canvas>
         </div>
-        <!-- <div [ngClass]="!visible ? 'dis-n' : ''">
-            <img [src]="img_url" alt="Workplace" usemap="#workmap" width="1000" height="1500">
-            <map name="workmap">
-                <div><area shape="rect" coords="105,147,298,307" id="area1" alt="Computer" href="https://www.google.com" target="_blank"></div>
-                <div><area shape="rect" coords="210,4,477,139" id="area1" alt="Computer" href="https://prameyanews.com" target="_blank"></div>
-                <div><area shape="rect" coords="507,5,685,136" id="area1" alt="Computer" href="https://en.wikipedia.org/wiki/Priyanka_Chopra" target="_blank"></div>
-                <div><area shape="rect" coords="5,5,184,136" id="area1" alt="Computer" href="https://en.wikipedia.org/wiki/Narendra_Modi" target="_blank"></div>
-            </map>
-        </div> -->
     </div>
 </div>

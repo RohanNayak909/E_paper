@@ -38,7 +38,7 @@
                     </div>
                     <mat-form-field appearance="outline">
                         <mat-select [(ngModel)]="currentIndex">
-                            <mat-option *ngFor="let data of imgarr" [value]="data.index">Page {{data.index}}
+                            <mat-option *ngFor="let data of imgarr" [value]="data.index" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">Page {{data.index}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-md-2 col-sm-12 col-12">
             <div class="page-holder" *ngFor="let data of imgarr">
-                <div class="pages" (click)="goToPage(data.index)">
+                <div class="pages" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">
                     <mat-icon>description</mat-icon>
                     <p>Page No - {{data.index}}</p>
                 </div>
@@ -68,15 +68,20 @@
                 <div class="icon print"><i class="fa fa-print"></i></div>
                 <div class="icon email"><i class="fa fa-envelope"></i></div>
             </div>
-            <div *ngFor="let data of imgarr">
-                <div class="epaper" *ngIf="currentIndex == data.index">
-                    <img [src]="data.image_url" usemap="#workmap" width="1000" height="1700">
-                    <map name="workmap">
+            <!-- *ngFor="let data of imgarr" -->
+            <div id="epaper">
+                <!-- <div class="epaper"  *ngIf="currentIndex == data.index">
+                    <img [src]="data.image_url" usemap="#workmap" >
+                    <map name="workmap" id="mapdata">
                         <area shape="rect" *ngFor="let area of data.area_details" coords="{{area.coordinates}}" alt="map" href="javascript:void(0)">
                     </map>
+                </div> -->
+                <div class="epaper">
+                    <div class="imagemap" id="imagemap">
+                    </div>
                 </div>
             </div>
-            <div class="social-icons">
+            <div class="social-icons" *ngIf="hide">
                 <div class="icon facebook"><i class="fa fa-facebook"></i></div>
                 <div class="icon twitter"><i class="fa fa-twitter"></i></div>
                 <div class="icon google"><i class="fa fa-google-plus"></i></div>

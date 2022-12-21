@@ -19,6 +19,7 @@ import { NewuserComponent } from './component/admin/users/newuser/newuser.compon
 import { ViewusersComponent } from './component/admin/users/viewusers/viewusers.component';
 import { BhubaneswarPaperComponent } from './component/bhubaneswar-paper/bhubaneswar-paper.component';
 import { HeaderCategoryComponent } from './component/header-category/header-category.component';
+import { PreviewSectionComponent } from './component/header-category/preview-section/preview-section.component';
 import { HomeComponent } from './component/home/home.component';
 import { SidenavComponent } from './component/layout/sidenav/sidenav/sidenav.component';
 import { LoginComponent } from './component/login/login.component';
@@ -35,10 +36,14 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
-   { path: 'edition/:id/:category',
+  {
+    path: 'edition/:id/:category',
     component: HeaderCategoryComponent
   },
-
+  {
+    path: 'preview/:img_id/:id/:cat/:date/:i',
+    component: PreviewSectionComponent
+  },
   {
     path: 'admin', component: SidenavComponent,
     canActivate: [AuthGuard],
@@ -61,7 +66,24 @@ const routes: Routes = [
       { path: 'header/manage', component: ManageHeaderComponent},
       { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
       { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent},
-      { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent}
+      { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent},
+      { path: 'user/view', component: ViewusersComponent },
+      { path: 'user/add', component: NewuserComponent },
+      { path: 'user/edit/:id', component: EdituserComponent },
+      { path: 'epaper/category', component: CategoriesComponent },
+      { path: 'epaper/category/add', component: CategoryDialogComponent },
+      { path: 'epaper/category/edit/:id', component: EditcategoryComponent },
+      { path: 'epaper/category/featured', component: FeaturedcategoriesComponent },
+      { path: 'epaper/edition', component: EditionsComponent },
+      { path: 'epaper/edition/add', component: NeweditionComponent },
+      { path: 'epaper/edition/edit/:id', component: EditeditionComponent },
+      { path: 'epaper/edition/featured', component: FeaturededitionComponent },
+      { path: 'edition/supplement/view/:id', component: SupplimentpagesComponent },
+      { path: 'edition/supplement/add', component: NewsupplimentComponent },
+      { path: 'header/manage', component: ManageHeaderComponent },
+      { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent },
+      { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent },
+      { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent }
     ],
   }
 ];
