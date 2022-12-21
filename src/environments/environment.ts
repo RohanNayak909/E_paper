@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   POST_URL: 'http://localhost:4200/post/',
-  BASE_URL: 'http://192.168.0.126:8072/prameya/api',
-  PREVIEW_URL: 'http://192.168.0.126:8072/prameya/document/preview',
+  BASE_URL: 'http://192.168.0.183:8072/prameya/api',
+  PREVIEW_URL: 'http://192.168.0.183:8072/prameya/document/preview',
   // BASE_URL: 'https://api-dev.prameyanews.com/prameya/api',
   CUSTOMER_ID : 3,
   CUSTOMER_NAME :'E-PAPER',

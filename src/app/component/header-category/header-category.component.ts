@@ -27,7 +27,19 @@ export class HeaderCategoryComponent implements OnInit {
   constructor(private editionService: EditionService, private elementRef: ElementRef,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
-    
+    activatedRoute.params.subscribe(val => {
+      let routeParams = this.activatedRoute.snapshot.paramMap;
+      this.eid = Number(routeParams.get('id'));
+      this.category = routeParams.get('category');
+      this.cust_id = environment.CUSTOMER_ID
+      this.currentuser = this.loginService.getCurrentUser();
+      this.getAllEdition();
+
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = "assets/js/preview.js";
+      this.elementRef.nativeElement.appendChild(s);
+    })
   }
 
   ngOnInit(): void {
@@ -36,7 +48,6 @@ export class HeaderCategoryComponent implements OnInit {
     this.category = routeParams.get('category');
     this.cust_id = environment.CUSTOMER_ID
     this.currentuser = this.loginService.getCurrentUser();
-    // this.getAllImages();
     this.getAllEdition();
     this.datepicker = document.getElementById('startDate');
     const today = new Date();
@@ -50,40 +61,6 @@ export class HeaderCategoryComponent implements OnInit {
     s.type = "text/javascript";
     s.src = "assets/js/preview.js";
     this.elementRef.nativeElement.appendChild(s);
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      if (this.imgarr.length > 0) {
-        var images: any = document.querySelectorAll('img[usemap]');
-        images.forEach(function (image: any) {
-          var mapid = image.getAttribute('usemap').substr(1);
-          var imagewidth = image.naturalWidth;
-          var imageheight = image.naturalHeight;
-
-          var imagemap: any = document.querySelector('map[name="' + mapid + '"]');
-          var areas = imagemap.querySelectorAll('area');
-
-          image.removeAttribute('usemap');
-          imagemap.remove();
-
-          // create wrapper container
-          var wrapper = document.createElement('div');
-          wrapper.classList.add('imagemap');
-          image.parentNode.insertBefore(wrapper, image);
-          wrapper.appendChild(image);
-
-          areas.forEach(function (area: any) {
-            var coords = area.getAttribute('coords').split(',');
-            var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
-            var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
-            xcoords = xcoords.sort(function (a, b) { return a - b });
-            ycoords = ycoords.sort(function (a, b) { return a - b });
-            wrapper.innerHTML += "<a href='" + area.getAttribute('href') + "' class='area' style='left: " + ((xcoords[0] / imagewidth) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / imageheight) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / imagewidth) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / imageheight) * 100).toFixed(2) + "%;'></a>";
-          });
-        });
-      }
-    }, 2000)
   }
 
   getAllImages() {
@@ -108,8 +85,6 @@ export class HeaderCategoryComponent implements OnInit {
           if (this.imgarr[0].area_details) {
             var dtarr = this.editionDate.split("-");
             var dt = dtarr[0] + '' + dtarr[1] + '' + dtarr[2]
-            var imagewidth = '';
-            var imageheight = '';
             this.hide = true
             var t = this
             this.imgarr[0].area_details.forEach(function (data: any) {
@@ -118,7 +93,7 @@ export class HeaderCategoryComponent implements OnInit {
               var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
               xcoords = xcoords.sort(function (a, b) { return a - b });
               ycoords = ycoords.sort(function (a, b) { return a - b });
-              var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes';
+              var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
               wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + t.imgarr[0].index + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
             });
           }
@@ -157,8 +132,6 @@ export class HeaderCategoryComponent implements OnInit {
     if (area_details) {
       var dtarr = this.editionDate.split("-");
       var dt = dtarr[0] + '' + dtarr[1] + '' + dtarr[2]
-      var imagewidth = '';
-      var imageheight = '';
       this.hide = true
       var t = this
       area_details.forEach(function (data: any) {
@@ -167,7 +140,7 @@ export class HeaderCategoryComponent implements OnInit {
         var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
         xcoords = xcoords.sort(function (a, b) { return a - b });
         ycoords = ycoords.sort(function (a, b) { return a - b });
-        var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes';
+        var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
         wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + img_id + "," + data.map_id + "," + i + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / 1048) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / 1048) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
       });
     }
@@ -178,6 +151,8 @@ export class HeaderCategoryComponent implements OnInit {
       if (res.code == 'success') {
         var data = res.body;
         this.headerarry = data.map((dt: any) => JSON.parse(dt));
+        console.log(this.headerarry[0].category_url);
+
         this.route.navigate([this.headerarry[0].category_url]);
       } else {
         this.headerarry = []

@@ -17,6 +17,7 @@ export class PreviewSectionComponent implements OnInit {
   category:any
   date:any
   new_img:any
+  zoom:any = 1
 
   constructor(private activatedRoute: ActivatedRoute, private elementRef: ElementRef) { }
 
@@ -30,6 +31,20 @@ export class PreviewSectionComponent implements OnInit {
     this.category = cat+" - "+page;
     this.date = dateval.substring(0,4)+"-"+dateval.substring(4,6)+"-"+dateval.substring(6,8)
     this.new_img = environment.PREVIEW_URL +'/'+ map_id +'.jpg';
+  }
+
+  zoomIn() {
+    this.zoom += 0.1;
+    var img:any = document.getElementById('preview-img');
+    var currWidth = img.clientWidth;
+    img.style.width = (currWidth + 100) + "px";
+  }
+
+  zoomOut() {
+    this.zoom -= 0.1;
+    var img:any = document.getElementById('preview-img');
+    var currWidth = img.clientWidth;
+    img.style.width = (currWidth - 100) + "px";
   }
 
 }

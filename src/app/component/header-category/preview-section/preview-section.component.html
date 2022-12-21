@@ -1,33 +1,39 @@
-<div class="heading">
-    <h1 style="cursor:pointer" routerLink="/" class="mr-10"><i class="fa fa-home"></i></h1>
-    <h1 class="mr-10">{{category}}</h1>
-    <h1>{{date | date}}</h1>
-</div>
-<div class="epaper-container">
-    <div class="row">
-        <div class="col-md-12 col-sm-12 col-12">
-            <div class="social-icons">
-                <div class="icon facebook"><i class="fa fa-facebook"></i></div>
-                <div class="icon twitter"><i class="fa fa-twitter"></i></div>
-                <div class="icon google"><i class="fa fa-google-plus"></i></div>
-                <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-                <div class="icon print"><i class="fa fa-print"></i></div>
-                <div class="icon email"><i class="fa fa-envelope"></i></div>
-            </div>
-            <div>
-                <img [src]="new_img">
-            </div>
-            <div class="social-icons">
-                <div class="icon facebook"><i class="fa fa-facebook"></i></div>
-                <div class="icon twitter"><i class="fa fa-twitter"></i></div>
-                <div class="icon google"><i class="fa fa-google-plus"></i></div>
-                <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-                <div class="icon print"><i class="fa fa-print"></i></div>
-                <div class="icon email"><i class="fa fa-envelope"></i></div>
+<div class="scrollable">
+    <div class="heading">
+        <h1 style="cursor:pointer" routerLink="/" class="btn-border mr-10"><i class="fa fa-home"></i></h1>
+        <h1 class="mr-10">{{category}}</h1>
+        <h1>{{date | date}}</h1>
+        <h1 class="zoom-preview mr-10 btn-border" (click)="zoomIn()"><i class="fa fa-search-plus"
+                aria-hidden="true"></i></h1>
+        <h1 class="zoom-preview btn-border" (click)="zoomOut()"><i class="fa fa-search-minus" aria-hidden="true"></i>
+        </h1>
+    </div>
+    <div class="epaper-container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <div class="social-icons">
+                    <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+                    <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+                    <div class="icon google"><i class="fa fa-google-plus"></i></div>
+                    <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
+                    <div class="icon print"><i class="fa fa-print"></i></div>
+                    <div class="icon email"><i class="fa fa-envelope"></i></div>
+                </div>
+                <div>
+                    <img [src]="new_img" id="preview-img">
+                </div>
+                <div class="social-icons">
+                    <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+                    <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+                    <div class="icon google"><i class="fa fa-google-plus"></i></div>
+                    <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
+                    <div class="icon print"><i class="fa fa-print"></i></div>
+                    <div class="icon email"><i class="fa fa-envelope"></i></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="footer-container">
-    <app-footer></app-footer>
+    <div class="footer-container">
+        <app-footer></app-footer>
+    </div>
 </div>
