@@ -1,0 +1,352 @@
+<div class="addcategory-container">
+    <mat-card class="mb-20" *ngIf="id === '1'">
+        <div class="card_title">Top Section (970 x 250)</div>
+        <mat-card-actions>
+            <div class="add-category-form">
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Title
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adstopsec.ads_title">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12 center">
+                        <mat-slide-toggle [(ngModel)]="adstopsec.ads_is_published">Is Published</mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Publish Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adstopsec.ads_publish_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adstopsec.ads_publish_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Expiry Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adstopsec.ads_expiry_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adstopsec.ads_expiry_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Image Alt Text
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adstopsec.ads_image_alt_text">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Link
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adstopsec.ads_image_link">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Published By: <span>{{adstopsec.username}}</span>
+                        </mat-label>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <mat-label class="category-info">Upload Ads</mat-label>
+                        <div class="upload_txt  mt-10"><input type="file" #artThumbCheckTopSec
+                                (change)="onfileselectedtopsec($event)" accept="image/png, image/jpeg" id="file-select">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <img [src]="adstopsec.ads_image" id="thumbnailImage_topsec" class="img-sec">
+                    </div>
+                </div>
+            </div>
+        </mat-card-actions>
+        <mat-card-actions align="end">
+            <button mat-raised-button class="danger" (click)="closeModal()">Close</button>
+            <button mat-raised-button color="primary" (click)="addtopsec()">Update</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <!-- RIGHT UPPER SECTION -->
+    <mat-card class="mb-20" *ngIf="id === '2'">
+        <div class="card_title">Right Side Upper (300 x 250)</div>
+        <mat-card-actions>
+            <div class="add-category-form">
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Title
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adsrightuppersec.ads_title">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12 center">
+                        <mat-slide-toggle [(ngModel)]="adsrightuppersec.ads_is_published">Is
+                            Published</mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Publish Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adsrightuppersec.ads_publish_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adsrightuppersec.ads_publish_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Expiry Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adsrightuppersec.ads_expiry_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adsrightuppersec.ads_expiry_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Image Alt Text
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName"
+                                [(ngModel)]="adsrightuppersec.ads_image_alt_text">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Link
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adsrightuppersec.ads_image_link">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Published By: <span>{{adsrightuppersec.username}}</span>
+                        </mat-label>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <mat-label class="category-info">Upload Ads</mat-label>
+                        <div class="upload_txt  mt-10"><input type="file" #artThumbCheckRightUpperSec
+                                (change)="onfileselectedrightuppersec($event)" accept="image/png, image/jpeg"
+                                id="file-select"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <img [src]="adsrightuppersec.ads_image" id="thumbnailImage_rightuppersec" class="img-sec">
+                    </div>
+                </div>
+            </div>
+        </mat-card-actions>
+        <mat-card-actions align="end">
+            <button mat-raised-button class="danger" (click)="closeModal()">Close</button>
+            <button mat-raised-button color="primary" (click)="addrightuppersec()">Update</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <!-- LEFT MIDDLE SECTION -->
+    <mat-card class="mb-20" *ngIf="id === '3'">
+        <div class="card_title">Left Side Middle Section (300 x 600)</div>
+        <mat-card-actions>
+            <div class="add-category-form">
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Title
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adsleftmiddlesec.ads_title">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12 center">
+                        <mat-slide-toggle [(ngModel)]="adsleftmiddlesec.ads_is_published">Is
+                            Published</mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Publish Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adsleftmiddlesec.ads_publish_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adsleftmiddlesec.ads_publish_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Expiry Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adsleftmiddlesec.ads_expiry_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adsleftmiddlesec.ads_expiry_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Image Alt Text
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName"
+                                [(ngModel)]="adsleftmiddlesec.ads_image_alt_text">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Link
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adsleftmiddlesec.ads_image_link">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Published By: <span>{{adsleftmiddlesec.username}}</span>
+                        </mat-label>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <mat-label class="category-info">Upload Ads</mat-label>
+                        <div class="upload_txt  mt-10"><input type="file" #artThumbCheckLeftMiddleSec
+                                (change)="onfileselectedleftmiddlesec($event)" accept="image/png, image/jpeg"
+                                id="file-select"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <img [src]="adsleftmiddlesec.ads_image" id="thumbnailImage_leftmiddlesec" class="img-sec">
+                    </div>
+                </div>
+            </div>
+        </mat-card-actions>
+        <mat-card-actions align="end">
+            <button mat-raised-button class="danger" (click)="closeModal()">Close</button>
+            <button mat-raised-button color="primary" (click)="addleftmiddlesec()">Update</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <!-- MIDDLE SECTION -->
+    <mat-card class="mb-20" *ngIf="id === '4'">
+        <div class="card_title">Middle Section (728 x 90)</div>
+        <mat-card-actions>
+            <div class="add-category-form">
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Title
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adsmiddlesec.ads_title">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12 center">
+                        <mat-slide-toggle [(ngModel)]="adsmiddlesec.ads_is_published">Is Published</mat-slide-toggle>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Publish Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adsmiddlesec.ads_publish_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adsmiddlesec.ads_publish_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12">
+                        <mat-label class="category-info">Expiry Date & Time</mat-label>
+                        <mat-form-field appearance="outline">
+                            <input matInput type="date" [(ngModel)]="adsmiddlesec.ads_expiry_date"
+                                onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-12 time-field">
+                        <mat-form-field name="stime" appearance="fill" class="form-field">
+                            <input matInput type="time" name="stime" name="stime" class="time"
+                                [(ngModel)]="adsmiddlesec.ads_expiry_time" onkeydown="return false">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Image Alt Text
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adsmiddlesec.ads_image_alt_text">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Ads Link
+                        </mat-label>
+                        <mat-form-field appearance="outline" class="form-group">
+                            <input matInput type="text" name="userName" [(ngModel)]="adsmiddlesec.ads_image_link">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="add-category-form-field row">
+                    <div class="col-md-6 col-sm-12 col-12">
+                        <mat-label class="category-info">Published By: <span>{{adsmiddlesec.username}}</span>
+                        </mat-label>
+                    </div>
+                </div>
+                <div class="add-category-form-field row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <mat-label class="category-info">Upload Ads</mat-label>
+                        <div class="upload_txt  mt-10"><input type="file" #artThumbCheckMiddleSec
+                                (change)="onfileselectedmiddlesec($event)" accept="image/png, image/jpeg"
+                                id="file-select"></div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                        <img [src]="adsmiddlesec.ads_image" id="thumbnailImage_middlesec" class="img-sec">
+                    </div>
+                </div>
+            </div>
+        </mat-card-actions>
+        <mat-card-actions align="end">
+            <button mat-raised-button class="danger" (click)="closeModal()">Close</button>
+            <button mat-raised-button color="primary" (click)="addmiddlesec()">Update</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

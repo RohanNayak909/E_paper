@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <!-- Nav tabs -->
+            <mat-tab-group>
+                <!-- <mat-tab label="ADS TOP">
+            <div class="row mat-tab-div">
+              <div class="col-md-6 mat-tab-ads" *ngFor="let data of ads_top">
+                <a><img src="{{data.ads_image}}" alt="image" (click)="openDialog(data,'1')">
+                </a>
+              </div>
+            </div>
+  
+          </mat-tab> -->
+                <mat-tab label=" ADS RIGHT UPPER">
+                    <div class="row mat-tab-div">
+                        <div class="col-md-3 mat-tab-ads" *ngFor="let data of ads_rightupper">
+                            <a>
+                                <img src="{{data.ads_image}}" alt="image" (click)="openDialog(data,'2')">
+                            </a>
+                        </div>
+
+                    </div>
+                </mat-tab>
+                <mat-tab label="ADS LEFT MIDDLE">
+
+                    <div class="row mat-tab-div">
+                        <div class="col-md-3 mat-tab-ads" *ngFor="let data of ads_leftmiddle">
+                            <a>
+                                <img src="{{data.ads_image}}" alt="image" (click)="openDialog(data,'3')">
+                            </a>
+                        </div>
+
+                    </div>
+                </mat-tab>
+                <mat-tab label="ADS MIDDLE">
+
+                    <div class="row mat-tab-div">
+                        <div class="col-md-6 mat-tab-ads" *ngFor="let data of ads_middle">
+                            <a>
+                                <img src="{{data.ads_image}}" alt="image" (click)="openDialog(data,'4')">
+                            </a>
+                        </div>
+
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

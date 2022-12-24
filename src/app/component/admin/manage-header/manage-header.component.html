@@ -6,9 +6,6 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav" *ngFor="let item of headerarry">
-      <li class="nav-item" *ngFor="let item of headerarry">
-        <a class="nav-link" routerLink="{{item.category_url}}">{{item.category_name}}</a>
-      </li>
       <li class="nav-link">
         {{item.name}}
       </li>

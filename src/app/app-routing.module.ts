@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminAdViewComponent } from './component/admin/admin-ad/admin-ad-view/admin-ad-view.component';
+import { AdminAdComponent } from './component/admin/admin-ad/admin-ad.component';
 import { CategoriesComponent } from './component/admin/categories/categories.component';
 import { EditcategoryComponent } from './component/admin/categories/editcategory/editcategory.component';
 import { CategoryDialogComponent } from './component/admin/categories/newcategory/category-dialog.component';
@@ -83,7 +85,9 @@ const routes: Routes = [
       { path: 'header/manage', component: ManageHeaderComponent },
       { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent },
       { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent },
-      { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent }
+      { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent },
+      { path: 'ads/view', component: AdminAdViewComponent },
+      { path: 'ads/add', component: AdminAdComponent },
     ],
   }
 ];

@@ -51,6 +51,11 @@ import { NewsupplimentComponent } from './component/admin/editions/supplimentpag
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { EditProfileComponent } from './component/user-profile/edit-profile/edit-profile.component';
 import { PreviewSectionComponent } from './component/header-category/preview-section/preview-section.component';
+import { AdminAdComponent } from './component/admin/admin-ad/admin-ad.component';
+import { AdminAdViewComponent } from './component/admin/admin-ad/admin-ad-view/admin-ad-view.component';
+import { EditAdDialogComponent } from './component/admin/admin-ad/edit-ad-dialog/edit-ad-dialog.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +87,9 @@ import { PreviewSectionComponent } from './component/header-category/preview-sec
     UserProfileComponent,
     EditProfileComponent,
     PreviewSectionComponent,
+    AdminAdComponent,
+    AdminAdViewComponent,
+    EditAdDialogComponent,
   ],
 
   imports: [
@@ -107,7 +115,8 @@ import { PreviewSectionComponent } from './component/header-category/preview-sec
     NgMultiSelectDropDownModule,
     NgxPaginationModule,
     MatNativeDateModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatSlideToggleModule
     ],
   providers: [],
   bootstrap: [AppComponent]

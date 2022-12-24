@@ -98,3 +98,68 @@ body {
 .white-color {
   color: white !important;
 }
+
+
+/* <-----------------ADD CATEGORY FORM-----------------> */
+.addcategory-container .add-category-form-field .mat-form-field-flex {
+  height: 40px !important;
+}
+.addcategory-container .add-category-form-field .mat-form-field-outline {
+  background:var(--white)!important;
+  border-radius: 5px;
+}
+.addcategory-container .add-category-form-field  .form-group{
+  margin-bottom: 0rem !important;
+}
+.addcategory-container .add-category-form-field .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 3px 0 0 0 !important;
+}
+
+.addcategory-container .add-category-form-field .mat-select-arrow-wrapper {
+  height: 8px !important;
+}
+
+.addcategory-container .add-category-form-field .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color:var(--white) !important;
+}
+
+.addcategory-container .add-category-form-field .mat-form-field-outline {
+  background-color: #fdfdfd !important;
+}
+
+.addcategory-container .add-category-form-field .mat-form-field-wrapper {
+  padding-bottom: 0em !important;
+}
+
+.add-category-form .add-category-form-field mat-form-field .textarea-add-category.mat-input-element {
+  background: var(--white);
+  border: 1px solid #dedede;
+  border-radius: 3px;
+  padding: 4px;
+  margin-top: -18px;
+  min-height: 100px;
+  width: 98%;
+}
+
+.addcategory-container .add-category-form-field .mat-form-field-appearance-legacy .mat-form-field-underline {
+  display: none;
+}
+/* <-----------------END ADD CATEGORY FORM-----------------> */
+
+
+/* <----------------- ADD AD ---------------------------> */
+.addcategory-container .add-category-form-field .time-field .mat-form-field-wrapper {
+  padding-bottom: 0em !important;
+  border: 1px solid #dedede !important;
+  border-radius: 4px !important;
+}
+
+.addcategory-container .add-category-form-field .time-field .mat-form-field-underline {
+  display: none !important;
+}
+
+.addcategory-container .add-category-form-field .time-field .mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0px 6px;
+}
+
+/* <----------------- END ADD AD---------------------------> */

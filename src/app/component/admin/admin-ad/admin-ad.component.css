@@ -1,0 +1,83 @@
+.Addad {
+    margin-left: 80px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.container {
+    height: 250px;
+    width: 980px;
+}
+
+img#thumbnailImage {
+    height: 300px;
+    width: 200px;
+}
+
+.addad3 {
+    margin-top: 50px;
+}
+
+.addcategory-container {
+    background-color: var(--site-background);
+    ;
+    padding: 2% 3.9%;
+}
+
+.add-category-form .add-category-form-field .category-info {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.add-category-heading h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.addcategory-container .add-category-form mat-label {
+    display: block;
+}
+
+.addcategory-container .add-category-form mat-form-field {
+    width: 100%;
+}
+
+.addcategory-container .add-category-form .add-category-form-field h5 {
+    color: #ababab;
+}
+
+.category {
+    color: blue;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+}
+
+.time-field {
+    align-self: flex-end;
+}
+
+.row {
+    margin-top: 5px;
+}
+
+.card_title {
+    text-decoration: underline;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.img-sec {
+    width: 150px;
+    height: 100px;
+}
