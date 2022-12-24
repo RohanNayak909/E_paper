@@ -27,10 +27,10 @@
             </td>
             <td>{{ data.category_name }}</td>
             <td>
-              <mat-icon (click)="editCategory(data)">edit</mat-icon>
-              <mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
+              <mat-icon title="Edit" (click)="editCategory(data)">edit</mat-icon>
+              <mat-icon title="Add To Home" data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
             </td>
-            <td><mat-icon data-toggle="modal" data-target="#Modal"
+            <td><mat-icon title="Delete" data-toggle="modal" data-target="#Modal"
                 (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
           </tr>
         </tbody>
@@ -65,9 +65,9 @@
       </div>
       <div class="modal-body">
         <div class="d-flex justify-content-center flex-wrap">
-          <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home
+          <button mat-raised-button color="warn" class="remove-btn mr-20" [disabled] = "removefromhome" id="removefromhome" (click)="removeFromHome()">Remove from Home
           </button>
-          <button mat-raised-button color="primary" class="remove-btn" (click)="addToHome()"> Add to Home </button>
+          <button mat-raised-button color="primary" class="remove-btn" [disabled] = "addtohome" id="addTohome" (click)="addToHome()"> Add to Home </button>
         </div>
       </div>
     </div>

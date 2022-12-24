@@ -28,12 +28,14 @@ export class CategoriesComponent implements OnInit {
   p: any = 1;
   categoryId:any
   category:any = new categoryModel();
+ 
   constructor(private loginService:LoginService,private matDialog: MatDialog,
     private categoryService : CategoryServiceService,private masterService: MasterServiceService,
     private notification:NotificationService,private router:Router) { }
 
   ngOnInit(): void {
     this.currentuser = this.loginService.getCurrentUser();
+   
     this.getallcategory();
   }
   onKeydown(event: any) {
@@ -80,6 +82,7 @@ export class CategoriesComponent implements OnInit {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
+    
       } else {
         this.catarr = []
       }
@@ -87,8 +90,18 @@ export class CategoriesComponent implements OnInit {
       this.catarr = []
     })
   }
-
+  removefromhome:any;
+  addtohome:any;
   addToFront(data:any){
+    if(data.add_to_home == "1"){
+    this.removefromhome = document.getElementById("addTohome");
+    this.addtohome = true;
+    this.removefromhome = false;
+  }else{
+    this.removefromhome = document.getElementById("removefromhome");
+    this.removefromhome = true;
+    this.addtohome = false;
+  }
     this.category = data;
   }
   addToHome(){
@@ -99,7 +112,9 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.createCategory(this.category).subscribe(res => {
       if (res.code === "success") {
        document.getElementById("closeModalButton")?.click();
-        this.notification.success("Category added to home.");
+       this.removefromhome = false;
+       this.getallcategory();
+       this.notification.success("Category added to home.");
       } else {
         this.notification.error(res.message)
       }
@@ -113,6 +128,8 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.createCategory(this.category).subscribe(res => {
       if (res.code === "success") {
         document.getElementById("closeModalButton")?.click();
+        this.addtohome = false;
+        this.getallcategory();
         this.notification.success("Category removed from home.");
       } else {
         this.notification.error(res.message)

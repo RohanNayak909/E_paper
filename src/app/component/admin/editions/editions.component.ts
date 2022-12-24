@@ -42,19 +42,12 @@ export class EditionsComponent implements OnInit {
     this.getAllEdition();
     this.getallcategory();
   }
-
-  newEdition() {
-    const dialogRef = this.matDialog.open(NeweditionComponent, {
-      height: '580px',
-      width: '50vw'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    })
-  }
+ 
   getAllEdition() {
+    this.categorySearch = '';
+    this.editionSearch = '';
     this.editionService.getEditionAll(this.eid, this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
-      if (res.code = 'sucess') {
+      if (res.code == 'success') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
       } else {
@@ -95,7 +88,7 @@ export class EditionsComponent implements OnInit {
   searchEdition() {
     if(this.editionSearch){
     this.editionService.getEditionAll('', this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
-      if (res.code = 'sucess') {
+      if (res.code == 'success') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
       } else {
@@ -106,17 +99,17 @@ export class EditionsComponent implements OnInit {
     })
   }else if (this.categorySearch){
     this.editionService.getEditionAll('','',this.categorySearch,this.currentuser.customer_id).subscribe(res => {
-      if (res.code = 'sucess') {
+      if (res.code == 'success') {
         var data = res.body;
-        console.log(data,'data');
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
-        console.log(this.editionarr,'data');
       } else {
         this.editionarr = [];
       }
     }, (err) => {
       this.editionarr = []
     }) 
+  }else{
+    this.getAllEdition();
   }
   }
   getallcategory() {
@@ -145,7 +138,18 @@ export class EditionsComponent implements OnInit {
       this.headerarry = []
     })
   }
+  removefromhome:any;
+  addtohome:any;
   addToFront(data:any){
+    if(data.add_to_home == "1"){
+     this.removefromhome = document.getElementById("addTohome");
+     this.addtohome = true;
+     this.removefromhome = false;
+   }else{
+     this.removefromhome = document.getElementById("removefromhome");
+     this.removefromhome = true;
+     this.addtohome = false;
+   }
   this.edition = data;
   }
   addToHome(){
@@ -155,6 +159,8 @@ export class EditionsComponent implements OnInit {
     this.editionService.createEdition(this.edition).subscribe(res => {
       if (res.code === "success") {
         document.getElementById("closeModalButton")?.click();
+        this.removefromhome = false;
+        this.getAllEdition();
         this.notification.success("Edition added to home.");
       } else {
         document.getElementById("closeModalButton")?.click();
@@ -169,6 +175,8 @@ export class EditionsComponent implements OnInit {
     this.editionService.createEdition(this.edition).subscribe(res => {
       if (res.code === "success") {
         document.getElementById("closeModalButton")?.click();
+        this.addtohome = false;
+        this.getAllEdition();
         this.notification.success("Edition removed from home.");
       } else {
         document.getElementById("closeModalButton")?.click();

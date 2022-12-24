@@ -48,6 +48,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
 import { SupplimentpagesComponent } from './component/admin/editions/supplimentpages/supplimentpages.component';
 import { NewsupplimentComponent } from './component/admin/editions/supplimentpages/newsuppliment/newsuppliment.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { EditProfileComponent } from './component/user-profile/edit-profile/edit-profile.component';
 import { PreviewSectionComponent } from './component/header-category/preview-section/preview-section.component';
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { PreviewSectionComponent } from './component/header-category/preview-sec
     NewsupplimentComponent,
     HeaderCategoryComponent,
     CreateAreaMapComponent,
+    UserProfileComponent,
+    EditProfileComponent,
     PreviewSectionComponent,
   ],
 

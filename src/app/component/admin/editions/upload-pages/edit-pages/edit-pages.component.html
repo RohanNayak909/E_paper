@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-6 col-12">
                 <div class="upload-img-bg">
-                    <img [src]="imgData.image_url" class="img-fluid">
+                    <img [src]="imgData.image_url ? imgData.image_url : 'assets/img/image.png'" class="img-fluid">
                 </div>
             </div>
             <div class="col-md-8 col-sm-6 col-12">
@@ -12,10 +12,10 @@
                     <div class="col-md-6 col-sm-6 col-12">
                         <mat-label class="tag-info">Title</mat-label>
                         <mat-form-field appearance="outline">
-                            <input matInput type="text" name="title" [(ngModel)]="imgData.index" required>
+                            <input matInput type="text" name="title" [(ngModel)]="imgData.index" readonly required>
                         </mat-form-field>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-12">
+                    <!-- <div class="col-md-6 col-sm-6 col-12">
                         <div class="upload-supplement">
                             <mat-label class="tag-info">Supplementary Page</mat-label>
                             <mat-form-field appearance="outline">
@@ -25,9 +25,9 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="edit-content-form-field row">
+                <!-- <div class="edit-content-form-field row">
                     <div class="col-md-6 col-sm-12 col-12">
                         <mat-label class="category-info">Description</mat-label>
                         <mat-form-field appearance="outline">
@@ -40,19 +40,19 @@
                             <textarea matInput name="desc" class="textarea-add-category"></textarea>
                         </mat-form-field>
                     </div>
-                </div>
+                </div> -->
                 <div class="edit-content-form-field row">
                     <div class="col-md-6 col-sm-12 col-12">
                         <mat-label class="pdf-info">Pdf File</mat-label>
                         <div class="upload_txt  mt-10"><input type="file" id="file-select"  (change)="onUpload($event)" accept="application/pdf"></div>
 
                     </div>
-                    <div class="col-md-6 col-sm-12 col-12">
+                    <!-- <div class="col-md-6 col-sm-12 col-12">
                         <mat-label class="category-info">Meta Keywords</mat-label>
                         <mat-form-field appearance="outline">
                             <textarea matInput name="desc" class="outline"></textarea>
                         </mat-form-field>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

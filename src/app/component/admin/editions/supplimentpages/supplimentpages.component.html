@@ -49,7 +49,7 @@
   <div class="modal-dialog new" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -57,7 +57,10 @@
         <div class="category-container">
           <div class="add-tag-form">
             <div class="popup">
-              <h1>New Supplement</h1>
+              <h1 *ngIf = "this.supplement.supplement_id; else elsebblock;">Edit Supplement</h1>
+              <ng-template #elsebblock>
+                <h1>New Supplement</h1>
+              </ng-template>
               <!-- <button class="close-btn" mat-button><i class="fa fa-close"></i></button> -->
             </div>
             <div class="add-tag-form-field  row">

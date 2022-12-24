@@ -4,6 +4,7 @@
 .viewcategory-container {
     min-height: 100vh;
     padding: 2% 3%;
+    background-color: var(--site-background);
 }
 
 .header {
@@ -173,6 +174,10 @@ tr:nth-child(odd) {
 .mat-icon{
     cursor: pointer;
 }
+tr:nth-child(odd) {
+    background-color: #fffcfc;
+}
+
 /* -------------------------------------------- */
 cdk-overlay-container.cdk-overlay-container {
     z-index:9999 !important;

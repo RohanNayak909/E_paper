@@ -23,6 +23,8 @@ import { PreviewSectionComponent } from './component/header-category/preview-sec
 import { HomeComponent } from './component/home/home.component';
 import { SidenavComponent } from './component/layout/sidenav/sidenav/sidenav.component';
 import { LoginComponent } from './component/login/login.component';
+import { EditProfileComponent } from './component/user-profile/edit-profile/edit-profile.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { AuthGuard } from './Guards/auth.guard';
 
 const routes: Routes = [
@@ -46,6 +48,25 @@ const routes: Routes = [
     path: 'admin', component: SidenavComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'profile', component: UserProfileComponent },
+      { path: 'profile/edit/:id', component: EditProfileComponent },
+      { path: 'user/view', component: ViewusersComponent},
+      { path: 'user/add', component: NewuserComponent},
+      { path: 'user/edit/:id', component: EdituserComponent},
+      { path: 'epaper/category', component: CategoriesComponent},
+      { path: 'epaper/category/add', component: CategoryDialogComponent},
+      { path: 'epaper/category/edit/:id', component: EditcategoryComponent},
+      { path: 'epaper/category/featured', component: FeaturedcategoriesComponent},
+      { path: 'epaper/edition', component: EditionsComponent},
+      { path: 'epaper/edition/add', component: NeweditionComponent},
+      { path: 'epaper/edition/edit/:id', component: EditeditionComponent},
+      { path: 'epaper/edition/featured', component: FeaturededitionComponent},
+      { path: 'edition/supplement/view/:id', component: SupplimentpagesComponent},
+      { path: 'edition/supplement/add', component: NewsupplimentComponent},
+      { path: 'header/manage', component: ManageHeaderComponent},
+      { path: 'epaper/edition/upload-pages/:id', component: UploadPagesComponent},
+      { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent},
+      { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent},
       { path: 'user/view', component: ViewusersComponent },
       { path: 'user/add', component: NewuserComponent },
       { path: 'user/edit/:id', component: EdituserComponent },

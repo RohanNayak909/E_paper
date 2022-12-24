@@ -5,7 +5,7 @@
       </div>
         <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
-              <mat-label class="tag-info">Title</mat-label>
+              <mat-label class="tag-info">Title (Required)</mat-label>
               <mat-form-field appearance="outline">
                 <input matInput type="text" name="title" [(ngModel)] = "edition.edition_name" required>
               </mat-form-field>
@@ -29,7 +29,7 @@
             </div>
             <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
-              <mat-label class="tag-info">Date</mat-label>
+              <mat-label class="tag-info">Date (Required)</mat-label>
               <mat-form-field appearance="outline">
                   <input matInput type="date" [(ngModel)] = "edition.edition_date" required>
               </mat-form-field>
@@ -48,7 +48,7 @@
           </div>
           <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
-                <mat-label class="tag-info">Parent Category</mat-label>
+                <mat-label class="tag-info">Parent Category (Required)</mat-label>
                 <mat-form-field appearance="outline">
                   <mat-select class="category" [ngModelOptions]="{standalone: true}" [(ngModel)]="edition.parent_category">
                     <mat-option *ngFor="let data of catarr" [value]="data.category_id">{{data.category_name}}

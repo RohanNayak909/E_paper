@@ -6,7 +6,7 @@
       </div>
         <div class="add-tag-form-field row">
             <div class="col-md-6 col-sm-12 col-12">
-              <mat-label class="tag-info">Title</mat-label>
+              <mat-label class="tag-info">Title (Required)</mat-label>
               <mat-form-field appearance="outline" class="form-group">
                 <input matInput type="text" name="title" [(ngModel)]="category.category_name" required>
               </mat-form-field>
@@ -16,7 +16,7 @@
             <div class="col-md-6 col-sm-12 col-12">
                 <mat-label class="tag-info">Alias</mat-label>
                 <mat-form-field appearance="outline" class="form-group">
-                  <input matInput type="text" name="alias" required>
+                  <input matInput type="text" name="alias" [(ngModel)]="category.alias" required>
                 </mat-form-field>
             </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="col-md-6 col-sm-12 col-12">
                     <mat-label class="tag-info">Meta Description</mat-label>
                     <mat-form-field appearance="outline" class="form-group">
-                      <input matInput type="text" name="metadescription" required>
+                      <input matInput type="text" name="metadescription" [(ngModel)]="category.meta_desc" required>
                     </mat-form-field>
                 </div>
                 </div>
@@ -66,7 +66,7 @@
                 <div class="col-md-6 col-sm-12 col-12">
                     <mat-label class="tag-info">Meta Keyword</mat-label>
                     <mat-form-field appearance="outline" class="form-group">
-                      <input matInput type="text" name="metakeyword" required>
+                      <input matInput type="text" name="metakeyword" [(ngModel)]="category.meta_keywords" required>
                     </mat-form-field>
                 </div>
                 </div>

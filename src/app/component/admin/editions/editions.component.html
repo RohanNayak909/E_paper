@@ -2,7 +2,8 @@
   <div class="view-category">
     <div class="search-category">
       <mat-form-field appearance="outline">
-        <mat-select [(ngModel)]="categorySearch" disableRipple [ngModelOptions]="{standalone: true}">
+        <mat-select [(ngModel)]="categorySearch" disableRipple [ngModelOptions]="{standalone: true}"
+        (selectionChange)="searchEdition()">
           <mat-option value="">Select Category</mat-option>
           <mat-option *ngFor="let gm of catarr" [value]="gm.category_id">{{ gm.category_name }}
           </mat-option>
@@ -15,6 +16,7 @@
       </mat-form-field>
       <button mat-raised-button color="primary" class="search-btn" (click)="searchEdition()">Search
       </button>
+      <button mat-raised-button color="warning" class="search-btn warning" (click)="getAllEdition()">Clear</button>
       <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/epaper/edition/add">New Edition</button>
     </div>
     <div class="header">
@@ -31,7 +33,7 @@
           <th class="content">Preview</th>
           <th class="content">Delete</th>
         </thead>
-        <tbody *ngIf="editionarr && editionarr.length; else elseblock">
+        <tbody *ngIf = "editionarr && editionarr.length; else elseblock">
           <tr *ngFor="let e of editionarr | paginate: { itemsPerPage: 10, currentPage: p }">
             <td class="first">
               <input type="checkbox" class="example-margin">
@@ -42,15 +44,14 @@
             <td>{{e.status == 1 ? "Public" : "Private"}}</td>
             <td>
               <div class="action-icon">
-                <mat-icon (click)="editEdition(e)">edit</mat-icon>
-                <div class="tooltip"><mat-icon data-toggle="modal" data-target="#exampleModal" (click)="addToFront(e)">add</mat-icon><span class="tooltiptext">Add To Home</span></div>
-                <div class="tooltip"><mat-icon  (click)="addSupplimentPages(e)">dashboard</mat-icon><span class="tooltiptext">Supplement</span></div>
-                <div class="upload-icon tooltip"> <i class="fa-solid fa-upload" (click)="upload(e.edition_id)"></i><span class="tooltiptext">Upload Pages</span></div>
-
-                </div>
+                <mat-icon title="Edit" (click)="editEdition(e)">edit</mat-icon>
+                <mat-icon data-toggle="modal" title="Add to Home" data-target="#exampleModal" (click)="addToFront(e)">add</mat-icon>
+                <mat-icon title="Supplement" (click)="addSupplimentPages(e)">dashboard</mat-icon>
+                <i class="fa-solid fa-upload" title="Upload Pages" (click)="upload(e.edition_id)"></i>
+            </div>
             </td>
-            <td><mat-icon (click)="preview(e)">preview</mat-icon></td>
-            <td><mat-icon data-toggle="modal" data-target="#Modal"
+            <td><mat-icon title="Preview" (click)="preview(e)">preview</mat-icon></td>
+            <td><mat-icon title="Delete" data-toggle="modal" data-target="#Modal"
                 (click)="deleteEdition(e.edition_id)">delete</mat-icon></td>
           </tr>
         </tbody>
@@ -84,9 +85,9 @@
         </div>
         <div class="modal-body">
           <div class="d-flex justify-content-center flex-wrap">
-            <button mat-raised-button color="warn" class="remove-btn mr-20" (click)="removeFromHome()">Remove from Home
+            <button mat-raised-button color="warn" class="remove-btn mr-20" [disabled] = "removefromhome" (click)="removeFromHome()">Remove from Home
             </button>
-            <button mat-raised-button color="primary" (click)="addToHome()"> Add to Home </button>
+            <button mat-raised-button color="primary"  [disabled] = "addtohome" (click)="addToHome()"> Add to Home </button>
           </div>
         </div>
       </div>
