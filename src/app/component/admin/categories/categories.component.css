@@ -175,3 +175,14 @@ tr:nth-child(odd) {
     color: #666666;
     cursor: no-drop;
 }
+
+.mr-4 {
+    margin-right: 4px !important;
+}
+
+.btn-xs, .btn-group-xs>.btn {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}

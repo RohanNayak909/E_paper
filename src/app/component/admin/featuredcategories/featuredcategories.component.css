@@ -8,11 +8,6 @@
     padding: 2% 3%;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-}
-
 .w-120 {
     width: 120px !important;
 }
@@ -108,3 +103,26 @@ tr:nth-child(odd) {
 #view-table .mat-icon{
     cursor: pointer;
 }
+
+.btn-xs, .btn-group-xs>.btn {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.rowbox {
+    margin-bottom: 5px;
+    cursor: move;
+    padding: 5px;
+    background-color: #e5ecf0;
+    border: 1px solid #cfcfcf;
+}
+
+.rowbox:hover {
+    background-color: #ece78582; 
+}
+
+.ml--40 {
+    margin-left: -40px !important;
+} 

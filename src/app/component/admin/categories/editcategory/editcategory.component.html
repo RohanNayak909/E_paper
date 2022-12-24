@@ -42,7 +42,7 @@
       <div class="col-lg-6 col-sm-12 col-12">
         <mat-label class="tag-info">Upload Ads</mat-label>
         <div class="d-flex">
-          <div class="upload_txt  mt-10"><input type="file" #tourBanner accept="image/png, image/jpeg"
+          <div class="upload_txt  mt-10"><input type="file" #tourBanner accept="image/jpeg,image/png,image/gif"
               (change)="onfileselected($event)" id="file-select"></div>
           <div class="image-size mb-20">
             <img [src]="category.ads_image" id="uploadAds">

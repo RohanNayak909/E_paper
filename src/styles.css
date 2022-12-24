@@ -15,62 +15,86 @@ body {
   margin: 2% 5% 5% 5%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 
 /* ----------------------upload-pages------------ */
-.upload-supplement .mat-form-field-appearance-outline .mat-form-field-infix{
+.upload-supplement .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0.3em 0 0.7em 0 !important;
 }
+
 .upload-supplement .mat-select-arrow-wrapper {
   height: 0px !important;
 }
+
 /* -----------upload-pages-------------------- */
 
 /* ------------------------ Edit pages------------------------ */
-.edit-content-form-field .mat-form-field-appearance-outline .mat-form-field-infix{
+.edit-content-form-field .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0px 0 0.8em 0 !important;
 }
+
 .edit-content-form-field .mat-select-arrow-wrapper {
   height: 0px !important;
 }
+
 /* ------------------------Edit pages------------ */
 /* ------------------------add-user---------------- */
-.add-tag-form-field .mat-form-field-appearance-outline .mat-form-field-infix{
+.add-tag-form-field .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0px 0 0.8em 0 !important;
 }
+
 .add-tag-form-field .mat-select-arrow-wrapper {
   height: 0px !important;
 }
 
 /* -------------------------add user---------------------- */
 /* ------------------------- view user-------------------- */
-.view-category .mat-form-field-outline{
-  background-color:var(--white) !important;
+.view-category .mat-form-field-outline {
+  background-color: var(--white) !important;
   border-top: 1px solid #897c7c;
   border-radius: 5px;
 }
+
 .view-category .search-category .mat-form-field-flex {
   height: 36px !important;
 }
-.view-category .mat-form-field-appearance-outline .mat-form-field-infix{
+
+.view-category .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0em 0 1em 0 !important;
 }
+
 .view-category .search-category mat-form-field.form-group {
   margin-bottom: 0px !important;
 }
-.view-category .search-category  .mat-form-field-wrapper {
-    padding: 0px !important;
+
+.view-category .search-category .mat-form-field-wrapper {
+  padding: 0px !important;
 }
+
 .view-category .mat-select-arrow-wrapper {
   height: 0px !important;
 }
+
 /* --------------------view user------------------- */
 
 .add-tag-form-field .mat-form-field {
   width: 100%;
 }
-:host ::ng-deep .cdk-global-overlay-wrapper, .cdk-overlay-container {
+
+:host ::ng-deep .cdk-global-overlay-wrapper,
+.cdk-overlay-container {
   z-index: 99999 !important;
+}
+
+.white-color {
+  color: white !important;
 }

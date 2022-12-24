@@ -8,7 +8,9 @@
       </mat-form-field>
       <button mat-raised-button color="primary" class="search-btn" (click)="searchCategory()">Search
         Category</button>
-      <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/epaper/category/add">New Category</button>
+        <button mat-raised-button color="accent" class="search-btn" (click)="getallcategory()">Clear</button>
+      <button mat-raised-button color="primary" class="newcategory-btn" routerLink="/admin/epaper/category/add">New
+        Category</button>
     </div>
     <div class="header">
       <table id="view-table">
@@ -17,8 +19,7 @@
             <input type="checkbox" class="example-margin">
           </th>
           <th class="content">Category Name</th>
-          <th class="content">Action</th>
-          <th class="content">Delete</th>
+          <th class="content">Actions</th>
         </thead>
         <tbody *ngIf="catarr &&  catarr.length; else elseblock">
           <tr *ngFor="let data of catarr | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
@@ -27,11 +28,15 @@
             </td>
             <td>{{ data.category_name }}</td>
             <td>
-              <mat-icon title="Edit" (click)="editCategory(data)">edit</mat-icon>
-              <mat-icon title="Add To Home" data-toggle="modal" data-target="#exampleModal" (click)="addToFront(data)">add</mat-icon>
+              <a class="btn btn-success btn-xs mr-4" href="javascript:void(0)" title="Edit" (click)="editCategory(data)"><i
+                  class="fa fa-edit"></i></a>
+              <a class="btn btn-danger btn-xs mr-4" href="javascript:void(0)" title="Delete" data-toggle="modal"
+                data-target="#Modal" (click)="deleteCategory(data.category_id)"><i class="fa fa-trash"></i></a>
+              <a *ngIf="data.add_to_home === null || data.add_to_home === '0'" class="btn btn-info btn-xs mr-4" href="javascript:void(0)" title="Send to Home" data-target="#exampleModal"
+                (click)="isViewOnFrontPage(data,1)"><i class="fa fa-plus"></i></a>
+              <a *ngIf="data.add_to_home === '1'" class="btn btn-warning btn-xs mr-4" href="javascript:void(0)" title="Remove from Home" data-target="#exampleModal"
+                (click)="isViewOnFrontPage(data,0)"><i class="fa fa-minus white-color"></i></a>
             </td>
-            <td><mat-icon title="Delete" data-toggle="modal" data-target="#Modal"
-                (click)="deleteCategory(data.category_id)">delete</mat-icon></td>
           </tr>
         </tbody>
         <ng-template #elseblock>
@@ -48,7 +53,6 @@
     <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
       style="padding-top:1vw;padding-bottom:1vw;">
       <div class="d-flex" style="padding-left: 3%;">
-        <!-- <button class="apply-btn" style="margin-left:1vw;">apply to selected items</button> -->
       </div>
       <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
     </div>
@@ -65,9 +69,11 @@
       </div>
       <div class="modal-body">
         <div class="d-flex justify-content-center flex-wrap">
-          <button mat-raised-button color="warn" class="remove-btn mr-20" [disabled] = "removefromhome" id="removefromhome" (click)="removeFromHome()">Remove from Home
+          <button mat-raised-button color="warn" class="remove-btn mr-20" [disabled]="removefromhome"
+            id="removefromhome" (click)="removeFromHome()">Remove from Home
           </button>
-          <button mat-raised-button color="primary" class="remove-btn" [disabled] = "addtohome" id="addTohome" (click)="addToHome()"> Add to Home </button>
+          <button mat-raised-button color="primary" class="remove-btn" [disabled]="addtohome" id="addTohome"
+            (click)="addToHome()"> Add to Home </button>
         </div>
       </div>
     </div>

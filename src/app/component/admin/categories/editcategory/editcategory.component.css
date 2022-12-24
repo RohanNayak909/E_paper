@@ -50,3 +50,8 @@
 :host::ng-deep .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
     opacity: .48
 }
+
+
+:host::ng-deep .form-group {
+    margin-bottom: 0 !important;
+}

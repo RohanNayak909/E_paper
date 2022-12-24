@@ -1,36 +1,19 @@
-<div class="viewcategory-container">
+<!-- <div class="viewcategory-container">
   <div class="view-category">
-    <!-- <div class="search-category">
-        <mat-form-field appearance="outline" class="form-group w-200">
-          <input matInput type="text" name="cname" >
-      </mat-form-field>
-      <button mat-raised-button color="primary" class="search-btn">Search
-        Category</button>
-    </div> -->
     <div class="header">
       <table id="view-table">
         <thead class="table-header">
-          <th class="first">
-            <input type="checkbox" class="example-margin">
-          </th>
           <th class="content">Image</th>
           <th class="content">Category Name</th>
-          <th class="content">Delete</th>
         </thead>
-        <tbody *ngIf="catarr &&  catarr.length; else elseblock">
-          <tr *ngFor="let data of catarr | paginate: { itemsPerPage: 5, currentPage: p }; index as i">
-            <td class="first">
-              <input type="checkbox" class="example-margin">
-            </td>
+        <tbody *ngIf="catarr &&  catarr.length; else elseblock" cdkDropList #doneList="cdkDropList" [cdkDropListData]="catarr" [cdkDropListConnectedTo]="[doneList]"
+        (cdkDropListDropped)="drop($event)">
+          <tr cdkDrag *ngFor="let data of catarr | paginate: { itemsPerPage: 5, currentPage: p }; index as i">
             <td>
               <img [src]="data.ads_image" id="uploadAds" class="image">
             </td>
-            <td>{{data.category_name}}</td>
-            <td>
-              <!-- <td><mat-icon  (click)="editCategory(data)">edit</mat-icon> -->
-              <mat-icon title="Delete" (click)="removeFromHome(data)">delete</mat-icon>
-              <!-- <mat-icon (click)="addToHome(data)">add</mat-icon> -->
-            </td>
+            <td><div><strong>{{data.category_name}}</strong></div>
+            <div><a class="btn btn-danger btn-xs mr-4" href="javascript:void(0)" title="Delete" (click)="removeFromHome(data)"><i class="fa fa-trash"></i></a></div></td>
           </tr>
         </tbody>
         <ng-template #elseblock>
@@ -45,11 +28,46 @@
       </table>
     </div>
     <div class="col-lg-12 col-md-12 col-12 w-100 d-flex justify-content-between flex-wrap"
-    style="padding-top:1vw;padding-bottom:1vw;">
-    <div class="d-flex" style="padding-left: 3%;">
-      <!-- <button class="apply-btn" style="margin-left:1vw;">apply to selected items</button> -->
+      style="padding-top:1vw;padding-bottom:1vw;">
+      <div class="d-flex" style="padding-left: 3%;">
+      </div>
+      <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
     </div>
-    <pagination-controls class="pagination-color" (pageChange)="p = $event"></pagination-controls>
-   </div> 
   </div>
+</div> -->
+
+
+<div class="viewcategory-container">
+  <div class="view-category">
+    <div class="search-category">
+      <mat-form-field appearance="outline" class="form-group w-200">
+        <input matInput type="text" name="cname" [(ngModel)]="categorySearch" (keydown.enter)="onKeydown($event)"
+          (keyup.enter)="searchCategory()">
+        <!-- <input matInput type="text" name="cname"> -->
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="search-btn" (click)="searchCategory()">Search
+        Category</button>
+        <button mat-raised-button color="accent" class="search-btn" (click)="getallcategory()">Clear</button>
+      <button mat-raised-button color="primary" class="newcategory-btn" (click)="updateFeaturedCategory()">Update</button>
+    </div>
+    <div class="header"  cdkDropList #doneList="cdkDropList" [cdkDropListData]="catarr" [cdkDropListConnectedTo]="[doneList]"
+    (cdkDropListDropped)="drop($event)">
+      <div class="rowbox" cdkDrag *ngFor="let data of catarr; index as i">
+        <div class="row">
+          <div class="col-md-2">
+            <a class="thumbnail" [attr.data-lightbox]="i+1" href="{{data.ads_image}}"
+              target="_blank">
+              <img src="{{data.ads_image}}" alt="Thumbnail" id="uploadAds" class="image">
+            </a>
+          </div>
+          <div class="col-md-10">
+            <strong class="ml--40">{{data.category_name}}</strong>
+            <p class="ml--40">
+              <a class="btn btn-danger btn-xs mr-4" href="javascript:void(0)" title="Remove from Home" (click)="isViewOnFrontPage(data)"><i class="fa fa-trash"></i></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
