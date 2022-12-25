@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { editionModel } from 'src/app/models/editionmodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
+import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
@@ -31,10 +32,11 @@ export class EditionsComponent implements OnInit {
   headerarry:any = [];
   category:any;
   editionId:any;
+  dateSearch:any
   edition:any = new editionModel();
   constructor(private matDialog: MatDialog, private editionService: EditionService, private notification: NotificationService,
     private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService,
-    private masterAPI:MasterServiceService) { }
+    private masterAPI:MasterServiceService,private spinnerService: LoaderService) { }
 
 
   ngOnInit(): void {
@@ -42,10 +44,26 @@ export class EditionsComponent implements OnInit {
     this.getAllEdition();
     this.getallcategory();
   }
+
+  getAllEditionByDate() {
+    this.categorySearch = '';
+    this.editionSearch = '';
+    this.editionService.getEditionAllByDate(this.dateSearch,this.currentuser.customer_id).subscribe(res => {
+      if (res.code == 'success') {
+        var data = res.body;
+        this.editionarr = data.map((dt: any) => JSON.parse(dt));
+      } else {
+        this.editionarr = [];
+      }
+    }, (err) => {
+      this.editionarr = []
+    })
+  }
  
   getAllEdition() {
     this.categorySearch = '';
     this.editionSearch = '';
+    this.dateSearch = ''
     this.editionService.getEditionAll(this.eid, this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
       if (res.code == 'success') {
         var data = res.body;
@@ -86,6 +104,7 @@ export class EditionsComponent implements OnInit {
     event.preventDefault();
   }
   searchEdition() {
+    this.dateSearch = ''
     if(this.editionSearch){
     this.editionService.getEditionAll('', this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
       if (res.code == 'success') {
@@ -138,52 +157,30 @@ export class EditionsComponent implements OnInit {
       this.headerarry = []
     })
   }
-  removefromhome:any;
-  addtohome:any;
-  addToFront(data:any){
-    if(data.add_to_home == "1"){
-     this.removefromhome = document.getElementById("addTohome");
-     this.addtohome = true;
-     this.removefromhome = false;
-   }else{
-     this.removefromhome = document.getElementById("removefromhome");
-     this.removefromhome = true;
-     this.addtohome = false;
-   }
-  this.edition = data;
-  }
-  addToHome(){
+  
+  isViewOnFrontPage(data:any,i:any) {
+    this.spinnerService.show();
+    this.edition = data;
+    this.edition.flag = 'FC';
+    this.edition.add_to_home = i;
     this.edition.createdby = this.currentuser.user_id;
-    this.edition.flag = 'U';
-    this.edition.add_to_home = 1;
     this.editionService.createEdition(this.edition).subscribe(res => {
       if (res.code === "success") {
-        document.getElementById("closeModalButton")?.click();
-        this.removefromhome = false;
+        this.spinnerService.hide();
         this.getAllEdition();
-        this.notification.success("Edition added to home.");
+        if(i === 1) 
+        this.notification.success("Edition added to front page");
+        else this.notification.success("Edition removed from front page");
       } else {
-        document.getElementById("closeModalButton")?.click();
-        this.notification.error(res.message);
+        this.notification.error(res.message)
+        this.spinnerService.hide();
       }
-    })
+    },(err)=>{
+      console.log(err);
+      this.spinnerService.hide();
+    });
   }
-  removeFromHome(){
-    this.edition.createdby = this.currentuser.user_id;
-    this.edition.flag = 'U';
-    this.edition.add_to_home = 0;
-    this.editionService.createEdition(this.edition).subscribe(res => {
-      if (res.code === "success") {
-        document.getElementById("closeModalButton")?.click();
-        this.addtohome = false;
-        this.getAllEdition();
-        this.notification.success("Edition removed from home.");
-      } else {
-        document.getElementById("closeModalButton")?.click();
-        this.notification.error(res.message);
-      }
-    })
-  }
+
   addSupplimentPages(data:any){
    this.router.navigate([`/admin/edition/supplement/view/${data.edition_id}`]);
   }

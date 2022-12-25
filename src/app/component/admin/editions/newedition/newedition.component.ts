@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import html2canvas from 'html2canvas';
 import { editionModel } from 'src/app/models/editionmodel';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
@@ -9,6 +10,7 @@ import { LoginService } from 'src/app/services/loginService/login.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
 import { CategoryDialogComponent } from '../../categories/newcategory/category-dialog.component';
+import * as pdfjsLib from 'pdfjs-dist';
 
 @Component({
   selector: 'app-newedition',
@@ -23,7 +25,9 @@ export class NeweditionComponent implements OnInit {
   catarr: any = []
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
     private notification: NotificationService, private router: Router, private editionService: EditionService,
-    private spinnerService: LoaderService) { }
+    private spinnerService: LoaderService) { 
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    }
 
   ngOnInit(): void {
     this.edition = new editionModel();
@@ -42,23 +46,32 @@ export class NeweditionComponent implements OnInit {
       this.catarr = []
     })
   }
+
+  myState = {
+    pdf: null,
+    currentPage: 1,
+    zoom: 1
+}
+
   onfileselected(event: any) {
     this.edition.Multiimage = <File>event.target.files[0];
     let postImg!: any;
-    if ((this.edition.Multiimage.type != 'image/jpeg') && (this.edition.Multiimage.type != 'image/png')) {
-      // this.Notification.error('This is not valid file format. Please upload jpg/png file only.');
+    if ((this.edition.Multiimage.type != 'image/jpeg') && (this.edition.Multiimage.type != 'image/png') && (this.edition.Multiimage.type != 'application/pdf')) {
       this.edition.Multiimage = ''
-
       postImg = document.querySelector('#uploadAds')
-      postImg.src = 'assets/img/image-preview-icon-picture-placeholder-vector-31284806.jpg';
-
-    }
-    else {
+      postImg.src = 'assets/img/image.png';
+    } else {
       this.edition.ads_img = this.edition.Multiimage.type
-      postImg = document.querySelector('#uploadAds');
-      postImg.src = URL.createObjectURL(this.edition.Multiimage);
+      if(this.edition.Multiimage.type != 'application/pdf') {
+        postImg = document.querySelector('#uploadAds');
+        postImg.src = URL.createObjectURL(this.edition.Multiimage);
+      } else {
+        postImg = document.querySelector('#uploadAds')
+        postImg.src = 'assets/img/image.png';
+      }
     }
   }
+
   addEdition() {
     this.spinnerService.show();
     this.edition.createdby = this.currentuser.user_id;
@@ -87,7 +100,7 @@ export class NeweditionComponent implements OnInit {
           this.spinnerService.hide();
           this.notification.error(res.message)
         }
-      },(err) => {
+      }, (err) => {
         this.spinnerService.hide();
       });
     }, 1000)

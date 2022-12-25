@@ -15,17 +15,17 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editedition.component.css']
 })
 export class EditeditionComponent implements OnInit {
-  edition:any;
-  currentuser:any;
-  catid:any='';
-  categorySearch:any='';
-  catarr:any = [];
-  editionarr:any = [];
-  eid:any = ''
-  editionSearch:any = ''
-  constructor(private loginService: LoginService,private categoryService:CategoryServiceService,
-  private notification: NotificationService, private router: Router,private editionService: EditionService,
-  private spinnerService: LoaderService,private activatedRoute: ActivatedRoute) { }
+  edition: any;
+  currentuser: any;
+  catid: any = '';
+  categorySearch: any = '';
+  catarr: any = [];
+  editionarr: any = [];
+  eid: any = ''
+  editionSearch: any = ''
+  constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
+    private notification: NotificationService, private router: Router, private editionService: EditionService,
+    private spinnerService: LoaderService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.edition = new editionModel();
@@ -36,13 +36,13 @@ export class EditeditionComponent implements OnInit {
     this.getAllEdition();
   }
   getallcategory() {
-    this.categoryService.getAllCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.categoryService.getAllCategory(this.catid, this.categorySearch, environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
-        var i:any
-        for(i=0;i<this.catarr?.length;i++){
-          this.catarr[i].category_id= this.catarr[i].category_id.toString();
+        var i: any
+        for (i = 0; i < this.catarr?.length; i++) {
+          this.catarr[i].category_id = this.catarr[i].category_id.toString();
         }
       } else {
         this.catarr = []
@@ -52,7 +52,7 @@ export class EditeditionComponent implements OnInit {
     })
   }
   getAllEdition() {
-    this.editionService.getEditionAll(this.eid, this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
+    this.editionService.getEditionAll(this.eid, this.editionSearch, '', this.currentuser.customer_id).subscribe(res => {
       if (res.code = 'sucess') {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
@@ -65,24 +65,26 @@ export class EditeditionComponent implements OnInit {
       this.editionarr = []
     })
   }
-  onfileselected(event:any){
+  onfileselected(event: any) {
     this.edition.Multiimage = <File>event.target.files[0];
     let postImg!: any;
-    if ((this.edition.Multiimage.type != 'image/jpeg') && (this.edition.Multiimage.type != 'image/png')) {
-      // this.Notification.error('This is not valid file format. Please upload jpg/png file only.');
+    if ((this.edition.Multiimage.type != 'image/jpeg') && (this.edition.Multiimage.type != 'image/png') && (this.edition.Multiimage.type != 'application/pdf')) {
       this.edition.Multiimage = ''
-
       postImg = document.querySelector('#uploadAds')
-      postImg.src = 'assets/img/image-preview-icon-picture-placeholder-vector-31284806.jpg';
+      postImg.src = 'assets/img/image.png';
 
-    }
-    else {
+    } else {
       this.edition.ads_img = this.edition.Multiimage.type
-      postImg = document.querySelector('#uploadAds');
-      postImg.src = URL.createObjectURL(this.edition.Multiimage);
+      if (this.edition.Multiimage.type != 'application/pdf') {
+        postImg = document.querySelector('#uploadAds');
+        postImg.src = URL.createObjectURL(this.edition.Multiimage);
+      } else {
+        postImg = document.querySelector('#uploadAds')
+        postImg.src = 'assets/img/image.png';
+      }
     }
   }
-  editEdition(){
+  editEdition() {
     this.spinnerService.show();
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'U';
@@ -97,6 +99,10 @@ export class EditeditionComponent implements OnInit {
       reader.onload = function () {
 
       };
+
+      if (this.edition.ads_img) {
+        this.edition.media_ext = this.edition.ads_img.split("/")[1];
+      }
     }
     setTimeout(() => {
       if (this.edition.Multiimage) {
@@ -109,9 +115,9 @@ export class EditeditionComponent implements OnInit {
           this.router.navigate([`/admin/epaper/edition`]);
         } else {
           this.spinnerService.hide();
-          this.notification.error(res.message);    
+          this.notification.error(res.message);
         }
-      },(err) =>{
+      }, (err) => {
         console.log(err);
         this.spinnerService.hide();
       });
