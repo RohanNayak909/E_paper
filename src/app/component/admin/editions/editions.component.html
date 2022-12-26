@@ -35,8 +35,6 @@
           <th class="content">Edition Date</th>
           <th class="content">Status</th>
           <th class="content">Actions</th>
-          <!-- <th class="content">Preview</th>
-          <th class="content">Delete</th> -->
         </thead>
         <tbody *ngIf="editionarr && editionarr.length; else elseblock">
           <tr *ngFor="let e of editionarr | paginate: { itemsPerPage: 15, currentPage: p }">
@@ -64,7 +62,7 @@
               <a class="btn btn-success btn-xs mr-4" href="javascript:void(0)" title="Upload Supplement"
                 (click)="addSupplimentPages(e)"><i class="fa fa-upload"></i></a>
               <a class="btn btn-primary btn-xs mr-4" href="javascript:void(0)" title="Upload Pages"
-                (click)="upload(e.edition_id)">Upload Pages</a>
+                (click)="upload(e.category_name,e.edition_id)">Upload Pages</a>
             </td>
           </tr>
         </tbody>

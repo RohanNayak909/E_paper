@@ -57,12 +57,25 @@
 .upload-content {
     margin-top: 8px;
     /* background-color: #e5ecf0; */
+    /* background-color: #e5ecf0; */
+    border: 1px solid #cfcfcf;
+}
+
+/* .upload-content:hover {
+    background-color: rgb(242 236 215);
+} */
+
+
+.rowbox {
+    margin-bottom: 5px;
+    cursor: move;
+    padding: 5px;
     background-color: #e5ecf0;
     border: 1px solid #cfcfcf;
 }
 
-.upload-content:hover {
-    background-color: rgb(242 236 215);
+.rowbox:hover {
+    background-color: #ece78582;
 }
 
 .search-category .mat-raised-button {
@@ -167,7 +180,7 @@ h4 {
 
 .mb-20 {
     padding: 10px 0px;
-    border-bottom: 1px solid #000;
+    /* border-bottom: 1px solid #000; */
 }
 
 .btn-add {
@@ -255,4 +268,15 @@ h4 {
 
 .mr-20 {
     margin-right: 20px;
+}
+
+.sticky-div {
+    background: white;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50%;
+    border: 1px solid;
+    display: flex;
+    justify-content: end;
+    padding: 8px 5px;
 }

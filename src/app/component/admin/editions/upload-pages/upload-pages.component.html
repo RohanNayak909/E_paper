@@ -4,98 +4,91 @@
                 style="margin-right:5px"></i>
             Back to Edition List</button>
     </div>
-
     <div class="upload-container">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#home">PDF Upload</a>
+                <a class="nav-link active" data-toggle="tab" href="#merge-pdf" (click)="showTabSection(1)">Merge & Upload PDFs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#upload-image" (click)="showTabSection(2)">Upload Images</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div id="home" class="container tab-pane active"><br>
+            <div id="merge-pdf" class="container tab-pane active" *ngIf="merge_pdf"><br>
                 <div class="list-files">
                     <div class="no-files">No PDF files added</div>
                 </div>
                 <div style="display:none">
-                    <input type="file" id="pdf-file" onChange="openfile()" multiple accept="application/pdf">
+                    <input type="file" id="pdf-file" onChange="openfile()" name="file[]" multiple
+                        accept="application/pdf">
                 </div>
                 <div class="center-btn">
                     <button class="btn-add" (click)="addPdf()">ADD PDF</button>
-                    <button class="btn-join" onclick="joinPdf()">JOIN PDF</button>
+                    <button class="btn-join" onclick="joinPdf()">MERGE PDF</button>
                 </div>
-
-
-                <input type="file" id="pdf" (change)="onUpload($event)" accept="application/pdf">
-
-                <button class="btn-join" (click)=" getpdfToJpegImage()">Convert To JPEG</button>
-                <!-- <h3> Note: File must be in jpg,png or gif format. Maximum file is 50M</h3> -->
-                <!-- <div class="upload-supplement">
-                    <mat-label class="tag-info">Supplementary</mat-label>
-                    <mat-form-field appearance="outline">
-                        <mat-select>
-                            <mat-option value="0">None</mat-option>
-                            <mat-option value="1">None</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                <div class="center-btn">
+                    <input type="file" id="pdf" (change)="onUpload($event)" accept="application/pdf" multiple>
+                    <button class="btn-join" (click)=" getpdfToJpegImage()">Convert To JPEG</button>
                 </div>
-                <div class="upload-search">
-                    <button mat-raised-button class="bg-green"> [Browse...] </button>
-                    <button mat-raised-button color="primary" class="start-upload">Start Upload </button>
-                </div> -->
-                <div class="upload-content">
-                    <div class="img-upload" *ngIf="imgarr && imgarr.length; else elseblock">
-                        <div class="row mb-20" *ngFor="let data of imgarr;index as i">
-                            <div class="col-md-3">
-
-                                <div class="upload-img-bg">
-                                    <img [src]="data.image_url" class="e-paper">
-                                </div>
+            </div>
+            <div id="upload-image" class="container tab-pane" *ngIf="upload_image">
+                <div class="center-btn">
+                    <input type="file" id="pdf" (change)="onUploadMultipleImages($event)" accept="image/jpeg,image/png,image/gif" multiple>
+                    <button class="btn-join" (click)=" startUpload()">Start Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="upload-container">
+        <div class="upload-content">
+            <div class="sticky-div"><button class="btn-join" (click)=" startUpload()">Update</button></div>
+            <div class="img-upload" *ngIf="imgarr && imgarr.length; else elseblock" cdkDropList #doneList="cdkDropList" [cdkDropListData]="imgarr" [cdkDropListConnectedTo]="[doneList]"
+            (cdkDropListDropped)="drop($event)">
+                <div class="rowbox" cdkDrag *ngFor="let data of imgarr;index as i">
+                <div class="row mb-20" >
+                    <div class="col-md-3">
+                        <div class="upload-img-bg">
+                            <img [src]="data.image_url" class="e-paper">
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h4> {{data.index}}</h4>
+                        <div class="d-flex">
+                            <div class="search-category">
+                                <button mat-raised-button color="primary" (click)="createAreaMap(data.image_id,data.image_url)">
+                                    <mat-icon >edit</mat-icon> Create Area Maps
+                                </button>
                             </div>
-                            <div class="col-md-9">
-                                <h4> {{data.index}}</h4>
-                                <div class="d-flex">
-                                    <div class="search-category">
-                                        <button mat-raised-button color="primary" (click)="createAreaMap(data.image_id,data.image_url)">
-                                            <mat-icon >edit</mat-icon> Create Area Maps
-                                        </button>
-                                    </div>
-                                    <div class="edit-button">
-                                        <button mat-raised-button class="bg-green"><i class="fa-solid fa-pen-to-square"
-                                                (click)="edit(data.index,data.image_id,data.edition_id)"></i></button>
-                                    </div>
-                                    <div class="delete-button">
-                                        <button mat-raised-button class="bg-red">
-                                            <mat-icon data-toggle="modal" data-target="#Modal"
-                                                (click)="deletePages(data.image_id)">delete</mat-icon>
-                                        </button>
+                            <div class="edit-button">
+                                <button mat-raised-button class="bg-green"><i class="fa-solid fa-pen-to-square"
+                                        (click)="edit(data.index,data.image_id,data.edition_id)"></i></button>
+                            </div>
+                            <div class="delete-button">
+                                <button mat-raised-button class="bg-red">
+                                    <mat-icon data-toggle="modal" data-target="#Modal"
+                                        (click)="deletePages(data.image_id)">delete</mat-icon>
+                                </button>
 
-                                    </div>
-                                    <div class="gray-button" *ngIf="data.image_size">
-                                        <div class="bg-gray">
-                                            {{data.image_size}}
-                                        </div>
-                                    </div>
-                                    <!-- <div class="compress-button">
-                                        <button mat-raised-button color="primary" data-toggle="modal" data-target="#exampleModal">
-                                            Compress 
-                                        </button>
-                                    </div> -->
+                            </div>
+                            <div class="gray-button" *ngIf="data.image_size">
+                                <div class="bg-gray">
+                                    {{data.image_size}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <ng-template #elseblock>
-                        <tbody>
-                            <tr>
-                                <td colspan="6" class="text-center" style="color: black;">
-                                    No data Found
-                                </td>
-                            </tr>
-                        </tbody>
-                    </ng-template>
                 </div>
-
             </div>
+            </div>
+            <ng-template #elseblock>
+                <tbody>
+                    <tr>
+                        <td colspan="6" class="text-center" style="color: black;">
+                            No data Found
+                        </td>
+                    </tr>
+                </tbody>
+            </ng-template>
         </div>
     </div>
 </div>

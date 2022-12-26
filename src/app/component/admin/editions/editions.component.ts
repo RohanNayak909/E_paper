@@ -97,8 +97,8 @@ export class EditionsComponent implements OnInit {
   cancel(){
     document.getElementById("closeDeleteModalButton")?.click();
   }
-  upload(eid: any) {
-    this.router.navigate([`/admin/epaper/edition/upload-pages/${eid}`]);
+  upload(cat_name:any,eid: any) {
+    this.router.navigate([`/admin/epaper/edition/upload-pages/${cat_name}/${eid}`]);
   }
   onKeydown(event: any) {
     event.preventDefault();

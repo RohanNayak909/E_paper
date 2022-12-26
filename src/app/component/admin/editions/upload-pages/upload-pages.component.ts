@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,6 +29,10 @@ export class UploadPagesComponent implements OnInit {
   currentuser: any;
   category: any = '';
   imageId:any;
+
+  merge_pdf:Boolean = true
+  upload_image:Boolean = false
+
   constructor(private matDialog: MatDialog, private editionService: EditionService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private router: Router,private spinnerService: LoaderService) { }
@@ -48,11 +53,66 @@ export class UploadPagesComponent implements OnInit {
   }
   onUpload(event: any) {
     this.edition.input = <File>event.target.files[0];
-
   }
+
+  onUploadMultipleImages(event: any) {
+    this.edition.images_arr = <File>event.target.files;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+  }
+
+  showTabSection(id:any) {
+    if(id === 1) {
+      this.merge_pdf = true
+      this.upload_image = false
+    } else {
+      this.merge_pdf = false
+      this.upload_image = true
+    }
+  }
+
+  startUpload() {
+    this.spinnerService.show()
+    this.edition.type = 'IMAGE';
+    this.edition.edition_id = this.eid;
+    this.edition.createdby = this.currentuser.user_id;
+    this.edition.flag = 'I';
+    this.edition.customer_id = this.cust_id;
+    if (this.edition.images_arr) {
+      for(var i = 0; i < this.edition.images_arr.length; i++) {
+        const reader = new FileReader(); 
+        reader.onload = (e: any) => {
+          this.edition.base64_arr.push(e.target.result);
+        };
+        reader.readAsDataURL(this.edition.images_arr[i])
+      }
+    }
+    setTimeout(() => {
+      this.editionService.saveUploadImage(this.edition).subscribe(res => {
+        if (res.code === "success") {
+          this.spinnerService.hide()
+          this.getAllImages();
+        } else {
+          this.spinnerService.hide()
+        }
+      }, (err) => {
+        this.spinnerService.hide() 
+      });
+    },1000);
+  }
+
   getpdfToJpegImage() {
     this.spinnerService.show()
-
+    this.edition.type = 'PDF';
     this.edition.edition_id = this.eid;
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'I';
@@ -73,7 +133,6 @@ export class UploadPagesComponent implements OnInit {
           this.spinnerService.hide()
           this.getAllImages();
         } else {
-          // this.dataarr = []
           this.spinnerService.hide()
         }
       }, (err) => {

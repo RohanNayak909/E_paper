@@ -24,4 +24,7 @@ export class editionModel{
 	index:any
 	supplement_name:any
 	supplement_alias:any
+	images_arr:any = []
+	base64_arr:any = []
+	type:any
 }
