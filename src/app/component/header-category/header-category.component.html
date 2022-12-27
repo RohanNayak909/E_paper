@@ -1,94 +1,98 @@
-<div class="marg-bot">
-    <img class="prameya-header-logo" src="assets/img/prameyaHeader.png" />
-</div>
-<div class="marg-bot">
-    <app-header></app-header>
-</div>
-
-<div class="home-ad-container">
-    <div id="carouselExampleControls1" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item" class="active">
-                <img class="d-block w-100" src='assets/img/cover4.jpg'>
-            </div>
-        </div>
+<section class="container">
+  <section class="header-wrapper">
+    <div class="marg-bot">
+      <img class="prameya-header-logo" src="assets/img/prameyaHeader.png" />
     </div>
-</div>
-<div class="heading" *ngFor="let data of editionarr">
-    <h1 class="mr-10">{{category}}</h1>
-    <strong *ngIf="currentIndex > 1 ? currentIndex : ''">Page - {{currentIndex}}</strong>
-    <small class="ml-10">{{data.edition_date | date}}</small>
-</div>
+    <div class="marg-bot">
+      <app-header></app-header>
+    </div>
 
-<div class="filter-container">
-    <div class="row">
+    <div class="home-ad-container">
+      <div id="carouselExampleControls1" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item" class="active">
+            <img class="d-block w-100" src='assets/img/cover4.jpg'>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="heading" *ngFor="let data of editionarr">
+      <h1 class="mr-10">{{category}}</h1>
+      <strong *ngIf="currentIndex > 1 ? currentIndex : ''">Page - {{currentIndex}}</strong>
+      <small class="ml-10">{{data.edition_date | date}}</small>
+    </div>
+
+    <div class="filter-container">
+      <div class="row">
         <div class="col-md-2 col-sm-4 col-12">
-            <mat-form-field appearance="outline">
-                <input matInput id="startDate" type="date" [(ngModel)]="editionDate"
-                    (change)="onChangeDate(editionDate)" required>
-            </mat-form-field>
-            <!-- <input matInput id="startDate" class="form-control" type="date" [(ngModel)] = "editionDate" (click)="onClickDate()"/>
-            -->
+          <mat-form-field appearance="outline">
+            <input matInput id="startDate" type="date" [(ngModel)]="editionDate"
+                   (change)="onChangeDate(editionDate)" required>
+          </mat-form-field>
+          <!-- <input matInput id="startDate" class="form-control" type="date" [(ngModel)] = "editionDate" (click)="onClickDate()"/>
+          -->
         </div>
         <div class="col-md-10 col-sm-8 col-12">
-            <div class="pagination-container">
-                <div class="d-flex align-items-center">
-                    <div class="grid-modal-container">
-                        <mat-icon>grid_view</mat-icon>
-                    </div>
-                    <mat-form-field appearance="outline">
-                        <mat-select [(ngModel)]="currentIndex">
-                            <mat-option *ngFor="let data of imgarr" [value]="data.index" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">Page {{data.index}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-
+          <div class="pagination-container">
+            <div class="d-flex align-items-center">
+              <div class="grid-modal-container">
+                <mat-icon>grid_view</mat-icon>
+              </div>
+              <mat-form-field appearance="outline">
+                <mat-select [(ngModel)]="currentIndex">
+                  <mat-option *ngFor="let data of imgarr" [value]="data.index" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">Page {{data.index}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="epaper-container">
-    <div class="row">
+    <div class="epaper-container">
+      <div class="row">
         <div class="col-md-2 col-sm-12 col-12">
-            <div class="page-holder" *ngFor="let data of imgarr">
-                <div class="pages" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">
-                    <mat-icon>description</mat-icon>
-                    <p>Page No - {{data.index}}</p>
-                </div>
+          <div class="page-holder" *ngFor="let data of imgarr">
+            <div class="pages" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index)">
+              <mat-icon>description</mat-icon>
+              <p>Page No - {{data.index}}</p>
             </div>
+          </div>
         </div>
         <div class="col-md-10 col-sm-12 col-12">
-            <div class="social-icons">
-                <div class="icon facebook"><i class="fa fa-facebook"></i></div>
-                <div class="icon twitter"><i class="fa fa-twitter"></i></div>
-                <div class="icon google"><i class="fa fa-google-plus"></i></div>
-                <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-                <div class="icon print"><i class="fa fa-print"></i></div>
-                <div class="icon email"><i class="fa fa-envelope"></i></div>
+          <div class="social-icons">
+            <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+            <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+            <div class="icon google"><i class="fa fa-google-plus"></i></div>
+            <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
+            <div class="icon print"><i class="fa fa-print"></i></div>
+            <div class="icon email"><i class="fa fa-envelope"></i></div>
+          </div>
+          <!-- *ngFor="let data of imgarr" -->
+          <div id="epaper">
+            <!-- <div class="epaper"  *ngIf="currentIndex == data.index">
+                <img [src]="data.image_url" usemap="#workmap" >
+                <map name="workmap" id="mapdata">
+                    <area shape="rect" *ngFor="let area of data.area_details" coords="{{area.coordinates}}" alt="map" href="javascript:void(0)">
+                </map>
+            </div> -->
+            <div class="epaper">
+              <div class="imagemap" id="imagemap">
+              </div>
             </div>
-            <!-- *ngFor="let data of imgarr" -->
-            <div id="epaper">
-                <!-- <div class="epaper"  *ngIf="currentIndex == data.index">
-                    <img [src]="data.image_url" usemap="#workmap" >
-                    <map name="workmap" id="mapdata">
-                        <area shape="rect" *ngFor="let area of data.area_details" coords="{{area.coordinates}}" alt="map" href="javascript:void(0)">
-                    </map>
-                </div> -->
-                <div class="epaper">
-                    <div class="imagemap" id="imagemap">
-                    </div>
-                </div>
-            </div>
-            <div class="social-icons" *ngIf="hide">
-                <div class="icon facebook"><i class="fa fa-facebook"></i></div>
-                <div class="icon twitter"><i class="fa fa-twitter"></i></div>
-                <div class="icon google"><i class="fa fa-google-plus"></i></div>
-                <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-                <div class="icon print"><i class="fa fa-print"></i></div>
-                <div class="icon email"><i class="fa fa-envelope"></i></div>
-            </div>
+          </div>
+          <div class="social-icons" *ngIf="hide">
+            <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+            <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+            <div class="icon google"><i class="fa fa-google-plus"></i></div>
+            <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
+            <div class="icon print"><i class="fa fa-print"></i></div>
+            <div class="icon email"><i class="fa fa-envelope"></i></div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </section>
+</section>
