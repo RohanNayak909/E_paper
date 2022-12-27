@@ -44,7 +44,7 @@ export class HeaderCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.screen_width = Math.round((screen.width * 81.875)/100)
+    
     let routeParams = this.activatedRoute.snapshot.paramMap;
     this.eid = Number(routeParams.get('id'));
     this.category = routeParams.get('category');
@@ -81,6 +81,13 @@ export class HeaderCategoryComponent implements OnInit {
           var img: any = document.createElement('img');
           img.id = 'map_area_img'
           img.src = this.imgarr[0].image_url
+          if(this.imgarr[0].page_type === '0') {
+            img.classList.add('main-image')
+            this.screen_width = Math.round((screen.width * 81.875)/100)
+          } else {
+            img.classList.add('suppl-image')
+            this.screen_width = Math.round((screen.width * 65.875)/100)
+          }
           var wrapper: any = document.getElementById('imagemap');
           wrapper.innerHTML = ""
           wrapper.appendChild(img);
@@ -124,10 +131,19 @@ export class HeaderCategoryComponent implements OnInit {
     })
   }
 
-  goToPage(img_id: any, img_url: any, area_details: any, i: any) {
+  goToPage(img_id: any, img_url: any, area_details: any, i: any, page_type:any) {
     var img: any = document.createElement('img');
     img.id = 'map_area_img'
     img.src = img_url
+    if(page_type === '0') {
+      img.height = 1479;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 81.875)/100)
+    } else {
+      img.height = 1179;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 65.875)/100)
+    }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
     wrapper.appendChild(img);

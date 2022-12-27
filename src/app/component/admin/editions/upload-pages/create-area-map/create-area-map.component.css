@@ -19,13 +19,11 @@ body {
 .fp-canvas,
 .fp-canvas-2 {
     position: absolute;
+    /* height: 1479px; */
     height: auto;
-    width: auto;
-    /* width: 1048px;
-    height: 1609px; */
+    width: 963px;
     top: 0;
     left: 0;
-    /* z-index: 1; */
 }
 
 #fp-map {
@@ -72,4 +70,14 @@ area:hover::after {
 
 .dis-n {
     display: none;
+}
+
+.main-image {
+    height: 1479px !important;
+    width: 963px !important;
+}
+
+.suppl-image {
+    height: 963px !important;
+    width: 773px !important;
 }

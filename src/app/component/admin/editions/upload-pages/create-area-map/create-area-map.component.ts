@@ -34,6 +34,8 @@ export class CreateAreaMapComponent implements OnInit {
   saveIcon = "assets/img/save.png";
   deleteIcon = "assets/img/remove.png"
 
+  page_type:any
+
   constructor(private activatedRoute: ActivatedRoute, private loginService: LoginService,
     private editionService: EditionService, private spinnerService: LoaderService,
     private notification: NotificationService) { }
@@ -45,6 +47,7 @@ export class CreateAreaMapComponent implements OnInit {
     this.img_id = Number(routeParams.get('id'));
 
     this.img_url = localStorage.getItem('img_url')
+    this.page_type = localStorage.getItem('page_type')
 
     this.canvas = new fabric.Canvas("canvas");
 
@@ -199,8 +202,8 @@ export class CreateAreaMapComponent implements OnInit {
       }
 
       var img:any = document.getElementById('fp-img');
-      var img_height = img.naturalHeight
-      var img_width = img.naturalWidth
+      var img_height = img.clientHeight
+      var img_width = img.clientWidth
 
       var src = img.src
       var img_name = src.split("/")[6]
@@ -213,8 +216,15 @@ export class CreateAreaMapComponent implements OnInit {
       this.savedCoordinates.customer_id = this.currentuser.customer_id;
       this.savedCoordinates.created_by = this.currentuser.user_id;
       this.savedCoordinates.map_id = map_id
-      this.savedCoordinates.img_width = img_width
-      this.savedCoordinates.img_height = img_height
+
+      if(this.page_type === '0') {
+        this.savedCoordinates.img_width = '963'
+        this.savedCoordinates.img_height = '1479'
+      } else {
+        this.savedCoordinates.img_width = '773'
+        this.savedCoordinates.img_height = '963'
+      }
+
       this.savedCoordinates.image = img_name
 
       console.log(this.savedCoordinates);

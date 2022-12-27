@@ -8,7 +8,7 @@
             </div>
         </div>
         <div id="fp-canvas-container">
-            <img [src]="img_url" alt="Floor Plan" class='fp-img' id="fp-img" usemap="#fp-map">
+            <img [src]="img_url" alt="Floor Plan" class='fp-img' id="fp-img" [ngClass]="page_type === '0' ? 'main-image' : 'suppl-image'" usemap="#fp-map">
             <canvas id="canvas" class="fp-canvas" width="1100" height="1700"></canvas>
         </div>
     </div>

@@ -172,8 +172,9 @@
 }
 
 :host::ng-deep .imagemap img {
-    width: 963px;
-    height: 1479px;
+    /* width: 963px; */
+    /* height: 1479px; */
+    /* height: auto; */
     display: block;
 }
 
@@ -187,4 +188,14 @@
     border: 3px solid red;
     background: rgba(110, 152, 219, 0.4);
     /* box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.5); */
+}
+
+.main-image {
+    height: 1479px !important;
+    width: 963px !important;
+}
+
+.suppl-image {
+    height: 1179px !important;
+    width: 963px !important;
 }

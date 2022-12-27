@@ -27,4 +27,5 @@ export class editionModel{
 	images_arr:any = []
 	base64_arr:any = []
 	type:any
+	page_type:any
 }

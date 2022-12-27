@@ -29,7 +29,7 @@ export class UploadPagesComponent implements OnInit {
   currentuser: any;
   category: any = '';
   imageId: any;
-
+  page_style:any = '0'
   merge_pdf: Boolean = true
   upload_image: Boolean = false
 
@@ -81,6 +81,7 @@ export class UploadPagesComponent implements OnInit {
   }
 
   showTabSection(id: any) {
+    this.page_style = '0'
     if (id === 1) {
       this.merge_pdf = true
       this.upload_image = false
@@ -113,6 +114,7 @@ export class UploadPagesComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'I';
     this.edition.customer_id = this.cust_id;
+    this.edition.page_type = this.page_style
     if (this.edition.images_arr) {
       for (var i = 0; i < this.edition.images_arr.length; i++) {
         const reader = new FileReader();
@@ -129,6 +131,7 @@ export class UploadPagesComponent implements OnInit {
           this.getAllImages();
           this.is_image_upload = true
           this.image_file_upload.nativeElement.value = '';
+          this.page_style = '0'
         } else {
           this.is_image_upload = false
           this.spinnerService.hide()
@@ -147,7 +150,7 @@ export class UploadPagesComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'I';
     this.edition.customer_id = this.cust_id;
-
+    this.edition.page_type = this.page_style
     if (this.edition.input) {
       var reader = new FileReader();
       reader.readAsDataURL(this.edition.input)
@@ -164,6 +167,7 @@ export class UploadPagesComponent implements OnInit {
           this.spinnerService.hide()
           this.getAllImages();
           this.pdf_file_upload.nativeElement.value = '';
+          this.page_style = '0'
         } else {
           this.spinnerService.hide()
           this.is_merged_pdf_upload = false
@@ -221,8 +225,9 @@ export class UploadPagesComponent implements OnInit {
     localStorage.setItem('index', index)
     this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${eid}/${id}`]);
   }
-  createAreaMap(id: any, image_url: any) {
+  createAreaMap(id: any, image_url: any,page_type:any) {
     localStorage.setItem('img_url', image_url)
+    localStorage.setItem('page_type', page_type)
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);
   }
 }
