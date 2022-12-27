@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
@@ -28,14 +28,22 @@ export class UploadPagesComponent implements OnInit {
   cust_id: any;
   currentuser: any;
   category: any = '';
-  imageId:any;
+  imageId: any;
 
-  merge_pdf:Boolean = true
-  upload_image:Boolean = false
+  merge_pdf: Boolean = true
+  upload_image: Boolean = false
+
+  is_merged_pdf_upload:Boolean = true
+  is_image_upload:Boolean = true 
+
+  @ViewChild('pdf_file_upload')
+  pdf_file_upload!: ElementRef;
+  @ViewChild('image_file_upload')
+  image_file_upload!: ElementRef;
 
   constructor(private matDialog: MatDialog, private editionService: EditionService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
-    private notification: NotificationService, private router: Router,private spinnerService: LoaderService) { }
+    private notification: NotificationService, private router: Router, private spinnerService: LoaderService) { }
 
   ngOnInit(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
@@ -52,10 +60,12 @@ export class UploadPagesComponent implements OnInit {
     }
   }
   onUpload(event: any) {
+    this.is_merged_pdf_upload = false
     this.edition.input = <File>event.target.files[0];
   }
 
   onUploadMultipleImages(event: any) {
+    this.is_image_upload = false
     this.edition.images_arr = <File>event.target.files;
   }
 
@@ -70,8 +80,8 @@ export class UploadPagesComponent implements OnInit {
     }
   }
 
-  showTabSection(id:any) {
-    if(id === 1) {
+  showTabSection(id: any) {
+    if (id === 1) {
       this.merge_pdf = true
       this.upload_image = false
     } else {
@@ -81,7 +91,19 @@ export class UploadPagesComponent implements OnInit {
   }
 
   update() {
-    alert("Here")
+    this.spinnerService.show();
+    var image_id_arr = this.imgarr.map((x: any) => x.image_id);
+    console.log(image_id_arr);
+    this.editionService.updateImageSerial(image_id_arr).subscribe(res => {
+      if (res.code === "success") {
+        this.spinnerService.hide()
+        this.getAllImages();
+      } else {
+        this.spinnerService.hide()
+      }
+    }, (err) => {
+      this.spinnerService.hide()
+    });
   }
 
   startUpload() {
@@ -92,8 +114,8 @@ export class UploadPagesComponent implements OnInit {
     this.edition.flag = 'I';
     this.edition.customer_id = this.cust_id;
     if (this.edition.images_arr) {
-      for(var i = 0; i < this.edition.images_arr.length; i++) {
-        const reader = new FileReader(); 
+      for (var i = 0; i < this.edition.images_arr.length; i++) {
+        const reader = new FileReader();
         reader.onload = (e: any) => {
           this.edition.base64_arr.push(e.target.result);
         };
@@ -105,13 +127,17 @@ export class UploadPagesComponent implements OnInit {
         if (res.code === "success") {
           this.spinnerService.hide()
           this.getAllImages();
+          this.is_image_upload = true
+          this.image_file_upload.nativeElement.value = '';
         } else {
+          this.is_image_upload = false
           this.spinnerService.hide()
         }
       }, (err) => {
-        this.spinnerService.hide() 
+        this.is_image_upload = false
+        this.spinnerService.hide()
       });
-    },1000);
+    }, 1000);
   }
 
   getpdfToJpegImage() {
@@ -134,13 +160,17 @@ export class UploadPagesComponent implements OnInit {
       }
       this.editionService.saveUploadImage(this.edition).subscribe(res => {
         if (res.code === "success") {
+          this.is_merged_pdf_upload = true
           this.spinnerService.hide()
           this.getAllImages();
+          this.pdf_file_upload.nativeElement.value = '';
         } else {
           this.spinnerService.hide()
+          this.is_merged_pdf_upload = false
         }
       }, (err) => {
-        this.spinnerService.hide() 
+        this.spinnerService.hide()
+        this.is_merged_pdf_upload = false
       });
     }, 1000)
   }
@@ -174,7 +204,7 @@ export class UploadPagesComponent implements OnInit {
   }
   pageDelete() {
     var funct = 'UPLOADPAGE';
-    this.masterService.bulkDeletion(funct,this.imageId, 0, environment.CUSTOMER_ID).subscribe(res => {
+    this.masterService.bulkDeletion(funct, this.imageId, 0, environment.CUSTOMER_ID).subscribe(res => {
       if (res.code === "success") {
         document.getElementById("closeDeleteModalButton")?.click();
         this.notification.success("Page deleted successfully");
@@ -184,15 +214,15 @@ export class UploadPagesComponent implements OnInit {
       }
     })
   }
-  cancel(){
+  cancel() {
     document.getElementById("closeDeleteModalButton")?.click();
   }
-  edit(index:any,id: any,eid:any) {
-    localStorage.setItem('index',index)
+  edit(index: any, id: any, eid: any) {
+    localStorage.setItem('index', index)
     this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${eid}/${id}`]);
   }
-  createAreaMap(id: any,image_url: any) {
-    localStorage.setItem('img_url',image_url)
+  createAreaMap(id: any, image_url: any) {
+    localStorage.setItem('img_url', image_url)
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);
   }
 }

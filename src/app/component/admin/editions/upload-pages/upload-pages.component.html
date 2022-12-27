@@ -27,14 +27,14 @@
                     <button class="btn-join" onclick="joinPdf()">MERGE PDF</button>
                 </div>
                 <div class="center-btn">
-                    <input type="file" id="pdf" (change)="onUpload($event)" accept="application/pdf" multiple>
-                    <button class="btn-join" (click)=" getpdfToJpegImage()">Convert To JPEG</button>
+                    <input type="file" #pdf_file_upload id="pdf" (change)="onUpload($event)" accept="application/pdf" multiple>
+                    <button class="btn-join" [ngClass]="is_merged_pdf_upload ? 'disabled' : ''" (click)=" getpdfToJpegImage()">Convert To JPEG</button>
                 </div>
             </div>
             <div id="upload-image" class="container tab-pane" *ngIf="upload_image">
                 <div class="center-btn">
-                    <input type="file" id="pdf" (change)="onUploadMultipleImages($event)" accept="image/jpeg,image/png,image/gif" multiple>
-                    <button class="btn-join" (click)=" startUpload()">Start Upload</button>
+                    <input type="file" #image_file_upload id="image_file_upload" (change)="onUploadMultipleImages($event)" accept="image/jpeg,image/png,image/gif" multiple>
+                    <button class="btn-join" [ngClass]="is_image_upload ? 'disabled' : ''" (click)=" startUpload()">Start Upload</button>
                 </div>
             </div>
         </div>

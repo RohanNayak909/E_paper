@@ -204,3 +204,8 @@ body {
 .label-default {
   background-color: #999;
 }
+
+.disabled {
+  pointer-events: none;
+  opacity: .65;
+}

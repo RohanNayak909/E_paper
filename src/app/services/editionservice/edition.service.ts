@@ -12,7 +12,7 @@ const Masterapi: string = environment.BASE_URL + '/master';
 export class EditionService {
 
   constructor(private HTTP: HttpClient) { }
-
+  
   createEdition(edition: any) {
     return this.HTTP.post<any>(Masterapi + `/add-edition`, { ...edition });
   }
@@ -53,5 +53,8 @@ export class EditionService {
   }
   deleteAreaMapByImgId(area_map: any) {
     return this.HTTP.post<any>(Masterapi + `/delete-area-map`, { ...area_map });
+  }
+  updateImageSerial(img_arr: any) {
+    return this.HTTP.post<any>(Masterapi + `/update-image-serial`, [ ...img_arr ]);
   }
 }
