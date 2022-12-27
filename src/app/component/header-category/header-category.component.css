@@ -179,6 +179,8 @@
 }
 
 :host::ng-deep .imagemap img {
+    width: 963px;
+    height: 1479px;
     display: block;
 }
 
