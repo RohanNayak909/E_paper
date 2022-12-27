@@ -41,11 +41,11 @@
     </div>
     <div class="upload-container">
         <div class="upload-content">
-            <div class="sticky-div"><button class="btn-join" (click)=" startUpload()">Update</button></div>
+            <div class="sticky-div" *ngIf="imgarr && imgarr.length;"><button class="btn-join" (click)="update()">Update</button></div>
             <div class="img-upload" *ngIf="imgarr && imgarr.length; else elseblock" cdkDropList #doneList="cdkDropList" [cdkDropListData]="imgarr" [cdkDropListConnectedTo]="[doneList]"
             (cdkDropListDropped)="drop($event)">
                 <div class="rowbox" cdkDrag *ngFor="let data of imgarr;index as i">
-                <div class="row mb-20" >
+                <div class="row mb-20">
                     <div class="col-md-3">
                         <div class="upload-img-bg">
                             <img [src]="data.image_url" class="e-paper">

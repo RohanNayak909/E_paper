@@ -271,12 +271,12 @@ h4 {
 }
 
 .sticky-div {
+    width: 84px;
     background: white;
-    position: -webkit-sticky;
     position: sticky;
     top: 50%;
     border: 1px solid;
-    display: flex;
-    justify-content: end;
     padding: 8px 5px;
+    float: right;
+    z-index: 9999;
 }

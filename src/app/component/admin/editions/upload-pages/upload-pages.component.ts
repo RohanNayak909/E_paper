@@ -80,6 +80,10 @@ export class UploadPagesComponent implements OnInit {
     }
   }
 
+  update() {
+    alert("Here")
+  }
+
   startUpload() {
     this.spinnerService.show()
     this.edition.type = 'IMAGE';
