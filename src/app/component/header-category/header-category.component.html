@@ -1,3 +1,5 @@
+<!-- <section class="container">
+    <section class="header-wrapper"> -->
 <div class="marg-bot">
     <img class="prameya-header-logo" src="assets/img/prameyaHeader.png" />
 </div>
@@ -27,8 +29,6 @@
                 <input matInput id="startDate" type="date" [(ngModel)]="editionDate"
                     (change)="onChangeDate(editionDate)" required>
             </mat-form-field>
-            <!-- <input matInput id="startDate" class="form-control" type="date" [(ngModel)] = "editionDate" (click)="onClickDate()"/>
-            -->
         </div>
         <div class="col-md-10 col-sm-8 col-12">
             <div class="pagination-container">
@@ -38,7 +38,9 @@
                     </div>
                     <mat-form-field appearance="outline">
                         <mat-select [(ngModel)]="currentIndex">
-                            <mat-option *ngFor="let data of imgarr" [value]="data.index" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">Page {{data.index}}
+                            <mat-option *ngFor="let data of imgarr" [value]="data.index"
+                                (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">Page
+                                {{data.index}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
@@ -53,7 +55,8 @@
     <div class="row">
         <div class="col-md-2 col-sm-12 col-12">
             <div class="page-holder" *ngFor="let data of imgarr">
-                <div class="pages" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">
+                <div class="pages"
+                    (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">
                     <mat-icon>description</mat-icon>
                     <p>Page No - {{data.index}}</p>
                 </div>
@@ -68,18 +71,19 @@
                 <div class="icon print"><i class="fa fa-print"></i></div>
                 <div class="icon email"><i class="fa fa-envelope"></i></div>
             </div>
-            <!-- *ngFor="let data of imgarr" -->
             <div id="epaper">
-                <!-- <div class="epaper"  *ngIf="currentIndex == data.index">
-                    <img [src]="data.image_url" usemap="#workmap" >
-                    <map name="workmap" id="mapdata">
-                        <area shape="rect" *ngFor="let area of data.area_details" coords="{{area.coordinates}}" alt="map" href="javascript:void(0)">
-                    </map>
-                </div> -->
                 <div class="epaper">
                     <div class="imagemap" id="imagemap">
                     </div>
                 </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
             </div>
             <div class="social-icons" *ngIf="hide">
                 <div class="icon facebook"><i class="fa fa-facebook"></i></div>
@@ -92,3 +96,5 @@
         </div>
     </div>
 </div>
+<!-- </section>
+</section> -->

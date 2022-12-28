@@ -142,9 +142,9 @@ export class CreateAreaMapComponent implements OnInit {
 
   deleteObject = (eventData: any, transform: any) => {
     var target = transform.target;
-
+    
     if (target) {
-      var obj = { img_id: 0, x_coord: '', y_coord: '', width: '', height: '', customer_id: null, created_by: null, flag: '' }
+      var obj = { img_id: 0, x_coord: '', y_coord: '', width: '', height: '', customer_id: null, created_by: null, flag: '', map_id: null }
 
       obj.img_id = this.img_id;
       obj.x_coord = target.left.toString();
@@ -154,6 +154,7 @@ export class CreateAreaMapComponent implements OnInit {
       obj.created_by = this.currentuser.user_id;
       obj.customer_id = this.currentuser.customer_id;
       obj.flag = 'D';
+      obj.map_id = target.name;
 
       this.editionService.createAreaMap(obj).subscribe(res => {
         if (res.code === "success") {
