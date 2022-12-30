@@ -8,8 +8,8 @@ export const environment = {
   // BASE_URL: 'http://192.168.55.176:8072/prameya/api',
   // PREVIEW_URL: 'http://192.168.55.176:8072/prameya/document/preview',
 
-  BASE_URL: 'http://192.168.0.108:8072/prameya/api',
-  PREVIEW_URL: 'http://192.168.0.108:8072/prameya/document/preview',
+  BASE_URL: 'http://192.168.0.124:8072/prameya/api',
+  PREVIEW_URL: 'http://192.168.0.124:8072/prameya/document/preview',
 
   // PREVIEW_URL: 'https://api-dev.prameyanews.com/prameya/document/preview',
   // BASE_URL: 'https://api-dev.prameyanews.com/prameya/api',

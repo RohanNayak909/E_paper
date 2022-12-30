@@ -29,12 +29,12 @@ export class UploadPagesComponent implements OnInit {
   currentuser: any;
   category: any = '';
   imageId: any;
-  page_style:any = '0'
+  page_style: any = '0'
   merge_pdf: Boolean = true
   upload_image: Boolean = false
 
-  is_merged_pdf_upload:Boolean = true
-  is_image_upload:Boolean = true 
+  is_merged_pdf_upload: Boolean = true
+  is_image_upload: Boolean = true
 
   @ViewChild('pdf_file_upload')
   pdf_file_upload!: ElementRef;
@@ -106,7 +106,19 @@ export class UploadPagesComponent implements OnInit {
       this.spinnerService.hide()
     });
   }
-
+  getBuffer(fileData: any) {
+    return function (resolve: any) {
+      var reader = new FileReader();
+      reader.readAsDataURL(fileData);
+      reader.onload = function () {
+        var encryptData: any = reader.result
+        var fileName: any = fileData.name.split('.')[0]
+        var obj = {encryptData: encryptData, fileName: fileName}
+        // var bytes = new Uint8Array(arrayBuffer);
+        resolve(obj);
+      }
+    }
+  }
   startUpload() {
     this.spinnerService.show()
     this.edition.type = 'IMAGE';
@@ -116,19 +128,25 @@ export class UploadPagesComponent implements OnInit {
     this.edition.customer_id = this.cust_id;
     this.edition.page_type = this.page_style
     if (this.edition.images_arr) {
+      
       for (var i = 0; i < this.edition.images_arr.length; i++) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.edition.base64_arr.push(e.target.result);
-        };
-        reader.readAsDataURL(this.edition.images_arr[i])
+        
+        var promise = new Promise(this.getBuffer(this.edition.images_arr[i]));
+        promise.then((data:any) => {
+          this.edition.base64_arr.push({
+            base64arr: data.encryptData,
+            file_name: data.fileName
+          })
+        });
       }
     }
+    
     setTimeout(() => {
       this.editionService.saveUploadImage(this.edition).subscribe(res => {
         if (res.code === "success") {
           this.spinnerService.hide()
           this.getAllImages();
+          window.location.reload();
           this.is_image_upload = true
           this.image_file_upload.nativeElement.value = '';
           this.page_style = '0'
@@ -225,7 +243,7 @@ export class UploadPagesComponent implements OnInit {
     localStorage.setItem('index', index)
     this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${eid}/${id}`]);
   }
-  createAreaMap(id: any, image_url: any,page_type:any) {
+  createAreaMap(id: any, image_url: any, page_type: any) {
     localStorage.setItem('img_url', image_url)
     localStorage.setItem('page_type', page_type)
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);
