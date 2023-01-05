@@ -28,4 +28,5 @@ export class editionModel{
 	base64_arr:any = []
 	type:any
 	page_type:any
+	file_name:any
 }
