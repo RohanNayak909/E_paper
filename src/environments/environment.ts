@@ -4,18 +4,18 @@
 
 export const environment = {
   production: false,
-  POST_URL: 'http://192.168.0.149:4200/post/',
+  POST_URL: 'http://192.168.0.154:4200/post/',
   // BASE_URL: 'http://192.168.55.176:8072/prameya/api',
   // PREVIEW_URL: 'http://192.168.55.176:8072/prameya/document/preview',
 
-  BASE_URL: 'http://192.168.0.149:8072/prameya/api',
-  PREVIEW_URL: 'http://192.168.0.149:8072/prameya/document/preview',
+  BASE_URL: 'http://192.168.0.154:8072/prameya/api',
+  PREVIEW_URL: 'http://192.168.0.154:8072/prameya/document/preview',
 
   // PREVIEW_URL: 'https://api-dev.prameyanews.com/prameya/document/preview',
   // BASE_URL: 'https://api-dev.prameyanews.com/prameya/api',
   CUSTOMER_ID : 3,
   CUSTOMER_NAME :'E-PAPER',
-  PLATFORM_BASEURL: 'https://dev.prameyanews.com/',
+  PLATFORM_BASEURL: 'http://192.168.0.154:4200/',
 };
 
 /*

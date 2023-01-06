@@ -106,7 +106,7 @@ export class UploadPagesComponent implements OnInit {
       this.spinnerService.hide()
     });
   }
-  getBuffer(fileData: any) {
+  getBase64(fileData: any) {
     return function (resolve: any) {
       var reader = new FileReader();
       reader.readAsDataURL(fileData);
@@ -114,12 +114,11 @@ export class UploadPagesComponent implements OnInit {
         var encryptData: any = reader.result
         var fileName: any = fileData.name.split('.')[0]
         var obj = {encryptData: encryptData, fileName: fileName}
-        // var bytes = new Uint8Array(arrayBuffer);
         resolve(obj);
       }
     }
   }
-  startUpload() {
+  async startUpload() {
     this.spinnerService.show()
     this.edition.type = 'IMAGE';
     this.edition.edition_id = this.eid;
@@ -130,8 +129,7 @@ export class UploadPagesComponent implements OnInit {
     if (this.edition.images_arr) {
       
       for (var i = 0; i < this.edition.images_arr.length; i++) {
-        
-        var promise = new Promise(this.getBuffer(this.edition.images_arr[i]));
+        var promise:any = new Promise(await this.getBase64(this.edition.images_arr[i]));
         promise.then((data:any) => {
           this.edition.base64_arr.push({
             base64arr: data.encryptData,

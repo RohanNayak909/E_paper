@@ -55,9 +55,11 @@
                 <div class="center-btn">
                     <div class="row mt-20">
                         <div class="col-md-3">
-                        <input type="file" #image_file_upload id="image_file_upload"
-                            (change)="onUploadMultipleImages($event)" accept="image/jpeg,image/png,image/gif" multiple>
-                    </div></div>
+                            <input type="file" #image_file_upload id="image_file_upload"
+                                (change)="onUploadMultipleImages($event)" accept="image/jpeg,image/png,image/gif"
+                                multiple>
+                        </div>
+                    </div>
                     <div class="row mt-10">
                         <div class="col-md-3">
                             <div class="form-group">Page Style</div>
@@ -69,9 +71,10 @@
                     </div>
                     <div class="row mt-10">
                         <div class="col-md-3">
-                        <button class="btn-join" [ngClass]="is_image_upload ? 'disabled' : ''"
-                            (click)=" startUpload()">Start Upload</button>
-                    </div></div>
+                            <button class="btn-join" [ngClass]="is_image_upload ? 'disabled' : ''"
+                                (click)="startUpload()">Start Upload</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,13 +90,13 @@
                         <div class="col-md-3">
                             <div class="upload-img-bg">
                                 <a class="thumbnail" [attr.data-lightbox]="i+1" href="{{data.image_url}}"
-              target="_blank">
-                                <img [src]="data.image_url" class="e-paper">
+                                    target="_blank">
+                                    <img [src]="data.image_url" class="e-paper">
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <h4> {{data.index}}</h4>
+                            <h4> {{data.file_name}}</h4>
                             <div class="d-flex">
                                 <div class="search-category">
                                     <button mat-raised-button color="primary"
