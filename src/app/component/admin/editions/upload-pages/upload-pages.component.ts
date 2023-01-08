@@ -40,6 +40,8 @@ export class UploadPagesComponent implements OnInit {
   pdf_file_upload!: ElementRef;
   @ViewChild('image_file_upload')
   image_file_upload!: ElementRef;
+  success_url: any = [];
+  failed_url: any = [];
 
   constructor(private matDialog: MatDialog, private editionService: EditionService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
@@ -107,13 +109,18 @@ export class UploadPagesComponent implements OnInit {
     });
   }
   getBase64(fileData: any) {
+    console.log('inside===',fileData.name);
+    
     return function (resolve: any) {
       var reader = new FileReader();
       reader.readAsDataURL(fileData);
       reader.onload = function () {
         var encryptData: any = reader.result
         var fileName: any = fileData.name.split('.')[0]
-        var obj = {encryptData: encryptData, fileName: fileName}
+        var fullName:any = fileData.name
+        console.log(fileName);
+        
+        var obj = {encryptData: encryptData, fileName: fileName, fullName: fullName}
         resolve(obj);
       }
     }
@@ -129,12 +136,17 @@ export class UploadPagesComponent implements OnInit {
     if (this.edition.images_arr) {
       
       for (var i = 0; i < this.edition.images_arr.length; i++) {
+        console.log(this.edition.images_arr[i].name);
+        
         var promise:any = new Promise(await this.getBase64(this.edition.images_arr[i]));
         promise.then((data:any) => {
+          // setTimeout(() => {
           this.edition.base64_arr.push({
             base64arr: data.encryptData,
-            file_name: data.fileName
+            file_name: data.fileName,
+            full_name: data.fullName
           })
+        // }, 250)
         });
       }
     }
@@ -142,9 +154,13 @@ export class UploadPagesComponent implements OnInit {
     setTimeout(() => {
       this.editionService.saveUploadImage(this.edition).subscribe(res => {
         if (res.code === "success") {
+          console.log(res.body);
+          this.success_url = res.body.success_url
+          this.failed_url = res.body.fail_url
           this.spinnerService.hide()
+          this.openModal()
           this.getAllImages();
-          window.location.reload();
+          // window.location.reload();
           this.is_image_upload = true
           this.image_file_upload.nativeElement.value = '';
           this.page_style = '0'
@@ -237,6 +253,12 @@ export class UploadPagesComponent implements OnInit {
   cancel() {
     document.getElementById("closeDeleteModalButton")?.click();
   }
+  closeRangeModal() {
+    // document.getElementById("closeRangeModalButton")?.click();
+    var doc:any = document.getElementById("rangemodal");
+    doc.style.display = "none"
+    doc.classList.remove("show")
+  }
   edit(index: any, id: any, eid: any) {
     localStorage.setItem('index', index)
     this.router.navigate([`/admin/epaper/edition/upload-pages/edit/${eid}/${id}`]);
@@ -245,5 +267,10 @@ export class UploadPagesComponent implements OnInit {
     localStorage.setItem('img_url', image_url)
     localStorage.setItem('page_type', page_type)
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);
+  }
+  openModal() {
+    var doc:any = document.getElementById("rangemodal");
+    doc.style.display = "block"
+    doc.classList.add("show")
   }
 }

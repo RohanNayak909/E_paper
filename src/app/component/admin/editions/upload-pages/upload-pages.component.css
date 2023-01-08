@@ -314,3 +314,27 @@ h4 {
     -moz-appearance: none;
     appearance: none;
 }
+
+.modal-span {
+    text-decoration: underline;
+    margin-left: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.success-span {
+    margin-left: 30px;
+    font-size: 18px;
+    color: #2e88e2;
+}
+
+.failed-span {
+    margin-left: 30px;
+    font-size: 18px;
+    color:#d9534f
+}
+
+.failed-range input[type="range"]:disabled {
+    background-color: initial;
+    color: #d9534f !important;
+}
