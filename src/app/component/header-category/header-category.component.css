@@ -1,3 +1,13 @@
+#epaper > .page-control.before {
+  position: fixed;
+  bottom: 25px;
+  left: 185px;
+}
+#epaper > .page-control.next {
+  position: fixed;
+  bottom: 25px;
+  right: 55px;
+}
 .heading h1 {
     text-align: center;
     font-weight: bold;
@@ -206,4 +216,8 @@
 .suppl-image {
     height: 1179px !important;
     width: 963px !important;
+}
+
+.mat-button-disabled {
+    background-color: rgba(0, 0, 0, 0.12) !important;
 }

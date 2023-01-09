@@ -25,6 +25,7 @@ export class HeaderCategoryComponent implements OnInit {
   datepicker: any;
   hide: Boolean = false
   screen_width: any
+  img_length:any = 0;
   constructor(private editionService: EditionService, private elementRef: ElementRef,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
@@ -44,7 +45,7 @@ export class HeaderCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     let routeParams = this.activatedRoute.snapshot.paramMap;
     this.eid = Number(routeParams.get('id'));
     this.category = routeParams.get('category');
@@ -72,6 +73,7 @@ export class HeaderCategoryComponent implements OnInit {
         this.imgarr = img.map((i: any) => JSON.parse(i));
         this.currentIndex = 1;
         var i: any
+        this.img_length = this.imgarr.length
         if (this.imgarr.length > 0) {
           var epaper: any = document.getElementById("epaper");
 
@@ -81,16 +83,16 @@ export class HeaderCategoryComponent implements OnInit {
           var img: any = document.createElement('img');
           img.id = 'map_area_img'
           img.src = this.imgarr[0].image_url
-          if(this.imgarr[0].page_type === '0') {
+          if (this.imgarr[0].page_type === '0') {
             img.height = 1479;
             img.width = 963;
             img.classList.add('main-image')
-            this.screen_width = Math.round((screen.width * 81.875)/100)
+            this.screen_width = Math.round((screen.width * 81.875) / 100)
           } else {
             img.height = 1179;
             img.width = 963;
             img.classList.add('suppl-image')
-            this.screen_width = Math.round((screen.width * 65.875)/100)
+            this.screen_width = Math.round((screen.width * 65.875) / 100)
           }
           var wrapper: any = document.getElementById('imagemap');
           wrapper.innerHTML = ""
@@ -135,18 +137,18 @@ export class HeaderCategoryComponent implements OnInit {
     })
   }
 
-  goToPage(img_id: any, img_url: any, area_details: any, i: any, page_type:any) {
+  goToPage(img_id: any, img_url: any, area_details: any, i: any, page_type: any) {
     var img: any = document.createElement('img');
     img.id = 'map_area_img'
     img.src = img_url
-    if(page_type === '0') {
+    if (page_type === '0') {
       img.height = 1479;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 81.875)/100)
+      this.screen_width = Math.round((screen.width * 81.875) / 100)
     } else {
       img.height = 1179;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 65.875)/100)
+      this.screen_width = Math.round((screen.width * 65.875) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
@@ -169,6 +171,79 @@ export class HeaderCategoryComponent implements OnInit {
     if (i) {
       this.currentIndex = i;
     }
+  }
+
+  nextPage() {
+    var i = this.currentIndex
+    this.currentIndex = this.currentIndex + 1;
+    console.log(this.imgarr[i])
+    var img: any = document.createElement('img');
+    img.id = 'map_area_img'
+    img.src = this.imgarr[i].image_url
+    if (this.imgarr[i].page_type === '0') {
+      img.height = 1479;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 81.875) / 100)
+    } else {
+      img.height = 1179;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 65.875) / 100)
+    }
+    var wrapper: any = document.getElementById('imagemap');
+    wrapper.innerHTML = ""
+    wrapper.appendChild(img);
+    if (this.imgarr[i].area_details) {
+      var dtarr = this.editionDate.split("-");
+      var dt = dtarr[0] + '' + dtarr[1] + '' + dtarr[2]
+      this.hide = true
+      var t = this
+      this.imgarr[i].area_details.forEach(function (data: any) {
+        var coords = data.coordinates.split(',');
+        var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
+        var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
+        xcoords = xcoords.sort(function (a, b) { return a - b });
+        ycoords = ycoords.sort(function (a, b) { return a - b });
+        var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
+        wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + i + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / t.screen_width) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / t.screen_width) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
+      });
+    }
+  }
+
+  prevPage() {
+    var i = this.currentIndex - 2
+    this.currentIndex = this.currentIndex - 1;
+    var img: any = document.createElement('img');
+    img.id = 'map_area_img'
+    img.src = this.imgarr[i].image_url
+    if (this.imgarr[i].page_type === '0') {
+      img.height = 1479;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 81.875) / 100)
+    } else {
+      img.height = 1179;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 65.875) / 100)
+    }
+    var wrapper: any = document.getElementById('imagemap');
+    wrapper.innerHTML = ""
+    wrapper.appendChild(img);
+    if (this.imgarr[i].area_details) {
+      var dtarr = this.editionDate.split("-");
+      var dt = dtarr[0] + '' + dtarr[1] + '' + dtarr[2]
+      this.hide = true
+      var t = this
+      this.imgarr[i].area_details.forEach(function (data: any) {
+        var coords = data.coordinates.split(',');
+        var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
+        var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
+        xcoords = xcoords.sort(function (a, b) { return a - b });
+        ycoords = ycoords.sort(function (a, b) { return a - b });
+        var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
+        wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + i + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / t.screen_width) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / t.screen_width) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
+      });
+    }
+
+
   }
 
   onChangeDate(editionDate: any) {
