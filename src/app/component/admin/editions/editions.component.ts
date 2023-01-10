@@ -100,7 +100,10 @@ export class EditionsComponent implements OnInit {
     document.getElementById("closeDeleteModalButton")?.click();
   }
   upload(cat_name: any, eid: any) {
-    this.router.navigate([`/admin/epaper/edition/upload-pages/${cat_name}/${eid}`]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/admin/epaper/edition/upload-pages/${cat_name}/${eid}`])
+    );
+    window.open(url, '_blank');
   }
   onKeydown(event: any) {
     event.preventDefault();

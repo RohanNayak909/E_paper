@@ -62,6 +62,13 @@ export class SidenavComponent implements OnInit {
     this.openSideNav(i);
   }
 
+  viewSite() {
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/`])
+    );
+    window.open(url, '_blank');
+  }
+
   openSideNav(i: any) {
     localStorage.setItem("side_nav_index",i);
     let a: any = document.getElementById("collapse_" + i);

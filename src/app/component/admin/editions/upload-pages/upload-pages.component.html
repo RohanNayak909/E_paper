@@ -7,16 +7,16 @@
     </div>
     <div class="upload-container">
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#merge-pdf" (click)="showTabSection(1)">Merge &
                     Upload PDFs</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#upload-image" (click)="showTabSection(2)">Upload Images</a>
+                <a class="nav-link active" data-toggle="tab" href="#upload-image" (click)="showTabSection(2)">Upload Images</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div id="merge-pdf" class="container tab-pane active" *ngIf="merge_pdf"><br>
+            <!-- <div id="merge-pdf" class="container tab-pane active" *ngIf="merge_pdf"><br>
                 <div class="list-files">
                     <div class="no-files">No PDF files added</div>
                 </div>
@@ -40,7 +40,6 @@
                             <div class="form-group">Page Style</div>
                             <select class="form-select" [(ngModel)]="page_style">
                                 <option value="0">None</option>
-                                <!-- <option value="1">Supplement</option> -->
                             </select>
                         </div>
                     </div>
@@ -51,8 +50,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="upload-image" class="container tab-pane" *ngIf="upload_image">
+            </div> -->
+            <div id="upload-image" class="container">
                 <div class="center-btn">
                     <div class="row mt-20">
                         <div class="col-md-3">
