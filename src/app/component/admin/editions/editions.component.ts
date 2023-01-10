@@ -29,14 +29,14 @@ export class EditionsComponent implements OnInit {
   catid: any = '';
   catarr: any = [];
   categorySearch: any = '';
-  headerarry:any = [];
-  category:any;
-  editionId:any;
-  dateSearch:any
-  edition:any = new editionModel();
+  headerarry: any = [];
+  category: any;
+  editionId: any;
+  dateSearch: any
+  edition: any = new editionModel();
   constructor(private matDialog: MatDialog, private editionService: EditionService, private notification: NotificationService,
     private loginService: LoginService, private masterService: MasterServiceService, private router: Router, private categoryService: CategoryServiceService,
-    private masterAPI:MasterServiceService,private spinnerService: LoaderService) { }
+    private masterAPI: MasterServiceService, private spinnerService: LoaderService) { }
 
 
   ngOnInit(): void {
@@ -48,9 +48,10 @@ export class EditionsComponent implements OnInit {
   getAllEditionByDate() {
     this.categorySearch = '';
     this.editionSearch = '';
-    this.editionService.getEditionAllByDate(this.dateSearch,this.currentuser.customer_id).subscribe(res => {
+    this.editionService.getEditionAllByDate(this.dateSearch, this.currentuser.customer_id).subscribe(res => {
       if (res.code == 'success') {
         var data = res.body;
+        this.p = 1
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
       } else {
         this.editionarr = [];
@@ -59,14 +60,15 @@ export class EditionsComponent implements OnInit {
       this.editionarr = []
     })
   }
- 
+
   getAllEdition() {
     this.categorySearch = '';
     this.editionSearch = '';
     this.dateSearch = ''
-    this.editionService.getEditionAll(this.eid, this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
+    this.editionService.getEditionAll(this.eid, this.editionSearch, '', this.currentuser.customer_id).subscribe(res => {
       if (res.code == 'success') {
         var data = res.body;
+        this.p = 1
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
       } else {
         this.editionarr = [];
@@ -83,7 +85,7 @@ export class EditionsComponent implements OnInit {
   }
   editionDelete() {
     var funct = 'EDITION';
-    this.masterService.bulkDeletion(funct,this.editionId, 0, environment.CUSTOMER_ID).subscribe(res => {
+    this.masterService.bulkDeletion(funct, this.editionId, 0, environment.CUSTOMER_ID).subscribe(res => {
       if (res.code === "success") {
         document.getElementById("closeDeleteModalButton")?.click();
         this.notification.success("Edition deleted successfully");
@@ -94,10 +96,10 @@ export class EditionsComponent implements OnInit {
       }
     })
   }
-  cancel(){
+  cancel() {
     document.getElementById("closeDeleteModalButton")?.click();
   }
-  upload(cat_name:any,eid: any) {
+  upload(cat_name: any, eid: any) {
     this.router.navigate([`/admin/epaper/edition/upload-pages/${cat_name}/${eid}`]);
   }
   onKeydown(event: any) {
@@ -105,31 +107,34 @@ export class EditionsComponent implements OnInit {
   }
   searchEdition() {
     this.dateSearch = ''
-    if(this.editionSearch){
-    this.editionService.getEditionAll('', this.editionSearch,'',this.currentuser.customer_id).subscribe(res => {
-      if (res.code == 'success') {
-        var data = res.body;
-        this.editionarr = data.map((dt: any) => JSON.parse(dt));
-      } else {
-        this.editionarr = [];
-      }
-    }, (err) => {
-      this.editionarr = []
-    })
-  }else if (this.categorySearch){
-    this.editionService.getEditionAll('','',this.categorySearch,this.currentuser.customer_id).subscribe(res => {
-      if (res.code == 'success') {
-        var data = res.body;
-        this.editionarr = data.map((dt: any) => JSON.parse(dt));
-      } else {
-        this.editionarr = [];
-      }
-    }, (err) => {
-      this.editionarr = []
-    }) 
-  }else{
-    this.getAllEdition();
-  }
+
+    if (this.editionSearch) {
+      this.editionService.getEditionAll('', this.editionSearch, '', this.currentuser.customer_id).subscribe(res => {
+        if (res.code == 'success') {
+          var data = res.body;
+          this.p = 1
+          this.editionarr = data.map((dt: any) => JSON.parse(dt));
+        } else {
+          this.editionarr = [];
+        }
+      }, (err) => {
+        this.editionarr = []
+      })
+    } else if (this.categorySearch) {
+      this.editionService.getEditionAll('', '', this.categorySearch, this.currentuser.customer_id).subscribe(res => {
+        if (res.code == 'success') {
+          var data = res.body;
+          this.p = 1
+          this.editionarr = data.map((dt: any) => JSON.parse(dt));
+        } else {
+          this.editionarr = [];
+        }
+      }, (err) => {
+        this.editionarr = []
+      })
+    } else {
+      this.getAllEdition();
+    }
   }
   getallcategory() {
     this.categoryService.getAllCategory('', '', environment.CUSTOMER_ID).subscribe((res: any) => {
@@ -143,9 +148,9 @@ export class EditionsComponent implements OnInit {
       this.catarr = []
     })
   }
-  preview(data:any){
+  preview(data: any) {
     console.log(data);
-    this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID,data.edition_date,data.category_name).subscribe((res: any) => {
+    this.masterAPI.getAllheadersEdition(environment.CUSTOMER_ID, data.edition_date, data.category_name).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.headerarry = data.map((dt: any) => JSON.parse(dt));
@@ -157,8 +162,8 @@ export class EditionsComponent implements OnInit {
       this.headerarry = []
     })
   }
-  
-  isViewOnFrontPage(data:any,i:any) {
+
+  isViewOnFrontPage(data: any, i: any) {
     this.spinnerService.show();
     this.edition = data;
     this.edition.flag = 'FC';
@@ -168,20 +173,20 @@ export class EditionsComponent implements OnInit {
       if (res.code === "success") {
         this.spinnerService.hide();
         this.getAllEdition();
-        if(i === 1) 
-        this.notification.success("Edition added to front page");
+        if (i === 1)
+          this.notification.success("Edition added to front page");
         else this.notification.success("Edition removed from front page");
       } else {
         this.notification.error(res.message)
         this.spinnerService.hide();
       }
-    },(err)=>{
+    }, (err) => {
       console.log(err);
       this.spinnerService.hide();
     });
   }
 
-  addSupplimentPages(data:any){
-   this.router.navigate([`/admin/edition/supplement/view/${data.edition_id}`]);
+  addSupplimentPages(data: any) {
+    this.router.navigate([`/admin/edition/supplement/view/${data.edition_id}`]);
   }
 }
