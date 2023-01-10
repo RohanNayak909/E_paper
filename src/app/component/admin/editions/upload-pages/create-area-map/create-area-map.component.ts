@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fabric } from 'fabric';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
@@ -34,11 +34,12 @@ export class CreateAreaMapComponent implements OnInit {
   saveIcon = "assets/img/save.png";
   deleteIcon = "assets/img/remove.png"
 
-  page_type:any
+  page_type: any
 
   constructor(private activatedRoute: ActivatedRoute, private loginService: LoginService,
     private editionService: EditionService, private spinnerService: LoaderService,
-    private notification: NotificationService) { }
+    private notification: NotificationService) {
+  }
 
   ngOnInit(): void {
     this.currentuser = this.loginService.getCurrentUser();
@@ -142,7 +143,7 @@ export class CreateAreaMapComponent implements OnInit {
 
   deleteObject = (eventData: any, transform: any) => {
     var target = transform.target;
-    
+
     if (target) {
       var obj = { img_id: 0, x_coord: '', y_coord: '', width: '', height: '', customer_id: null, created_by: null, flag: '', map_id: null }
 
@@ -206,7 +207,7 @@ export class CreateAreaMapComponent implements OnInit {
         this.savedCoordinates.flag = 'I';
       }
 
-      var img:any = document.getElementById('fp-img');
+      var img: any = document.getElementById('fp-img');
       var img_height = img.clientHeight
       var img_width = img.clientWidth
 
@@ -222,7 +223,7 @@ export class CreateAreaMapComponent implements OnInit {
       this.savedCoordinates.created_by = this.currentuser.user_id;
       this.savedCoordinates.map_id = map_id
 
-      if(this.page_type === '0') {
+      if (this.page_type === '0') {
         this.savedCoordinates.img_width = '963'
         this.savedCoordinates.img_height = '1479'
       } else {
@@ -233,7 +234,7 @@ export class CreateAreaMapComponent implements OnInit {
       this.savedCoordinates.image = img_name
 
       console.log(this.savedCoordinates);
-      
+
       this.editionService.createAreaMap(this.savedCoordinates).subscribe(res => {
         if (res.code === "success") {
           if (map_id) {
@@ -265,7 +266,11 @@ export class CreateAreaMapComponent implements OnInit {
 
   createAreaMap() {
     this.visible = false
+    console.log('Scroll Top=', window.pageYOffset)
+    var top = window.pageYOffset;
     this.rectangle = new fabric.Rect({
+      left: 0,
+      top: top,
       width: 150,
       height: 150,
       fill: 'rgba(0,0,0,0.2)',
