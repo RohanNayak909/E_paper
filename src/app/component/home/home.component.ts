@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   getallFeaturedcategory() {
     this.spinnerService.show()
 
-    this.categoryService.getAllCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
+    this.categoryService.getFeaturedCategory(this.catid, this.categorySearch,environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));  

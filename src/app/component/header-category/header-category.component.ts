@@ -25,7 +25,7 @@ export class HeaderCategoryComponent implements OnInit {
   datepicker: any;
   hide: Boolean = false
   screen_width: any
-  img_length:any = 0;
+  img_length: any = 0;
   constructor(private editionService: EditionService, private elementRef: ElementRef,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
@@ -89,12 +89,19 @@ export class HeaderCategoryComponent implements OnInit {
             img.classList.add('main-image')
             this.screen_width = Math.round((screen.width * 81.875) / 100)
           } else {
-            img.height = 1179;
+            img.height = 1479;
             img.width = 963;
             img.classList.add('suppl-image')
             this.screen_width = Math.round((screen.width * 65.875) / 100)
           }
-          var wrapper: any = document.getElementById('imagemap');
+          var split_arr = this.imgarr[0].file_name.split("-");
+          if (split_arr.length > 1) {
+            img.height = 700;
+            img.width = 963;
+            this.screen_width = Math.round((screen.width * 81.875) / 100)
+          }
+          if (this.imgarr[0].file_name.split)
+            var wrapper: any = document.getElementById('imagemap');
           wrapper.innerHTML = ""
           wrapper.appendChild(img);
           if (this.imgarr[0].area_details) {
@@ -146,9 +153,15 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     } else {
-      img.height = 1179;
+      img.height = 1479;
       img.width = 963;
       this.screen_width = Math.round((screen.width * 65.875) / 100)
+    }
+    var split_arr = this.imgarr[i - 1].file_name.split("-");
+    if (split_arr.length > 1) {
+      img.height = 700;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
@@ -185,9 +198,15 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     } else {
-      img.height = 1179;
+      img.height = 1479;
       img.width = 963;
       this.screen_width = Math.round((screen.width * 65.875) / 100)
+    }
+    var split_arr = this.imgarr[i].file_name.split("-");
+    if (split_arr.length > 1) {
+      img.height = 700;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
@@ -220,9 +239,15 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     } else {
-      img.height = 1179;
+      img.height = 1479;
       img.width = 963;
       this.screen_width = Math.round((screen.width * 65.875) / 100)
+    }
+    var split_arr = this.imgarr[i].file_name.split("-");
+    if (split_arr.length > 1) {
+      img.height = 700;
+      img.width = 963;
+      this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""

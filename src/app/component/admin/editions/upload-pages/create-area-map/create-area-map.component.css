@@ -2,6 +2,19 @@
     --bs-success-rgb: 71, 222, 152 !important;
 }
 
+.button-wrapper {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+#create_map_area {
+    position: fixed;
+    z-index: 1;
+    right: 10px;
+}
+
 html,
 body {
     height: 100%;
@@ -62,10 +75,10 @@ area:hover::after {
     display: block;
     background-color: rgba(181, 13, 13, 0.2);
     content: ' ';
-  }
+}
 
 #area1::after {
-    border:1px solid red;
+    border: 1px solid red;
 }
 
 .dis-n {
@@ -78,6 +91,6 @@ area:hover::after {
 }
 
 .suppl-image {
-    height: 963px !important;
-    width: 773px !important;
+    height: 700px !important;
+    width: 963px !important;
 }
