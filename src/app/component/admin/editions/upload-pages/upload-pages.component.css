@@ -338,3 +338,27 @@ h4 {
     background-color: initial;
     color: #d9534f !important;
 }
+
+.scroll-y {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100px;
+}
+
+#style-4::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px #cbcbcb;
+	background-color: #F5F5F5;
+}
+
+#style-4::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+#style-4::-webkit-scrollbar-thumb
+{
+	background-color: #cbcbcb;
+	border: 2px solid #cbcbcb;
+}
