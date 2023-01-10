@@ -186,6 +186,10 @@ export class CreateAreaMapComponent implements OnInit {
     }
   }
 
+  backToHistory() {
+    history.back();
+  }
+
   saveObject = (eventData: any, transform: any) => {
     console.log(transform.target);
 

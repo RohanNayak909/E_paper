@@ -89,7 +89,7 @@ export class HeaderCategoryComponent implements OnInit {
             img.classList.add('main-image')
             this.screen_width = Math.round((screen.width * 81.875) / 100)
           } else {
-            img.height = 1179;
+            img.height = 1479;
             img.width = 963;
             img.classList.add('suppl-image')
             this.screen_width = Math.round((screen.width * 65.875) / 100)
@@ -146,7 +146,7 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     } else {
-      img.height = 1179;
+      img.height = 1479;
       img.width = 963;
       this.screen_width = Math.round((screen.width * 65.875) / 100)
     }
@@ -185,7 +185,7 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     } else {
-      img.height = 1179;
+      img.height = 1479;
       img.width = 963;
       this.screen_width = Math.round((screen.width * 65.875) / 100)
     }
@@ -220,7 +220,7 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     } else {
-      img.height = 1179;
+      img.height = 1479;
       img.width = 963;
       this.screen_width = Math.round((screen.width * 65.875) / 100)
     }
