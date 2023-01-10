@@ -226,8 +226,8 @@ export class CreateAreaMapComponent implements OnInit {
         this.savedCoordinates.img_width = '963'
         this.savedCoordinates.img_height = '1479'
       } else {
-        this.savedCoordinates.img_width = '773'
-        this.savedCoordinates.img_height = '963'
+        this.savedCoordinates.img_width = '963'
+        this.savedCoordinates.img_height = '700'
       }
 
       this.savedCoordinates.image = img_name

@@ -96,7 +96,7 @@ export class UploadPagesComponent implements OnInit {
   update() {
     this.spinnerService.show();
     var image_id_arr = this.imgarr.map((x: any) => x.image_id);
-    console.log(image_id_arr);
+    // console.log(image_id_arr);
     this.editionService.updateImageSerial(image_id_arr).subscribe(res => {
       if (res.code === "success") {
         this.spinnerService.hide()
@@ -109,7 +109,7 @@ export class UploadPagesComponent implements OnInit {
     });
   }
   getBase64(fileData: any) {
-    console.log('inside===',fileData.name);
+    // console.log('inside===',fileData.name);
     
     return function (resolve: any) {
       var reader = new FileReader();
@@ -136,7 +136,7 @@ export class UploadPagesComponent implements OnInit {
     if (this.edition.images_arr) {
       
       for (var i = 0; i < this.edition.images_arr.length; i++) {
-        console.log(this.edition.images_arr[i].name);
+        // console.log(this.edition.images_arr[i].name);
         
         var promise:any = new Promise(await this.getBase64(this.edition.images_arr[i]));
         promise.then((data:any) => {
