@@ -152,7 +152,7 @@ export class FileUploaderService {
       obj.customer_id = this.edition.customer_id;
       obj.page_type = this.edition.page_type
       obj.slno = c
-      console.log('Obj===', obj.full_name,' - - ',obj.slno);
+      // console.log('Obj===', obj.full_name,' - - ',obj.slno);
 
       const req = new HttpRequest('POST', this.url, obj, {
         reportProgress: true,

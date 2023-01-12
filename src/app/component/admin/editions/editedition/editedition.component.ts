@@ -23,6 +23,8 @@ export class EditeditionComponent implements OnInit {
   editionarr: any = [];
   eid: any = ''
   editionSearch: any = ''
+  title:any
+  keyword = 'category_name';
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
     private notification: NotificationService, private router: Router, private editionService: EditionService,
     private spinnerService: LoaderService, private activatedRoute: ActivatedRoute) { }
@@ -32,15 +34,33 @@ export class EditeditionComponent implements OnInit {
     const routeParams = this.activatedRoute.snapshot.paramMap;
     this.eid = Number(routeParams.get('id'));
     this.currentuser = this.loginService.getCurrentUser();
-    this.getallcategory();
+    
     this.getAllEdition();
   }
+
+  selectEvent(item: any) {
+    // do something with selected item
+  }
+
+  onChangeSearch(search: string) {
+    
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e: any) {
+    // do something
+  }
+
   getallcategory() {
     this.categoryService.getAllCategory(this.catid, this.categorySearch, environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.catarr = data.map((dt: any) => JSON.parse(dt));
         var i: any
+        if(this.edition.edition_name) {
+          this.title = this.catarr.filter((x:any) => x.category_name === this.edition.edition_name)[0]
+        }
         for (i = 0; i < this.catarr?.length; i++) {
           this.catarr[i].category_id = this.catarr[i].category_id.toString();
         }
@@ -57,7 +77,7 @@ export class EditeditionComponent implements OnInit {
         var data = res.body;
         this.editionarr = data.map((dt: any) => JSON.parse(dt));
         this.edition = this.editionarr[0];
-        console.log(this.edition);
+        this.getallcategory();
       } else {
         this.editionarr = [];
       }
@@ -89,6 +109,7 @@ export class EditeditionComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'U';
     this.edition.customer_id = environment.CUSTOMER_ID;
+    this.edition.edition_name = this.title.category_name;
     if (this.edition.edition_image) {
       var media_ext = this.edition.edition_image.split("media/")[1];
       this.edition.media_ext = media_ext.split(".")[1];

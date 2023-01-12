@@ -6,9 +6,24 @@
     <div class="add-tag-form-field row">
       <div class="col-md-6 col-sm-12 col-12">
         <mat-label class="tag-info">Title (Required)</mat-label>
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
           <input matInput type="text" name="title" [(ngModel)]="edition.edition_name" required>
-        </mat-form-field>
+        </mat-form-field> -->
+        <div class="ng-autocomplete user-btm">
+          <ng-autocomplete [data]="catarr" [searchKeyword]="keyword"
+            (selected)='selectEvent($event)' (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)' [(ngModel)]=title [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate">
+          </ng-autocomplete>
+
+          <ng-template #itemTemplate let-item>
+            <a [innerHTML]="item.category_name"></a>
+          </ng-template>
+
+          <ng-template #notFoundTemplate let-notFound>
+            <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </div>
       </div>
     </div>
     <div class="add-tag-form-field row">
