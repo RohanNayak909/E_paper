@@ -1,10 +1,12 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { DeleteConfirmationModalComponent } from 'src/app/component/common/delete-confirmation-modal/delete-confirmation-modal.component';
 import { editionModel } from 'src/app/models/editionmodel';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
+import { FileQueueObject, FileUploaderService } from 'src/app/services/fileservice/file-uploader.service';
 import { LoaderService } from 'src/app/services/loaderService/loader.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
@@ -43,9 +45,17 @@ export class UploadPagesComponent implements OnInit {
   success_url: any = [];
   failed_url: any = [];
 
+  queue!: Observable<FileQueueObject[]>;
+
+  uploadqueuediv: Boolean = false
+  @Output() onCompleteItem = new EventEmitter();
+
+  is_response: Boolean = false
+
   constructor(private matDialog: MatDialog, private editionService: EditionService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
-    private notification: NotificationService, private router: Router, private spinnerService: LoaderService) { }
+    private notification: NotificationService, private router: Router, private spinnerService: LoaderService,
+    private uploader: FileUploaderService) { }
 
   ngOnInit(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
@@ -53,6 +63,8 @@ export class UploadPagesComponent implements OnInit {
     this.cust_id = environment.CUSTOMER_ID
     this.currentuser = this.loginService.getCurrentUser();
     this.getAllImages();
+    this.queue = this.uploader.queue;
+    this.uploader.onCompleteItem = this.completeItem;
   }
 
   addPdf() {
@@ -110,17 +122,17 @@ export class UploadPagesComponent implements OnInit {
   }
   getBase64(fileData: any) {
     // console.log('inside===',fileData.name);
-    
+
     return function (resolve: any) {
       var reader = new FileReader();
       reader.readAsDataURL(fileData);
       reader.onload = function () {
         var encryptData: any = reader.result
         var fileName: any = fileData.name.split('.')[0]
-        var fullName:any = fileData.name
+        var fullName: any = fileData.name
         console.log(fileName);
-        
-        var obj = {encryptData: encryptData, fileName: fileName, fullName: fullName}
+
+        var obj = { encryptData: encryptData, fileName: fileName, fullName: fullName }
         resolve(obj);
       }
     }
@@ -134,23 +146,23 @@ export class UploadPagesComponent implements OnInit {
     this.edition.customer_id = this.cust_id;
     this.edition.page_type = this.page_style
     if (this.edition.images_arr) {
-      
+
       for (var i = 0; i < this.edition.images_arr.length; i++) {
         // console.log(this.edition.images_arr[i].name);
-        
-        var promise:any = new Promise(await this.getBase64(this.edition.images_arr[i]));
-        promise.then((data:any) => {
+
+        var promise: any = new Promise(await this.getBase64(this.edition.images_arr[i]));
+        promise.then((data: any) => {
           // setTimeout(() => {
           this.edition.base64_arr.push({
             base64arr: data.encryptData,
             file_name: data.fileName,
             full_name: data.fullName
           })
-        // }, 250)
+          // }, 250)
         });
       }
     }
-    
+
     setTimeout(() => {
       this.editionService.saveUploadImage(this.edition).subscribe(res => {
         if (res.code === "success") {
@@ -255,7 +267,7 @@ export class UploadPagesComponent implements OnInit {
   }
   closeRangeModal() {
     // document.getElementById("closeRangeModalButton")?.click();
-    var doc:any = document.getElementById("rangemodal");
+    var doc: any = document.getElementById("rangemodal");
     doc.style.display = "none"
     doc.classList.remove("show")
   }
@@ -269,8 +281,43 @@ export class UploadPagesComponent implements OnInit {
     this.router.navigate([`/admin/epaper/edition/map/${id}`]);
   }
   openModal() {
-    var doc:any = document.getElementById("rangemodal");
+    var doc: any = document.getElementById("rangemodal");
     doc.style.display = "block"
     doc.classList.add("show")
+  }
+
+  browseClick() {
+    var fileupload = document.getElementById("image_file_upload");
+    fileupload?.click();
+  }
+
+  addToQueue() {
+    const fileBrowser = this.image_file_upload.nativeElement;
+    var obj = { edition_id: null, createdby: null, customer_id: null, page_type: null }
+    obj.edition_id = this.eid;
+    obj.createdby = this.currentuser.user_id;
+    obj.customer_id = this.cust_id;
+    obj.page_type = this.page_style
+    this.uploader.addToQueue(fileBrowser.files, obj);
+    this.uploadqueuediv = true
+    this.is_image_upload = false
+  }
+
+  uploadAll() {
+    this.uploader.uploadAll();
+  }
+
+  clearAll() {
+    this.uploadqueuediv = false
+    this.is_image_upload = true
+    this.uploader.clearQueue();
+  }
+
+  completeItem = (item: FileQueueObject, response: any) => {
+    this.getAllImages();
+    this.is_image_upload = true
+    this.image_file_upload.nativeElement.value = '';
+    this.page_style = '0'
+    this.is_response = true
   }
 }

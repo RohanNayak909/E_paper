@@ -48,6 +48,7 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getAllCategory(this.catid, this.categorySearch, environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
+        this.p = 1
         this.catarr = data.map((dt: any) => JSON.parse(dt));
       } else {
         this.catarr = []
@@ -83,8 +84,8 @@ export class CategoriesComponent implements OnInit {
     this.categoryService.getAllCategory('', this.categorySearch, this.currentuser.customer_id).subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
+        this.p = 1
         this.catarr = data.map((dt: any) => JSON.parse(dt));
-
       } else {
         this.catarr = []
       }

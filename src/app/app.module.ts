@@ -55,6 +55,7 @@ import { AdminAdComponent } from './component/admin/admin-ad/admin-ad.component'
 import { AdminAdViewComponent } from './component/admin/admin-ad/admin-ad-view/admin-ad-view.component';
 import { EditAdDialogComponent } from './component/admin/admin-ad/edit-ad-dialog/edit-ad-dialog.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     NgxPaginationModule,
     MatNativeDateModule,
     NgxSpinnerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AutocompleteLibModule
     ],
   providers: [],
   bootstrap: [AppComponent]

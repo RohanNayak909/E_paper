@@ -23,6 +23,8 @@ export class NeweditionComponent implements OnInit {
   catid: any = '';
   categorySearch: any = '';
   catarr: any = []
+  keyword = 'category_name';
+  title:any
   constructor(private loginService: LoginService, private categoryService: CategoryServiceService,
     private notification: NotificationService, private router: Router, private editionService: EditionService,
     private spinnerService: LoaderService) { 
@@ -34,6 +36,21 @@ export class NeweditionComponent implements OnInit {
     this.currentuser = this.loginService.getCurrentUser();
     this.getallcategory();
   }
+
+  selectEvent(item: any) {
+    // do something with selected item
+  }
+
+  onChangeSearch(search: string) {
+    
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e: any) {
+    // do something
+  }
+
   getallcategory() {
     this.categoryService.getAllCategory(this.catid, this.categorySearch, environment.CUSTOMER_ID).subscribe((res: any) => {
       if (res.code == 'success') {
@@ -77,6 +94,7 @@ export class NeweditionComponent implements OnInit {
     this.edition.createdby = this.currentuser.user_id;
     this.edition.flag = 'I';
     this.edition.customer_id = environment.CUSTOMER_ID;
+    this.edition.edition_name = this.title.category_name;
     if (this.edition.ads_img) {
       this.edition.media_ext = this.edition.ads_img.split("/")[1];
     }

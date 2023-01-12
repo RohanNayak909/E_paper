@@ -3,20 +3,21 @@
         <button mat-raised-button color="primary" routerLink="/admin/epaper/edition"><i class="fa-solid fa-backward"
                 style="margin-right:5px"></i>
             Back to Edition List</button>
-            <!-- <button (click)="openModal()">Open</button> -->
+        <!-- <button (click)="openModal()">Open</button> -->
     </div>
     <div class="upload-container">
         <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#merge-pdf" (click)="showTabSection(1)">Merge &
                     Upload PDFs</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#upload-image" (click)="showTabSection(2)">Upload Images</a>
+                <a class="nav-link active" data-toggle="tab" href="#upload-image" (click)="showTabSection(2)">Upload
+                    Images</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div id="merge-pdf" class="container tab-pane active" *ngIf="merge_pdf"><br>
+            <!-- <div id="merge-pdf" class="container tab-pane active" *ngIf="merge_pdf"><br>
                 <div class="list-files">
                     <div class="no-files">No PDF files added</div>
                 </div>
@@ -40,7 +41,6 @@
                             <div class="form-group">Page Style</div>
                             <select class="form-select" [(ngModel)]="page_style">
                                 <option value="0">None</option>
-                                <!-- <option value="1">Supplement</option> -->
                             </select>
                         </div>
                     </div>
@@ -51,29 +51,66 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="upload-image" class="container tab-pane" *ngIf="upload_image">
+            </div> -->
+            <div id="upload-image" class="container">
                 <div class="center-btn">
                     <div class="row mt-20">
-                        <div class="col-md-3">
-                            <input type="file" #image_file_upload id="image_file_upload"
-                                (change)="onUploadMultipleImages($event)" accept="image/jpeg,image/png,image/gif"
-                                multiple>
-                        </div>
-                    </div>
-                    <div class="row mt-10">
                         <div class="col-md-3">
                             <div class="form-group">Page Style</div>
                             <select class="form-select" [(ngModel)]="page_style">
                                 <option value="0">None</option>
-                                <!-- <option value="1">Supplement</option> -->
                             </select>
                         </div>
                     </div>
                     <div class="row mt-10">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
+                            <!-- (change)="onUploadMultipleImages($event)" -->
+                            <button class="btn-browse" (click)="browseClick()">Browse</button>
+                            <input type="file" #image_file_upload id="image_file_upload" style="display: none;"
+                                accept="image/jpeg,image/png,image/gif" (change)="addToQueue()" multiple>
                             <button class="btn-join" [ngClass]="is_image_upload ? 'disabled' : ''"
-                                (click)="startUpload()">Start Upload</button>
+                            (click)="uploadAll()">Start Upload</button>
+                        </div>
+                    </div>
+                    <div class="row mt-10" style="background: #fff;" *ngIf="uploadqueuediv">
+                        <div class="col-md-12">
+                            <h3><strong>Upload Queue</strong></h3>
+                            <table class="table-headed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Name</th>
+                                        <th class="text-right">Size</th>
+                                        <th class="text-left">Progress</th>
+                                        <th class="text-left">Status</th>
+                                        <th class="text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of queue | async">
+                                        <td>{{ item?.file?.name }}</td>
+                                        <td class="text-right">
+                                            {{ item?.file?.size / 1024 / 1024 | number: '.2' }} MB
+                                        </td>
+                                        <td>{{ item.progress + ' %' }}</td>
+                                        <td>
+                                            <span *ngIf="item.isPending()" class="label label-default">Pending</span>
+                                            <span *ngIf="item.isSuccess()" class="label label-success">Success</span>
+                                            <span *ngIf="item.inProgress()" class="label label-warning">Inprogress</span>
+                                            <span *ngIf="item.isError()" class="label label-danger">Error</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <a tooltip="Remove from queue" (click)="item.remove()"
+                                                *ngIf="!item.inProgress() && !is_response">
+                                                <i class="fa fa-remove rmv-cls"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr><td colspan="6" class="text-right"><button class="btn-clear" (click)="clearAll()">Clear All</button></td></tr>
+                                </tbody>
+                            </table>
+                            <!-- <div>
+                                
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -197,28 +234,35 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" id="closeRangeModalButton" class="close" data-dismiss="modal" aria-label="Close" (click)="closeRangeModal()">
+                <button type="button" id="closeRangeModalButton" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeRangeModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div>
-                    <div class="row" *ngIf="success_url && success_url.length > 0"><div class="col-md-12"><span class="modal-span">Succeeded Images</span></div></div>
+                    <div class="row" *ngIf="success_url && success_url.length > 0">
+                        <div class="col-md-12"><span class="modal-span">Succeeded Images</span></div>
+                    </div>
                     <div class="scroll-y" id="style-4" *ngIf="success_url && success_url.length > 0">
                         <div class="row" *ngFor="let a of success_url">
                             <div class="col-md-6"><span class="success-span">{{a}}</span></div>
                             <div class="col-md-6"><input type="range" value="100" disabled></div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="failed_url && failed_url.length > 0"><div class="col-md-12"><span class="modal-span">Failed Images</span></div></div>
-                    <div class="scroll-y" id="style-4" style="margin-top: 15px;" *ngIf="failed_url && failed_url.length > 0">
+                    <div class="row" *ngIf="failed_url && failed_url.length > 0">
+                        <div class="col-md-12"><span class="modal-span">Failed Images</span></div>
+                    </div>
+                    <div class="scroll-y" id="style-4" style="margin-top: 15px;"
+                        *ngIf="failed_url && failed_url.length > 0">
                         <div class="row" *ngFor="let a of failed_url">
                             <div class="col-md-6"><span class="failed-span">{{a}}</span></div>
                             <div class="col-md-6 failed-range"><input type="range" value="100" disabled></div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center flex-wrap" style="margin-top: 10px">
-                        <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="closeRangeModal()"> Close </button>
+                        <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="closeRangeModal()">
+                            Close </button>
                     </div>
                 </div>
             </div>
