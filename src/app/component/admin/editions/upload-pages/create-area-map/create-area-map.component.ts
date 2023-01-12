@@ -280,7 +280,7 @@ export class CreateAreaMapComponent implements OnInit {
       height: 150,
       fill: 'rgba(0,0,0,0.2)',
       // stroke: 'green',
-      strokeWidth: 1,
+      strokeWidth: 0,
       cornerSize: 10,
       borderColor: 'green'
 
