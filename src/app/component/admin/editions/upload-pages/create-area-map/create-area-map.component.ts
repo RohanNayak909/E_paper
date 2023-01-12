@@ -127,7 +127,7 @@ export class CreateAreaMapComponent implements OnInit {
               height: parseFloat(this.map_arr[i].height),
               fill: 'rgba(110, 152, 219, 0.2)',
               stroke: 'green',
-              strokeWidth: 3,
+              strokeWidth: 1,
               name: this.map_arr[i].map_id
             });
 
@@ -256,6 +256,10 @@ export class CreateAreaMapComponent implements OnInit {
     return false;
   }
 
+  cancel() {
+    document.getElementById("closeDeleteModalButton")?.click();
+  }
+
   deleteMapArea() {
     this.canvas.remove(this.rectangle);
   }
@@ -266,7 +270,6 @@ export class CreateAreaMapComponent implements OnInit {
 
   createAreaMap() {
     this.visible = false
-    console.log('Scroll Top=', window.pageYOffset)
     var top = window.pageYOffset;
     this.rectangle = new fabric.Rect({
       left: 0,
@@ -275,7 +278,7 @@ export class CreateAreaMapComponent implements OnInit {
       height: 150,
       fill: 'rgba(0,0,0,0.2)',
       stroke: 'green',
-      strokeWidth: 2
+      strokeWidth: 1
     });
     this.canvas.add(this.rectangle);
     this.canvas.setActiveObject(this.rectangle);

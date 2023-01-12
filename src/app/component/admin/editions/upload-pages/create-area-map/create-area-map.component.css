@@ -94,3 +94,13 @@ area:hover::after {
     height: 700px !important;
     width: 963px !important;
 }
+
+.delete-btn {
+    font-family: var(--subheading);
+    color: #fff;
+    border: none;
+    border-radius: 0%;
+    box-shadow: none;
+    font-size: 20px;
+    padding: 5px 15px;
+}
