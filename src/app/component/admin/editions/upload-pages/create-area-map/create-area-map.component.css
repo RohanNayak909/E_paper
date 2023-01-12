@@ -104,7 +104,8 @@ area:hover::after {
     font-size: 20px;
     padding: 5px 15px;
 }
-.content
-{
-    width: 1030px;
+
+.content {
+    margin-left: 10px;
+    width: 1020px;
 }
