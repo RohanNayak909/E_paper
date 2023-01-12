@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
@@ -26,6 +26,12 @@ export class HeaderCategoryComponent implements OnInit {
   hide: Boolean = false
   screen_width: any
   img_length: any = 0;
+
+  // @HostListener('window:keydown', ['$event'])
+  // handleKeyboardEvent(event: KeyboardEvent) {
+  //   alert(event.key);
+  // }
+
   constructor(private editionService: EditionService, private elementRef: ElementRef,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
