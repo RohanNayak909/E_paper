@@ -128,6 +128,8 @@ export class CreateAreaMapComponent implements OnInit {
               fill: 'rgba(110, 152, 219, 0.2)',
               stroke: 'green',
               strokeWidth: 1,
+              cornerSize: 10,
+              borderColor: 'green',
               name: this.map_arr[i].map_id
             });
 
@@ -277,8 +279,11 @@ export class CreateAreaMapComponent implements OnInit {
       width: 150,
       height: 150,
       fill: 'rgba(0,0,0,0.2)',
-      stroke: 'green',
-      strokeWidth: 1
+      // stroke: 'green',
+      strokeWidth: 1,
+      cornerSize: 10,
+      borderColor: 'green'
+
     });
     this.canvas.add(this.rectangle);
     this.canvas.setActiveObject(this.rectangle);
