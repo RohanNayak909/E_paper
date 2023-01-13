@@ -298,9 +298,14 @@ export class UploadPagesComponent implements OnInit {
     obj.createdby = this.currentuser.user_id;
     obj.customer_id = this.cust_id;
     obj.page_type = this.page_style
-    this.uploader.addToQueue(fileBrowser.files, obj);
+    
     this.uploadqueuediv = true
     this.is_image_upload = false
+    this.editionService.getSerialNo(obj.edition_id,obj.customer_id).subscribe(res => {
+        this.uploader.addToQueue(fileBrowser.files, obj, res);
+    }, (err) => {
+      this.uploader.addToQueue(fileBrowser.files, obj, 0);
+    })
   }
 
   uploadAll() {

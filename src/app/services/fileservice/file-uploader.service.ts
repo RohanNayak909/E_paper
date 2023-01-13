@@ -66,6 +66,7 @@ export class FileUploaderService {
   private _files: FileQueueObject[] = [];
 
   edition: any = new UploadImageModel();
+  count: any;
 
   constructor(private http: HttpClient) {
     this._queue = <BehaviorSubject<FileQueueObject[]>>(
@@ -84,7 +85,7 @@ export class FileUploaderService {
   }
 
   // public functions
-  public addToQueue(data: any, obj: any) {
+  public addToQueue(data: any, obj: any, c:any) {
     console.log(obj);
 
     this.edition.edition_id = obj.edition_id
@@ -93,6 +94,8 @@ export class FileUploaderService {
     this.edition.page_type = obj.page_type
 
     console.log(this.edition);
+
+    this.count = c;
 
     // add file to the queue
     _.each(data, (file: any) => this._addToQueue(file));
@@ -107,6 +110,9 @@ export class FileUploaderService {
   public uploadAll() {
     // upload all except already successfull or in progress
     var c = 0;
+    if(this.count) {
+      c = this.count;
+    }
     _.each(this._files, (queueObj: FileQueueObject) => {
       if (queueObj.isUploadable()) {
         setTimeout(() => {
