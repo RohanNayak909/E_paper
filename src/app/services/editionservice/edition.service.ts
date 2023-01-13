@@ -62,4 +62,7 @@ export class EditionService {
   updateImageSerial(img_arr: any) {
     return this.HTTP.post<any>(Masterapi + `/update-image-serial`, [ ...img_arr ]);
   }
+  getSerialNo(edition_id: any, customer_id: any) {
+    return this.HTTP.get<any>(Masterapi + `/get-serial-no-by-edition-id?edition_id=${edition_id}&customer_id=${customer_id}`);
+  }
 }
