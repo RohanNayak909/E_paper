@@ -50,8 +50,8 @@ export class CreateAreaMapComponent implements OnInit {
     this.img_url = localStorage.getItem('img_url')
     this.page_type = localStorage.getItem('page_type')
 
-    this.canvas = new fabric.Canvas("canvas");
-
+    this.canvas = new fabric.Canvas("canvas", {uniformScaling : false });
+    
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.cornerColor = 'black';
 
@@ -194,12 +194,12 @@ export class CreateAreaMapComponent implements OnInit {
   }
 
   saveObject = (eventData: any, transform: any) => {
-    console.log(transform.target);
+    // console.log(transform.target);
 
     var target = transform.target;
 
     if (target) {
-      this.spinnerService.show();
+      // this.spinnerService.show();
 
       var map_id: any = null;
       if (target.name) {
@@ -219,8 +219,8 @@ export class CreateAreaMapComponent implements OnInit {
       this.savedCoordinates.img_id = this.img_id;
       this.savedCoordinates.x_coord = Math.round(target.left * 100) / 100;
       this.savedCoordinates.y_coord = Math.round(target.top * 100) / 100;
-      this.savedCoordinates.width = Math.round((target.lineCoords.br.x - target.lineCoords.bl.x - 3) * 100) / 100;
-      this.savedCoordinates.height = Math.round((target.lineCoords.br.y - target.lineCoords.tr.y - 3) * 100) / 100;
+      this.savedCoordinates.width = Math.round((target.lineCoords.br.x - target.lineCoords.bl.x) * 100) / 100;
+      this.savedCoordinates.height = Math.round((target.lineCoords.br.y - target.lineCoords.tr.y) * 100) / 100;
       this.savedCoordinates.customer_id = this.currentuser.customer_id;
       this.savedCoordinates.created_by = this.currentuser.user_id;
       this.savedCoordinates.map_id = map_id
@@ -235,7 +235,7 @@ export class CreateAreaMapComponent implements OnInit {
 
       this.savedCoordinates.image = img_name
 
-      console.log(this.savedCoordinates);
+      // console.log(this.savedCoordinates);
 
       this.editionService.createAreaMap(this.savedCoordinates).subscribe(res => {
         if (res.code === "success") {
@@ -244,7 +244,16 @@ export class CreateAreaMapComponent implements OnInit {
           } else {
             this.notification.success("Map area created sucessfully");
           }
-          location.reload()
+          // location.reload()
+          this.getAreaMapByImgId();
+          var active = this.canvas.getActiveObject()
+          if (active) {
+            this.canvas.remove(active)
+            if (active.type == "activeSelection") {
+              active.getObjects().forEach((x: any) => this.canvas.remove(x))
+              this.canvas.discardActiveObject().renderAll()
+            }
+          }
         } else {
           this.notification.error(res.message)
           this.spinnerService.hide();
@@ -282,11 +291,17 @@ export class CreateAreaMapComponent implements OnInit {
       // stroke: 'green',
       strokeWidth: 0,
       cornerSize: 10,
-      borderColor: 'green'
+      borderColor: 'green',
+      originX: 'left', 
+  originY: 'top',
+      centeredRotation: true,
+      
 
     });
+    // this.canvas.uniformScaling=true
     this.canvas.add(this.rectangle);
     this.canvas.setActiveObject(this.rectangle);
+    
   }
 
 }
