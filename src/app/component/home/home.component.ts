@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdserviceService } from 'src/app/services/Adservice/adservice.service';
 import { CategoryServiceService } from 'src/app/services/categoryservice/category-service.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoaderService } from 'src/app/services/loaderService/loader.service';
@@ -18,13 +19,15 @@ export class HomeComponent implements OnInit {
   currDate = new Date();
   currentDate:any;
   headerarry:any = [];
+  adsArray:any = []
   constructor(private categoryService: CategoryServiceService,private masterAPI:MasterServiceService,
-    private router: Router,private spinnerService: LoaderService,private editionService: EditionService) { }
+    private router: Router,private spinnerService: LoaderService,private editionService: EditionService,
+    private adsService:AdserviceService) { }
 
   ngOnInit(): void {
     this.getallFeaturedcategory();
     this.currentDate = this.currDate.getFullYear()+"-"+(this.currDate.getMonth()+1)+"-"+this.currDate.getDate();
-   
+    this.getAdsList();
   }
   getallFeaturedcategory() {
     this.spinnerService.show()
@@ -50,6 +53,21 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  getAdsList() {
+    this.adsService.getAllAds('','4',environment.CUSTOMER_ID,'N').subscribe((res: any) => {
+      if (res.code == 'success') {
+        var data = res.body;
+        this.adsArray = data.map((dt: any) => JSON.parse(dt));
+        console.log('this.adsArray=',this.adsArray);
+        
+      } else {
+        this.adsArray = []
+      }
+    }, (err) => {
+      this.adsArray = []
+    })
+  }
+
   previewEdition(data:any){
     this.editionService.getEditionByFeaturedCategory(environment.CUSTOMER_ID,data).subscribe((res: any) => {
       if (res.code == 'success') {
@@ -63,5 +81,9 @@ export class HomeComponent implements OnInit {
     }, (err) => {
       this.headerarry = []
     })
+  }
+
+  openLink(url:any) {
+    window.open(url);
   }
 }
