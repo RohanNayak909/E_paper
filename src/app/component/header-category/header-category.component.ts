@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, SimpleChange } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdserviceService } from 'src/app/services/Adservice/adservice.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
@@ -26,13 +27,13 @@ export class HeaderCategoryComponent implements OnInit {
   hide: Boolean = false
   screen_width: any
   img_length: any = 0;
-
+  adsArray:any = []
   // @HostListener('window:keydown', ['$event'])
   // handleKeyboardEvent(event: KeyboardEvent) {
   //   alert(event.key);
   // }
 
-  constructor(private editionService: EditionService, private elementRef: ElementRef,
+  constructor(private editionService: EditionService, private elementRef: ElementRef, private adsService:AdserviceService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
     activatedRoute.params.subscribe(val => {
@@ -42,7 +43,7 @@ export class HeaderCategoryComponent implements OnInit {
       this.cust_id = environment.CUSTOMER_ID
       this.currentuser = this.loginService.getCurrentUser();
       this.getAllEdition();
-
+      this.getAdsList()
       var s = document.createElement("script");
       s.type = "text/javascript";
       s.src = "assets/js/preview.js";
@@ -65,11 +66,30 @@ export class HeaderCategoryComponent implements OnInit {
     let year = today.getFullYear();
     this.datepicker.setAttribute('max', `${year}-${month}-${date}`);
     this.hide = false
-
+    this.getAdsList()
     var s = document.createElement("script");
     s.type = "text/javascript";
     s.src = "assets/js/preview.js";
     this.elementRef.nativeElement.appendChild(s);
+  }
+
+  getAdsList() {
+    this.adsService.getAllAds('','4',environment.CUSTOMER_ID,'N').subscribe((res: any) => {
+      if (res.code == 'success') {
+        var data = res.body;
+        this.adsArray = data.map((dt: any) => JSON.parse(dt));
+        console.log('this.adsArray=',this.adsArray);
+        
+      } else {
+        this.adsArray = []
+      }
+    }, (err) => {
+      this.adsArray = []
+    })
+  }
+
+  openLink(url:any) {
+    window.open(url);
   }
 
   getAllImages() {

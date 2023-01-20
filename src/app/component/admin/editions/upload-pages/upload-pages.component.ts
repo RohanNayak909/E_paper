@@ -130,7 +130,7 @@ export class UploadPagesComponent implements OnInit {
         var encryptData: any = reader.result
         var fileName: any = fileData.name.split('.')[0]
         var fullName: any = fileData.name
-        console.log(fileName);
+        // console.log(fileName);
 
         var obj = { encryptData: encryptData, fileName: fileName, fullName: fullName }
         resolve(obj);
@@ -166,7 +166,7 @@ export class UploadPagesComponent implements OnInit {
     setTimeout(() => {
       this.editionService.saveUploadImage(this.edition).subscribe(res => {
         if (res.code === "success") {
-          console.log(res.body);
+          // console.log(res.body);
           this.success_url = res.body.success_url
           this.failed_url = res.body.fail_url
           this.spinnerService.hide()
@@ -244,7 +244,7 @@ export class UploadPagesComponent implements OnInit {
       data: data
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
     })
   }
   deletePages(data: any) {
@@ -278,7 +278,11 @@ export class UploadPagesComponent implements OnInit {
   createAreaMap(id: any, image_url: any, page_type: any) {
     localStorage.setItem('img_url', image_url)
     localStorage.setItem('page_type', page_type)
-    this.router.navigate([`/admin/epaper/edition/map/${id}`]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/admin/epaper/edition/map/${id}`])
+    );
+    window.open(url, '_blank');
+    // this.router.navigate([`/admin/epaper/edition/map/${id}`]);
   }
   openModal() {
     var doc: any = document.getElementById("rangemodal");
