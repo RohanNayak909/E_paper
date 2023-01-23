@@ -282,7 +282,6 @@ export class UploadPagesComponent implements OnInit {
       this.router.createUrlTree([`/admin/epaper/edition/map/${id}`])
     );
     window.open(url, '_blank');
-    // this.router.navigate([`/admin/epaper/edition/map/${id}`]);
   }
   openModal() {
     var doc: any = document.getElementById("rangemodal");
