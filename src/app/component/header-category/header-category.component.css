@@ -221,3 +221,13 @@
 .mat-button-disabled {
     background-color: rgba(0, 0, 0, 0.12) !important;
 }
+@media screen and (max-width:1180px) {
+:host::ng-deep .imagemap img{
+    width: 100% !important;
+}
+}
+@media screen and (max-width:780px) {
+    .social-icons {
+        margin-top: 20px;
+    }
+}

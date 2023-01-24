@@ -4,15 +4,15 @@
 
 export const environment = {
   production: false,
-  POST_URL: 'http://192.168.0.140:4200/post/',
+  POST_URL: 'https://api-dev.prameyanews.com/prameya/api',
   // BASE_URL: 'http://192.168.80.176:8072/prameya/api',
   // PREVIEW_URL: 'http://192.168.80.176:8072/prameya/document/preview',
 
-  BASE_URL: 'http://192.168.0.140:8072/prameya/api',
-  PREVIEW_URL: 'http://192.168.0.140:8072/prameya/document/preview',
+  // BASE_URL: 'http://192.168.0.140:8072/prameya/api',
+  PREVIEW_URL: 'https://api-dev.prameyanews.com/prameya/api',
 
   // PREVIEW_URL: 'https://api-dev.prameyanews.com/prameya/document/preview',
-  // BASE_URL: 'https://api-dev.prameyanews.com/prameya/api',
+   BASE_URL: 'https://api-dev.prameyanews.com/prameya/api',
   CUSTOMER_ID : 3,
   CUSTOMER_NAME :'E-PAPER',
   PLATFORM_BASEURL: 'http://192.168.0.140:4200/',
