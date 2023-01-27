@@ -1,4 +1,4 @@
-#epaper > .page-control.before {
+/* #epaper > .page-control.before {
   position: fixed;
   bottom: 25px;
   left: 185px;
@@ -7,7 +7,19 @@
   position: fixed;
   bottom: 25px;
   right: 55px;
+} */
+ #epaper .arrow-controler
+{
+    position: fixed;
+    bottom: 200px;
+    width: 78%;
+    margin: 0 auto;
 }
+.left-arrow
+{
+    margin-left: -30px;
+} 
+
 .heading h1 {
     text-align: center;
     font-weight: bold;
@@ -229,5 +241,46 @@
 @media screen and (max-width:780px) {
     .social-icons {
         margin-top: 20px;
+    }
+    /* .page-holder{
+        display: none;
+    } */
+}
+@media screen and (max-width:575px){
+   .page-holder{
+        display: none;
+    } 
+}
+@media only screen and (min-width:1920px)
+{
+    #epaper .arrow-controler
+    {
+        position: fixed;
+        bottom: 220px;
+        width: 78%;
+        margin: 0 auto;
+    }
+    .left-arrow
+    {
+        margin-left: 0px!important;
+    }
+}
+@media only screen and (max-width: 767px)
+{
+    #epaper .arrow-controler
+{
+    position: fixed;
+    bottom: 220px;
+    width: 98%;
+    margin: 0 auto;
+}
+.left-arrow
+{
+    margin-left: 0px!important;
+}
+}
+@media screen and (min-width:280px) and (max-device-width:470px) {
+    .block{
+        display: block;
     }
 }

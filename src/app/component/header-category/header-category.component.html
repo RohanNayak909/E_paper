@@ -33,14 +33,14 @@
 </div>
 
 <div class="filter-container">
-  <div class="row">
-    <div class="col-md-2 col-sm-4 col-12">
+  <div class="row ">
+    <div class="col-md-2 col-sm-4 col-6 block">
       <mat-form-field appearance="outline">
         <input matInput id="startDate" type="date" [(ngModel)]="editionDate"
                (change)="onChangeDate(editionDate)" required>
       </mat-form-field>
     </div>
-    <div class="col-md-10 col-sm-8 col-12">
+    <div class="col-md-10 col-sm-8 col-6">
       <div class="pagination-container">
         <div class="d-flex align-items-center">
           <div class="grid-modal-container">
@@ -86,8 +86,12 @@
         <div class="epaper">
           <div class="imagemap" id="imagemap"></div>
         </div>
-        <button [disabled]="currentIndex === 1" (click)="prevPage()" mat-mini-fab class="page-control before" style="background-color: var(--red);"><mat-icon>navigate_before</mat-icon></button>
-        <button [disabled]="currentIndex === img_length" (click)="nextPage()" mat-mini-fab class="page-control next" style="background-color: var(--red);"><mat-icon>navigate_next</mat-icon></button>
+        <div class="arrow-controler">
+        <div class="d-flex justify-content-between">
+          <button [disabled]="currentIndex === 1" (click)="prevPage()" mat-mini-fab class="page-control before left-arrow" style="background-color: var(--red);"><mat-icon>navigate_before</mat-icon></button>
+          <button [disabled]="currentIndex === img_length" (click)="nextPage()" mat-mini-fab class="page-control next" style="background-color: var(--red);"><mat-icon>navigate_next</mat-icon></button>
+        </div>
+      </div>
       </div>
       <div class="social-icons" *ngIf="hide">
         <div class="icon facebook"><i class="fa fa-facebook"></i></div>
@@ -100,5 +104,6 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>
 <!-- </section>
 </section> -->
