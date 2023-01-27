@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit {
         var data = res.body;
         //console.log(res.body);
         this.headerarry = data.map((dt: any) => JSON.parse(dt));
+        console.log(this.headerarry);
+        
         // this.headerarry = [...new Map(this.headerarry.map(item => [item.category_id, item])).values()]
       } else {
         this.headerarry = []
