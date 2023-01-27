@@ -1,28 +1,10 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   production: false,
-  POST_URL: 'https://api-dev.prameyanews.com/prameya/api',
-  // BASE_URL: 'http://192.168.80.176:8072/prameya/api',
-  // PREVIEW_URL: 'http://192.168.80.176:8072/prameya/document/preview',
-
-  // BASE_URL: 'http://192.168.0.140:8072/prameya/api',
-  PREVIEW_URL: 'https://api-dev.prameyanews.com/prameya/api',
-
-  // PREVIEW_URL: 'https://api-dev.prameyanews.com/prameya/document/preview',
-   BASE_URL: 'https://api-dev.prameyanews.com/prameya/api',
+  POST_URL: 'https://dev.prameyanews.com/prameya/post',
+  PREVIEW_URL: 'https://api-dev.prameyanews.com/prameya/document/preview',
+  BASE_URL: 'https://api-dev.prameyanews.com/prameya/api',
   CUSTOMER_ID : 3,
   CUSTOMER_NAME :'E-PAPER',
-  PLATFORM_BASEURL: 'http://192.168.0.140:4200/',
+  PLATFORM_BASEURL: 'https://dev.prameyanews.com/',
+  GOOGLE_ANALYTICS_ID: 'UA-139423842-3'
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
