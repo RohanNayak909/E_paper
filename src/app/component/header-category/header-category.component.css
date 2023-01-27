@@ -280,7 +280,7 @@
 }
 }
 @media screen and (min-width:280px) and (max-device-width:470px) {
-    .block{
-        display: block;
-    }
+ .form-field .mat-form-field {
+    width: 70% !important;
+ }
 }
