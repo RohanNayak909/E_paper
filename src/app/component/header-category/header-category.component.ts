@@ -6,6 +6,7 @@ import { LoginService } from 'src/app/services/loginService/login.service';
 import { MasterServiceService } from 'src/app/services/masterservice/master-service.service';
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
+import * as print from 'print-js';
 
 @Component({
   selector: 'app-header-category',
@@ -27,13 +28,13 @@ export class HeaderCategoryComponent implements OnInit {
   hide: Boolean = false
   screen_width: any
   img_length: any = 0;
-  adsArray:any = []
+  adsArray: any = []
   // @HostListener('window:keydown', ['$event'])
   // handleKeyboardEvent(event: KeyboardEvent) {
   //   alert(event.key);
   // }
 
-  constructor(private editionService: EditionService, private elementRef: ElementRef, private adsService:AdserviceService,
+  constructor(private editionService: EditionService, private elementRef: ElementRef, private adsService: AdserviceService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
     activatedRoute.params.subscribe(val => {
@@ -74,12 +75,12 @@ export class HeaderCategoryComponent implements OnInit {
   }
 
   getAdsList() {
-    this.adsService.getAllAds('','4',environment.CUSTOMER_ID,'N').subscribe((res: any) => {
+    this.adsService.getAllAds('', '4', environment.CUSTOMER_ID, 'N').subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.adsArray = data.map((dt: any) => JSON.parse(dt));
-        console.log('this.adsArray=',this.adsArray);
-        
+        console.log('this.adsArray=', this.adsArray);
+
       } else {
         this.adsArray = []
       }
@@ -88,7 +89,7 @@ export class HeaderCategoryComponent implements OnInit {
     })
   }
 
-  openLink(url:any) {
+  openLink(url: any) {
     window.open(url);
   }
 
@@ -311,5 +312,15 @@ export class HeaderCategoryComponent implements OnInit {
     }, (err) => {
       this.headerarry = []
     })
+  }
+
+  printImage() {
+    let img:any = document.getElementById("map_area_img");
+    print({
+      printable: img.src,
+      documentTitle: this.category,
+      type: 'image',
+      imageStyle: 'max-width: 100%;',
+    });
   }
 }

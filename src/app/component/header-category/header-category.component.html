@@ -27,7 +27,7 @@
   </div>
 </div>
 <div class="heading" *ngFor="let data of editionarr">
-  <h1 class="mr-10">{{category}}</h1>
+  <h1 class="mr-10" id="category_value">{{category}}</h1>
   <strong *ngIf="currentIndex > 0 ? currentIndex : ''">Page No - {{currentIndex}}</strong>
   <small class="ml-10">{{data.edition_date | date}}</small>
 </div>
@@ -79,7 +79,7 @@
         <div class="icon twitter"><i class="fa fa-twitter"></i></div>
         <div class="icon google"><i class="fa fa-google-plus"></i></div>
         <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-        <div class="icon print"><i class="fa fa-print"></i></div>
+        <div class="icon print" (click)="printImage()"><i class="fa fa-print"></i></div>
         <div class="icon email"><i class="fa fa-envelope"></i></div>
       </div>
       <div id="epaper">
@@ -98,7 +98,7 @@
         <div class="icon twitter"><i class="fa fa-twitter"></i></div>
         <div class="icon google"><i class="fa fa-google-plus"></i></div>
         <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-        <div class="icon print"><i class="fa fa-print"></i></div>
+        <div class="icon print" (click)="printImage()"><i class="fa fa-print"></i></div>
         <div class="icon email"><i class="fa fa-envelope"></i></div>
       </div>
     </div>
