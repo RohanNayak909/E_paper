@@ -111,7 +111,7 @@ export class EditeditionComponent implements OnInit {
     this.edition.customer_id = environment.CUSTOMER_ID;
     this.edition.edition_name = this.title.category_name;
     if (this.edition.edition_image) {
-      var media_ext = this.edition.edition_image.split("media/")[1];
+      var media_ext = this.edition.edition_image.split("/")[6];
       this.edition.media_ext = media_ext.split(".")[1];
     }
     if (this.edition.Multiimage) {
