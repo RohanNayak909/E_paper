@@ -315,7 +315,7 @@ export class HeaderCategoryComponent implements OnInit {
   }
 
   printImage() {
-    let img:any = document.getElementById("map_area_img");
+    let img: any = document.getElementById("map_area_img");
     print({
       printable: img.src,
       documentTitle: this.category,
