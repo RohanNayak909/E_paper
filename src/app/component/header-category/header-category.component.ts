@@ -127,8 +127,11 @@ export class HeaderCategoryComponent implements OnInit {
             img.width = 963;
             this.screen_width = Math.round((screen.width * 81.875) / 100)
           }
-          if (this.imgarr[0].file_name.split)
-            var wrapper: any = document.getElementById('imagemap');
+          if (screen.width > 319 && screen.width < 576) {
+            img.width = screen.width;
+            img.height = 700;
+          }
+          var wrapper: any = document.getElementById('imagemap');
           wrapper.innerHTML = ""
           wrapper.appendChild(img);
           if (this.imgarr[0].area_details) {
@@ -190,6 +193,10 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
+    if (screen.width > 319 && screen.width < 576) {
+      img.width = screen.width;
+      img.height = 700;
+    }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
     wrapper.appendChild(img);
@@ -235,6 +242,10 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
+    if (screen.width > 319 && screen.width < 576) {
+      img.width = screen.width;
+      img.height = 700;
+    }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
     wrapper.appendChild(img);
@@ -275,6 +286,10 @@ export class HeaderCategoryComponent implements OnInit {
       img.height = 700;
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
+    }
+    if (screen.width > 319 && screen.width < 576) {
+      img.width = screen.width;
+      img.height = 700;
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""

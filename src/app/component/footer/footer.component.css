@@ -64,3 +64,10 @@
 .footer-text {
     font-size: 12px;
 }
+.ft-logo img{
+    width: 100px;
+   }
+.ft-logo{
+ display: flex;
+ justify-content: center;
+}
