@@ -282,6 +282,12 @@
  .form-field .mat-form-field {
     width: 70% !important;
  }
+
+    :host::ng-deep .imagemap .area:hover {
+          border: none !important;
+          background: none !important;
+      }
+
 }
 
 
