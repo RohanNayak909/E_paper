@@ -8,16 +8,15 @@
   bottom: 25px;
   right: 55px;
 } */
- #epaper .arrow-controler
-{
+#epaper .arrow-controler {
     position: sticky;
     bottom: 200px;
     width: 95%;
 }
-.left-arrow
-{
+
+.left-arrow {
     margin-left: -30px;
-} 
+}
 
 .heading h1 {
     text-align: center;
@@ -197,17 +196,20 @@
     /* height: 1479px; */
     /* height: auto; */
     display: block;
+    /* width: 100% !important; */
 }
 
 :host::ng-deep .imagemap .area {
     display: block;
     position: absolute;
     transition: box-shadow 0.15s ease-in-out;
+    /* width: 100% !important; */
 }
 
 :host::ng-deep .imagemap .area:hover {
     border: 1px solid red;
     background: rgba(110, 152, 219, 0.4);
+    /* width: 100% !important; */
     /* box-shadow: 0px 0px 1vw rgba(0, 0, 0, 0.5); */
 }
 
@@ -232,66 +234,68 @@
 .mat-button-disabled {
     background-color: rgba(0, 0, 0, 0.12) !important;
 }
+
 @media screen and (max-width:1180px) {
-:host::ng-deep .imagemap img{
-    width: 100% !important;
+    :host::ng-deep .imagemap img {
+        width: 100% !important;
+    }
 }
-}
+
 @media screen and (max-width:780px) {
     .social-icons {
         margin-top: 20px;
     }
+
     /* .page-holder{
         display: none;
     } */
 }
-@media screen and (max-width:575px){
-   .page-holder{
+
+@media screen and (max-width:575px) {
+    .page-holder {
         display: none;
-    } 
+    }
 }
-@media only screen and (min-width:1920px)
-{
-    #epaper .arrow-controler
-    {
+
+@media only screen and (min-width:1920px) {
+    #epaper .arrow-controler {
         position: fixed;
         bottom: 220px;
         width: 78%;
         margin: 0 auto;
     }
-    .left-arrow
-    {
-        margin-left: 0px!important;
+
+    .left-arrow {
+        margin-left: 0px !important;
     }
 }
-@media only screen and (max-width: 767px)
-{
-    #epaper .arrow-controler
-{
-    position: sticky;
-    bottom: 220px;
-    width: 100%;
-    margin: 0 auto;
+
+@media only screen and (max-width: 767px) {
+    #epaper .arrow-controler {
+        position: sticky;
+        bottom: 220px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .left-arrow {
+        margin-left: 0px !important;
+    }
 }
-.left-arrow
-{
-    margin-left: 0px!important;
-}
-}
+
 @media screen and (min-width:280px) and (max-device-width:470px) {
- .form-field .mat-form-field {
-    width: 70% !important;
- }
+    .form-field .mat-form-field {
+        width: 70% !important;
+    }
 
     :host::ng-deep .imagemap .area:hover {
-          border: none !important;
-          background: none !important;
-      }
-      :host::ng-deep  .imagemap .area {
-        display: block;
-        position: relative !important;
-        transition: box-shadow 0.15s ease-in-out;
+        border: none !important;
+        background: none !important;
     }
+
+    /* :host::ng-deep .imagemap img {
+        width: 100% !important;
+    } */
 
 }
 
