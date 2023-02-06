@@ -209,3 +209,9 @@ body {
   pointer-events: none;
   opacity: .65;
 }
+
+@media screen and (min-width:280px) and (max-device-width:479px) {
+  body {
+      overflow-x: hidden !important;
+  }
+}

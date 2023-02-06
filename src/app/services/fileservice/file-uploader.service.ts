@@ -118,7 +118,7 @@ export class FileUploaderService {
         setTimeout(() => {
           c = c + 1;
           this._upload(queueObj, this._files.length,c);
-        }, 2000)
+        }, 2500)
       }
     });
   }

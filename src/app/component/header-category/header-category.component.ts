@@ -127,10 +127,37 @@ export class HeaderCategoryComponent implements OnInit {
             img.width = 963;
             this.screen_width = Math.round((screen.width * 81.875) / 100)
           }
-          if (screen.width > 319 && screen.width < 576) {
+          if (screen.width > 309 && screen.width < 576) {
             img.width = screen.width;
-            img.height = 700;
+            img.height = 600;
+            let x = Math.floor(screen.width / 10);
+            let z = (x - 31);
+            let s = (31 - z) * 10;
+            if (z == 5 || z == 6) {
+              s = 260;
+            } else if (z == 7 || z == 8) {
+              s = 250;
+            } else if (z == 9 || z == 10 || z == 11) {
+              s = 280;
+            } else if (z == 12 || z == 13) {
+              s = 230;
+            } else if (z == 14 || z == 15) {
+              s = 220;
+            }
+            this.screen_width = Math.round((screen.width * s) / 100)
           }
+          // if (screen.width > 339 && screen.width < 350) {
+
+          // }
+          // if (screen.width > 329 && screen.width < 340) {
+          //   this.screen_width = Math.round((screen.width * 290.875) / 100)
+          // }
+          // if (screen.width > 319 && screen.width < 330) {
+          //   this.screen_width = Math.round((screen.width * 300.875) / 100)
+          // }
+          // if (screen.width > 309 && screen.width < 320) {
+          //   this.screen_width = Math.round((screen.width * 310.875) / 100)
+          // }
           var wrapper: any = document.getElementById('imagemap');
           wrapper.innerHTML = ""
           wrapper.appendChild(img);
@@ -195,7 +222,23 @@ export class HeaderCategoryComponent implements OnInit {
     }
     if (screen.width > 319 && screen.width < 576) {
       img.width = screen.width;
-      img.height = 700;
+      img.height = 600;
+      // this.screen_width = Math.round((screen.width * 230.875) / 100)
+      let x = Math.floor(screen.width / 10);
+      let z = (x - 31);
+      let s = (31 - z) * 10;
+      if (z == 5 || z == 6) {
+        s = 260;
+      } else if (z == 7 || z == 8) {
+        s = 250;
+      } else if (z == 9 || z == 10 || z == 11) {
+        s = 280;
+      } else if (z == 12 || z == 13) {
+        s = 230;
+      } else if (z == 14 || z == 15) {
+        s = 220;
+      }
+      this.screen_width = Math.round((screen.width * s) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
@@ -244,7 +287,23 @@ export class HeaderCategoryComponent implements OnInit {
     }
     if (screen.width > 319 && screen.width < 576) {
       img.width = screen.width;
-      img.height = 700;
+      img.height = 600;
+      // this.screen_width = Math.round((screen.width * 230.875) / 100)
+      let x = Math.floor(screen.width / 10);
+      let z = (x - 31);
+      let s = (31 - z) * 10;
+      if (z == 5 || z == 6) {
+        s = 260;
+      } else if (z == 7 || z == 8) {
+        s = 250;
+      } else if (z == 9 || z == 10 || z == 11) {
+        s = 280;
+      } else if (z == 12 || z == 13) {
+        s = 230;
+      } else if (z == 14 || z == 15) {
+        s = 220;
+      }
+      this.screen_width = Math.round((screen.width * s) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
@@ -289,7 +348,23 @@ export class HeaderCategoryComponent implements OnInit {
     }
     if (screen.width > 319 && screen.width < 576) {
       img.width = screen.width;
-      img.height = 700;
+      img.height = 600;
+      // this.screen_width = Math.round((screen.width * 230.875) / 100)
+      let x = Math.floor(screen.width / 10);
+      let z = (x - 31);
+      let s = (31 - z) * 10;
+      if (z == 5 || z == 6) {
+        s = 260;
+      } else if (z == 7 || z == 8) {
+        s = 250;
+      } else if (z == 9 || z == 10 || z == 11) {
+        s = 280;
+      } else if (z == 12 || z == 13) {
+        s = 230;
+      } else if (z == 14 || z == 15) {
+        s = 220;
+      }
+      this.screen_width = Math.round((screen.width * s) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
