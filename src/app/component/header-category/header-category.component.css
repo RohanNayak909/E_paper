@@ -153,13 +153,20 @@
 .epaper img {
     width: -webkit-fill-available;
 }
-
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: -2px 5px 7px #8f8f8f;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
 .home-ad-container {
     display: flex;
     justify-content: center;
     /* padding: 0rem 1rem;
     padding-top: 1rem; */
-    margin: 20px 0px;
+    margin: 0px 0px 20px 0px
 }
 
 .home-ad-container div {
@@ -249,6 +256,15 @@
     /* .page-holder{
         display: none;
     } */
+    .home-ad-container .carousel {
+        height: auto;
+    }
+    .home-ad-container div {
+        height: auto;
+    }
+    .home-ad-container .carousel .carousel-item img {
+         height: auto; 
+    }
 }
 
 @media screen and (max-width:575px) {
