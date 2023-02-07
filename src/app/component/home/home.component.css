@@ -3,7 +3,6 @@
   justify-content: center;
   /* padding: 0rem 1rem;
   padding-top: 1rem; */
-  margin: 20px 0px;
 }
 .home-ad-container div{
   width: 100%;
@@ -19,7 +18,7 @@
 }
 
 .home-ad-container .carousel {
-  height: 120px;
+  height: 110px;
 }
 
 .home-first-container {
@@ -78,4 +77,27 @@
 }
 .footer-container {
   margin-top: 2%;
+}
+.carousel-inner{
+  box-shadow: 0 8px 8px -4px #5a5a5a;
+  border: 1px solid #000;
+  margin-top: 10px;
+}
+@media screen and (max-width:780px) {
+  .social-icons {
+      margin-top: 20px;
+  }
+
+  /* .page-holder{
+      display: none;
+  } */
+  .home-ad-container .carousel {
+      height: auto;
+  }
+  .home-ad-container div {
+      height: auto;
+  }
+  .home-ad-container .carousel .carousel-item img {
+       height: auto; 
+  }
 }
