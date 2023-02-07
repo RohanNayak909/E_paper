@@ -43,6 +43,17 @@
   font-weight: bold;
   text-transform: capitalize !important;
 }
+.toBeReplaced {
+  visibility: hidden;
+  position: relative;
+  left: -20px;
+}
+.toBeReplaced:before {
+  visibility: visible;
+  top: 0;
+  left: 0;
+  content:"\f015";
+}
 @keyframes blink-animation {
   25% {
     opacity: 0.5;
@@ -68,4 +79,16 @@
 
 .navbar-expand-lg .navbar-nav {
   flex-wrap: wrap;
+}
+@media screen and (max-width:780px) {
+  .toBeReplaced {
+    visibility: visible;
+    position: relative;
+  }
+  .toBeReplaced:before {
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    content:"\f015";
+  } 
 }

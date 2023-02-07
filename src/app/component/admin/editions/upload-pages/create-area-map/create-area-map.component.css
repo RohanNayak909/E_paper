@@ -3,17 +3,18 @@
 }
 
 .button-wrapper {
-    display: inline-flex;
-    flex-direction: row;
+    /* display: inline-flex;
+    flex-direction: row; */
+    display: flex;
     justify-content: space-between;
 
 }
 
-#create_map_area {
+/* #create_map_area {
     position: fixed;
     z-index: 1;
     right: 10px;
-}
+} */
 
 html,
 body {
@@ -53,7 +54,11 @@ body {
     background: #0000000d;
     cursor: crosshair;
 }
-
+.heading{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
 /* 
 area {
     position: absolute;
