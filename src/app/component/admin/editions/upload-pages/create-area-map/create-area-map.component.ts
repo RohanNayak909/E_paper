@@ -36,6 +36,8 @@ export class CreateAreaMapComponent implements OnInit {
 
   page_type: any
 
+  imgobj:any = {}
+
   constructor(private activatedRoute: ActivatedRoute, private loginService: LoginService,
     private editionService: EditionService, private spinnerService: LoaderService,
     private notification: NotificationService) {
@@ -46,6 +48,8 @@ export class CreateAreaMapComponent implements OnInit {
 
     const routeParams = this.activatedRoute.snapshot.paramMap;
     this.img_id = Number(routeParams.get('id'));
+
+    this.getImageDetails(this.img_id);
 
     this.img_url = localStorage.getItem('img_url')
     this.page_type = localStorage.getItem('page_type')
@@ -80,6 +84,19 @@ export class CreateAreaMapComponent implements OnInit {
 
     this.getAreaMapByImgId()
 
+  }
+
+  getImageDetails(id:any) {
+    this.editionService.getImageDetails(id, this.currentuser.customer_id).subscribe(res => {
+      if (res.code === "success") {
+        var img = res.body;
+        this.imgobj = img.map((i: any) => JSON.parse(i))[0];
+        console.log('this.imgobj===',this.imgobj);
+        
+      } else {
+        this.imgobj = {};
+      }
+    })
   }
 
   //   this.canvas.on('object:selected', function(){
