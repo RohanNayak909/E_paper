@@ -1,17 +1,23 @@
-<div  id="page-container">
+<div id="page-container">
     <hr>
     <div class="content">
         <div class="row my-2">
             <div class="col-md-12">
+                <div class="heading ng-star-inserted">
+                    <h1 class="mr-10 fw-b">{{edition_data}}</h1>
+                </div>
                 <div class="button-wrapper">
-                    <button class="btn btn-danger rounded-0" type="button" id="back"
-                        (click)="backToHistory()">Back</button>
-                        <div class="heading ng-star-inserted"><h1 class="mr-10">BHUBANESWAR-01-Feb 7, 2023</h1></div>
+                    <!-- <div> -->
+                        <button class="btn btn-danger rounded-0" type="button" id="back"
+                            (click)="backToHistory()">Back</button>
+
                         <!-- <div class="heading ng-star-inserted"><h1 class="mr-10">BHUBANESWAR-01-Feb 7, 2023</h1><strong class="ng-star-inserted">Page No - 1</strong>
                             <small class="ml-10">Feb 7, 2023</small></div> -->
-                    <button class="btn btn-primary rounded-0" type="button" id="create_map_area"
-                        (click)="createAreaMap()">+</button>
+                        <button class="btn btn-primary rounded-0" type="button" id="create_map_area"
+                            (click)="createAreaMap()">+</button>
+                    <!-- </div> -->
                 </div>
+                
             </div>
         </div>
         <div id="fp-canvas-container">
@@ -36,7 +42,7 @@
                     </h2>
                     <div class="d-flex justify-content-center flex-wrap">
                         <button mat-raised-button color="warn" class="delete-btn mr-20" (click)="cancel()"> No </button>
-                        <button mat-raised-button color="primary" class="delete-btn" > Yes
+                        <button mat-raised-button color="primary" class="delete-btn"> Yes
                         </button>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { fabric } from 'fabric';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
 import { LoaderService } from 'src/app/services/loaderService/loader.service';
@@ -37,10 +37,11 @@ export class CreateAreaMapComponent implements OnInit {
   page_type: any
 
   imgobj:any = {}
+  edition_data:any
 
   constructor(private activatedRoute: ActivatedRoute, private loginService: LoginService,
     private editionService: EditionService, private spinnerService: LoaderService,
-    private notification: NotificationService) {
+    private notification: NotificationService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -92,6 +93,16 @@ export class CreateAreaMapComponent implements OnInit {
         var img = res.body;
         this.imgobj = img.map((i: any) => JSON.parse(i))[0];
         console.log('this.imgobj===',this.imgobj);
+
+        var newdate = '';
+        if(this.imgobj.edition_date) {
+          var mydate = new Date(this.imgobj.edition_date);
+          var month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+          "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][mydate.getMonth()];
+          newdate = month + ' ' + mydate.getDate() + ', ' + mydate.getFullYear();
+        }
+
+        this.edition_data = this.imgobj.edition_name + ' - ' + this.imgobj.file_name + ' - ' + newdate;
         
       } else {
         this.imgobj = {};
@@ -208,7 +219,7 @@ export class CreateAreaMapComponent implements OnInit {
   }
 
   backToHistory() {
-    history.back();
+    this.router.navigate([`/admin/epaper/edition/upload-pages/${this.imgobj.edition_name}/${this.imgobj.edition_id}`]);
   }
 
   saveObject = (eventData: any, transform: any) => {
