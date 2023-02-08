@@ -38,6 +38,9 @@ export class HeaderCategoryComponent implements OnInit {
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
     activatedRoute.params.subscribe(val => {
+      //if(window.screen.width <= 575) {
+        this.handleSwipe();
+      //}
       let routeParams = this.activatedRoute.snapshot.paramMap;
       this.eid = Number(routeParams.get('id'));
       this.category = routeParams.get('category');
@@ -53,7 +56,9 @@ export class HeaderCategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    //if(window.screen.width <= 575) {
+      this.handleSwipe();
+    //}
     let routeParams = this.activatedRoute.snapshot.paramMap;
     this.eid = Number(routeParams.get('id'));
     this.category = routeParams.get('category');
@@ -175,7 +180,7 @@ export class HeaderCategoryComponent implements OnInit {
               var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
               wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + t.imgarr[0].index + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / t.screen_width) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / t.screen_width) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
             });
-          }
+          } 
         }
 
       } else {
@@ -184,6 +189,56 @@ export class HeaderCategoryComponent implements OnInit {
     }, (err: any) => {
       this.imgarr = []
     })
+  }
+
+
+  /**
+   * @RKS
+   */
+  touchstartX = 0;
+  touchendX = 0;
+  SWPIE_THRESHOLD = 50;
+  checkDirection = ()  => {
+    let horizontalDifference = this.touchendX - this.touchstartX;
+    if (this.touchendX < this.touchstartX && Math.abs(horizontalDifference) > this.SWPIE_THRESHOLD) {
+      this.nextPage();
+    }
+    if (this.touchendX > this.touchstartX && Math.abs(horizontalDifference) > this.SWPIE_THRESHOLD) {
+      this.prevPage();
+    }
+  }
+  handleSwipe() {
+    let wrapper: any = document.getElementById('imagemap');
+    wrapper.addEventListener('touchstart', (e:any) => {
+      this.touchstartX = 0
+      this.touchendX = 0 
+      this.touchstartX = e.changedTouches[0].screenX
+    });
+    wrapper.addEventListener('touchend', (e:any) => {
+      this.touchendX = e.changedTouches[0].screenX
+      this.checkDirection()
+    });
+  }
+
+  appendImgCrop(img:any) {
+    var wrapper: any = document.getElementById('imagemap');
+    wrapper.innerHTML = ""
+    wrapper.appendChild(img);
+    if (this.imgarr[0].area_details) {
+      var dtarr = this.editionDate.split("-");
+      var dt = dtarr[0] + '' + dtarr[1] + '' + dtarr[2]
+      this.hide = true
+      var t = this
+      this.imgarr[0].area_details.forEach(function (data: any) {
+        var coords = data.coordinates.split(',');
+        var xcoords = [parseInt(coords[0]), parseInt(coords[2])];
+        var ycoords = [parseInt(coords[1]), parseInt(coords[3])];
+        xcoords = xcoords.sort(function (a, b) { return a - b });
+        ycoords = ycoords.sort(function (a, b) { return a - b });
+        var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
+        wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + t.imgarr[0].index + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / t.screen_width) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / t.screen_width) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
+      });
+    } 
   }
 
   getAllEdition() {
