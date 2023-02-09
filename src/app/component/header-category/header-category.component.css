@@ -11,7 +11,7 @@
 #epaper .arrow-controler {
     position: sticky;
     bottom: 200px;
-    width: 95%;
+    width: 100%;
 }
 
 .left-arrow {
