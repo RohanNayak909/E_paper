@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, SimpleChange } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, QueryList, SimpleChange, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdserviceService } from 'src/app/services/Adservice/adservice.service';
 import { EditionService } from 'src/app/services/editionservice/edition.service';
@@ -37,15 +37,20 @@ export class HeaderCategoryComponent implements OnInit {
   // handleKeyboardEvent(event: KeyboardEvent) {
   //   alert(event.key);
   // }
-
+  @ViewChild('for_mobile') for_mobile!:any
+  
   constructor(private editionService: EditionService, private elementRef: ElementRef, private adsService: AdserviceService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
     private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router,
               public breakpointObserver: BreakpointObserver) {
     activatedRoute.params.subscribe(val => {
-      //if(window.screen.width <= 575) {
-        this.handleSwipe();
-      //}
+      // if(window.screen.width <= 575) {
+        try {
+          //this.handleSwipe();
+        } catch (error) {
+          console.log(error)
+        }
+      // }
       let routeParams = this.activatedRoute.snapshot.paramMap;
       this.eid = Number(routeParams.get('id'));
       this.category = routeParams.get('category');
@@ -57,17 +62,23 @@ export class HeaderCategoryComponent implements OnInit {
       s.type = "text/javascript";
       s.src = "assets/js/preview.js";
       this.elementRef.nativeElement.appendChild(s);
-
-      if(screen.width > 270 && screen.width < 308) {
-        let val:any = document.getElementById('for_mobile');
-        val.classList.add('wid-105');
-        let val1:any = document.getElementById('main-cntn');
-        val1.classList.add('pd-right');
-      } else {
-        let val:any = document.getElementById('for_mobile');
-        val.classList.remove('wid-105');
-        let val1:any = document.getElementById('main-cntn');
-        val1.classList.remove('pd-right');
+      
+      try {
+        if(screen.width > 270 && screen.width < 308) {
+          let val:any = document.getElementById('for_mobile');
+          val.classList.add('wid-105');
+          let val1:any = document.getElementById('main-cntn');
+          val1.classList.add('pd-right');
+        } else {
+          let val:any = document.getElementById('for_mobile');
+          if(val)
+          val.classList.remove('wid-105');
+          let val1:any = document.getElementById('main-cntn');
+          if(val1)
+          val1.classList.remove('pd-right');
+        }
+      } catch (error) {
+        console.log(error);
       }
     })
   }
@@ -121,13 +132,32 @@ export class HeaderCategoryComponent implements OnInit {
       }
   }
 
+  ngAfterViewInit(){
+    try {
+      //this.handleSwipe();
+      if(screen.width > 270 && screen.width < 308) {
+        let val:any = document.getElementById('for_mobile');
+        val.classList.add('wid-105');
+        let val1:any = document.getElementById('main-cntn');
+        val1.classList.add('pd-right');
+      } else {
+        let val:any = document.getElementById('for_mobile');
+        if(val)
+        val.classList.remove('wid-105');
+        let val1:any = document.getElementById('main-cntn');
+        if(val1)
+        val1.classList.remove('pd-right');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   getAdsList() {
     this.adsService.getAllAds('', '4', environment.CUSTOMER_ID, 'N').subscribe((res: any) => {
       if (res.code == 'success') {
         var data = res.body;
         this.adsArray = data.map((dt: any) => JSON.parse(dt));
-        console.log('this.adsArray=', this.adsArray);
-
       } else {
         this.adsArray = []
       }
@@ -196,7 +226,7 @@ export class HeaderCategoryComponent implements OnInit {
 
           if (screen.width > 270 && screen.width < 308) {
             img.width = screen.width;
-            img.height = 400;
+            img.height = 450;
             this.screen_width = Math.round((screen.width * 340) / 100)
           }
           
@@ -334,7 +364,7 @@ export class HeaderCategoryComponent implements OnInit {
     }
     if (screen.width > 270 && screen.width < 308) {
       img.width = screen.width;
-      img.height = 400;
+      img.height = 450;
       this.screen_width = Math.round((screen.width * 340) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
@@ -363,7 +393,6 @@ export class HeaderCategoryComponent implements OnInit {
   nextPage() {
     var i = this.currentIndex
     this.currentIndex = this.currentIndex + 1;
-    console.log(this.imgarr[i])
     var img: any = document.createElement('img');
     img.id = 'map_area_img'
     img.src = this.imgarr[i].image_url
@@ -404,7 +433,7 @@ export class HeaderCategoryComponent implements OnInit {
     }
     if (screen.width > 270 && screen.width < 308) {
       img.width = screen.width;
-      img.height = 400;
+      img.height = 450;
       this.screen_width = Math.round((screen.width * 340) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
@@ -470,7 +499,7 @@ export class HeaderCategoryComponent implements OnInit {
     }
     if (screen.width > 270 && screen.width < 308) {
       img.width = screen.width;
-      img.height = 400;
+      img.height = 450;
       this.screen_width = Math.round((screen.width * 340) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
@@ -499,8 +528,6 @@ export class HeaderCategoryComponent implements OnInit {
       if (res.code == 'success') {
         var data = res.body;
         this.headerarry = data.map((dt: any) => JSON.parse(dt));
-        console.log(this.headerarry[0].category_url);
-
         this.route.navigate([this.headerarry[0].category_url]);
       } else {
         this.headerarry = []
