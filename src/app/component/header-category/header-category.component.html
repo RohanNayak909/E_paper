@@ -34,8 +34,8 @@
 <div class="filter-container">
 <!--  <div class="row">-->
   <div [ngClass]="isFold ? 'is-fold-responsive':'row'">
-    <div class="col-md-2 col-sm-4 col-6 form-field">
-      <mat-form-field appearance="outline">
+    <div [ngClass]="isFold ? 'is-galaxy-fold':'col-md-2 col-sm-4 col-6 form-field'">
+      <mat-form-field class="fold-dates" appearance="outline">
         <input matInput id="startDate" type="date" [(ngModel)]="editionDate"
                (change)="onChangeDate(editionDate)" required>
       </mat-form-field>
