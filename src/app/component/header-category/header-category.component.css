@@ -241,6 +241,11 @@
 .mat-button-disabled {
     background-color: rgba(0, 0, 0, 0.12) !important;
 }
+.is-fold-responsive {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
 @media screen and (max-width:1180px) {
     :host::ng-deep .imagemap img {
@@ -263,7 +268,7 @@
         height: auto;
     }
     .home-ad-container .carousel .carousel-item img {
-         height: auto; 
+         height: auto;
     }
 }
 
@@ -318,4 +323,23 @@
 
 .cp {
     cursor: pointer;
+}
+
+@media screen and (min-width: 280px) and (max-width: 359px) {
+  .heading {
+    flex-direction: column;
+    align-items: center;
+  }
+  .heading h1, .mr-10, .ml-10 {
+    margin: unset !important;
+  }
+  .pagination-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+  }
+  .form-field .mat-form-field {
+    width: 110% !important;
+  }
 }

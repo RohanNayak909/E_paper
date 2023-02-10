@@ -7,6 +7,8 @@ import { MasterServiceService } from 'src/app/services/masterservice/master-serv
 import { NotificationService } from 'src/app/services/notificationService/notification.service';
 import { environment } from 'src/environments/environment';
 import * as print from 'print-js';
+import {BreakpointObserver, BreakpointState} from "@angular/cdk/layout";
+import {state} from "@angular/animations";
 
 @Component({
   selector: 'app-header-category',
@@ -29,6 +31,8 @@ export class HeaderCategoryComponent implements OnInit {
   screen_width: any
   img_length: any = 0;
   adsArray: any = []
+
+  isFold: boolean = false;
   // @HostListener('window:keydown', ['$event'])
   // handleKeyboardEvent(event: KeyboardEvent) {
   //   alert(event.key);
@@ -36,7 +40,8 @@ export class HeaderCategoryComponent implements OnInit {
 
   constructor(private editionService: EditionService, private elementRef: ElementRef, private adsService: AdserviceService,
     private activatedRoute: ActivatedRoute, private loginService: LoginService, private masterService: MasterServiceService,
-    private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router) {
+    private notification: NotificationService, private masterAPI: MasterServiceService, private route: Router,
+              public breakpointObserver: BreakpointObserver) {
     activatedRoute.params.subscribe(val => {
       //if(window.screen.width <= 575) {
         this.handleSwipe();
@@ -77,6 +82,19 @@ export class HeaderCategoryComponent implements OnInit {
     s.type = "text/javascript";
     s.src = "assets/js/preview.js";
     this.elementRef.nativeElement.appendChild(s);
+
+    this.breakpointObserver
+      .observe(['(min-width: 280px)'] && ['(max-width: 359px)'])
+      .subscribe((breaks) => {
+        if(breaks.matches) {
+          // console.log('Galaxy Fold');
+          this.isFold = true;
+        }
+        else {
+          // console.log('normal');
+          this.isFold = false;
+        }
+      });
   }
 
   getAdsList() {
@@ -151,18 +169,13 @@ export class HeaderCategoryComponent implements OnInit {
             }
             this.screen_width = Math.round((screen.width * s) / 100)
           }
-          // if (screen.width > 339 && screen.width < 350) {
 
-          // }
-          // if (screen.width > 329 && screen.width < 340) {
-          //   this.screen_width = Math.round((screen.width * 290.875) / 100)
-          // }
-          // if (screen.width > 319 && screen.width < 330) {
-          //   this.screen_width = Math.round((screen.width * 300.875) / 100)
-          // }
-          // if (screen.width > 309 && screen.width < 320) {
-          //   this.screen_width = Math.round((screen.width * 310.875) / 100)
-          // }
+          if (screen.width > 270 && screen.width < 308) {
+            img.width = screen.width;
+            img.height = 400;
+            this.screen_width = Math.round((screen.width * 340) / 100)
+          }
+          
           var wrapper: any = document.getElementById('imagemap');
           wrapper.innerHTML = ""
           wrapper.appendChild(img);
@@ -180,7 +193,7 @@ export class HeaderCategoryComponent implements OnInit {
               var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
               wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + t.imgarr[0].index + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / t.screen_width) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / t.screen_width) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
             });
-          } 
+          }
         }
 
       } else {
@@ -211,7 +224,7 @@ export class HeaderCategoryComponent implements OnInit {
     let wrapper: any = document.getElementById('imagemap');
     wrapper.addEventListener('touchstart', (e:any) => {
       this.touchstartX = 0
-      this.touchendX = 0 
+      this.touchendX = 0
       this.touchstartX = e.changedTouches[0].screenX
     });
     wrapper.addEventListener('touchend', (e:any) => {
@@ -238,7 +251,7 @@ export class HeaderCategoryComponent implements OnInit {
         var desc = 'height=' + (parseInt(data.height) + 50) + ',width=' + (parseInt(data.width) + 50) + ',modal=yes,alwaysRaised=yes,scrollbars=1';
         wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + t.imgarr[0].index + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / t.screen_width) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / t.screen_width) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
       });
-    } 
+    }
   }
 
   getAllEdition() {
@@ -294,6 +307,11 @@ export class HeaderCategoryComponent implements OnInit {
         s = 220;
       }
       this.screen_width = Math.round((screen.width * s) / 100)
+    }
+    if (screen.width > 270 && screen.width < 308) {
+      img.width = screen.width;
+      img.height = 400;
+      this.screen_width = Math.round((screen.width * 340) / 100)
     }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
@@ -360,6 +378,11 @@ export class HeaderCategoryComponent implements OnInit {
       }
       this.screen_width = Math.round((screen.width * s) / 100)
     }
+    if (screen.width > 270 && screen.width < 308) {
+      img.width = screen.width;
+      img.height = 400;
+      this.screen_width = Math.round((screen.width * 340) / 100)
+    }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
     wrapper.appendChild(img);
@@ -421,6 +444,11 @@ export class HeaderCategoryComponent implements OnInit {
       }
       this.screen_width = Math.round((screen.width * s) / 100)
     }
+    if (screen.width > 270 && screen.width < 308) {
+      img.width = screen.width;
+      img.height = 400;
+      this.screen_width = Math.round((screen.width * 340) / 100)
+    }
     var wrapper: any = document.getElementById('imagemap');
     wrapper.innerHTML = ""
     wrapper.appendChild(img);
@@ -439,7 +467,6 @@ export class HeaderCategoryComponent implements OnInit {
         wrapper.innerHTML += "<a href='javascript:void(0)' onclick=openNewSection(" + t.imgarr[0].image_id + "," + data.map_id + "," + i + ",'" + t.category + "','" + dt + "','" + desc + "') class='area' style='left: " + ((xcoords[0] / t.screen_width) * 100).toFixed(2) + "%; top: " + ((ycoords[0] / parseInt(data.img_height)) * 100).toFixed(2) + "%; width: " + (((xcoords[1] - xcoords[0]) / t.screen_width) * 100).toFixed(2) + "%; height: " + (((ycoords[1] - ycoords[0]) / parseInt(data.img_height)) * 100).toFixed(2) + "%;'></a>";
       });
     }
-
 
   }
 
