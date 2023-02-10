@@ -57,6 +57,18 @@ export class HeaderCategoryComponent implements OnInit {
       s.type = "text/javascript";
       s.src = "assets/js/preview.js";
       this.elementRef.nativeElement.appendChild(s);
+
+      if(screen.width > 270 && screen.width < 308) {
+        let val:any = document.getElementById('for_mobile');
+        val.classList.add('wid-105');
+        let val1:any = document.getElementById('main-cntn');
+        val1.classList.add('pd-right');
+      } else {
+        let val:any = document.getElementById('for_mobile');
+        val.classList.remove('wid-105');
+        let val1:any = document.getElementById('main-cntn');
+        val1.classList.remove('pd-right');
+      }
     })
   }
 
@@ -95,6 +107,18 @@ export class HeaderCategoryComponent implements OnInit {
           this.isFold = false;
         }
       });
+
+      if(screen.width > 270 && screen.width < 308) {
+        let val:any = document.getElementById('for_mobile');
+        val.classList.add('wid-105');
+        let val1:any = document.getElementById('main-cntn');
+        val1.classList.add('pd-right');
+      } else {
+        let val:any = document.getElementById('for_mobile');
+        val.classList.remove('wid-105');
+        let val1:any = document.getElementById('main-cntn');
+        val1.classList.remove('pd-right');
+      }
   }
 
   getAdsList() {

@@ -343,3 +343,11 @@
     width: 110% !important;
   }
 }
+
+.wid-105 {
+    width: 105%;
+}
+
+.pd-right {
+    padding-right: 0 !important;
+}
