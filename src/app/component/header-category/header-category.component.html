@@ -33,7 +33,7 @@
 
 <div class="filter-container">
 <!--  <div class="row">-->
-  <div [ngClass]="isFold ? 'is-fold-responsive':'row'">
+  <div [ngClass]="isFold ? 'is-fold-responsive':'d-flex'">
     <div [ngClass]="isFold ? 'is-galaxy-fold':'col-md-2 col-sm-4 col-6 form-field'">
       <mat-form-field class="fold-dates" appearance="outline">
         <input matInput id="startDate" type="date" [(ngModel)]="editionDate"
@@ -63,7 +63,7 @@
 </div>
 
 <div class="epaper-container">
-  <div class="row" id="for_mobile" #for_mobile>
+  <div class="d-flex flx-wrp" id="for_mobile" #for_mobile>
     <div class="col-lg-2 col-md-4 col-sm-12 col-12">
       <div class="page-holder" *ngFor="let data of imgarr">
         <div class="pages"
