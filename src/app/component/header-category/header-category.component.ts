@@ -210,12 +210,23 @@ export class HeaderCategoryComponent implements OnInit {
             img.height = 1000;
             if(w > 574 && w < 586)
             this.screen_width = Math.round((screen.width * 170) / 100)
+            else if((w > 585 && w < 596))
+            this.screen_width = Math.round((screen.width * 166) / 100)
+            else if((w > 595 && w < 606))
+            this.screen_width = Math.round((screen.width * 162) / 100)
+            else if((w > 605 && w < 616))
+            this.screen_width = Math.round((screen.width * 158) / 100)
+            else if((w > 615 && w < 631))
+            this.screen_width = Math.round((screen.width * 154) / 100)
+            else if((w > 630 && w < 641))
+            this.screen_width = Math.round((screen.width * 150) / 100)
             else
             this.screen_width = Math.round((screen.width * 148) / 100)
           }
           if (screen.width > 650 && screen.width < 768) {
             img.width = screen.width;
             img.height = 1100;
+            this.screen_width = Math.round((screen.width * 148) / 100)
           }
           if (screen.width > 309 && screen.width < 575) {
             img.width = screen.width;
@@ -356,8 +367,23 @@ export class HeaderCategoryComponent implements OnInit {
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
     if (screen.width > 574 && screen.width < 651) {
+      let w = screen.width;
       img.width = screen.width;
       img.height = 1000;
+      if(w > 574 && w < 586)
+      this.screen_width = Math.round((screen.width * 170) / 100)
+      else if((w > 585 && w < 596))
+      this.screen_width = Math.round((screen.width * 166) / 100)
+      else if((w > 595 && w < 606))
+      this.screen_width = Math.round((screen.width * 162) / 100)
+      else if((w > 605 && w < 616))
+      this.screen_width = Math.round((screen.width * 158) / 100)
+      else if((w > 615 && w < 631))
+      this.screen_width = Math.round((screen.width * 154) / 100)
+      else if((w > 630 && w < 641))
+      this.screen_width = Math.round((screen.width * 150) / 100)
+      else
+      this.screen_width = Math.round((screen.width * 148) / 100)
     }
     if (screen.width > 650 && screen.width < 768) {
       img.width = screen.width;
@@ -433,8 +459,22 @@ export class HeaderCategoryComponent implements OnInit {
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
     if (screen.width > 574 && screen.width < 651) {
+      let w = screen.width;
       img.width = screen.width;
       img.height = 1000;
+      if(w > 574 && w < 586)
+      this.screen_width = Math.round((screen.width * 170) / 100)
+      else if((w > 585 && w < 596))
+      this.screen_width = Math.round((screen.width * 166) / 100)
+      else if((w > 595 && w < 606))
+      this.screen_width = Math.round((screen.width * 162) / 100)
+      else if((w > 605 && w < 616))
+      this.screen_width = Math.round((screen.width * 158) / 100)
+      else if((w > 615 && w < 631))
+      this.screen_width = Math.round((screen.width * 154) / 100)
+      else if((w > 630 && w < 641))
+      this.screen_width = Math.round((screen.width * 150) / 100)
+      else
       this.screen_width = Math.round((screen.width * 148) / 100)
     }
     if (screen.width > 650 && screen.width < 768) {
@@ -508,8 +548,23 @@ export class HeaderCategoryComponent implements OnInit {
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
     if (screen.width > 574 && screen.width < 651) {
+      let w = screen.width;
       img.width = screen.width;
       img.height = 1000;
+      if(w > 574 && w < 586)
+      this.screen_width = Math.round((screen.width * 170) / 100)
+      else if((w > 585 && w < 596))
+      this.screen_width = Math.round((screen.width * 166) / 100)
+      else if((w > 595 && w < 606))
+      this.screen_width = Math.round((screen.width * 162) / 100)
+      else if((w > 605 && w < 616))
+      this.screen_width = Math.round((screen.width * 158) / 100)
+      else if((w > 615 && w < 631))
+      this.screen_width = Math.round((screen.width * 154) / 100)
+      else if((w > 630 && w < 641))
+      this.screen_width = Math.round((screen.width * 150) / 100)
+      else
+      this.screen_width = Math.round((screen.width * 148) / 100)
     }
     if (screen.width > 650 && screen.width < 768) {
       img.width = screen.width;
