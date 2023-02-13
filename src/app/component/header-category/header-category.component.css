@@ -371,6 +371,9 @@
    .wid-105 {
     width: 100%;
 }
+.heading {
+    margin-bottom: 0px;
+}
     }
 @media screen and (min-width:360px) and (max-device-width:767px) {
     :host::ng-deep .flx-wrp {
