@@ -153,6 +153,7 @@
 .epaper img {
     width: -webkit-fill-available;
 }
+
 .carousel-inner {
     position: relative;
     width: 100%;
@@ -161,6 +162,7 @@
     border: 1px solid #000;
     margin-top: 10px;
 }
+
 .home-ad-container {
     display: flex;
     justify-content: center;
@@ -241,10 +243,11 @@
 .mat-button-disabled {
     background-color: rgba(0, 0, 0, 0.12) !important;
 }
+
 .is-fold-responsive {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 @media screen and (max-width:1180px) {
@@ -264,11 +267,13 @@
     .home-ad-container .carousel {
         height: auto;
     }
+
     .home-ad-container div {
         height: auto;
     }
+
     .home-ad-container .carousel .carousel-item img {
-         height: auto;
+        height: auto;
     }
 }
 
@@ -326,31 +331,37 @@
 }
 
 @media screen and (min-width: 280px) and (max-width: 308px) {
-  .heading {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0px;
-  }
-  .heading h1, .mr-10, .ml-10 {
-    margin: unset !important;
-  }
-  .pagination-container {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 100%;
-  }
-  /*.form-field .mat-form-field {
+    .heading {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0px;
+    }
+
+    .heading h1,
+    .mr-10,
+    .ml-10 {
+        margin: unset !important;
+    }
+
+    .pagination-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+    }
+
+    /*.form-field .mat-form-field {
     width: 110% !important;
   }*/
-  .is-galaxy-fold {
-    display: inline-flex;
-    justify-content: center;
-    width: 100%;
-  }
-  mat-form-field.mat-form-field.fold-dates.ng-tns-c105-1.mat-primary.mat-form-field-type-mat-input.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float.ng-untouched.ng-pristine.ng-star-inserted.ng-valid {
-    width: 45%;
-  }
+    .is-galaxy-fold {
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    mat-form-field.mat-form-field.fold-dates.ng-tns-c105-1.mat-primary.mat-form-field-type-mat-input.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float.ng-untouched.ng-pristine.ng-star-inserted.ng-valid {
+        width: 45%;
+    }
 }
 
 .wid-105 {
@@ -360,13 +371,28 @@
 .pd-right {
     padding-right: 0 !important;
 }
-@media screen and (min-width:280px) and (max-device-width:767px) {
+
+@media screen and (min-width:279px) and (max-device-width:359px) {
     :host::ng-deep .flx-wrp {
         flex-wrap: wrap;
     }
-   :host::ng-deep #main-cntn{
-    
-    padding: 0px !important;
-   }
+
+    :host::ng-deep #main-cntn {
+
+        padding: 0px !important;
     }
-    
+
+    .wid-105 {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:360px) and (max-device-width:767px) {
+    :host::ng-deep .flx-wrp {
+        flex-wrap: wrap;
+    }
+
+    :host::ng-deep #main-cntn {
+        padding: 0px !important;
+    }
+}
