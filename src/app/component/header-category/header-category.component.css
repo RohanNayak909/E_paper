@@ -360,6 +360,18 @@
 .pd-right {
     padding-right: 0 !important;
 }
+@media screen and (min-width:279px) and (max-device-width:359px) {
+    :host::ng-deep .flx-wrp {
+        flex-wrap: wrap;
+    }
+   :host::ng-deep #main-cntn{
+    
+    padding: 0px !important;
+   }
+   .wid-105 {
+    width: 100%;
+}
+    }
 @media screen and (min-width:360px) and (max-device-width:767px) {
     :host::ng-deep .flx-wrp {
         flex-wrap: wrap;
