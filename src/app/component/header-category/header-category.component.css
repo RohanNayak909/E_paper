@@ -277,7 +277,7 @@
     }
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:768px) {
     .page-holder {
         display: none;
     }
@@ -378,13 +378,17 @@
     }
 
     :host::ng-deep #main-cntn {
-
         padding: 0px !important;
     }
 
     .wid-105 {
         width: 100%;
     }
+
+    .heading {
+        margin-bottom: 0px;
+    }
+
 }
 
 @media screen and (min-width:360px) and (max-device-width:767px) {

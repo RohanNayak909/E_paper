@@ -210,15 +210,15 @@ export class HeaderCategoryComponent implements OnInit {
             img.height = 1000;
             if(w > 574 && w < 586)
             this.screen_width = Math.round((screen.width * 170) / 100)
-            else if((w > 585 && w < 596))
+            else if(w > 585 && w < 596)
             this.screen_width = Math.round((screen.width * 166) / 100)
-            else if((w > 595 && w < 606))
+            else if(w > 595 && w < 606)
             this.screen_width = Math.round((screen.width * 162) / 100)
-            else if((w > 605 && w < 616))
+            else if(w > 605 && w < 616)
             this.screen_width = Math.round((screen.width * 158) / 100)
-            else if((w > 615 && w < 631))
+            else if(w > 615 && w < 631)
             this.screen_width = Math.round((screen.width * 154) / 100)
-            else if((w > 630 && w < 641))
+            else if(w > 630 && w < 641)
             this.screen_width = Math.round((screen.width * 150) / 100)
             else
             this.screen_width = Math.round((screen.width * 148) / 100)
@@ -226,7 +226,23 @@ export class HeaderCategoryComponent implements OnInit {
           if (screen.width > 650 && screen.width < 768) {
             img.width = screen.width;
             img.height = 1100;
+            let w = screen.width;
+            if(w > 650 && w < 666)
             this.screen_width = Math.round((screen.width * 148) / 100)
+            else if(w > 665 && w < 681)
+            this.screen_width = Math.round((screen.width * 144) / 100)
+            else if(w > 680 && w < 696)
+            this.screen_width = Math.round((screen.width * 140) / 100)
+            else if(w > 695 && w < 711)
+            this.screen_width = Math.round((screen.width * 136) / 100)
+            else if(w > 710 && w < 726)
+            this.screen_width = Math.round((screen.width * 134) / 100)
+            else if(w > 725 && w < 741)
+            this.screen_width = Math.round((screen.width * 130) / 100)
+            // else if(w > 740 && w < 768)
+            // this.screen_width = Math.round((screen.width * 126) / 100)
+            else
+            this.screen_width = Math.round((screen.width * 126) / 100)
           }
           if (screen.width > 309 && screen.width < 575) {
             img.width = screen.width;
