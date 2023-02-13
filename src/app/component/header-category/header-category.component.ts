@@ -204,7 +204,20 @@ export class HeaderCategoryComponent implements OnInit {
             img.width = 963;
             this.screen_width = Math.round((screen.width * 81.875) / 100)
           }
-          if (screen.width > 309 && screen.width < 576) {
+          if (screen.width > 574 && screen.width < 651) {
+            let w = screen.width;
+            img.width = screen.width;
+            img.height = 1000;
+            if(w > 574 && w < 586)
+            this.screen_width = Math.round((screen.width * 170) / 100)
+            else
+            this.screen_width = Math.round((screen.width * 148) / 100)
+          }
+          if (screen.width > 650 && screen.width < 768) {
+            img.width = screen.width;
+            img.height = 1100;
+          }
+          if (screen.width > 309 && screen.width < 575) {
             img.width = screen.width;
             img.height = 600;
             let x = Math.floor(screen.width / 10);
@@ -342,7 +355,15 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
-    if (screen.width > 319 && screen.width < 576) {
+    if (screen.width > 574 && screen.width < 651) {
+      img.width = screen.width;
+      img.height = 1000;
+    }
+    if (screen.width > 650 && screen.width < 768) {
+      img.width = screen.width;
+      img.height = 1100;
+    }
+    if (screen.width > 319 && screen.width < 575) {
       img.width = screen.width;
       img.height = 600;
       // this.screen_width = Math.round((screen.width * 230.875) / 100)
@@ -411,7 +432,16 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
-    if (screen.width > 319 && screen.width < 576) {
+    if (screen.width > 574 && screen.width < 651) {
+      img.width = screen.width;
+      img.height = 1000;
+      this.screen_width = Math.round((screen.width * 148) / 100)
+    }
+    if (screen.width > 650 && screen.width < 768) {
+      img.width = screen.width;
+      img.height = 1100;
+    }
+    if (screen.width > 319 && screen.width < 575) {
       img.width = screen.width;
       img.height = 600;
       // this.screen_width = Math.round((screen.width * 230.875) / 100)
@@ -477,7 +507,15 @@ export class HeaderCategoryComponent implements OnInit {
       img.width = 963;
       this.screen_width = Math.round((screen.width * 81.875) / 100)
     }
-    if (screen.width > 319 && screen.width < 576) {
+    if (screen.width > 574 && screen.width < 651) {
+      img.width = screen.width;
+      img.height = 1000;
+    }
+    if (screen.width > 650 && screen.width < 768) {
+      img.width = screen.width;
+      img.height = 1100;
+    }
+    if (screen.width > 319 && screen.width < 575) {
       img.width = screen.width;
       img.height = 600;
       // this.screen_width = Math.round((screen.width * 230.875) / 100)
