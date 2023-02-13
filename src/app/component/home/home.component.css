@@ -101,3 +101,28 @@
        height: auto; 
   }
 }
+@media only screen and (min-width:1920px) {
+.home-ad-container .carousel .carousel-item img {
+  height: 200px;
+}
+}
+@media only screen and (min-width:1680px) {
+.home-ad-container .carousel .carousel-item img {
+  height: 200px;
+}
+}
+@media screen and (min-width:1536px) and (max-device-width:1679px) {
+.home-ad-container .carousel .carousel-item img {
+  height: 175px;
+}
+}
+@media screen and (min-width:1368px) and (max-device-width:1535px) {
+.home-ad-container .carousel .carousel-item img {
+  height: 160px !important;
+}
+}
+@media screen and (min-width:1280px) and (max-device-width:1367px) {
+.home-ad-container .carousel .carousel-item img {
+    height: 150px !important;
+}
+}

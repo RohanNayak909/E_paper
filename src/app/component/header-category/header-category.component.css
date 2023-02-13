@@ -171,7 +171,6 @@
 
 .home-ad-container div {
     width: 100%;
-    height: 120px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -181,9 +180,9 @@
     height: 120px;
 }
 
-.home-ad-container .carousel {
+/* .home-ad-container .carousel {
     height: 120px;
-}
+} */
 
 .ml-10 {
     margin-left: 10px !important;
@@ -246,6 +245,7 @@
     }
 }
 
+
 @media screen and (max-width:780px) {
     .social-icons {
         margin-top: 20px;
@@ -281,8 +281,42 @@
     .left-arrow {
         margin-left: 0px !important;
     }
+    .home-ad-container .carousel .carousel-item img {
+        height: 200px;
+    }
+    #epaper .arrow-controler {
+        width: 52% !important;
+    }
 }
-
+@media only screen and (min-width:1680px) {
+    .home-ad-container .carousel .carousel-item img {
+        height: 200px;
+    }
+}
+@media screen and (min-width:1536px) and (max-device-width:1679px) {
+    .home-ad-container .carousel .carousel-item img {
+        height: 175px;
+    }
+    #epaper .arrow-controler {
+        width: 110% !important;
+    }
+}
+@media screen and (min-width:1368px) and (max-device-width:1535px) {
+  .home-ad-container .carousel .carousel-item img {
+        height: 160px !important;
+    }
+    #epaper .arrow-controler {
+        width: 110% !important;
+    }
+}
+@media screen and (min-width:1280px) and (max-device-width:1367px) {
+    .home-ad-container .carousel .carousel-item img {
+          height: 150px !important;
+      }
+      #epaper .arrow-controler {
+        width: 110% !important;
+    }
+  }
 @media only screen and (max-width: 767px) {
     #epaper .arrow-controler {
         position: sticky;

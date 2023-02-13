@@ -61,7 +61,7 @@
     </div>
   </div>
 </div>
-
+<div [ngClass]="sitewidth > 1019 ? 'container' : ''">
 <div class="epaper-container">
   <div class="d-flex flx-wrp" id="for_mobile" #for_mobile>
     <div class="col-lg-2 col-md-4 col-sm-12 col-12">
@@ -103,6 +103,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <app-footer></app-footer>
 <!-- </section>

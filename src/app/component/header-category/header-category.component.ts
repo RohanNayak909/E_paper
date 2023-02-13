@@ -31,7 +31,7 @@ export class HeaderCategoryComponent implements OnInit {
   screen_width: any
   img_length: any = 0;
   adsArray: any = []
-
+  sitewidth: any
   isFold: boolean = false;
   // @HostListener('window:keydown', ['$event'])
   // handleKeyboardEvent(event: KeyboardEvent) {
@@ -45,6 +45,7 @@ export class HeaderCategoryComponent implements OnInit {
     public breakpointObserver: BreakpointObserver) {
     activatedRoute.params.subscribe(val => {
       // if(window.screen.width <= 575) {
+      this.sitewidth = screen.width;
       try {
         //this.handleSwipe();
       } catch (error) {
@@ -85,6 +86,7 @@ export class HeaderCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     //if(window.screen.width <= 575) {
+    this.sitewidth = screen.width;
     this.handleSwipe();
     //}
     let routeParams = this.activatedRoute.snapshot.paramMap;
@@ -191,18 +193,60 @@ export class HeaderCategoryComponent implements OnInit {
             img.height = 1479;
             img.width = 963;
             img.classList.add('main-image')
-            this.screen_width = Math.round((screen.width * 80.6) / 100)
+            let w = screen.width;
+            if (w > 1269 && w < 1291)
+              this.screen_width = Math.round((screen.width * 69.6) / 100)
+            else if (w > 1357 && w < 1379)
+              this.screen_width = Math.round((screen.width * 65) / 100)
+            else if (w > 1429 && w < 1451)
+              this.screen_width = Math.round((screen.width * 62) / 100)
+            else if (w > 1524 && w < 1547)
+              this.screen_width = Math.round((screen.width * 58) / 100)
+            else if (w > 1669 && w < 1691)
+              this.screen_width = Math.round((screen.width * 53) / 100)
+            else if (w > 1909 && w < 1931)
+              this.screen_width = Math.round((screen.width * 46.2) / 100)
+            else
+              this.screen_width = Math.round((screen.width * 34.8) / 100)
           } else {
             img.height = 1479;
             img.width = 963;
             img.classList.add('suppl-image')
-            this.screen_width = Math.round((screen.width * 80.6) / 100)
+            let w = screen.width;
+            if (w > 1269 && w < 1291)
+              this.screen_width = Math.round((screen.width * 69.6) / 100)
+            else if (w > 1357 && w < 1379)
+              this.screen_width = Math.round((screen.width * 65) / 100)
+            else if (w > 1429 && w < 1451)
+              this.screen_width = Math.round((screen.width * 62) / 100)
+            else if (w > 1524 && w < 1547)
+              this.screen_width = Math.round((screen.width * 58) / 100)
+            else if (w > 1669 && w < 1691)
+              this.screen_width = Math.round((screen.width * 53) / 100)
+            else if (w > 1909 && w < 1931)
+              this.screen_width = Math.round((screen.width * 46.2) / 100)
+            else
+              this.screen_width = Math.round((screen.width * 34.8) / 100)
           }
           var split_arr = this.imgarr[0].file_name.split("-");
           if (split_arr.length > 1) {
             img.height = 700;
             img.width = 963;
-            this.screen_width = Math.round((screen.width * 80.6) / 100)
+            let w = screen.width;
+            if (w > 1269 && w < 1291)
+              this.screen_width = Math.round((screen.width * 69.6) / 100)
+            else if (w > 1357 && w < 1379)
+              this.screen_width = Math.round((screen.width * 65) / 100)
+            else if (w > 1429 && w < 1451)
+              this.screen_width = Math.round((screen.width * 62) / 100)
+            else if (w > 1524 && w < 1547)
+              this.screen_width = Math.round((screen.width * 58) / 100)
+            else if (w > 1669 && w < 1691)
+              this.screen_width = Math.round((screen.width * 53) / 100)
+            else if (w > 1909 && w < 1931)
+              this.screen_width = Math.round((screen.width * 46.2) / 100)
+            else
+              this.screen_width = Math.round((screen.width * 34.8) / 100)
           }
           if (screen.width > 574 && screen.width < 651) {
             let w = screen.width;
@@ -379,17 +423,59 @@ export class HeaderCategoryComponent implements OnInit {
     if (page_type === '0') {
       img.height = 1479;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     } else {
       img.height = 1479;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     }
     var split_arr = this.imgarr[i - 1].file_name.split("-");
     if (split_arr.length > 1) {
       img.height = 700;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     }
     if (screen.width > 574 && screen.width < 651) {
       let w = screen.width;
@@ -497,17 +583,59 @@ export class HeaderCategoryComponent implements OnInit {
     if (this.imgarr[i].page_type === '0') {
       img.height = 1479;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     } else {
       img.height = 1479;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     }
     var split_arr = this.imgarr[i].file_name.split("-");
     if (split_arr.length > 1) {
       img.height = 700;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     }
     if (screen.width > 574 && screen.width < 651) {
       let w = screen.width;
@@ -612,17 +740,59 @@ export class HeaderCategoryComponent implements OnInit {
     if (this.imgarr[i].page_type === '0') {
       img.height = 1479;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     } else {
       img.height = 1479;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     }
     var split_arr = this.imgarr[i].file_name.split("-");
     if (split_arr.length > 1) {
       img.height = 700;
       img.width = 963;
-      this.screen_width = Math.round((screen.width * 80.6) / 100)
+      let w = screen.width;
+      if (w > 1269 && w < 1291)
+        this.screen_width = Math.round((screen.width * 69.6) / 100)
+      else if (w > 1357 && w < 1379)
+        this.screen_width = Math.round((screen.width * 65) / 100)
+      else if (w > 1429 && w < 1451)
+        this.screen_width = Math.round((screen.width * 62) / 100)
+      else if (w > 1524 && w < 1547)
+        this.screen_width = Math.round((screen.width * 58) / 100)
+      else if (w > 1669 && w < 1691)
+        this.screen_width = Math.round((screen.width * 53) / 100)
+      else if (w > 1909 && w < 1931)
+        this.screen_width = Math.round((screen.width * 46.2) / 100)
+      else
+        this.screen_width = Math.round((screen.width * 34.8) / 100)
     }
     if (screen.width > 574 && screen.width < 651) {
       let w = screen.width;
