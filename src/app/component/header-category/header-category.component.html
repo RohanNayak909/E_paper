@@ -1,7 +1,7 @@
 <!-- <section class="container">
     <section class="header-wrapper"> -->
 <div class="marg-bot">
-  <img class="prameya-header-logo" src="assets/img/prameyaHeader.png"/>
+  <img class="prameya-header-logo" src="assets/img/prameyaHeader.png" />
 </div>
 <div class="marg-bot">
   <app-header></app-header>
@@ -9,8 +9,7 @@
 <div class="home-ad-container">
   <div id="carouselExampleControls3" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item" *ngFor="let middle_ad of adsArray;let i = index"
-        [ngClass]="i === 0 ? 'active' : ''">
+      <div class="carousel-item" *ngFor="let middle_ad of adsArray;let i = index" [ngClass]="i === 0 ? 'active' : ''">
         <img class="d-block w-100 cp" src={{middle_ad.ads_image}} alt={{middle_ad.ads_image_alt_text}}
           (click)="openLink(middle_ad.ads_image_link)">
       </div>
@@ -32,12 +31,12 @@
 </div>
 
 <div class="filter-container">
-<!--  <div class="row">-->
+  <!--  <div class="row">-->
   <div [ngClass]="isFold ? 'is-fold-responsive':'d-flex'">
     <div [ngClass]="isFold ? 'is-galaxy-fold':'col-md-2 col-sm-4 col-6 form-field'">
       <mat-form-field class="fold-dates" appearance="outline">
-        <input matInput id="startDate" type="date" [(ngModel)]="editionDate"
-               (change)="onChangeDate(editionDate)" required>
+        <input matInput id="startDate" type="date" [(ngModel)]="editionDate" (change)="onChangeDate(editionDate)"
+          required>
       </mat-form-field>
     </div>
     <div class="col-md-10 col-sm-8 col-6">
@@ -49,7 +48,7 @@
           <mat-form-field appearance="outline">
             <mat-select [(ngModel)]="currentIndex">
               <mat-option *ngFor="let data of imgarr" [value]="data.index"
-                          (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">
+                (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">
                 Page No -
                 {{data.file_name}}
               </mat-option>
@@ -62,48 +61,58 @@
   </div>
 </div>
 <div [ngClass]="sitewidth > 1019 ? 'container' : ''">
-<div class="epaper-container">
-  <div class="d-flex flx-wrp" id="for_mobile" #for_mobile>
-    <div class="col-lg-2 col-md-4 col-sm-12 col-12">
-      <div class="page-holder" *ngFor="let data of imgarr">
-        <div class="pages"
-             (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">
-          <mat-icon>description</mat-icon>
-          <p>Page No - {{data.file_name}}</p>
+  <div class="epaper-container">
+    <div class="d-flex flx-wrp" id="for_mobile" #for_mobile>
+      <div class="col-lg-2 col-md-4 col-sm-12 col-12">
+        <div class="img-scroll" id="style-3">
+          <div class="page-holder" *ngFor="let data of imgarr; let i = index">
+            <!-- <div class="mb-5"> -->
+              <img [src]="data.image_url" alt="" class="mb-5 cp side-img" [ngClass]="i === 0 ? 'brdr' : ''" 
+              [attr.id]="'img_'+i" (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">
+            <!-- </div> -->
+            <div class="pages"
+              (click)="goToPage(data.image_id,data.image_url, data.area_details, data.index, data.page_type)">
+              <mat-icon>description</mat-icon>
+              <p>Page No - {{data.file_name}}</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-10 col-md-8 col-sm-12 col-12" id="main-cntn">
-      <div class="social-icons">
-        <div class="icon facebook"><i class="fa fa-facebook"></i></div>
-        <div class="icon twitter"><i class="fa fa-twitter"></i></div>
-        <div class="icon google"><i class="fa fa-google-plus"></i></div>
-        <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-        <div class="icon print" (click)="printImage()"><i class="fa fa-print"></i></div>
-        <div class="icon email"><i class="fa fa-envelope"></i></div>
-      </div>
-      <div id="epaper">
-        <div class="epaper">
-          <div class="imagemap" id="imagemap"></div>
+      <div class="col-lg-10 col-md-8 col-sm-12 col-12" id="main-cntn">
+        <div class="social-icons">
+          <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+          <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+          <div class="icon google"><i class="fa fa-google-plus"></i></div>
+          <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
+          <div class="icon print" (click)="printImage()"><i class="fa fa-print"></i></div>
+          <div class="icon email"><i class="fa fa-envelope"></i></div>
         </div>
-        <div class="arrow-controler">
-        <div class="d-flex justify-content-between">
-          <button [disabled]="currentIndex === 1" (click)="prevPage()" mat-mini-fab class="page-control before left-arrow" style="background-color: var(--red);"><mat-icon>navigate_before</mat-icon></button>
-          <button [disabled]="currentIndex === img_length" (click)="nextPage()" mat-mini-fab class="page-control next" style="background-color: var(--red);"><mat-icon>navigate_next</mat-icon></button>
+        <div id="epaper">
+          <div class="epaper">
+            <div class="imagemap" id="imagemap"></div>
+          </div>
+          <div class="arrow-controler">
+            <div class="d-flex justify-content-between">
+              <button [disabled]="currentIndex === 1" (click)="prevPage()" mat-mini-fab
+                class="page-control before left-arrow"
+                style="background-color: var(--red);"><mat-icon>navigate_before</mat-icon></button>
+              <button [disabled]="currentIndex === img_length" (click)="nextPage()" mat-mini-fab
+                class="page-control next"
+                style="background-color: var(--red);"><mat-icon>navigate_next</mat-icon></button>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
-      <div class="social-icons" *ngIf="hide">
-        <div class="icon facebook"><i class="fa fa-facebook"></i></div>
-        <div class="icon twitter"><i class="fa fa-twitter"></i></div>
-        <div class="icon google"><i class="fa fa-google-plus"></i></div>
-        <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
-        <div class="icon print" (click)="printImage()"><i class="fa fa-print"></i></div>
-        <div class="icon email"><i class="fa fa-envelope"></i></div>
+        <div class="social-icons" *ngIf="hide">
+          <div class="icon facebook"><i class="fa fa-facebook"></i></div>
+          <div class="icon twitter"><i class="fa fa-twitter"></i></div>
+          <div class="icon google"><i class="fa fa-google-plus"></i></div>
+          <div class="icon linkedin"><i class="fa fa-linkedin"></i></div>
+          <div class="icon print" (click)="printImage()"><i class="fa fa-print"></i></div>
+          <div class="icon email"><i class="fa fa-envelope"></i></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <app-footer></app-footer>
 <!-- </section>

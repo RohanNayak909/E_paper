@@ -135,6 +135,7 @@ export class HeaderCategoryComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+
     try {
       //this.handleSwipe();
       if (screen.width > 270 && screen.width < 308) {
@@ -186,6 +187,7 @@ export class HeaderCategoryComponent implements OnInit {
           for (i = 0; i < this.imgarr?.length; i++) {
             this.imgarr[i].index = i + 1
           }
+
           var img: any = document.createElement('img');
           img.id = 'map_area_img'
           img.src = this.imgarr[0].image_url
@@ -417,6 +419,17 @@ export class HeaderCategoryComponent implements OnInit {
   }
 
   goToPage(img_id: any, img_url: any, area_details: any, i: any, page_type: any) {
+
+    let list: any = document.getElementsByClassName("side-img");
+    if (list.length > 0) {
+      for (var a = 0; a < list.length; a++) {
+        list[a].classList.remove('brdr')
+      }
+    }
+    let val: any = document.getElementById("img_" + (i - 1));
+    if (val)
+      val.classList.add("brdr")
+
     var img: any = document.createElement('img');
     img.id = 'map_area_img'
     img.src = img_url
@@ -577,6 +590,17 @@ export class HeaderCategoryComponent implements OnInit {
   nextPage() {
     var i = this.currentIndex
     this.currentIndex = this.currentIndex + 1;
+
+    let list: any = document.getElementsByClassName("side-img");
+    if (list.length > 0) {
+      for (var a = 0; a < list.length; a++) {
+        list[a].classList.remove('brdr')
+      }
+    }
+    let val: any = document.getElementById("img_" + i);
+    if (val)
+      val.classList.add("brdr")
+
     var img: any = document.createElement('img');
     img.id = 'map_area_img'
     img.src = this.imgarr[i].image_url
@@ -734,6 +758,17 @@ export class HeaderCategoryComponent implements OnInit {
   prevPage() {
     var i = this.currentIndex - 2
     this.currentIndex = this.currentIndex - 1;
+
+    let list: any = document.getElementsByClassName("side-img");
+    if (list.length > 0) {
+      for (var a = 0; a < list.length; a++) {
+        list[a].classList.remove('brdr')
+      }
+    }
+    let val: any = document.getElementById("img_" + i);
+    if (val)
+      val.classList.add("brdr")
+
     var img: any = document.createElement('img');
     img.id = 'map_area_img'
     img.src = this.imgarr[i].image_url
