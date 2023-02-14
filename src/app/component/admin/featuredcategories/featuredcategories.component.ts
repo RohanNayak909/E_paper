@@ -61,6 +61,9 @@ export class FeaturedcategoriesComponent implements OnInit {
 
   updateFeaturedCategory() {
     this.spinnerService.show();
+    this.catarr.forEach((e:any) => {
+      e.createdby = this.currentuser.user_id;
+    });
     this.categoryService.updateCategory(this.catarr).subscribe((res: any) => {
       if (res.code === "success") {
         this.notification.success(res.message);
