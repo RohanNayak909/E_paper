@@ -81,7 +81,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0px 18px;
+    /* padding: 0px 18px; */
+    margin-bottom: 10px;
 }
 
 .pages {
@@ -91,7 +92,28 @@
     color: var(--white);
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+}
+
+.img-scroll {
+    overflow-y: scroll;
+    max-height: 1479px;
+    padding: 10px;
+    border: 1px solid var(--red);
+}
+
+#style-3::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+#style-3::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+    background-color: #a17171;
 }
 
 .pages:hover {
@@ -171,7 +193,6 @@
 
 .home-ad-container div {
     width: 100%;
-    height: 120px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -181,9 +202,9 @@
     height: 120px;
 }
 
-.home-ad-container .carousel {
+/* .home-ad-container .carousel {
     height: 120px;
-}
+} */
 
 .ml-10 {
     margin-left: 10px !important;
@@ -246,6 +267,7 @@
     }
 }
 
+
 @media screen and (max-width:780px) {
     .social-icons {
         margin-top: 20px;
@@ -280,6 +302,58 @@
 
     .left-arrow {
         margin-left: 0px !important;
+    }
+
+    .home-ad-container .carousel .carousel-item img {
+        height: 200px;
+    }
+
+    #epaper .arrow-controler {
+        width: 52% !important;
+    }
+}
+
+@media only screen and (min-width:1680px) {
+    .home-ad-container .carousel .carousel-item img {
+        height: 200px;
+    }
+
+    .brdr {
+        border: 3px solid !important;
+    }
+}
+
+@media screen and (min-width:1536px) and (max-device-width:1679px) {
+    .home-ad-container .carousel .carousel-item img {
+        height: 175px;
+    }
+
+    #epaper .arrow-controler {
+        width: 110% !important;
+    }
+
+    .brdr {
+        border: 3px solid !important;
+    }
+}
+
+@media screen and (min-width:1368px) and (max-device-width:1535px) {
+    .home-ad-container .carousel .carousel-item img {
+        height: 160px !important;
+    }
+
+    #epaper .arrow-controler {
+        width: 110% !important;
+    }
+}
+
+@media screen and (min-width:1280px) and (max-device-width:1367px) {
+    .home-ad-container .carousel .carousel-item img {
+        height: 150px !important;
+    }
+
+    #epaper .arrow-controler {
+        width: 110% !important;
     }
 }
 
@@ -391,4 +465,12 @@
         border: none !important;
         background: none !important;
     }
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+
+.brdr {
+    border: 2px solid;
 }
