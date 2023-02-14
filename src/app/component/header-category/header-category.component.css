@@ -290,6 +290,13 @@
     .page-holder {
         display: none;
     }
+    .img-scroll {
+        overflow-y: scroll;
+        max-height: 1479px;
+        padding: 10px;
+        border: 1px solid var(--red);
+        display: none;
+    }
 }
 
 @media only screen and (min-width:1920px) {
