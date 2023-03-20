@@ -1,0 +1,20 @@
+.game-box {
+    width: 31%;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.gm-name {
+    text-align: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-family: poppins;
+    background-color: #212529;
+}
+
+.game-img {
+    height: 600px;
+}

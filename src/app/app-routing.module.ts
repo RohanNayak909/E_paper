@@ -12,6 +12,7 @@ import { NewsupplimentComponent } from './component/admin/editions/supplimentpag
 import { SupplimentpagesComponent } from './component/admin/editions/supplimentpages/supplimentpages.component';
 import { CreateAreaMapComponent } from './component/admin/editions/upload-pages/create-area-map/create-area-map.component';
 import { EditPagesComponent } from './component/admin/editions/upload-pages/edit-pages/edit-pages.component';
+import { PreviewEditionComponent } from './component/admin/editions/upload-pages/preview-edition/preview-edition.component';
 import { UploadPagesComponent } from './component/admin/editions/upload-pages/upload-pages.component';
 import { FeaturedcategoriesComponent } from './component/admin/featuredcategories/featuredcategories.component';
 import { FeaturededitionComponent } from './component/admin/featurededition/featurededition.component';
@@ -84,6 +85,7 @@ const routes: Routes = [
       { path: 'edition/supplement/add', component: NewsupplimentComponent },
       { path: 'header/manage', component: ManageHeaderComponent },
       { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent },
+      { path: 'epaper/edition/preview/:id', component: PreviewEditionComponent },
       { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent },
       { path: 'ads/view', component: AdminAdViewComponent },
       { path: 'ads/add', component: AdminAdComponent },

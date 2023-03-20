@@ -70,6 +70,8 @@
                                 accept="image/jpeg,image/png,image/gif" (change)="addToQueue()" multiple>
                             <button class="btn-join" [ngClass]="is_image_upload ? 'disabled' : ''"
                             (click)="uploadAll()">Start Upload</button>
+                            <button class="btn-preview" [ngClass]="imgarr && imgarr.length ? '' : 'disabled'"
+                            (click)="previewPublish()">Preview & Publish</button>
                         </div>
                     </div>
                     <div class="row mt-10" style="background: #fff;" *ngIf="uploadqueuediv">

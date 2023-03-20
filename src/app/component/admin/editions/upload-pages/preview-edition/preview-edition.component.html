@@ -1,0 +1,10 @@
+<div class="popular">
+    <div class="d-flex flex-wrap">
+        <div class="game-box" *ngFor="let img of imgarr">
+            <div class="game-img">
+                <img [src]="img.image_url ? img.image_url : ''" class="img-fluid">
+            </div>
+            <div class="gm-name">{{img.file_name}}</div>
+        </div>
+    </div>
+</div>

@@ -67,6 +67,14 @@ export class UploadPagesComponent implements OnInit {
     this.uploader.onCompleteItem = this.completeItem;
   }
 
+  previewPublish() {
+    let id = this.eid;
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/admin/epaper/edition/preview/${id}`])
+    );
+    window.open(url, '_blank');
+  }
+
   addPdf() {
     let btn = document.getElementById('pdf-file');
     if (btn) {

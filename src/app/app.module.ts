@@ -56,6 +56,7 @@ import { AdminAdViewComponent } from './component/admin/admin-ad/admin-ad-view/a
 import { EditAdDialogComponent } from './component/admin/admin-ad/edit-ad-dialog/edit-ad-dialog.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { PreviewEditionComponent } from './component/admin/editions/upload-pages/preview-edition/preview-edition.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     AdminAdComponent,
     AdminAdViewComponent,
     EditAdDialogComponent,
+    PreviewEditionComponent,
   ],
 
   imports: [
