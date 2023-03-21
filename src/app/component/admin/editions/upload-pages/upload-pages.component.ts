@@ -27,6 +27,7 @@ export class UploadPagesComponent implements OnInit {
   imgid = '';
   imgarr: any = [];
   eid: any;
+  category_name: any
   cust_id: any;
   currentuser: any;
   category: any = '';
@@ -59,7 +60,9 @@ export class UploadPagesComponent implements OnInit {
 
   ngOnInit(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
+    console.log(routeParams)
     this.eid = Number(routeParams.get('id'));
+    this.category_name = routeParams.get('name');
     this.cust_id = environment.CUSTOMER_ID
     this.currentuser = this.loginService.getCurrentUser();
     this.getAllImages();
@@ -70,7 +73,7 @@ export class UploadPagesComponent implements OnInit {
   previewPublish() {
     let id = this.eid;
     const url = this.router.serializeUrl(
-      this.router.createUrlTree([`/admin/epaper/edition/preview/${id}`])
+      this.router.createUrlTree([`/admin/epaper/edition/preview/${this.category_name}/${id}`])
     );
     window.open(url, '_blank');
   }
@@ -231,6 +234,7 @@ export class UploadPagesComponent implements OnInit {
     }, 1000)
   }
 
+  edition_verified:Boolean = false;
   getAllImages() {
     this.editionService.getAllImages(this.imgid, this.eid, environment.CUSTOMER_ID, this.category).subscribe(res => {
       if (res.code === "success") {
@@ -239,6 +243,11 @@ export class UploadPagesComponent implements OnInit {
         var i: any
         for (i = 0; i < this.imgarr?.length; i++) {
           this.imgarr[i].index = i + 1;
+        }
+        if(this.imgarr[0].edition_verified === 1) {
+          this.edition_verified = true;
+        } else {
+          this.edition_verified = false;
         }
       } else {
         this.imgarr = [];

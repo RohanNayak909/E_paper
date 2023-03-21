@@ -74,6 +74,7 @@
                             (click)="previewPublish()">Preview & Publish</button>
                         </div>
                     </div>
+                    
                     <div class="row mt-10" style="background: #fff;" *ngIf="uploadqueuediv">
                         <div class="col-md-12">
                             <h3><strong>Upload Queue</strong></h3>
@@ -119,7 +120,14 @@
             </div>
         </div>
     </div>
+    
     <div class="upload-container">
+        <div class="alert alert-info" *ngIf="edition_verified">
+            <strong>Verified!</strong>
+        </div>
+        <div class="alert alert-danger" *ngIf="!edition_verified">
+            * This edition is not verified yet. Please verify before mapping.
+        </div>
         <div class="upload-content">
             <div class="sticky-div" *ngIf="imgarr && imgarr.length;"><button class="btn-join"
                     (click)="update()">Update</button></div>
@@ -139,7 +147,7 @@
                             <h4> {{data.file_name}}</h4>
                             <div class="d-flex">
                                 <div class="search-category">
-                                    <button mat-raised-button color="primary"
+                                    <button mat-raised-button color="primary" [disabled]="!edition_verified"
                                         (click)="createAreaMap(data.image_id,data.image_url,data.page_type)">
                                         <mat-icon>edit</mat-icon> Create Area Maps
                                     </button>

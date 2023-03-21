@@ -1,10 +1,23 @@
 <div class="popular">
+    <div class="alert alert-info" *ngIf="edition_verified">
+        <strong>Verified!</strong>
+    </div>
+    <div class="alert alert-danger" *ngIf="!edition_verified">
+        * This edition is not verified yet. Please verify before mapping.
+    </div>
     <div class="d-flex flex-wrap">
         <div class="game-box" *ngFor="let img of imgarr">
-            <div class="game-img">
+            <div class="game-img" (click)="previewImage(img)">
                 <img [src]="img.image_url ? img.image_url : ''" class="img-fluid">
             </div>
             <div class="gm-name">{{img.file_name}}</div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center mt-10 check"> 
+        <input type="checkbox" id="declaration" name="declaration" [disabled]="edition_verified">
+        <label for="declaration" class="dec-msg"> I hereby declare that I have verified all above pages of this edition. I am ready to publish this edition.</label><br>
+    </div>
+    <div class="d-flex justify-content-center mt-10 mb-50">
+        <button class="btn btn-info" [disabled]="edition_verified" (click)="publishEdition()">Publish</button>
     </div>
 </div>

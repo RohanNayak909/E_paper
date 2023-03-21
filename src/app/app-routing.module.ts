@@ -85,7 +85,7 @@ const routes: Routes = [
       { path: 'edition/supplement/add', component: NewsupplimentComponent },
       { path: 'header/manage', component: ManageHeaderComponent },
       { path: 'epaper/edition/map/:id', component: CreateAreaMapComponent },
-      { path: 'epaper/edition/preview/:id', component: PreviewEditionComponent },
+      { path: 'epaper/edition/preview/:name/:id', component: PreviewEditionComponent },
       { path: 'epaper/edition/upload-pages/edit/:eid/:id', component: EditPagesComponent },
       { path: 'ads/view', component: AdminAdViewComponent },
       { path: 'ads/add', component: AdminAdComponent },
