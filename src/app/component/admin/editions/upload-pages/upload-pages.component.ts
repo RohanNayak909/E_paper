@@ -235,12 +235,14 @@ export class UploadPagesComponent implements OnInit {
   }
 
   edition_verified:Boolean = false;
+  edition_verified_name:any
   getAllImages() {
     this.editionService.getAllImages(this.imgid, this.eid, environment.CUSTOMER_ID, this.category).subscribe(res => {
       if (res.code === "success") {
         var img = res.body;
         this.imgarr = img.map((i: any) => JSON.parse(i));
         var i: any
+        this.edition_verified_name = this.imgarr[0].edition_verified_name;
         for (i = 0; i < this.imgarr?.length; i++) {
           this.imgarr[i].index = i + 1;
         }

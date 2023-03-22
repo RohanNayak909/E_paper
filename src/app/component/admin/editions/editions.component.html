@@ -34,6 +34,8 @@
           <th class="content">Category</th>
           <th class="content">Edition Date</th>
           <th class="content">Status</th>
+          <th class="content">Is Verified ?</th>
+          <th class="content">Verified By</th>
           <th class="content">Actions</th>
         </thead>
         <tbody *ngIf="editionarr && editionarr.length; else elseblock">
@@ -46,6 +48,8 @@
             <td>{{e.edition_date | date}}</td>
             <td><span class="label" [ngClass]="e.status == 1 ? 'label-primary' : 'label-danger'">{{e.status == 1 ?
                 "Public" : "Private"}}</span></td>
+            <td>{{e.edition_verified == 1 ? 'Verified' : 'Not Verified'}}</td>
+            <td>{{e.edition_verified_name ? e.edition_verified_name : 'NA'}}</td>
             <td>
               <a class="btn btn-success btn-xs mr-4" href="javascript:void(0)" title="Edit" (click)="editEdition(e)"><i
                   class="fa fa-edit"></i></a>
@@ -69,7 +73,7 @@
         <ng-template #elseblock>
           <tbody>
             <tr>
-              <td colspan="6" class="text-center" style="color: black;">
+              <td colspan="8" class="text-center" style="color: black;">
                 No record Found
               </td>
             </tr>

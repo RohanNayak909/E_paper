@@ -32,11 +32,13 @@ export class PreviewEditionComponent implements OnInit {
   }
 
   edition_verified:Boolean = false;
+  edition_verified_name:any
   getAllImages() {
     this.editionService.getAllImages('', this.eid, this.cust_id, '').subscribe(res => {
       if (res.code === "success") {
         var img = res.body;
         this.imgarr = img.map((i: any) => JSON.parse(i));
+        this.edition_verified_name = this.imgarr[0].edition_verified_name;
         let chbval:any = document.getElementById("declaration");
         if(this.imgarr[0].edition_verified === 1) {
           this.edition_verified = true;
