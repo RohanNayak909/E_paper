@@ -92,6 +92,7 @@ export class FileUploaderService {
     this.edition.createdby = obj.createdby
     this.edition.customer_id = obj.customer_id
     this.edition.page_type = obj.page_type
+    this.edition.edition_date = obj.edition_date
 
     console.log(this.edition);
 
@@ -157,6 +158,7 @@ export class FileUploaderService {
       obj.createdby = this.edition.createdby;
       obj.customer_id = this.edition.customer_id;
       obj.page_type = this.edition.page_type
+      obj.edition_date = this.edition.edition_date
       obj.slno = c
       // console.log('Obj===', obj.full_name,' - - ',obj.slno);
 

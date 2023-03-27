@@ -66,8 +66,24 @@ export class UploadPagesComponent implements OnInit {
     this.cust_id = environment.CUSTOMER_ID
     this.currentuser = this.loginService.getCurrentUser();
     this.getAllImages();
+    this.getEditionDetails();
     this.queue = this.uploader.queue;
     this.uploader.onCompleteItem = this.completeItem;
+  }
+
+  editionarr:any = []
+  getEditionDetails() {
+    this.editionService.getEditionAll(this.eid, '', '', this.currentuser.customer_id).subscribe(res => {
+      if (res.code = 'sucess') {
+        var data = res.body;
+        this.editionarr = data.map((dt: any) => JSON.parse(dt));
+        this.edition_date = this.editionarr[0].edition_date;
+      } else {
+        this.editionarr = [];
+      }
+    }, (err) => {
+      this.editionarr = []
+    })
   }
 
   previewPublish() {
@@ -236,6 +252,7 @@ export class UploadPagesComponent implements OnInit {
 
   edition_verified:Boolean = false;
   edition_verified_name:any
+  edition_date:any
   getAllImages() {
     this.editionService.getAllImages(this.imgid, this.eid, environment.CUSTOMER_ID, this.category).subscribe(res => {
       if (res.code === "success") {
@@ -243,6 +260,7 @@ export class UploadPagesComponent implements OnInit {
         this.imgarr = img.map((i: any) => JSON.parse(i));
         var i: any
         this.edition_verified_name = this.imgarr[0].edition_verified_name;
+        this.edition_date = this.imgarr[0].edition_date;
         for (i = 0; i < this.imgarr?.length; i++) {
           this.imgarr[i].index = i + 1;
         }
@@ -315,11 +333,12 @@ export class UploadPagesComponent implements OnInit {
 
   addToQueue() {
     const fileBrowser = this.image_file_upload.nativeElement;
-    var obj = { edition_id: null, createdby: null, customer_id: null, page_type: null }
+    var obj = { edition_id: null, createdby: null, customer_id: null, page_type: null, edition_date: null }
     obj.edition_id = this.eid;
     obj.createdby = this.currentuser.user_id;
     obj.customer_id = this.cust_id;
     obj.page_type = this.page_style
+    obj.edition_date = this.edition_date
     
     this.uploadqueuediv = true
     this.is_image_upload = false

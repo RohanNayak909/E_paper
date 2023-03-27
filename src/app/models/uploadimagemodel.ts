@@ -11,4 +11,5 @@ export class UploadImageModel {
     flag:any
     base64_arr:any = []
     slno:any
+    edition_date:any
 }
