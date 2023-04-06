@@ -29,8 +29,9 @@
 }
 
 .game-img {
-    height: 600px;
+    height: 605px;
     cursor: pointer;
+    border: 2px solid #000;
 }
 
 .mb-50 {

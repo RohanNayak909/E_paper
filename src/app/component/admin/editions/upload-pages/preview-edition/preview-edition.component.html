@@ -7,10 +7,10 @@
     </div>
     <div class="d-flex flex-wrap">
         <div class="game-box" *ngFor="let img of imgarr">
+            <div class="gm-name">{{img.file_name}}</div>
             <div class="game-img" (click)="previewImage(img)">
                 <img [src]="img.image_url ? img.image_url : ''" class="img-fluid">
             </div>
-            <div class="gm-name">{{img.file_name}}</div>
         </div>
     </div>
     <div class="d-flex justify-content-center mt-10 check"> 
